@@ -1,14 +1,81 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema
 
-// TODO: Please make sure you edit the user model to whatever makes sense in this case
 const userSchema = new Schema({
-  username: {
+  emailAddress: {
     type: String,
-    // unique: true -> Ideally, should be unique, but its up to you
+    // required: true,
+    // validate: {
+    //   validator: function (email) {
+    //     return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)
+    //   },
+    //   message: 'Please, enter a valid email'
+    // }
   },
-  password: String,
-});
 
-const User = model("User", userSchema);
+  password: {
+    type: String,
+    required: true
+  },      // Deseable exigir mayusculas numeros etc
+
+  name: {
+    type: String,
+    minLegth: 1,
+    maxLength: 50,
+    required: true,
+    set: value => value.charAt(0).toUpperCase() + value.substring(1)
+  },
+
+  Surname: {
+    type: String,
+    minLegth: 1,
+    maxLength: 50,
+    required: true,
+    set: value => value.charAt(0).toUpperCase() + value.substring(1)
+  },
+
+  // personalId: { type: String, required: true },
+
+  // typeOfId: {
+  //   type: String,
+  //   enum: ['dni', 'passport', 'other'],
+  // },
+
+  phone: {
+    type: String,
+    required: true
+  },    // prefijo del pais
+
+  address: {
+    street: { type: String, required: true },
+    number: { type: String, default: null },
+    zipCode: { type: String, required: true },
+    city: { type: String, required: true },
+    country: { type: String, required: true }
+  },
+
+  flights: [{
+    type: mongoose.Schema.Types.ObjectId, ref: 'Fligths'
+  }],
+
+  role: {
+    type: String,
+    enum: ['user', 'company', 'admin'],
+    default: 'user'
+  },
+
+  // company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
+
+  profileImg: { //Cloudinary
+    type: String,
+    required: true,
+  }
+
+},
+
+  { timestamps: true }
+)
+
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
