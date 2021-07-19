@@ -9,7 +9,7 @@ const flightSchema = new Schema({
 
     capacity: {
         type: Number,
-        required: true,
+        // required: true,
     },
 
     flightNumber: {
