@@ -26,4 +26,12 @@ router.delete('/:company_id/delete', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting company', err }))
 })
 
+router.get('/', (req, res) => {
+
+    Company
+        .find()
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
+})
+
 module.exports = router
