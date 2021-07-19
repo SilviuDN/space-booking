@@ -21,10 +21,10 @@ const companySchema = new Schema({
         country: { type: String }
     },
 
-    documents: [{ //Cloudinary
+    document: { //Cloudinary Investigar edicion de varios documentos sin eliminar al actualizar.
         type: String,
         // required: true,
-    }],
+    },
 
     moderator: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'
@@ -33,6 +33,10 @@ const companySchema = new Schema({
     reviews: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Review'
     }],
+    status: {
+        type: Boolean,
+        default: "false"
+    },
 
 
 },

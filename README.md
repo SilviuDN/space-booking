@@ -28,29 +28,29 @@ Authorization!!!
 
 ### company.routes.js
 
-
+-   /company
 -   /company/edit GET ----> 
 -   /company/edit PUT
 -   /company/delete DELETE
 
 ### destinations.routes.js
 
--   /destinations GET
-
+-   /destination GET
+-   /destination/new POST
 -   /destination/:destination_id/details GET
 -   /destination/:destination_id/edit GET
 -   /destination/:destination_id/edit PUT
 -   /destination/:destination_id/delete DELETE
 
 ### airport.routes.js
-
--   /airports GET
+-   /airport/new
+-   /airport GET
 -   /airport/:airport:\_id/edit GET
 -   /airport/:airport:\_id/edit PUT
 -   /airport/:airport:\_id/delete DELETE
 
 ### flight.routes.js
-
+/flight/ GET
 /flight/new POST
 /flight/:flight_id/edit GET
 /flight/:flight_id/edit PUT
