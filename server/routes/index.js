@@ -5,6 +5,10 @@ module.exports = app => {
     app.use('/api/reviews', require('./review.routes'))
     app.use('/api/company', require('./company.routes'))
     app.use('/api/destination', require('./destination.routes'))
+<<<<<<< HEAD
     app.use('/api/airport', require('./airport.routes'))
+=======
+    // app.use('/api/airport', require('./airport.routes'))
+>>>>>>> Alex
     // app.use('/api/flight', require('./flight.routes'))
 }

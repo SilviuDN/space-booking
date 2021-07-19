@@ -45,4 +45,22 @@ router.delete('/:destination_id/delete', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting destination', err }))
 })
 
+router.get('/:destination_id/details', (req, res) => {
+
+    Destination
+        .findById(req.params.destination_id)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
+})
+
+router.get('/', (req, res) => {
+
+    Destination
+        .find()
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
+})
+
+
+
 module.exports = router
