@@ -3,27 +3,27 @@ const Schema = mongoose.Schema
 
 const companySchema = new Schema({
 
-    name: {
+    companyName: {
         type: String,
         // required: true,
     },
 
     logo: { //Cloudinary
         type: String,
-        required: true,
+        // required: true,
     },
 
-    address: {
-        street: { type: String, required: true },
+    companyAddress: {
+        street: { type: String },
         number: { type: String, default: null },
-        zipCode: { type: String, required: true },
-        city: { type: String, required: true },
-        country: { type: String, required: true }
+        zipCode: { type: String },
+        city: { type: String },
+        country: { type: String }
     },
 
     documents: [{ //Cloudinary
         type: String,
-        required: true,
+        // required: true,
     }],
 
     moderator: {
