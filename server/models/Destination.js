@@ -23,7 +23,10 @@ const destinationSchema = new Schema({
 
 
 
-});
+},
+    {
+        timestamps: true
+    });
 
 const Destination = mongoose.model('Destination', destinationSchema);
 

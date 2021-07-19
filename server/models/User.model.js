@@ -16,35 +16,35 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
-  },      // Deseable exigir mayusculas numeros etc
+  },                                                                 // Deseable exigir mayusculas numeros etc
 
   name: {
     type: String,
     minLegth: 1,
     maxLength: 50,
     required: true,
-    set: value => value.charAt(0).toUpperCase() + value.substring(1)
+    set: value => value.charAt(0).toUpperCase() + value.substring(1)  // TRIM, SEGUNDO NOMBRE!!!
   },
 
-  Surname: {
+  surname: {
     type: String,
     minLegth: 1,
     maxLength: 50,
     required: true,
-    set: value => value.charAt(0).toUpperCase() + value.substring(1)
+    set: value => value.charAt(0).toUpperCase() + value.substring(1) // TRIM, SEGUNDO APELLIDO!!!
   },
 
-  // personalId: { type: String, required: true },
+  personalId: { type: String, required: true },
 
-  // typeOfId: {
-  //   type: String,
-  //   enum: ['dni', 'passport', 'other'],
-  // },
+  typeOfId: {
+    type: String,
+    enum: ['dni', 'passport', 'other'],
+  },
 
   phone: {
     type: String,
     required: true
-  },    // prefijo del pais
+  },                                                                  // prefijo del pais
 
   address: {
     street: { type: String, required: true },
@@ -54,6 +54,8 @@ const userSchema = new Schema({
     country: { type: String, required: true }
   },
 
+
+  //
   flights: [{
     type: mongoose.Schema.Types.ObjectId, ref: 'Fligths'
   }],
@@ -64,9 +66,7 @@ const userSchema = new Schema({
     default: 'user'
   },
 
-  // company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company' },
-
-  profileImg: { //Cloudinary
+  profileImg: {                                                     //Cloudinary
     type: String,
     required: true,
   }

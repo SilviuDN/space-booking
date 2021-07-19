@@ -1,12 +1,10 @@
-// seed json https://gist.github.com/tdreyno/4278655
-
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const airportSchema = new Schema(
     {
         iata: {
-            type: String
+            type: String                                                  // 3 LETRAS
         },
 
         name: {
@@ -26,30 +24,22 @@ const airportSchema = new Schema(
             maxlength: 9
         },
 
-        location: {
-            type: String
+        // en la api city + country
+        address: {
+            street: { type: String, required: true },
+            number: { type: String, default: null },
+            zipCode: { type: String, required: true },
+            city: { type: String, required: true },
+            state: { type: String, required: true },
+            country: { type: String, required: true },
         },
-
-        city: {
-            type: String,
-        },
-
-        state: {
-            type: String,
-        },
-
-        country: {
-            type: String,
-        },
-
-
 
         image: {
-            type: String //cludinary
+            type: String                                                //cludinary
         },
 
-        fligths: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Fligth'
+        flights: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Flight'
         }],
 
         reviews: [{

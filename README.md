@@ -13,55 +13,75 @@
 
 - /admin/users-list GET
 - /admin/:user_id/edit GET
-- /admin/:user_id/edit POST
+- /admin/:user_id/edit PUT
 - /admin/:user_id/delete DELETE 
 
 
 ### user.routes.js
 Authorization!!!
 - /user/edit GET 
-- /user/edit POST
+- /user/edit PUT
 - /user/delete DELETE
 OWNER
-- /user/review_id/edit POST
+- /user/review_id/edit PUT
 - /user/review_id/delete DELETE
 
 ### company.routes.js
 - /company/edit GET 
-- /company/edit POST
+- /company/edit PUT
 - /company/delete DELETE
 
 ### destinations.routes.js
 - /destinations GET
 
-
 - /destination/:destination_id/details GET
 - /destination/:destination_id/edit GET
-- /destination/:destination_id/edit POST
+- /destination/:destination_id/edit PUT
 - /destination/:destination_id/delete DELETE
 
 
 ### airport.routes.js
 - /airports GET
 - /airport/:airport:_id/edit GET
-- /airport/:airport:_id/edit POST
+- /airport/:airport:_id/edit PUT
 - /airport/:airport:_id/delete DELETE
 
-//PARA LA COMPANIA DE VUELOS 
-flight.routes.js
+### flight.routes.js
 /flight/new POST
 /flight/:flight_id/edit GET
-/flight/:flight_id/edit POST
-/flight/:flight_id/delete
+/flight/:flight_id/edit PUT
+/flight/:flight_id/delete DELETE
+/flight/search GET
+
+
+
 
 
 ## Components:
-<IndexPage/>
+
+<App>
     <Navigation/>
-        <LoginForm/> (modal)
-        <UserForm/> (modal)
-        <CompanyForm/> (modal)
-    <Footer/>
+    <Footer/> //componentes que no reutilizamos --> los separamos?
+
+<IndexPage/>
+    <LoginForm/> (modal)
+    <UserForm/> (modal)
+    <CompanyForm/> (modal)
+    <SearchBox/>
+    <DestinationUsersList/>
+        <DestinationCard/>
+            <DestinationDetails/>  
+    <LogoList/>
+        <LogoCard/>
+    <AdvantegesList/>
+        <AdvantageCard/>
+            <AdvantageDetails/>
+    <Support/>
+    <PopularDestinations/>
+    <NewsList/>
+        <NewsCard/>
+            <NewsDetails/> //hay algun api? 
+
 
 <AdminPage/>
     <Counter/>
@@ -76,9 +96,9 @@ flight.routes.js
         <FlightsList />
             <FlightCard />
                 <FlightDetails/>
-        <LocationsList />
-            <LocationCard />
-                <LocationDetails/>
+        <DestinationsAdminList />
+            <DestinationCard />
+                <DestinationDetails/>
         <AirportsList />
             <AirportCard />
                 <AirportDetails/>

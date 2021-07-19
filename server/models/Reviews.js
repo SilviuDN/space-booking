@@ -5,7 +5,7 @@ const reviewSchema = new Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        // required: true,
+        // required: true,                      // ESTA NECESARIO? 
     },
 
     body: {
@@ -21,10 +21,17 @@ const reviewSchema = new Schema({
     },
 
     comments: [{
-        type: String,
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: 'User',
+        },
+        comment: { type: String }
         // required: true,
     }]
-});
+},
+    {
+        timestamps: true
+    });
 
 const Review = mongoose.model('Review', reviewSchema);
 

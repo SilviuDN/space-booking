@@ -36,11 +36,14 @@ const flightSchema = new Schema({
 
     flightCompany: {
         type: Schema.Types.ObjectId,
-        ref: 'company',
+        ref: 'Company',
         // required: true,
     },
 
-});
+},
+
+    { timestamps: true }
+);
 
 const Flight = mongoose.model('Flight', flightSchema);
 

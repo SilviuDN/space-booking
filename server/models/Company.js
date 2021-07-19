@@ -27,12 +27,8 @@ const companySchema = new Schema({
     }],
 
     moderator: {
-        type: mongoose.Schema.Types.ObjectId, ref: 'Users'
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
     },
-
-    flights: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Flight'
-    }],
 
     reviews: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Review'
