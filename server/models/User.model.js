@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-  emailAddress: {
+  email: {
     type: String,
     // required: true,
     // validate: {
@@ -22,7 +22,7 @@ const userSchema = new Schema({
     type: String,
     minLegth: 1,
     maxLength: 50,
-    required: true,
+    // required: true,
     set: value => value.charAt(0).toUpperCase() + value.substring(1)  // TRIM, SEGUNDO NOMBRE!!!
   },
 
@@ -30,11 +30,11 @@ const userSchema = new Schema({
     type: String,
     minLegth: 1,
     maxLength: 50,
-    required: true,
+    // required: true,
     set: value => value.charAt(0).toUpperCase() + value.substring(1) // TRIM, SEGUNDO APELLIDO!!!
   },
 
-  personalId: { type: String, required: true },
+  personalId: { type: String },
 
   typeOfId: {
     type: String,
@@ -43,15 +43,15 @@ const userSchema = new Schema({
 
   phone: {
     type: String,
-    required: true
+    // required: true
   },                                                                  // prefijo del pais
 
   address: {
-    street: { type: String, required: true },
+    street: { type: String },
     number: { type: String, default: null },
-    zipCode: { type: String, required: true },
-    city: { type: String, required: true },
-    country: { type: String, required: true }
+    zipCode: { type: String },
+    city: { type: String },
+    country: { type: String }
   },
 
 
@@ -63,12 +63,12 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ['user', 'company', 'admin'],
-    default: 'user'
+    // default: 'user'
   },
 
   profileImg: {                                                     //Cloudinary
     type: String,
-    required: true,
+    // required: true,
   }
 
 },
