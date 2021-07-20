@@ -38,6 +38,7 @@ class FlightDetails extends Component {
                 this.setState({
                     flight: undefined
                 })
+                this.props.history.push('/silviu/flights')
             })
             .catch(err => console.log(err))
     }
