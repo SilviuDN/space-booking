@@ -11,46 +11,59 @@ const Company = require('../models/Company.model')
 
 router.post('/signup/:isCompany', (req, res) => {
 
-    const {isCompany} = req.params
+    const { isCompany } = req.params
 
     // company data
-    const {companyName, logo} = req.body
+    // const {companyName, logo} = req.body
 
-    // user data
-    const { email, pwd, name, surname, personalId, typeOfId, phone, flights, role, profileImg } = req.body
-    const address = ({ street, number, zipCode, city, country } = req.body)
+    // // user data
+    // const { email, pwd, name, surname, personalId, typeOfId, phone, flights, profileImg } = req.body
+    // const address = ({ street, number, zipCode, city, country } = req.body)
 
-    
-    User.findOne({ email })
-        .then(user => {
-            if (user) {
-                res.status(400).json({ code: 400, message: 'User already exixts' })
-                return
-            }
 
-            const bcryptSalt = 10
-            const salt = bcrypt.genSaltSync(bcryptSalt)
-            const hashPass = bcrypt.hashSync(pwd, salt)
+    // const { user } = req.body
 
-            User.create({ email, password: hashPass, address, name, surname, personalId, typeOfId, phone, flights, role, profileImg })
-                .then((response) => {
+    // const { email } = user
 
-                    if(isCompany === 'true') {
-                        
-                        Company.create({ companyName, logo, moderator: response._id }) 
-                        .then(() => res.status(200).json({ code: 200, message: 'Inserted correctly' }))
-                        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
-                        
-                    }else{                       
 
-                    res.status(200).json({ code: 200, message: 'User created but' })
+    User.create({ email: 'hola@hola2.com', name: 'salva', password: '123' })
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
 
-                    }
-                })
-                .catch(err => console.log(err))
+    // User.findOne({ email: email })
+    //     .then(user => {
+    //         console.log(user)
+    //         if (user) {
+    //             res.status(400).json({ code: 400, message: 'User already exixts' })
+    //             return
+    //         }
 
-        })  
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+    //         const bcryptSalt = 10
+    //         const salt = bcrypt.genSaltSync(bcryptSalt)
+    //         const hashPass = bcrypt.hashSync(user.password, salt)
+    //         console.log(hashPass)
+
+    //         User.create({ email: 'hola@hola.com', name: 'salva', password: '123' })
+    //             .then((response) => {
+
+    //                 console.log(response)
+
+    //                 if (isCompany === 'true') {
+
+    //                     Company.create({ companyName, logo, moderator: response._id })
+    //                         .then(() => res.status(200).json({ code: 200, message: 'Inserted correctly' }))
+    //                         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
+
+    //                 } else {
+
+    //                     res.status(200).json({ code: 200, message: 'User created but' })
+
+    //                 }
+    //             })
+    //             .catch(err => console.log(err))
+
+    //     })
+    //     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
 
