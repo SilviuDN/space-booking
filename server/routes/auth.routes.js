@@ -26,7 +26,7 @@ router.post('/signup/:isCompany', (req, res) => {
     // const { email } = user
 
 
-    User.create({ email: 'hola@hola2.com', name: 'salva', password: '123' })
+    User.create({ email: 'hola@hola3.com', name: 'salva', password: '123' })
         .then(response => res.json(response))
         .catch(err => console.log(err))
 
