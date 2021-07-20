@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt')
 
 const User = require('../models/User.model')
 
-router.get('/:user_id/edit', (req, res) => {
+router.get('/:user_id/details', (req, res) => {
     User.findById(req.params.user_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
