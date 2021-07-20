@@ -63,7 +63,7 @@ const userSchema = new Schema({
   role: {
     type: String,
     enum: ['user', 'moderador', 'admin'],
-    // default: 'user'
+    default: 'user'
   },
 
   profileImg: {                                                     //Cloudinary
