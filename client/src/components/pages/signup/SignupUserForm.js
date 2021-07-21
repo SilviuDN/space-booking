@@ -70,11 +70,8 @@ class SignupUserForm extends Component {
         })
     }
 
-    componentDidMount() {
-        console.log(this.props.companyRender)
 
-        this.props.sharedFunction(this.handleSubmit)
-    }
+    componentDidMount = () => this.props.setSharedFn(this.handleSubmit, 'sharedSubmitUser')
 
 
     render = () => {

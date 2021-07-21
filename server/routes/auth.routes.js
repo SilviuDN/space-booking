@@ -45,19 +45,8 @@ router.post('/signup/:isCompany', (req, res) => {
             User.create({ email, password: hashPass, name, surname, personalId, typeOfId, phone, address })
                 .then((response) => {
 
+                    res.status(200).json({ code: 200, message: 'User created correctly' })
 
-                    if (isCompany === 'true') {
-
-                        Company.create({ companyName, logo, moderator: response._id })
-                            .then(() => res.status(200).json({ code: 200, message: 'Inserted correctly' }))
-                            .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
-
-                    } else {
-                        // envio de vuelta la info
-                        res.json(response);
-                        // res.status(200).json({ code: 200, message: 'User created without company' })
-
-                    }
                 })
                 .catch(err => console.log(err))
 
@@ -83,7 +72,7 @@ router.post('/login', (req, res) => {
                 return
             }
 
-            if (bcrypt.compareSync(pwd, user.password) === false) {
+            if (!bcrypt.compareSync(pwd, user.password)) {
                 res.status(401).json({ code: 401, message: 'Incorect password' })
                 return
             }
@@ -94,9 +83,13 @@ router.post('/login', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
+
+
 router.get('/logout', (req, res) => {
     req.session.destroy(err => res.json({ mssage: 'Logout successful' }))
 })
+
+
 
 router.post('/isLoggedIn', (req, res) => {
     req.session.currentUser ? res.json(req.session.currentUser) : res.status(401).json({ code: 401, message: 'Unauthorized' })

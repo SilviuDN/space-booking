@@ -46,10 +46,10 @@ class SignupCompanyForm extends Component {
 
 
 
-        // cuando acaba el insert llama al submit de userFOrm
-        this.serviceAuth.signup(this.state.company)
-            .then(() => this.props.submitUserForm())
-            .catch(err => console.log(err))
+        // // cuando acaba el insert llama al submit de userFOrm
+        // this.serviceAuth.signup(this.state.company)
+        //     .then(() => this.props.submitUserForm())
+        //     .catch(err => console.log(err))
     }
 
 
@@ -90,6 +90,8 @@ class SignupCompanyForm extends Component {
             .catch(err => console.log(err))
     }
 
+    componentDidMount = () => this.props.setSharedFn(this.handleSubmit, 'sharedSubmitCompany')
+
 
 
     render = () => {
@@ -98,7 +100,7 @@ class SignupCompanyForm extends Component {
             <Container>
                 <h1>Company Form</h1>
 
-                <Form onSubmit={this.handleSubmit} className='formSignup'>
+                <Form className='formSignup'>
                     <Form.Group className="mb-3" controlId="comapnyName">
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="name" name='companyName' />
@@ -135,7 +137,7 @@ class SignupCompanyForm extends Component {
 
 
 
-                    <Button variant="primary" type="submit" className="d-block">
+                    <Button onClick={(e) => this.props.sharedFunction(e)} variant="primary" type="submit" className="d-block">
                         Submit
                     </Button>
 

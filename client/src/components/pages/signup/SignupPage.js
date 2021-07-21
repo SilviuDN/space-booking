@@ -9,14 +9,16 @@ class SignupPage extends Component {
         this.props2 = props
         this.state = {
             companyRender: false,
-            sharedfunction: undefined
+            sharedSubmitUser: undefined,
+            sharedSubmitCompany: undefined
         }
 
     }
 
-    updateSharedFn = (fn) => {
+    setSharedFn = (fn, keyName) => {
+
         this.setState({
-            sharedfunction: fn
+            [keyName]: fn
         })
     }
 
@@ -30,9 +32,10 @@ class SignupPage extends Component {
         return (
             <>
 
-                <UserForm companyRender={this.state.companyRender} sharedFunction={this.updateSharedFn} />
+                <UserForm companyRender={this.state.companyRender} setSharedFn={this.state.updateSharedFn} sharedFunction={this.state.sharedSubmitCompany} />
 
-                {this.state.companyRender ? <CompanyForm submitUserForm={this.state.sharedfunction} /> : null}
+
+                {this.state.companyRender ? <CompanyForm setSharedFn={this.updateSharedFn} sharedFunction={this.state.sharedSubmitUser} /> : null}
 
             </>
         )

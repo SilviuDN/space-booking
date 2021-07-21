@@ -2,6 +2,19 @@ const express = require('express')
 const router = express.Router()
 const Company = require('../models/Company.model')
 
+
+router.post('/new', (req, res) => {
+
+
+
+    Company.create({ companyName, logo, moderator: response._id })
+        .then(() => res.status(200).json({ code: 200, message: 'Company Inserted' }))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
+
+})
+
+
+
 router.get('/:company_id/edit', (req, res) => {
     Company
         .findById(req.params.company_id)
