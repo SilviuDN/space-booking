@@ -38,56 +38,60 @@ class SignupCompanyForm extends Component {
     }
 
 
-    handleSubmit = (e) => {
+    handleSubmit = (userId) => {
 
-        if (e) e.preventDefault()
+        // if (e) e.preventDefault()
 
         console.log('entro al submit de company')
 
 
 
-        // // cuando acaba el insert llama al submit de userFOrm
-        // this.serviceAuth.signup(this.state.company)
-        //     .then(() => this.props.submitUserForm())
-        //     .catch(err => console.log(err))
+        // cuando acaba el insert llama al submit de userFOrm
+        this.serviceAuth.newCompany(this.state.company, userId)
+            .then(() => this.props.submitUserForm())
+            .catch(err => console.log(err))
     }
 
 
     // Image Preview Handler
 
     handleUploadDocuments = (e) => {
-        let image_as_base64 = URL.createObjectURL(e.target.files[0])
 
-        let files = e.target.files
+        if (e.target.files.length) {
 
-        let formData = new FormData()
-        formData.append('file', files[0])
+            let image_as_base64 = URL.createObjectURL(e.target.files[0])
+
+            let files = e.target.files
+
+            let formData = new FormData()
+            formData.append('file', files[0])
 
 
-        this.uploadService.fileUpload(formData)
-            .then(response => {
+            this.uploadService.fileUpload(formData)
+                .then(response => {
 
-                const joinedDocs = [...this.state.company.document, response.data.imageUrl];
+                    const joinedDocs = [...this.state.company.document, response.data.imageUrl];
 
-                e.target.id === 'logo'
-                    ?
-                    this.setState({
-                        company: {
-                            ...this.state.company,
-                            logo: response.data.imageUrl
-                        },
-                        image_preview: image_as_base64,
-                    })
-                    :
-                    this.setState({
-                        company: {
-                            ...this.state.company,
-                            document: joinedDocs
-                        }
-                    })
+                    e.target.id === 'logo'
+                        ?
+                        this.setState({
+                            company: {
+                                ...this.state.company,
+                                logo: response.data.imageUrl
+                            },
+                            image_preview: image_as_base64,
+                        })
+                        :
+                        this.setState({
+                            company: {
+                                ...this.state.company,
+                                document: joinedDocs
+                            }
+                        })
 
-            })
-            .catch(err => console.log(err))
+                })
+                .catch(err => console.log(err))
+        }
     }
 
     componentDidMount = () => this.props.setSharedFn(this.handleSubmit, 'sharedSubmitCompany')

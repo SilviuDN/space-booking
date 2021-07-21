@@ -32,10 +32,10 @@ class SignupPage extends Component {
         return (
             <>
 
-                <UserForm companyRender={this.state.companyRender} setSharedFn={this.state.updateSharedFn} sharedFunction={this.state.sharedSubmitCompany} />
+                <UserForm companyRender={this.state.companyRender} setSharedFn={this.setSharedFn} sharedFunction={this.state.sharedSubmitCompany} />
 
 
-                {this.state.companyRender ? <CompanyForm setSharedFn={this.updateSharedFn} sharedFunction={this.state.sharedSubmitUser} /> : null}
+                {this.state.companyRender ? <CompanyForm setSharedFn={this.setSharedFn} sharedFunction={this.state.sharedSubmitUser} /> : null}
 
             </>
         )
