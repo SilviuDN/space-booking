@@ -67,15 +67,7 @@ router.post('/signup/:isCompany', (req, res) => {
 
 
 
-// subiendo la imagen
-router.post('/uploadImg/:id', multerUpload.single('profileImg'), (req, res) => {
 
-
-
-    User.findByIdAndUpdate(req.params.id, { profileImg: req.file.path }, { new: true })
-        .then(() => res.status(200).json({ code: 200, message: 'image uploaded' }))
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while uploading image', err }))
-})
 
 
 

@@ -7,4 +7,5 @@ module.exports = app => {
     app.use('/api/destination', require('./destination.routes'))
     app.use('/api/airport', require('./airport.routes'))
     app.use('/api/flight', require('./flight.routes'))
+    app.use('/api/upload', require('./upload.routes'))
 }
