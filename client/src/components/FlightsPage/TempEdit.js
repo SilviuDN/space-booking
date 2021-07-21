@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import FlightsService from './../services/flights.service'
+import { Link } from 'react-router-dom'
 
 class TempEdit extends Component {
 
@@ -71,6 +72,7 @@ class TempEdit extends Component {
     render() {
         return (
             <Container>
+                <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
 
                 <Form onSubmit={this.handleFormSubmit}>
 

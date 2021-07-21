@@ -23,24 +23,19 @@ router.post('/new', (req, res) => {
     console.log(price, capacity)
 
     Flight
-        .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
-        .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
+        .findOne({ flightNumber })
+        .then(flight => {
+            if (flight) {
+                res.status(400).json({ code: 400, message: 'Flight already exixts' })
+                return
+            } else {
+                Flight
+                    .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
+                    .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
+                    .catch(err => console.log(err))
+            }
+        })
         .catch(err => console.log(err))
-
-    // Flight
-    //     .findOne({ flightNumber })
-    //     .then(flight => {
-    //         if (flight) {
-    //             res.status(400).json({ code: 400, message: 'Flight already exixts' })
-    //             return
-    //         } else {
-    //             Flight
-    //                 .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
-    //                 .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
-    //                 .catch(err => console.log(err))
-    //         }
-    //     })
-    //     .catch(err => console.log(err))
 })
 
 router.get('/:flight_id', (req, res) => {
@@ -48,7 +43,7 @@ router.get('/:flight_id', (req, res) => {
     Flight
         .findById(req.params.flight_id)
         .then(response => res.json(response))
-        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching flight', err }))
 })
 
 

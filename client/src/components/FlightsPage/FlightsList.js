@@ -39,7 +39,6 @@ class FlightsList extends Component {
                     <Link to="/silviu/flights/new" className="btn btn-info">New flight</Link>
                     <h4>Flights List</h4>
                     {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} />)}
-                    {/* {this.state.flights.map(elem => <h4>{elem._id}</h4>)} */}
                 </>)
         )
     }
