@@ -1,6 +1,5 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import IndexPage2 from '../pages/indexPage/indexPage2.js'
-import { Link } from 'react-router-dom'
 import UserDetails from '../pages/UserDetails/UserDetails.js'
 import UsersPage from '../pages/UsersPage/UsersPage.js'
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Col, Card, Button } from "react-bootstrap"
+import { Button } from "react-bootstrap"
 
 
 const IndexPage2 = () => {

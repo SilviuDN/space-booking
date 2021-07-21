@@ -1,4 +1,4 @@
-import { Switch, Route, Redirect } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom'
 import IndexPage from '../pages/indexPage/indexPage.js'
 import SignupPage from '../pages/signup/SignupPage'
 

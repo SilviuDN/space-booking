@@ -10,6 +10,7 @@ class AuthService {
         this.axios = axios
     }
 
+
     login = (username, pwd) => this.app.post('/login', { username, pwd })
 
     signup = (user, formData) => {

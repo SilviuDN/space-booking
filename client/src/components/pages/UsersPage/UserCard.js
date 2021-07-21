@@ -1,4 +1,4 @@
-import { Col, Card, Button } from "react-bootstrap"
+import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
 const UserCard = ({ name, surname, _id, deleteUser }) => {
