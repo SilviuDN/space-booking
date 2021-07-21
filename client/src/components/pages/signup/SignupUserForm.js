@@ -3,44 +3,61 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container } from 'react-bootstrap'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
+import UploadService from '../../services/upload.service'
 
 class SignupUserForm extends Component {
     constructor() {
         super()
 
         this.state = {
-            email: '',
-            pwd: '',
-            name: '',
-            surname: '',
-            personalId: '',
-            typeofId: 'dni',
-            phone: '',
-            number: '',
-            city: '',
-            country: '',
-            street: '',
-            zipCode: '',
-            profileImg: undefined,
+            user: {
+                email: '',
+                pwd: '',
+                name: '',
+                surname: '',
+                personalId: '',
+                typeofId: 'dni',
+                phone: '',
+                number: '',
+                city: '',
+                country: '',
+                street: '',
+                zipCode: '',
+                profileImg: '',
+            },
             image_preview: '',
         }
 
         this.serviceAuth = new ServiceAuth()
+        this.uploadService = new UploadService()
     }
 
     handleInput = (e) => {
+
         if (e.target.id === 'typeofId') {
             this.setState({
-                typeofId: e.target.value
+                user: {
+                    ...this.state.user,
+                    typeofId: e.target.value
+                }
             })
 
         } else {
 
             this.setState({
-                [e.target.name]: e.target.value
+                user: {
+                    ...this.state.user,
+                    [e.target.name]: e.target.value
+                }
             })
         }
     }
+
+
+
+
+
+
 
 
     handleSubmit = (e) => {
@@ -48,27 +65,44 @@ class SignupUserForm extends Component {
         if (e) e.preventDefault()
         console.log('entro al USER FORM submit')
 
-        // let formData = new FormData()
-        // formData.append('profileImg', this.state.profileImg)
 
-        // this.serviceAuth.signup(this.state, formData)
-        //     .then(() => {
-        //         // redirect o borrar campos pensar
-        //     })
-        //     .catch(err => console.log(err))
+        this.serviceAuth.signup(this.state.user)
+            .then(res => {
+                this.props.sharedFunction(res.data.response._id)
+            })
+            .catch(err => console.log(err))
     }
 
-    // Image Preview Handler
-    handleImagePreview = (e) => {
-        let image_as_base64 = URL.createObjectURL(e.target.files[0])
-        let image_as_files = e.target.files[0];
 
 
-        this.setState({
-            image_preview: image_as_base64,
-            profileImg: image_as_files,
-        })
+
+    handleUploadDocuments = (e) => {
+        // si hay archivo seleccionado
+        if (e.target.files.length) {
+
+            let image_as_base64 = URL.createObjectURL(e.target.files[0])
+
+
+            let formData = new FormData()
+            formData.append('file', e.target.files[0])
+
+
+            this.uploadService.fileUpload(formData)
+                .then(response => {
+
+                    this.setState({
+                        user: {
+                            ...this.state.user,
+                            profileImg: response.data.imageUrl
+                        },
+                        image_preview: image_as_base64,
+                    })
+
+                })
+                .catch(err => console.log(err))
+        }
     }
+
 
 
     componentDidMount = () => this.props.setSharedFn(this.handleSubmit, 'sharedSubmitUser')
@@ -77,7 +111,7 @@ class SignupUserForm extends Component {
     render = () => {
         return (
             <Container>
-                <Form onSubmit={this.handleSubmit}>
+                <Form onSubmit={this.handleSubmit} className={'pb-5'}>
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control onChange={this.handleInput} value={this.state.email} type="email" placeholder="Enter email" name='email' />
@@ -140,9 +174,9 @@ class SignupUserForm extends Component {
                         </Form.Group>
                     </Form.Label>
 
-                    <Form.Group controlId="img" className="mb-3">
+                    <Form.Group className="mb-3">
                         <Form.Label>Image</Form.Label>
-                        <Form.Control onChange={this.handleImagePreview} type="file" name='profileImg' />
+                        <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' />
                     </Form.Group>
 
                     {this.state.image_preview ? <img src={this.state.image_preview} alt="profile" style={{ width: '150px', height: '120px' }} /> : null}

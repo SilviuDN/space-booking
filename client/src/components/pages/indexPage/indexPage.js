@@ -1,18 +1,27 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { Component } from 'react'
 
 
-const IndexPage = () => {
+class IndexPage extends Component {
 
-    return (
-
-        <>
-            <Link to="/signup/n"> Signup ONLY USER </Link>
-            <Link to="/signup/y" > Signup user & company </Link>
-        </>
-    )
+    constructor() {
+        super()
+        this.state = {
+        }
+    }
 
 
+
+
+    render() {
+
+        return (
+
+            <>
+
+            </>
+        )
+    }
 }
-
 
 export default IndexPage

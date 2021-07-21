@@ -4,12 +4,42 @@ const bcrypt = require('bcrypt')
 const User = require('./../models/User.model')
 const Company = require('../models/Company.model')
 const multerUpload = require('../config/cloudinary.config')
-// SignUp (post)
+
+
+router.post('/new', (req, res) => {
+
+
+    const { companyName, logo, document, userId } = req.body
+
+    const companyAddress = { street, number, zipCode, city, country } = req.body
+
+
+    Company.findOne({ companyName })
+        .then(company => {
+            if (company) {
+                res.status(400).json({ code: 400, message: 'Company already exist' })
+                return
+            }
+
+            Company.create({ companyName, logo, document, moderator: userId, companyAddress })
+                .then(response => {
+                    res.status(201).json({ code: 201, message: 'Company created', data: response })
+
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+})
 
 
 
 
-router.post('/signup/:isCompany', (req, res) => {
+// ----------------------------------------------------
+
+
+
+
+router.post('/signup', (req, res) => {
 
 
     console.log(req.body)
@@ -45,7 +75,7 @@ router.post('/signup/:isCompany', (req, res) => {
             User.create({ email, password: hashPass, name, surname, personalId, typeOfId, phone, address })
                 .then((response) => {
 
-                    res.status(200).json({ code: 200, message: 'User created correctly' })
+                    res.status(200).json({ code: 200, message: 'User created correctly', response })
 
                 })
                 .catch(err => console.log(err))
@@ -63,9 +93,11 @@ router.post('/signup/:isCompany', (req, res) => {
 // Login(post)
 
 router.post('/login', (req, res) => {
+    console.log(req.body)
+
     const { email, pwd } = req.body
 
-    User.findOne({ email })
+    User.findOne(email)
         .then(user => {
             if (!user) {
                 res.status(401).json({ code: 401, message: 'User not registered' })

@@ -13,17 +13,9 @@ class AuthService {
 
     login = (username, pwd) => this.app.post('/login', { username, pwd })
 
-    signup = (user, formData) => {
-        return this.app.post('/signup/false', { ...user })
-            .then(response => {
+    signup = (user) => this.app.post('/signup', { ...user })
 
-
-                this.app.post(`/uploadImg/${response.data._id}`, formData, { headers: { 'content-type': 'multipart/form-data' } })
-                    .then(response => response)
-                    .catch(err => console.log(err))
-            })
-            .catch(err => console.log(err))
-    }
+    newCompany = (companyData, userId) => this.app.post('/new', { ...companyData, userId })
 
     logout = () => this.app.get('/logout')
 

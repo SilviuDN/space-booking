@@ -21,10 +21,8 @@ const companySchema = new Schema({
         country: { type: String }
     },
 
-    document: { //Cloudinary Investigar edicion de varios documentos sin eliminar al actualizar.
-        type: String,
-        // required: true,
-    },
+    document: [{ type: String }]
+    ,
 
     moderator: {
         type: mongoose.Schema.Types.ObjectId, ref: 'User'

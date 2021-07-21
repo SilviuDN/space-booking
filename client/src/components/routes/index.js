@@ -7,8 +7,9 @@ const Routes = ({ storeUser, loggedUser }) => {
 
     return (
         <Switch>
-            <Route path="/" exact render={() => <IndexPage />} />
+            <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} />} />
+
         </Switch>
     )
 }
