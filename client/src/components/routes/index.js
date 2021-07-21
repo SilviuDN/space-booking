@@ -9,6 +9,7 @@ const Routes = ({ storeUser, loggedUser }) => {
         <Switch>
             <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} />} />
+
         </Switch>
     )
 }

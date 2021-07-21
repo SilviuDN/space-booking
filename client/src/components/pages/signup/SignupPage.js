@@ -6,14 +6,13 @@ import CompanyForm from './SignupCompanyForm'
 class SignupPage extends Component {
     constructor(props) {
         super()
-        this.props2 = props
         this.state = {
             companyRender: false,
             sharedSubmitUser: undefined,
             sharedSubmitCompany: undefined
         }
-
     }
+
 
     setSharedFn = (fn, keyName) => {
 
@@ -23,7 +22,7 @@ class SignupPage extends Component {
     }
 
 
-    componentDidMount = () => this.companyRender = this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : null
+    componentDidMount = () => this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : this.setState({ companyRender: false })
 
 
 

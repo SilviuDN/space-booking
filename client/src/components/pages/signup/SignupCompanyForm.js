@@ -104,7 +104,7 @@ class SignupCompanyForm extends Component {
             <Container>
                 <h1>Company Form</h1>
 
-                <Form className='formSignup'>
+                <Form className='formSignup pb-5'>
                     <Form.Group className="mb-3" controlId="comapnyName">
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="name" name='companyName' />

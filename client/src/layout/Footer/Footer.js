@@ -7,7 +7,6 @@ const Footer = ({ loggedUser }) => {
 
     return (
         <footer style={style}>
-            Todos los derechos reservados
 
             <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
 

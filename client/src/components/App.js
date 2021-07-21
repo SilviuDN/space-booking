@@ -2,6 +2,7 @@ import './App.css';
 import Routes from './routes'
 import AuthService from './services/auth.service';
 import { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 import Navigation from '../layout/Navigation/Navigation';
 import Footer from '../layout/Footer/Footer';
 import Alex from './routes/alex'
@@ -21,7 +22,7 @@ class App extends Component {
   getUser = () => {
     this.authService.isLoggedIn()
       .then(this.storeUser)
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   }
 
   componentDidMount = () => this.getUser();
@@ -30,12 +31,16 @@ class App extends Component {
     return (
 
       <>
-        <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} props={this.props} />
+        <Switch>
+          <Route path="*" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} />} />
+        </Switch>
+
 
         <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
         <Alex />
         <Silviu />
         <Salva />
+
 
         <Footer loggedUser={this.state.loggedUser} />
       </>

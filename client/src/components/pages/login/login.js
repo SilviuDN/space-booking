@@ -9,7 +9,7 @@ class Login extends Component {
     constructor() {
         super()
         this.state = {
-            username: '',
+            email: '',
             pwd: ''
         }
         this.authService = new AuthService()
@@ -24,16 +24,17 @@ class Login extends Component {
 
 
     handleFormSubmit = e => {
-
         e.preventDefault()
 
         const { username, pwd } = this.state
 
         this.authService
             .login(username, pwd)
-            .then(loggedUserfromServer => {
-                this.props.storeUser(loggedUserfromServer.data)
-                this.props.history.push('/')         // Redirect with RRD props
+            .then(logedUser => {
+
+                this.props.storeUser(logedUser.data)
+                this.props.updateModal(false)
+                this.props.history.push('/profile')
             })
             .catch(err => console.log(err))
     }
@@ -41,44 +42,46 @@ class Login extends Component {
 
 
     render() {
+
         return (
 
             <Container>
 
                 <Row>
 
-                    <Col md={{ span: 4, offset: 4 }}>
+                    <Col md={{ span: 10, offset: 1 }} className={'pb-4'}>
 
-                        <h1>Iniciar sesión</h1>
-
-                        <hr></hr>
 
                         <Form onSubmit={this.handleFormSubmit}>
 
-                            <Form.Group controlId="username">
-                                <Form.Label>Usuario</Form.Label>
-                                <Form.Control type="text" value={this.state.username} onChange={this.handleInputChange} name="username" />
+                            <Form.Group controlId="email">
+                                <Form.Label>User</Form.Label>
+                                <Form.Control type="email" value={this.state.email} onChange={this.handleInputChange} name="email" />
                             </Form.Group>
 
                             <Form.Group controlId="pwd">
-                                <Form.Label>Contraseña</Form.Label>
+                                <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" value={this.state.pwd} onChange={this.handleInputChange} name="pwd" />
                             </Form.Group>
 
-                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Acceder</Button>
+                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Login</Button>
 
                         </Form>
 
-                        <hr></hr>
+                        <hr />
 
                         <Link to="/">
-                            <Button variant="dark">Volver</Button>
+                            <Button variant="dark" >Back</Button>
                         </Link>
 
+                        <hr />
+
+                        <p><small>Not registered ? signup <Link to="/signup/n" onClick={() => this.props.updateModal(false)}>here</Link></small></p>
+                        <small>Or new Company?  register <Link to="/signup/y" onClick={() => this.props.updateModal(false)}>here</Link></small>
                     </Col>
                 </Row>
 
-            </Container >
+            </Container>
 
         )
     }

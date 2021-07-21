@@ -3,6 +3,7 @@ import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import AuthService from '../../components/services/auth.service'
 import { Modal } from 'react-bootstrap'
+import Login from '../../components/pages/login/login'
 
 class Navigation extends Component {
     constructor() {
@@ -15,8 +16,8 @@ class Navigation extends Component {
     }
 
 
-    // storeUser, loggedUser
-    // const authService = new AuthService()
+    setModalState = (action) => this.setState({ modal: action })
+
 
     logout = () => {
         this.authService
@@ -27,13 +28,12 @@ class Navigation extends Component {
 
     render() {
 
-        console.log(this.props)
 
         return (
             <>
                 <Navbar bg="dark" variant="dark" expand="md" style={{ marginBottom: '30px' }}>
                     <Container>
-                        <Navbar.Brand href="#home">LOGO</Navbar.Brand>
+                        <Navbar.Brand href="/">LOGO</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end">
                             <Nav className="mr-auto">
@@ -43,8 +43,8 @@ class Navigation extends Component {
                                 {!this.props.loggedUser
                                     ?
                                     <>
-                                        <Link className="nav-link" to="" onClick={() => this.props.history.push('/signup/n')}>Registro</Link>
-                                        <Link className="nav-link" to="" onClick={() => this.setState({ modal: true })}>Login</Link>
+                                        <Link className="nav-link" to="/signup/n">Registro</Link>
+                                        <Link className="nav-link" to="" onClick={() => this.setModalState(true)}>Login</Link>
                                     </>
                                     :
                                     <>
@@ -53,18 +53,18 @@ class Navigation extends Component {
                                     </>
                                 }
 
-                                <span className="nav-link">¡Hola, {this.props.loggedUser ? this.props.loggedUser.username : 'invitad@'}!</span>
+                                <span className="nav-link">¡Hola, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
 
-                <Modal show={this.state.modal} onHide={() => this.setState({ modal: false })}>
+                <Modal show={this.state.modal} onHide={() => this.setModalState(false)}>
                     <Modal.Header>
                         <Modal.Title>Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        {/* <CoasterForm refreshCoasters={this.loadCoasters} closeModal={() => this.setState({ modal: false })} /> */}
+                        <Login updateModal={this.setModalState} storeUser={this.props.storeUser} history={this.props.history} />
                     </Modal.Body>
                 </Modal>
 
