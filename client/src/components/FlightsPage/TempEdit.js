@@ -63,6 +63,7 @@ class TempEdit extends Component {
                     date: '',
                     flightCompany: '',
                 })
+                this.props.history.push('/silviu/flights')
             })
             .catch(err => console.log(err))
     }

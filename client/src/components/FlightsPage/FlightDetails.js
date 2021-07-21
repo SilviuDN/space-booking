@@ -72,6 +72,7 @@ class FlightDetails extends Component {
                             </Form>
 
                             <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
+                            <Link to={`/silviu/flights/${this.state.flight._id}/edit`} className="btn btn-warning">Edit</Link>
 
                         </Col>
 
