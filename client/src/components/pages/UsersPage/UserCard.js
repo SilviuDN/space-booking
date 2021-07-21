@@ -17,7 +17,7 @@ const UserCard = ({ name, surname, _id, deleteUser }) => {
 
 
                     &nbsp;
-                    <Link to={`/alex/userDetails/${_id}`}>
+                    <Link to={`/alex/userEdit/${_id}`}>
                         <Button variant="dark" block >Editar</Button>
                     </Link>
                     &nbsp;

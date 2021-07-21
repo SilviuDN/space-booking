@@ -11,15 +11,17 @@ router.get('/:user_id/details', (req, res) => {
 })
 
 router.put('/:user_id/edit', (req, res) => {
-    const { email, pwd, name, surname, personalId, typeOfId, phone, flights, role, profileImg } = req.body
+    console.log("Holaaaaaaaa")
+    const { email, name, surname, personalId, typeOfId, phone, flights, role, profileImg } = req.body// reminder add password : pwd
     const address = ({ street, number, zipCode, city, country } = req.body)
+    console.log(req.body)
     // const user = req.body
 
-    const bcryptSalt = 10
-    const salt = bcrypt.genSaltSync(bcryptSalt)
-    const hashPass = bcrypt.hashSync(pwd, salt)
+    // const bcryptSalt = 10
+    // const salt = bcrypt.genSaltSync(bcryptSalt)
+    // const hashPass = bcrypt.hashSync(pwd, salt)
 
-    User.findByIdAndUpdate(req.params.user_id, { email, password: hashPass, name, surname, personalId, typeOfId, phone, flights, role, profileImg, address }, { new: true })
+    User.findByIdAndUpdate(req.params.user_id, { email, name, surname, personalId, typeOfId, phone, flights, role, profileImg, address }, { new: true }) // reminder add password : hashPass
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error editing users', err }))
 })
