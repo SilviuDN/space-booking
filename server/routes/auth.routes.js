@@ -1,72 +1,81 @@
 const express = require('express')
 const router = express.Router()
-
 const bcrypt = require('bcrypt')
-const bcryptSalt = 10
-
 const User = require('./../models/User.model')
 const Company = require('../models/Company.model')
-
+const multerUpload = require('../config/cloudinary.config')
 // SignUp (post)
+
+
+
 
 router.post('/signup/:isCompany', (req, res) => {
 
+
+    console.log(req.body)
+
+
+    // // pending profileImg
+
     const { isCompany } = req.params
-
     // company data
-    // const {companyName, logo} = req.body
+    const { companyName, logo } = req.body
 
-    // // user data
-    // const { email, pwd, name, surname, personalId, typeOfId, phone, flights, profileImg } = req.body
-    // const address = ({ street, number, zipCode, city, country } = req.body)
-
-
-    // const { user } = req.body
-
-    // const { email } = user
+    // user data
+    const { email, pwd, name, surname, personalId, typeOfId, phone } = req.body
+    const address = { street, number, zipCode, city, country } = req.body
 
 
-    User.create({ email: 'hola@hola3.com', name: 'salva', password: '123' })
-        .then(response => res.json(response))
-        .catch(err => console.log(err))
 
-    // User.findOne({ email: email })
-    //     .then(user => {
-    //         console.log(user)
-    //         if (user) {
-    //             res.status(400).json({ code: 400, message: 'User already exixts' })
-    //             return
-    //         }
+    User.findOne({ email: email })
+        .then(user => {
+            // console.log('find user--> ', user)
+            if (user) {
+                res.status(400).json({ code: 400, message: 'User already exixts' })
+                return
+            }
 
-    //         const bcryptSalt = 10
-    //         const salt = bcrypt.genSaltSync(bcryptSalt)
-    //         const hashPass = bcrypt.hashSync(user.password, salt)
-    //         console.log(hashPass)
+            // console.log('second then')
 
-    //         User.create({ email: 'hola@hola.com', name: 'salva', password: '123' })
-    //             .then((response) => {
+            const bcryptSalt = 10
+            const salt = bcrypt.genSaltSync(bcryptSalt)
+            const hashPass = bcrypt.hashSync(pwd, salt)
+            console.log(hashPass)
 
-    //                 console.log(response)
+            User.create({ email, password: hashPass, name, surname, personalId, typeOfId, phone, address })
+                .then((response) => {
 
-    //                 if (isCompany === 'true') {
 
-    //                     Company.create({ companyName, logo, moderator: response._id })
-    //                         .then(() => res.status(200).json({ code: 200, message: 'Inserted correctly' }))
-    //                         .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
+                    if (isCompany === 'true') {
 
-    //                 } else {
+                        Company.create({ companyName, logo, moderator: response._id })
+                            .then(() => res.status(200).json({ code: 200, message: 'Inserted correctly' }))
+                            .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
 
-    //                     res.status(200).json({ code: 200, message: 'User created but' })
+                    } else {
+                        // envio de vuelta la info
+                        res.json(response);
+                        // res.status(200).json({ code: 200, message: 'User created without company' })
 
-    //                 }
-    //             })
-    //             .catch(err => console.log(err))
+                    }
+                })
+                .catch(err => console.log(err))
 
-    //     })
-    //     .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+        })
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
 
+
+// subiendo la imagen
+router.post('/uploadImg/:id', multerUpload.single('profileImg'), (req, res) => {
+
+
+
+    User.findByIdAndUpdate(req.params.id, { profileImg: req.file.path }, { new: true })
+        .then(() => res.status(200).json({ code: 200, message: 'image uploaded' }))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while uploading image', err }))
+})
 
 
 

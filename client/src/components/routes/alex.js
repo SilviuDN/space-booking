@@ -1,16 +1,25 @@
 import { Switch, Route, Redirect } from 'react-router-dom'
-import IndexPage from '../pages/indexPage/indexPage.js'
+import IndexPage2 from '../pages/indexPage/indexPage2.js'
+import { Link } from 'react-router-dom'
+import UserDetails from '../pages/UserDetails/UserDetails.js'
+import UsersPage from '../pages/UsersPage/UsersPage.js'
 
 
 
 const Routes = ({ storeUser, loggedUser }) => {
 
     return (
-        <Switch>
-            <Route path="/alex" exact render={() => <IndexPage />} />
+        <>
+            <Switch>
+                <Route path="/alex" exact render={() => <IndexPage2 />} />
+                <Route path="/alex/userDetails/:user_id" render={props => <UserDetails {...props} />} />
+                <Route path="/alex/user" exact render={() => <UsersPage />} />
+
+            </Switch>
 
 
-        </Switch>
+
+        </>
     )
 }
 

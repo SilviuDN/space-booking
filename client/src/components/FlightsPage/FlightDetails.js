@@ -37,6 +37,7 @@ class FlightDetails extends Component {
                 // this.props.refreshFlights()
                 this.setState({
                     flight: undefined
+
                 })
                 this.props.history.push('/silviu/flights')
             })
