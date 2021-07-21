@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
 import FlightsService from './../services/flights.service'
+import { Link } from 'react-router-dom'
 
 class FlightForm extends Component {
 
@@ -42,6 +43,7 @@ class FlightForm extends Component {
                     date: '',
                     flightCompany: '',
                 })
+                this.props.history.push('/silviu/flights')
             })
             .catch(err => console.log(err))
     }
@@ -49,6 +51,7 @@ class FlightForm extends Component {
     render() {
         return (
             <Container>
+                <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
 
                 <Form onSubmit={this.handleFormSubmit}>
 
@@ -65,6 +68,11 @@ class FlightForm extends Component {
                     <Form.Group controlId="capacity">
                         <Form.Label>Capacity</Form.Label>
                         <Form.Control type="text" value={this.state.capacity} onChange={this.handleInputChange} name="capacity" />
+                    </Form.Group>
+
+                    <Form.Group controlId="flightNumber">
+                        <Form.Label>Flight Number</Form.Label>
+                        <Form.Control type="text" value={this.state.flightNumber} onChange={this.handleInputChange} name="flightNumber" />
                     </Form.Group>
 
                     <Form.Group controlId="airport">

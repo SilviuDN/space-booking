@@ -2,6 +2,15 @@ const express = require('express')
 const router = express.Router()
 const Destination = require('../models/Destination.model')
 
+
+router.get('/:destination_id', (req, res) => {
+
+    Destination
+        .findById(req.params.destination_id)
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
+})
+
 router.post('/new', (req, res) => {
 
     const { name, description, image } = req.body

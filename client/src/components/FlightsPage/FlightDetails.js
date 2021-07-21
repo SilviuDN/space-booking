@@ -57,7 +57,7 @@ class FlightDetails extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
-                            <h1>Destination: {this.state.flight.destination}</h1>
+                            <h3>Destination: {this.state.flight.destination}</h3>
                             <p>Price: ${this.state.flight.price}</p>
 
                             <hr></hr>
@@ -69,7 +69,6 @@ class FlightDetails extends Component {
 
                             <Form onSubmit={this.deleteFlight}>
                                 <Button className="btn btn-danger" type="submit">Delete Flight</Button>
-                                {/* <Link to="/silviu/flights" className="btn btn-danger">Delete Flight</Link> */}
                             </Form>
 
                             <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
