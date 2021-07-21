@@ -43,17 +43,17 @@ class DestinationForm extends Component {
 
 
 
-    // handleFileUpload = e => {
+    handleFileUpload = e => {
 
-    //     const uploadData = new FormData()
-    //     uploadData.append('file', e.target.files[0]) //key=file, value=e.target.files[0]
+        const uploadData = new FormData()
+        uploadData.append('file', e.target.files[0]) //key=file, value=e.target.files[0]
 
-    //     this.uploadsService
-    //         .fileUpload(uploadData)
-    //         .then(response => console.log('The answer: ', response))
-    //         // .then(response => this.setState({ image: response.data.imageUrl }))
-    //         .catch(err => console.log(err))
-    // }
+        this.uploadsService
+            .fileUpload(uploadData)
+            // .then(response => console.log('The answer: ', response))
+            .then(response => this.setState({ image: response.data.imageUrl }))
+            .catch(err => console.log(err))
+    }
 
     // handleFileUpload(e) {
 
@@ -86,16 +86,16 @@ class DestinationForm extends Component {
                         <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" />
                     </Form.Group>
 
-                    {/* 
+
                     <Form.Group controlId="imageUrl">
                         <Form.Label>Image (URL)</Form.Label>
                         <Form.Control type="file" onChange={this.handleFileUpload} />
-                    </Form.Group> */}
+                    </Form.Group>
 
-                    <Form.Group controlId="image">
+                    {/* <Form.Group controlId="image">
                         <Form.Label>Image</Form.Label>
                         <Form.Control type="text" value={this.state.image} onChange={this.handleInputChange} name="image" />
-                    </Form.Group>
+                    </Form.Group> */}
 
 
 

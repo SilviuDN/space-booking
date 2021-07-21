@@ -17,10 +17,7 @@ router.post('/new', (req, res) => {
     Destination
         .findOne({ name })
         .then(destination => {
-            if (destination) {
-                res.status(400).json({ code: 400, message: 'Destination already exixts' })
-                return
-            }
+
 
             Destination
                 .create({ name, description, image })
@@ -28,6 +25,21 @@ router.post('/new', (req, res) => {
                 .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
+
+    // Destination
+    //     .findOne({ name })
+    //     .then(destination => {
+    //         if (destination) {
+    //             res.status(400).json({ code: 400, message: 'Destination already exixts' })
+    //             return
+    //         }
+
+    //         Destination
+    //             .create({ name, description, image })
+    //             .then(() => res.status(200).json({ code: 200, message: 'Destination created' }))
+    //             .catch(err => console.log(err))
+    //     })
+    //     .catch(err => console.log(err))
 })
 
 router.get('/:destination_id/edit', (req, res) => {
