@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import UserService from '../../services/user.service'
 import { Table } from 'react-bootstrap'
 import UserCard from './UserCard'
+import UserService from '../../services/user.service'
 
 class UsersList extends Component {
 
@@ -10,6 +10,7 @@ class UsersList extends Component {
         this.state = {
             user: undefined
         }
+
         this.userService = new UserService()
     }
 

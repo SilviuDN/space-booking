@@ -15,7 +15,7 @@ router.post('/new', (req, res) => {
 
 
 
-router.get('/:company_id/edit', (req, res) => {
+router.get('/:company_id/company', (req, res) => {
     Company
         .findById(req.params.company_id)
         .then(response => res.json(response))
@@ -46,5 +46,6 @@ router.get('/', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
 })
+
 
 module.exports = router
