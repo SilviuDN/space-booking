@@ -22,12 +22,13 @@ class SignupPage extends Component {
     }
 
 
-    componentDidMount = () => this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : this.setState({ companyRender: false })
+    componentDidMount = () => {
+        this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : this.setState({ companyRender: false })
+    }
 
 
 
     render = () => {
-
         return (
             <>
 
