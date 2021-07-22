@@ -17,7 +17,7 @@ class DestinationDetails extends Component {
 
     componentDidMount() {
         const { destination_id } = this.props.match.params
-        console.log("Hello destination_id", destination_id)
+        // console.log("Hello destination_id", destination_id)
 
         this.destinationsService
             .getDestination(destination_id)

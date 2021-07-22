@@ -20,12 +20,9 @@ class TempDestinationEdit extends Component {
 
     componentDidMount() {
 
-        if (this.props.type == "edit") {
+        if (this.props.type === "edit") {
 
             const { destination_id } = this.props.match.params
-
-            // console.log(this.props.type)
-
 
             this.destinationsService
                 .getDestination(destination_id)
@@ -47,7 +44,7 @@ class TempDestinationEdit extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        const destinationId = this.props.match.params == "edit" ? this.props.match.params.destination_id : ""
+        const destinationId = this.props.type === "edit" ? this.props.match.params.destination_id : ""
         this.setState({ [name]: value, destination_id: destinationId })
     }
 
@@ -55,13 +52,11 @@ class TempDestinationEdit extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
 
-        if (this.props.type == "edit") {
+        if (this.props.type === "edit") {
 
             this.destinationsService
                 .editDestination(this.state)
                 .then(() => {
-                    // this.props.closeModal()
-                    // this.props.refreshFlights()
                     this.setState({
                         name: '',
                         description: '',
@@ -73,7 +68,7 @@ class TempDestinationEdit extends Component {
 
         }
 
-        if (this.props.type == "new") {
+        if (this.props.type === "new") {
             this.destinationsService
                 .saveDestination(this.state)
                 .then(() => {
