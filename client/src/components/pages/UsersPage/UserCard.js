@@ -6,7 +6,7 @@ const UserCard = ({ name, surname, _id, deleteUser }) => {
         <>
             <tr>
                 <td>
-                    <Link to={`/alex/userDetails/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                    <Link to={`/users/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
                         <p>{name} {surname}
 
                         </p>

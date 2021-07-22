@@ -52,7 +52,7 @@ class UserDetails extends Component {
 
                             <hr></hr>
 
-                            <Link to="/alex/user" className="btn btn-dark">Volver al listado</Link>
+                            <Link to="/users" className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 
