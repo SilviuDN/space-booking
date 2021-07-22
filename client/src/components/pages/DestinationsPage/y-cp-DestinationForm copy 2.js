@@ -4,12 +4,12 @@ import { Form, Button, Container } from 'react-bootstrap'
 import DestinationsService from '../../services/destinations.service'
 import UploadsService from '../../services/upload.service'
 
-class TempDestinationEdit extends Component {
+
+class DestinationForm extends Component {
 
     constructor() {
         super()
         this.state = {
-            destination_id: '',
             name: '',
             description: '',
             image: '',
@@ -18,78 +18,29 @@ class TempDestinationEdit extends Component {
         this.uploadsService = new UploadsService()
     }
 
-    componentDidMount() {
-
-        if (this.props.type == "edit") {
-
-            const { destination_id } = this.props.match.params
-
-            // console.log(this.props.type)
-
-
-            this.destinationsService
-                .getDestination(destination_id)
-                .then(response => {
-                    this.setState({
-                        destination_id,
-                        name: response.data.name,
-                        description: response.data.description,
-                        image: response.data.image,
-                    })
-
-                })
-                .catch(err => console.log(err))
-        }
-
-    }
-
-
 
     handleInputChange = e => {
         const { name, value } = e.target
-        const destinationId = this.props.match.params == "edit" ? this.props.match.params.destination_id : ""
-        this.setState({ [name]: value, destination_id: destinationId })
+        this.setState({ [name]: value })
     }
 
 
     handleFormSubmit = e => {
         e.preventDefault()
 
-        if (this.props.type == "edit") {
-
-            this.destinationsService
-                .editDestination(this.state)
-                .then(() => {
-                    // this.props.closeModal()
-                    // this.props.refreshFlights()
-                    this.setState({
-                        name: '',
-                        description: '',
-                        image: '',
-                    })
-                    this.props.history.push('/destinations')
+        this.destinationsService
+            .saveDestination(this.state)
+            .then(() => {
+                this.setState({
+                    name: '',
+                    description: '',
+                    image: '',
                 })
-                .catch(err => console.log(err))
-
-        }
-
-        if (this.props.type == "new") {
-            this.destinationsService
-                .saveDestination(this.state)
-                .then(() => {
-                    this.setState({
-                        name: '',
-                        description: '',
-                        image: '',
-                    })
-                    this.props.history.push('/destinations')
-                })
-                .catch(err => console.log(err))
-        }
-
-
-
+                this.props.history.push('/destinations')
+            })
+            .catch(err => console.log(err))
     }
+
 
 
     handleFileUpload = e => {
@@ -103,6 +54,20 @@ class TempDestinationEdit extends Component {
             .then(response => this.setState({ image: response.data.imageUrl }))
             .catch(err => console.log(err))
     }
+
+    // handleFileUpload(e) {
+
+    //     // this.setState({ isUploading: true })
+
+    //     const uploadData = new FormData()
+    //     uploadData.append('imageData', e.target.files[0])
+
+    //     this.uploadsService
+    //         .fileUpload(uploadData)
+    //         // .then(response => console.log(response.data.secure_url))
+    //         .then(response => this.setState({ image: response.data.secure_url }))
+    //         .catch(err => console.log(err))
+    // }
 
     render() {
         return (
@@ -133,7 +98,8 @@ class TempDestinationEdit extends Component {
                     </Form.Group> */}
 
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Edit/New Destination</Button>
+
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">New Destination</Button>
 
                 </Form>
 
@@ -144,4 +110,4 @@ class TempDestinationEdit extends Component {
     }
 }
 
-export default TempDestinationEdit
+export default DestinationForm

@@ -19,6 +19,8 @@ import DestinationDetails from '../pages/DestinationsPage/DestinationDetails'
 import DestinationForm from '../pages/DestinationsPage/DestinationForm'
 import TempDestinationEdit from '../pages/DestinationsPage/TempDestinationEdit'
 
+import AdminPage from '../pages/AdminPage/AdminPage.js'
+
 
 
 
@@ -27,6 +29,9 @@ const Routes = ({ storeUser, loggedUser }) => {
 
     return (
         <Switch>
+
+            <Route path="/admin" exact render={props => <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
+
             <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} />} />
 
@@ -42,9 +47,15 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
 
-            <Route path="/destinations" exact render={() => <DestinationsPage />} />
+            {/* <Route path="/destinations" exact render={() => <DestinationsPage />} />
             <Route path="/destinations/new" exact render={(props) => <DestinationForm {...props} />} />
             <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} />} />
+            <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} /> */}
+            {/* DE STERS */}
+            <Route path="/destinations" exact render={() => <DestinationsPage />} />
+            {/* <Route path="/destinations/new" exact render={(props) => <DestinationForm {...props} />} /> */}
+            <Route path="/destinations/new" exact render={(props) => <TempDestinationEdit {...props} type="new" />} />
+            <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} type="edit" />} />
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
 
