@@ -32,7 +32,7 @@ class Navigation extends Component {
         return (
             <>
                 <Navbar bg="dark" variant="dark" expand="md" style={{ marginBottom: '30px' }}>
-                    <Container>
+                    <Container fluid>
                         <Navbar.Brand href="/">LOGO</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end">

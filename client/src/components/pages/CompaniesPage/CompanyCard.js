@@ -6,7 +6,7 @@ const CompanyCard = ({ companyName, _id, deleteCompany }) => {
         <>
             <tr>
                 <td>
-                    <Link to={`/alex/companyDetails/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                    <Link to={`/companies/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
                         <p>{companyName}</p>
                     </Link>
                 </td>
@@ -15,7 +15,7 @@ const CompanyCard = ({ companyName, _id, deleteCompany }) => {
 
 
                     &nbsp;
-                    <Link to={`/alex/companyEdit/${_id}`}>
+                    <Link to={`/companies/${_id}/edit`}>
                         <Button variant="dark" block >Editar</Button>
                     </Link>
                     &nbsp;

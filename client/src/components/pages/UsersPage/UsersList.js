@@ -26,18 +26,14 @@ class UsersList extends Component {
     }
 
     deleteUser = user_id => {
-
         this.setState({
             user: this.state.user.filter(elm => elm._id !== user_id)
         })
 
         this.userService.userDelete(user_id)
-            .then(() => console.log('yeeee'))
+            .then(() => console.log('Usuario eliminado correctamente'))
             .catch(err => console.log(err))
-
-
     }
-
 
     render() {
         return (
@@ -47,26 +43,24 @@ class UsersList extends Component {
                 'CARGANDO'
                 :
                 <>
-                    <Table striped bordered hover>
+                    <Table striped bordered hover size="sm">
+
                         <thead>
                             <tr>
                                 <th>Nombres y apellidos</th>
                                 <th>Detalles</th>
                             </tr>
                         </thead>
+
                         <tbody>
-
                             {this.state.user.map(elm => <UserCard key={elm._id} {...elm} deleteUser={this.deleteUser} />)}
-
                         </tbody>
+
                     </Table>
                 </>
-
-
         )
 
     }
-
 
 }
 

@@ -1,0 +1,21 @@
+.sidebar {
+        position: fixed;
+        top: 0px;
+        bottom: 0;
+        left: 0;
+        min-height: 100vh !important;
+        z-index: 100;
+        padding: 70px 0 0;
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+    }
+    
+    /* .sidebar-sticky {
+        margin-right: 0;
+        width: 30%;
+        padding-bottom: 50px;
+}
+    .sidebar-sticky img{
+        display: block;
+        margin-left: 30px;
+        width: 100%;
+} */
