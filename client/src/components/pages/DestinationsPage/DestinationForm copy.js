@@ -1,9 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
-import DestinationsService from './../services/destinations.service'
-import UploadsService from '../services/upload.service'
-
+import DestinationsService from '../../services/destinations.service'
 
 class DestinationForm extends Component {
 
@@ -15,7 +13,6 @@ class DestinationForm extends Component {
             image: '',
         }
         this.destinationsService = new DestinationsService()
-        this.uploadsService = new UploadsService()
     }
 
 
@@ -36,43 +33,15 @@ class DestinationForm extends Component {
                     description: '',
                     image: '',
                 })
-                this.props.history.push('/silviu/destinations')
+                this.props.history.push('/destinations')
             })
             .catch(err => console.log(err))
     }
 
-
-
-    handleFileUpload = e => {
-
-        const uploadData = new FormData()
-        uploadData.append('file', e.target.files[0]) //key=file, value=e.target.files[0]
-
-        this.uploadsService
-            .fileUpload(uploadData)
-            // .then(response => console.log('The answer: ', response))
-            .then(response => this.setState({ image: response.data.imageUrl }))
-            .catch(err => console.log(err))
-    }
-
-    // handleFileUpload(e) {
-
-    //     // this.setState({ isUploading: true })
-
-    //     const uploadData = new FormData()
-    //     uploadData.append('imageData', e.target.files[0])
-
-    //     this.uploadsService
-    //         .fileUpload(uploadData)
-    //         // .then(response => console.log(response.data.secure_url))
-    //         .then(response => this.setState({ image: response.data.secure_url }))
-    //         .catch(err => console.log(err))
-    // }
-
     render() {
         return (
             <Container>
-                <Link to="/silviu/destinations" className="btn btn-dark">Back to destinations list</Link>
+                <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
 
                 <Form onSubmit={this.handleFormSubmit}>
 
@@ -85,17 +54,16 @@ class DestinationForm extends Component {
                         <Form.Label>Description</Form.Label>
                         <Form.Control type="text" value={this.state.description} onChange={this.handleInputChange} name="description" />
                     </Form.Group>
-
-
+                    {/* 
                     <Form.Group controlId="imageUrl">
                         <Form.Label>Image (URL)</Form.Label>
-                        <Form.Control type="file" onChange={this.handleFileUpload} />
-                    </Form.Group>
+                        <Form.Control type="file" onChange={e => this.handleFileUpload(e)} />
+                    </Form.Group> */}
 
-                    {/* <Form.Group controlId="image">
+                    <Form.Group controlId="image">
                         <Form.Label>Image</Form.Label>
                         <Form.Control type="text" value={this.state.image} onChange={this.handleInputChange} name="image" />
-                    </Form.Group> */}
+                    </Form.Group>
 
 
 

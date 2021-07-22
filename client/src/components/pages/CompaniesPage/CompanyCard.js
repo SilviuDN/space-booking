@@ -19,7 +19,7 @@ const CompanyCard = ({ companyName, _id, deleteCompany }) => {
                         <Button variant="dark" block >Editar</Button>
                     </Link>
                     &nbsp;
-                    <Link to={`/alex/companies`} onClick={(e) => deleteCompany(_id)}>
+                    <Link to={`/companies`} onClick={(e) => deleteCompany(_id)}>
                         <Button variant="danger" block >Eliminar</Button>
                     </Link>
                 </td>

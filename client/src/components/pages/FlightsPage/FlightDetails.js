@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import FlightsService from './../services/flights.service'
+import FlightsService from '../../services/flights.service'
 
 import { Form, Container, Row, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -39,7 +39,7 @@ class FlightDetails extends Component {
                     flight: undefined
 
                 })
-                this.props.history.push('/silviu/flights')
+                this.props.history.push('/flights')
             })
             .catch(err => console.log(err))
     }
@@ -71,8 +71,8 @@ class FlightDetails extends Component {
                                 <Button className="btn btn-danger" type="submit">Delete Flight</Button>
                             </Form>
 
-                            <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
-                            <Link to={`/silviu/flights/${this.state.flight._id}/edit`} className="btn btn-warning">Edit</Link>
+                            <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
+                            <Link to={`/flights/${this.state.flight._id}/edit`} className="btn btn-warning">Edit</Link>
 
                         </Col>
 

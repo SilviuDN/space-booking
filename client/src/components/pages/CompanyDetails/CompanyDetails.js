@@ -51,7 +51,7 @@ class CompanyDetails extends Component {
 
                             <hr></hr>
 
-                            <Link to="/alex/company" className="btn btn-dark">Volver al listado</Link>
+                            <Link to="/companies" className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 

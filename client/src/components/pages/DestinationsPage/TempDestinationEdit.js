@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
-import DestinationsService from './../services/destinations.service'
+import DestinationsService from '../../services/destinations.service'
 
 class TempDestinationEdit extends Component {
 
@@ -54,7 +54,7 @@ class TempDestinationEdit extends Component {
                     description: '',
                     image: '',
                 })
-                this.props.history.push('/silviu/destinations')
+                this.props.history.push('/destinations')
             })
             .catch(err => console.log(err))
     }
@@ -62,7 +62,7 @@ class TempDestinationEdit extends Component {
     render() {
         return (
             <Container>
-                <Link to="/silviu/destinations" className="btn btn-dark">Back to destinations list</Link>
+                <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
 
                 <Form onSubmit={this.handleFormSubmit}>
 

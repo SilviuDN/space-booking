@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import FlightsService from './../services/flights.service'
+import FlightsService from '../../services/flights.service'
 import FlightCard from "./FlightCard";
 
 
@@ -36,7 +36,7 @@ class FlightsList extends Component {
                 :
                 (<>
 
-                    <Link to="/silviu/flights/new" className="btn btn-info">New flight</Link>
+                    <Link to="/flights/new" className="btn btn-info">New flight</Link>
                     <h4>Flights List</h4>
                     {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} />)}
                 </>)

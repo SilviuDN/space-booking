@@ -12,7 +12,7 @@ const DestinationCard = ({ _id, name, description, image, removeDestination }) =
                 <Card.Body>
                     <Card.Title>Name: {name}</Card.Title>
                     <Card.Subtitle>Description: {description}</Card.Subtitle>
-                    <Link to={`/silviu/destinations/${_id}`}>
+                    <Link to={`/destinations/${_id}`}>
                         <Button variant="dark" block >Details</Button>
                     </Link>
                     <button className="btn btn-danger" onClick={removeDestination}>Delete</button>

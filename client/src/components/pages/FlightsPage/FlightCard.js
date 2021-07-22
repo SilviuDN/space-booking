@@ -13,7 +13,7 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
                 <Card.Body>
                     <Card.Title>Price: ${price}</Card.Title>
                     <Card.Subtitle>Seats: {capacity}</Card.Subtitle>
-                    <Link to={`/silviu/flights/${_id}`}>
+                    <Link to={`/flights/${_id}`}>
                         <Button variant="dark" block >Ver detalles</Button>
                     </Link>
 

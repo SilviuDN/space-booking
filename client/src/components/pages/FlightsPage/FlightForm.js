@@ -1,14 +1,13 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
-import FlightsService from './../services/flights.service'
+import FlightsService from '../../services/flights.service'
 import { Link } from 'react-router-dom'
 
-class TempEdit extends Component {
+class FlightForm extends Component {
 
     constructor() {
         super()
         this.state = {
-            flight_id: '',
             price: '',
             capacity: '',
             flightNumber: '',
@@ -20,30 +19,10 @@ class TempEdit extends Component {
         this.flightsService = new FlightsService()
     }
 
-    componentDidMount() {
-
-        const { flight_id } = this.props.match.params
-
-        this.flightsService
-            .getFlight(flight_id)
-            .then(response => this.setState({
-                price: response.data.price,
-                capacity: response.data.capacity,
-                flightNumber: response.data.flightNumber,
-                airport: response.data.airport,
-                destination: response.data.destination,
-                date: response.data.date,
-                flightCompany: response.data.flightCompany,
-            }))
-            .catch(err => console.log(err))
-    }
-
-
 
     handleInputChange = e => {
         const { name, value } = e.target
-        console.log(this.props.match.params.flight_id)
-        this.setState({ [name]: value, flight_id: this.props.match.params.flight_id })
+        this.setState({ [name]: value })
     }
 
 
@@ -51,7 +30,7 @@ class TempEdit extends Component {
         e.preventDefault()
 
         this.flightsService
-            .editFlight(this.state)
+            .saveFlight(this.state)
             .then(() => {
                 // this.props.closeModal()
                 // this.props.refreshFlights()
@@ -64,7 +43,7 @@ class TempEdit extends Component {
                     date: '',
                     flightCompany: '',
                 })
-                this.props.history.push('/silviu/flights')
+                this.props.history.push('/flights')
             })
             .catch(err => console.log(err))
     }
@@ -72,7 +51,7 @@ class TempEdit extends Component {
     render() {
         return (
             <Container>
-                <Link to="/silviu/flights" className="btn btn-dark">Back to flights list</Link>
+                <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
 
                 <Form onSubmit={this.handleFormSubmit}>
 
@@ -91,6 +70,11 @@ class TempEdit extends Component {
                         <Form.Control type="text" value={this.state.capacity} onChange={this.handleInputChange} name="capacity" />
                     </Form.Group>
 
+                    <Form.Group controlId="flightNumber">
+                        <Form.Label>Flight Number</Form.Label>
+                        <Form.Control type="text" value={this.state.flightNumber} onChange={this.handleInputChange} name="flightNumber" />
+                    </Form.Group>
+
                     <Form.Group controlId="airport">
                         <Form.Label>Airport</Form.Label>
                         <Form.Control type="text" value={this.state.airport} onChange={this.handleInputChange} name="airport" />
@@ -106,7 +90,7 @@ class TempEdit extends Component {
                         <Form.Control type="text" value={this.state.flightCompany} onChange={this.handleInputChange} name="flightCompany" />
                     </Form.Group>
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Edit Flight</Button>
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">New Flight</Button>
 
                 </Form>
 
@@ -117,4 +101,4 @@ class TempEdit extends Component {
     }
 }
 
-export default TempEdit
+export default FlightForm

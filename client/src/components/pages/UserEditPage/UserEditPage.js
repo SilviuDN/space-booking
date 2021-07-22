@@ -85,7 +85,7 @@ class UserEdit extends Component {
 
 
                 })
-                this.props.history.push('/alex/user')
+                this.props.history.push('/users/')
             })
             .catch(err => console.log(err))
 

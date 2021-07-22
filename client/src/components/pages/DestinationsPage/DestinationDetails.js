@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import DestinationsService from './../services/destinations.service'
+import DestinationsService from '../../services/destinations.service'
 
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
@@ -54,8 +54,8 @@ class DestinationDetails extends Component {
                                 <Button className="btn btn-danger" type="submit">Delete Destination</Button>
                             </Form> */}
 
-                            <Link to="/silviu/destinations" className="btn btn-dark">Back to destinations list</Link>
-                            <Link to={`/silviu/destinations/${this.state.destination._id}/edit`} className="btn btn-warning">Edit</Link>
+                            <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
+                            <Link to={`/destinations/${this.state.destination._id}/edit`} className="btn btn-warning">Edit</Link>
 
                         </Col>
 

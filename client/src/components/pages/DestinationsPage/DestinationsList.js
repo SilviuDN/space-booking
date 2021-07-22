@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Link } from "react-router-dom";
-import DestinationsService from './../services/destinations.service'
+import DestinationsService from '../../services/destinations.service'
 import DestinationCard from "./DestinationCard";
 
 
@@ -23,7 +23,7 @@ class DestinationsList extends Component {
                 this.setState({
                     destinations: this.state.destinations.filter(elem => elem._id !== destinationId)
                 })
-                this.props.history.push('/silviu/destinations')
+                this.props.history.push('/destinations')
             })
             .catch(err => console.log(err))
     }
@@ -48,7 +48,7 @@ class DestinationsList extends Component {
                 :
                 (<>
 
-                    <Link to="/silviu/destinations/new" className="btn btn-info">New destination</Link>
+                    <Link to="/destinations/new" className="btn btn-info">New destination</Link>
                     <h4>Destinations List</h4>
                     {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} />)}
                 </>)

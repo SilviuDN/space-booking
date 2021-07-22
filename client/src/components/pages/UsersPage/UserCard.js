@@ -17,11 +17,11 @@ const UserCard = ({ name, surname, _id, deleteUser }) => {
 
 
                     &nbsp;
-                    <Link to={`/alex/userEdit/${_id}`}>
+                    <Link to={`/users/${_id}/edit`}>
                         <Button variant="dark" block >Editar</Button>
                     </Link>
                     &nbsp;
-                    <Link to={`/alex/user`} onClick={(e) => deleteUser(_id)}>
+                    <Link to={`/users`} onClick={(e) => deleteUser(_id)}>
                         <Button variant="danger" block >Eliminar</Button>
                     </Link>
                 </td>
