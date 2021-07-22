@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import DestinationsService from '../../services/destinations.service'
 
-import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
+import { Container, Row, Col, Card, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class DestinationDetails extends Component {
@@ -30,7 +30,6 @@ class DestinationDetails extends Component {
     deleteDestination = e => {
         e.preventDefault()
         const { destination_id } = this.props.match.params
-        console.log('**************************', destination_id)
 
         this.destinationsService
             .deleteDestination(destination_id)
@@ -62,7 +61,10 @@ class DestinationDetails extends Component {
                                 <Card.Body>
                                     <Card.Title>Name: {this.state.destination.name}</Card.Title>
                                     <Card.Subtitle>Description: {this.state.destination.description}</Card.Subtitle>
-                                    <Card.Subtitle>Reviews?!??</Card.Subtitle>
+                                    {this.state.destination.reviews.map(elem =>
+                                        <Card.Subtitle>review: {elem}</Card.Subtitle>
+                                    )}
+
 
 
 

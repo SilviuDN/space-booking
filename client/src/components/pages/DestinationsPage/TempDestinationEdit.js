@@ -183,7 +183,7 @@ class TempDestinationEdit extends Component {
                             :
                             'Create destination'
                         } */}
-                    </Button>
+                        {this.state.loading && <Spinner size={60} />}</Button>
 
                 </Form>
 

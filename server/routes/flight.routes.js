@@ -11,6 +11,7 @@ const Flight = require('../models/Flight.model')
 
 router.get('/flights', (req, res) => {
     Flight.find()
+        .populate('destination')
         .sort({ createdAt: 1 })
         .then(response => res.json(response)
         )
@@ -55,6 +56,7 @@ router.get('/:flight_id', (req, res) => {
 
     Flight
         .findById(req.params.flight_id)
+        .populate('destination')
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching flight', err }))
 })

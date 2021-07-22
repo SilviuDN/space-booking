@@ -7,6 +7,7 @@ router.get('/:destination_id', (req, res) => {
 
     Destination
         .findById(req.params.destination_id)
+        // .populate('reviews')
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
 })

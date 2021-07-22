@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 
-import { Form, Container, Row, Col, Button } from 'react-bootstrap'
+import { Form, Container, Row, Col, Button, } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class FlightDetails extends Component {
@@ -14,21 +14,28 @@ class FlightDetails extends Component {
         this.flightsService = new FlightsService()
     }
 
-
-    componentDidMount() {
-
+    loadFlight = () => {
         const { flight_id } = this.props.match.params
 
         this.flightsService
             .getFlight(flight_id)
-            .then(response => this.setState({ flight: response.data }))
+            .then(response => {
+                console.log(response.data)
+                this.setState({ flight: response.data })
+            })
+            // .then(response => this.setState({ flight: response.data }))
             .catch(err => console.log(err))
+    }
+
+    componentDidMount = () => {
+        this.loadFlight()
+
     }
 
     deleteFlight = e => {
         e.preventDefault()
         const { flight_id } = this.props.match.params
-        console.log('**************************', flight_id)
+        // console.log('**************************', flight_id)
 
         this.flightsService
             .deleteFlight(flight_id)
@@ -37,7 +44,6 @@ class FlightDetails extends Component {
                 // this.props.refreshFlights()
                 this.setState({
                     flight: undefined
-
                 })
                 this.props.history.push('/flights')
             })
@@ -57,6 +63,8 @@ class FlightDetails extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
+                            <img src={this.state.flight.destination?.image} alt=''></img>
+                            {/* <Card.Img variant="top" src={this.state.flight.destination?.image} /> */}
                             <h3>Destination: {this.state.flight.destination}</h3>
                             <p>Price: ${this.state.flight.price}</p>
 

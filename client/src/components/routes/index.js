@@ -9,7 +9,6 @@ import UserEditPage from '../pages/UserEditPage/UserEditPage.js'
 import CompaniesPage from '../pages/CompaniesPage/CompaniesPage.js'
 import CompanyDetails from '../pages/CompanyDetails/CompanyDetails.js'
 
-import FlightForm from '../pages/FlightsPage/FlightForm'
 import FlightDetails from '../pages/FlightsPage/FlightDetails'
 import FlightsPage from '../pages/FlightsPage/FlightsPage'
 import TempEdit from '../pages/FlightsPage/TempEdit'
@@ -42,8 +41,8 @@ const Routes = ({ storeUser, loggedUser }) => {
             <Route path="/companies/:company_id" exact render={props => <CompanyDetails {...props} />} />
 
             <Route path="/flights" exact render={() => <FlightsPage />} />
-            <Route path="/flights/new" exact render={(props) => <FlightForm {...props} />} />
-            <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} />} />
+            <Route path="/flights/new" exact render={(props) => <TempEdit {...props} type="new" />} />
+            <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} type="edit" />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
 
             <Route path="/destinations" exact render={() => <DestinationsPage />} />
