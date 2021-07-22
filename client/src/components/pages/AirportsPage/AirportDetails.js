@@ -23,8 +23,9 @@ class UserDetails extends Component {
         this.AirportService
             .airportDetails(airportId)
             .then(response => {
-                console.log(response.data)
+
                 this.setState({ airportDetails: response.data })
+
             })
             .catch(err => console.log(err))
     }
@@ -44,23 +45,21 @@ class UserDetails extends Component {
 
                     <Row className="justify-content-around">
                         <Col md={12}>
-                            <h3>{this.state.name}</h3>
+                            <h3>{this.state.airportDetails.name}</h3>
 
                             <hr />
 
-                            <p>IATA code: {this.state.airportDetails.code}</p>
+                            <p><strong>IATA code:</strong> {this.state.airportDetails.code}</p>
+                            <br />
+                            <p><strong>Exact Location</strong></p>
                             <p>lat: {this.state.airportDetails.lat}</p>
                             <p>lng: {this.state.airportDetails.lon}</p>
-                            <br />
-                            <p><strong>Address</strong></p>
-                            <p>City: {this.state.airportDetails.city}</p>
-                            <p>Country: {this.state.airportDetails.country}</p>
-                            <hr></hr>
-                            <h3>History Flights</h3>
-
+                            <p>City: {this.state.airportDetails.address.city}</p>
+                            <p>Country: {this.state.airportDetails.address.country}</p>
                             <hr></hr>
 
-                            <Link to="" className="btn btn-dark">return to the list</Link>
+
+                            <Link to="/admin" onClick={() => this.props.setList('airports')} className="btn btn-dark">return to the list</Link>
 
                         </Col>
 

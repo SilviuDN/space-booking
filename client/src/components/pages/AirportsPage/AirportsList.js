@@ -1,7 +1,5 @@
 import { Component } from 'react'
 import { Table } from 'react-bootstrap'
-// import CompanyCard from './CompanyCard'
-// import CompanyService from '../../services/company.service'
 import AirportService from '../../services/AirportService'
 import AirportCard from '../AirportsPage/AirportCard'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -31,14 +29,18 @@ class AirportsList extends Component {
     }
 
     deleteAirport = airportId => {
+        // const confirm = 
 
-        this.setState({
-            company: this.state.company.filter(elm => elm._id !== airportId)
-        })
+        if (window.confirm('Are you sure you want to delete this airport?')) {
 
-        this.AirportService.deleteAirport(airportId)
-            .then((res) => console.log(res))
-            .catch(err => console.log(err))
+            this.setState({
+                airport: this.state.airport.filter(elm => elm._id !== airportId)
+            })
+
+            this.AirportService.deleteAirport(airportId)
+                .then((res) => console.log(res))
+                .catch(err => console.log(err))
+        }
 
     }
 

@@ -13,7 +13,7 @@ class AirportService {
 
     airportDetails = (airportId) => this.app.get(`/${airportId}`)
 
-    editAirport = (state) => this.app.put(`/${state.company_id}/edit`, state)
+    editAirport = (airportObj, airportId) => this.app.put(`/${airportId}/edit`, airportObj)
 
     deleteAirport = (airport_id) => this.app.delete(`/${airport_id}/delete`)
 }

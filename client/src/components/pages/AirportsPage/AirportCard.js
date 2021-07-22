@@ -16,9 +16,9 @@ const AirportCard = ({ name, _id, deleteAirport, setList, setId }) => {
 
 
                     &nbsp;
-                    <Button variant="dark" onClick={() => setList('editAirport')}>Editar</Button>
+                    <Button variant="dark" onClick={() => { setId(_id); setList('editAirport'); }}>Editar</Button>
                     &nbsp;
-                    <Link to={`/companies`} onClick={(e) => deleteAirport(_id)}>
+                    <Link to={`/admin`} onClick={() => { deleteAirport(_id) }}>
                         <Button variant="danger">Eliminar</Button>
                     </Link>
                 </td>

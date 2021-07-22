@@ -7,6 +7,7 @@ import Fligths from '../FlightsPage/FlightsList'
 import Destination from '../DestinationsPage/DestinationsList'
 import Airports from '../AirportsPage/AirportsList'
 import AirportDetails from '../AirportsPage/AirportDetails'
+import AirportEdit from '../AirportsPage/AirportEdit'
 
 
 class AdminPage extends Component {
@@ -72,7 +73,8 @@ class AdminPage extends Component {
 
 
 
-                                                    this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} /> : null
+                                                    this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} setList={this.setList} /> :
+                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> : null
                             }
 
                         </Col>
