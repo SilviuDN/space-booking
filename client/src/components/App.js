@@ -19,7 +19,7 @@ class App extends Component {
 
   getUser = () => {
     this.authService.isLoggedIn()
-      .then(this.storeUser)
+      .then(res => this.storeUser(res.data))
       .catch(err => console.log(err))
   }
 

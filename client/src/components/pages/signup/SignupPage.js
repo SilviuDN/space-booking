@@ -4,7 +4,7 @@ import UserForm from './SignupUserForm'
 import CompanyForm from './SignupCompanyForm'
 
 class SignupPage extends Component {
-    constructor(props) {
+    constructor() {
         super()
         this.state = {
             companyRender: false,
@@ -22,13 +22,22 @@ class SignupPage extends Component {
     }
 
 
-    componentDidMount = () => {
+    changeState = () => {
         this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : this.setState({ companyRender: false })
+
     }
 
 
+    componentDidUpdate(prevProps, prevState) {
+        if (prevProps.match.params.company !== this.props.match.params.company) {
+            this.changeState()
+        }
+    }
+
 
     render = () => {
+
+
         return (
             <>
 
