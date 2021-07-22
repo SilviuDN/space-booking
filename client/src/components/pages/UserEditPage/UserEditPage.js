@@ -2,16 +2,16 @@ import { Component } from 'react'
 import UserService from '../../services/user.service'
 import { Form, Button, Container } from 'react-bootstrap'
 
-
-
 class UserEdit extends Component {
 
     constructor() {
+
         super()
+
         this.state = {
+
             user_id: '',
             email: '',
-
             name: '',
             surname: '',
             personalId: '',
@@ -23,19 +23,21 @@ class UserEdit extends Component {
             street: '',
             zipCode: '',
             image_preview: ''
+
         }
         this.userService = new UserService()
     }
+
     componentDidMount() {
 
         const { user_id } = this.props.match.params
-        console.log(user_id)
+
         this.userService
+
             .userDetails(user_id)
+
             .then(response => this.setState({
-
                 email: response.data.email,
-
                 name: response.data.name,
                 surname: response.data.surname,
                 personalId: response.data.personalId,
@@ -48,8 +50,8 @@ class UserEdit extends Component {
                 zipCode: response.data.zipCode,
                 profileImg: response.data.profileImg,
 
-
             }))
+
             .catch(err => console.log(err))
     }
 
@@ -57,7 +59,6 @@ class UserEdit extends Component {
 
         e.preventDefault()
         const { name, value } = e.target
-        console.log(this.props.match.params.user_id)
         this.setState({ [name]: value, user_id: this.props.match.params.user_id })
 
     }
@@ -66,12 +67,14 @@ class UserEdit extends Component {
         e.preventDefault()
 
         this.userService
+
             .userEdit(this.state)
+
             .then(() => {
+
                 this.setState({
 
                     email: '',
-
                     name: '',
                     surname: '',
                     personalId: '',
@@ -83,10 +86,12 @@ class UserEdit extends Component {
                     street: '',
                     zipCode: '',
 
-
                 })
+
                 this.props.history.push('/users/')
+
             })
+
             .catch(err => console.log(err))
 
     }
@@ -94,22 +99,20 @@ class UserEdit extends Component {
     render() {
 
         return (
+
             <Container>
+
                 <Form onSubmit={this.handleFormSubmit}>
 
                     <Form.Group className="mb-3" controlId="formBasicEmail">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter email" name='email' value={this.state.email} onChange={this.handleInputChange} />
-
                     </Form.Group>
-
-
 
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Name</Form.Label>
                         <Form.Control type="text" placeholder="name" value={this.state.name} onChange={this.handleInputChange} />
                     </Form.Group>
-
 
                     <Form.Group className="mb-3" controlId="formBasicText">
                         <Form.Label>Surname</Form.Label>
@@ -121,21 +124,22 @@ class UserEdit extends Component {
                         <Form.Control type="text" placeholder="personalId" name='personalId' value={this.state.personalId} onChange={this.handleInputChange} />
                     </Form.Group>
 
-
                     <Form.Group className="mb-3" controlId="formBasicCheckbox">
                         <Form.Check type="checkbox" label="Check me out" />
                     </Form.Group>
+
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+
                 </Form>
+
             </Container>
 
         )
 
-
     }
-}
 
+}
 
 export default UserEdit
