@@ -15,7 +15,7 @@ const CompanyCard = ({ companyName, _id, deleteCompany }) => {
 
 
                     &nbsp;
-                    <Link to={`/companies/companyEdit/${_id}`}>
+                    <Link to={`/companies/${_id}/edit`}>
                         <Button variant="dark" block >Editar</Button>
                     </Link>
                     &nbsp;

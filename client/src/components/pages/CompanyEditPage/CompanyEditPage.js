@@ -2,9 +2,7 @@ import { Component } from 'react'
 import CompanyService from '../../services/company.service'
 import { Form, Button, Container } from 'react-bootstrap'
 
-
-
-class CompanyEdit extends Component {
+class CompanyEditPage extends Component {
 
     constructor() {
         super()
@@ -25,19 +23,25 @@ class CompanyEdit extends Component {
 
         const { company_id } = this.props.match.params
 
-        this.userService
+        this.companyService
             .companyDetails(company_id)
-            .then(response => this.setState({
 
-                companyName: response.data.companyName,
-                moderator: response.data.moderator,
-                number: response.data.number,
-                city: response.data.city,
-                country: response.data.country,
-                street: response.data.street,
-                zipCode: response.data.zipCode,
+            .then(response => {
+                console.log(response.data)
+                this.setState({
 
-            }))
+                    companyName: response.data.companyName,
+                    moderator: response.data.moderator,
+                    companynumber: response.data.companyAddress.number,
+                    city: response.data.companyAddress.city,
+                    country: response.data.companyAddress.country,
+                    street: response.data.companyAddress.street,
+                    zipCode: response.data.companyAddress.zipCode,
+
+                }
+                )
+            })
+
             .catch(err => console.log(err))
     }
 
@@ -66,57 +70,49 @@ class CompanyEdit extends Component {
                     zipCode: '',
 
                 })
-                this.props.history.push('/companies')
+                this.props.history.push('/companies/')
             })
             .catch(err => console.log(err))
 
     }
 
     render() {
-
+        console.log(this.state)
         return (
+
             <Container>
+                <h1>Company Edit Form</h1>
+
                 <Form onSubmit={this.handleFormSubmit}>
-
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control type="email" placeholder="Enter email" name='email' value={this.state.email} onChange={this.handleInputChange} />
-
+                    <Form.Group className="mb-3" controlId="companyName">
+                        <Form.Label>Company Name</Form.Label>
+                        <Form.Control value={this.state.companyName} type="text" name='companyName' onChange={this.handleInputChange} />
                     </Form.Group>
 
+                    <Form.Label>Address
+                        <Form.Group className="d-flex mb-2">
+                            <Form.Control value={this.state.street} id='street' type="text" name='street' onChange={this.handleInputChange} />
 
+                            <Form.Control value={this.state.number} id='number' type="text" placeholder="number" name='number' onChange={this.handleInputChange} />
 
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control type="text" placeholder="name" value={this.state.name} onChange={this.handleInputChange} />
-                    </Form.Group>
+                            <Form.Control value={this.state.zipCode} id='zipCode' type="text" placeholder="zipCode" name='zipCode' onChange={this.handleInputChange} />
 
+                            <Form.Control value={this.state.city} id='city' type="text" placeholder="City" name='city' onChange={this.handleInputChange} />
 
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                        <Form.Label>Surname</Form.Label>
-                        <Form.Control type="text" placeholder="Surname" name='surname' value={this.state.surname} onChange={this.handleInputChange} />
-                    </Form.Group>
+                            <Form.Control value={this.state.country} id='country' type="text" placeholder="country" name='country' onChange={this.handleInputChange} />
+                        </Form.Group>
+                    </Form.Label>
 
-                    <Form.Group className="mb-3" controlId="formBasicText">
-                        <Form.Label>Personal Id</Form.Label>
-                        <Form.Control type="text" placeholder="personalId" name='personalId' value={this.state.personalId} onChange={this.handleInputChange} />
-                    </Form.Group>
-
-
-                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                        <Form.Check type="checkbox" label="Check me out" />
-                    </Form.Group>
                     <Button variant="primary" type="submit">
                         Submit
                     </Button>
+
                 </Form>
             </Container>
 
         )
 
-
     }
 }
 
-
-export default CompanyEdit
+export default CompanyEditPage

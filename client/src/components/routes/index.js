@@ -8,6 +8,7 @@ import UserEditPage from '../pages/UserEditPage/UserEditPage.js'
 
 import CompaniesPage from '../pages/CompaniesPage/CompaniesPage.js'
 import CompanyDetails from '../pages/CompanyDetails/CompanyDetails.js'
+import CompanyEditPage from '../pages/CompanyEditPage/CompanyEditPage.js'
 
 import FlightForm from '../pages/FlightsPage/FlightForm'
 import FlightDetails from '../pages/FlightsPage/FlightDetails'
@@ -41,6 +42,8 @@ const Routes = ({ storeUser, loggedUser }) => {
 
             <Route path="/companies" exact render={() => <CompaniesPage />} />
             <Route path="/companies/:company_id" exact render={props => <CompanyDetails {...props} />} />
+            <Route path="/companies/:company_id/edit" render={props => <CompanyEditPage {...props} />} />
+
 
             <Route path="/flights" exact render={() => <FlightsPage />} />
             <Route path="/flights/new" exact render={(props) => <FlightForm {...props} />} />
