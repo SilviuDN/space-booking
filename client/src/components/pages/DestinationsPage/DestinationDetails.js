@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import DestinationsService from '../../services/destinations.service'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class DestinationDetails extends Component {
@@ -27,6 +27,21 @@ class DestinationDetails extends Component {
             .catch(err => console.log(err))
     }
 
+    deleteDestination = e => {
+        e.preventDefault()
+        const { destination_id } = this.props.match.params
+        console.log('**************************', destination_id)
+
+        this.destinationsService
+            .deleteDestination(destination_id)
+            .then(() => {
+                this.setState({
+                    destination: undefined
+                })
+                this.props.history.push('/destinations')
+            })
+            .catch(err => console.log(err))
+    }
 
     render() {
 
@@ -40,22 +55,26 @@ class DestinationDetails extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
-                            <h1>Name: {this.state.destination.name}</h1>
-                            <p>Description: ${this.state.destination.description}</p>
-
-                            <hr></hr>
-
-                            <p>Image: {this.state.destination.image}</p>
-
-                            <hr></hr>
 
 
-                            {/* <Form onSubmit={this.deleteDestination}>
-                                <Button className="btn btn-danger" type="submit">Delete Destination</Button>
-                            </Form> */}
+                            <Card className="coaster-card">
+                                <Card.Img variant="top" src={this.state.destination.image} />
+                                <Card.Body>
+                                    <Card.Title>Name: {this.state.destination.name}</Card.Title>
+                                    <Card.Subtitle>Description: {this.state.destination.description}</Card.Subtitle>
+                                    <Card.Subtitle>Reviews?!??</Card.Subtitle>
+
+
+
+                                </Card.Body>
+                            </Card>
 
                             <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
                             <Link to={`/destinations/${this.state.destination._id}/edit`} className="btn btn-warning">Edit</Link>
+                            <button className="btn btn-danger" onClick={this.deleteDestination}>Delete</button>
+                            {/* <Form onSubmit={this.deleteDestination}>
+                                <Button className="btn btn-danger" type="submit">Delete Destination</Button>
+                            </Form> */}
 
                         </Col>
 

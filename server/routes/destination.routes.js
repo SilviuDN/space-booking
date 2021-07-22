@@ -14,7 +14,7 @@ router.get('/:destination_id', (req, res) => {
 router.post('/new', (req, res) => {
 
     const { name, description, image } = req.body
-    console.log(image)
+    // console.log(image)
 
     // Destination
     //     .findOne({ name })
