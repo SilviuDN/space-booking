@@ -21,7 +21,7 @@ class UserDetails extends Component {
 
     componentDidMount() {
 
-        const { user_id } = this.props.match.params
+        const user_id = this.props.match?.params.user_id || this.props.id
 
         this.userService
             .userDetails(user_id)

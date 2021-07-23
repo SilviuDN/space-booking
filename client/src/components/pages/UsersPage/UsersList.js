@@ -26,13 +26,17 @@ class UsersList extends Component {
     }
 
     deleteUser = user_id => {
-        this.setState({
-            user: this.state.user.filter(elm => elm._id !== user_id)
-        })
 
-        this.userService.userDelete(user_id)
-            .then(() => console.log('Usuario eliminado correctamente'))
-            .catch(err => console.log(err))
+        if (window.confirm('¿Are you sure want to delete this user ?')) {
+
+            this.setState({
+                user: this.state.user.filter(elm => elm._id !== user_id)
+            })
+
+            this.userService.userDelete(user_id)
+                .then(() => console.log('Usuario eliminado correctamente'))
+                .catch(err => console.log(err))
+        }
     }
 
     render() {
@@ -53,7 +57,7 @@ class UsersList extends Component {
                         </thead>
 
                         <tbody>
-                            {this.state.user.map(elm => <UserCard key={elm._id} {...elm} deleteUser={this.deleteUser} />)}
+                            {this.state.user.map(elm => <UserCard key={elm._id} {...elm} deleteUser={this.deleteUser} setList={this.props.setList} setId={this.props.setId} />)}
                         </tbody>
 
                     </Table>

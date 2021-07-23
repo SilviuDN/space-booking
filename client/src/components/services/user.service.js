@@ -9,9 +9,13 @@ class UserService {
         })
     }
 
+
+    userEdit = (state, userId) => this.app.put(`/user/${userId}/edit`, state)
+
     userDetails = (user_id) => this.app.get(`/user/${user_id}/details`)
-    userEdit = (state) => this.app.put(`/user/${state.user_id}/edit`, state)
-    userDelete = (user_id) => this.app.delete(`/user/${user_id}/delete`)
+
+    userDelete = (user_id,) => this.app.delete(`/user/${user_id}/delete`)
+
     getUsers = () => this.app.get('/user')
 }
 export default UserService

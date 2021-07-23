@@ -8,7 +8,8 @@ import Destination from '../DestinationsPage/DestinationsList'
 import Airports from '../AirportsPage/AirportsList'
 import AirportDetails from '../AirportsPage/AirportDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
-
+import UserEdit from '../UserEditPage/UserEditPage'
+import UserDetails from '../UserDetails/UserDetails'
 
 class AdminPage extends Component {
     constructor() {
@@ -65,7 +66,7 @@ class AdminPage extends Component {
                         <Col xs={{ span: 5, offset: 0 }} id="" >
 
                             {
-                                this.state.listState === 'user' ? <UsersList /> :
+                                this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} /> :
                                     this.state.listState === 'company' ? <CompanyLists /> :
                                         this.state.listState === 'flights' ? <Fligths /> :
                                             this.state.listState === 'destinations' ? <Destination /> :
@@ -74,7 +75,11 @@ class AdminPage extends Component {
 
 
                                                     this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} setList={this.setList} /> :
-                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> : null
+                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                            this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
+
+                                                                    null
                             }
 
                         </Col>
