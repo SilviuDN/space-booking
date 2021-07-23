@@ -13,5 +13,7 @@ class CompanyService {
     companyEdit = (state) => this.app.put(`/company/${state.company_id}/edit`, state)
     companyDelete = (company_id) => this.app.delete(`/company/${company_id}/delete`)
     getCompanies = () => this.app.get('/company')
+
+    searchBox = (string) => this.app.get(`/company/search/${string}`)
 }
 export default CompanyService

@@ -22,6 +22,8 @@ router.get('/:company_id/company', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
 })
 
+
+
 router.put('/:company_id/edit', (req, res) => {
     const { companyName, logo, document } = req.body
     console.log(logo)
@@ -41,12 +43,26 @@ router.delete('/:company_id/delete', (req, res) => {
 })
 
 router.get('/', (req, res) => {
-
     Company
         .find()
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
 })
 
+
+
+router.get('/search/:string', (req, res) => {
+    const { string } = req.params
+
+    console.log(string)
+
+    Company.find({
+        "$or": [{
+            "companyName": { $regex: string, $options: 'i' }
+        }]
+    })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error filtering companiesr', err }))
+})
 
 module.exports = router
