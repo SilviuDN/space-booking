@@ -26,10 +26,10 @@ class Login extends Component {
     handleFormSubmit = e => {
         e.preventDefault()
 
-        const { username, pwd } = this.state
+        const { email, pwd } = this.state
 
         this.authService
-            .login(username, pwd)
+            .login(email, pwd)
             .then(logedUser => {
 
                 this.props.storeUser(logedUser.data)

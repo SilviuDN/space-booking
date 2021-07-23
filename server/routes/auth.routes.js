@@ -97,7 +97,8 @@ router.post('/login', (req, res) => {
 
     const { email, pwd } = req.body
 
-    User.findOne(email)
+    console.log(req.body)
+    User.findOne({ email: email })
         .then(user => {
             if (!user) {
                 res.status(401).json({ code: 401, message: 'User not registered' })

@@ -15,7 +15,8 @@ class CompanyDetails extends Component {
 
 
     componentDidMount() {
-        const { company_id } = this.props.match.params
+        console.log(this.props)
+        const company_id = this.props.match.params.company_id || this.props.id
         this.companyService
             .companyDetails(company_id)
             .then(response => this.setState({ company: response.data }))

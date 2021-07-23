@@ -11,7 +11,7 @@ class AuthService {
     }
 
 
-    login = (username, pwd) => this.app.post('/login', { username, pwd })
+    login = (email, pwd) => this.app.post('/login', { email, pwd })
 
     signup = (user) => this.app.post('/signup', { ...user })
 

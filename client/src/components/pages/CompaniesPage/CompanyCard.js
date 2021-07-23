@@ -1,14 +1,21 @@
 import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const CompanyCard = ({ companyName, _id, deleteCompany }) => {
+const CompanyCard = ({ companyName, _id, deleteCompany, setList, setId }) => {
     return (
+
         <>
             <tr>
                 <td>
-                    <Link to={`/companies/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
-                        <p>{companyName}</p>
-                    </Link>
+                    {!typeof setList === 'function' ?
+                        <Link to={`/companies/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                            <p>{companyName} user</p>
+                        </Link>
+                        :
+                        <Link to={`/admin`} onClick={() => { setList('companyDetails'); setId(_id); }} style={{ color: 'black', textDecoration: 'none' }}>
+                            <p>{companyName} admin</p>
+                        </Link>
+                    }
                 </td>
                 <td>
 

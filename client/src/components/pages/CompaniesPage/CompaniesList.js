@@ -96,7 +96,7 @@ class CompaniesList extends Component {
                         </thead>
                         <tbody>
 
-                            {this.state.company.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} />)}
+                            {this.state.company.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} setList={this.props.setList} setId={this.props.setId} />)}
 
                         </tbody>
                     </Table>

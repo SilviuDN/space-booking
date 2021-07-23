@@ -10,6 +10,7 @@ import AirportDetails from '../AirportsPage/AirportDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
 import UserDetails from '../UserDetails/UserDetails'
+import CompanyDetails from '../CompanyDetails/CompanyDetails'
 
 class AdminPage extends Component {
     constructor() {
@@ -67,7 +68,7 @@ class AdminPage extends Component {
 
                             {
                                 this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} /> :
-                                    this.state.listState === 'company' ? <CompanyLists /> :
+                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                         this.state.listState === 'flights' ? <Fligths /> :
                                             this.state.listState === 'destinations' ? <Destination /> :
                                                 this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} /> :
@@ -75,11 +76,15 @@ class AdminPage extends Component {
 
 
                                                     this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} setList={this.setList} /> :
-                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                            this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                        this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                            this.state.listState === 'companyDetails' ? <CompanyDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
 
-                                                                    null
+
+
+                                                                this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                    this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+
+                                                                        null
                             }
 
                         </Col>
