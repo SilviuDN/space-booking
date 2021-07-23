@@ -60,6 +60,7 @@ class TempDestinationEdit extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
+        console.log(this.props)
 
         if (this.props.type === "edit") {
 
@@ -67,6 +68,9 @@ class TempDestinationEdit extends Component {
             this.destinationsService
                 .editDestination(this.state.destination)
                 .then(() => {
+
+                    this.props.showAlert('Successfully eddited')
+
                     this.setState({
                         destination: {
                             ...this.state.destination,
@@ -77,7 +81,10 @@ class TempDestinationEdit extends Component {
                     })
                     this.props.history.push('/destinations')
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log("Error from edit destination", err.message)
+                    this.props.showAlert("Error from edit destination", err.message)
+                })
 
         }
 
@@ -85,6 +92,9 @@ class TempDestinationEdit extends Component {
             this.destinationsService
                 .saveDestination(this.state.destination)
                 .then(() => {
+
+                    this.props.showAlert('Successfully added new destination')
+
                     this.setState({
                         destination: {
                             ...this.state.destination,
@@ -95,7 +105,10 @@ class TempDestinationEdit extends Component {
                     })
                     this.props.history.push('/destinations')
                 })
-                .catch(err => console.log(err))
+                .catch(err => {
+                    console.log("Error from new destination", err.message)
+                    this.props.showAlert("Error from new destination", err.message)
+                })
         }
 
 
