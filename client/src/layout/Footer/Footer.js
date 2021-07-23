@@ -5,7 +5,7 @@ import { Col, Container, Row, Form } from "react-bootstrap";
 
 const Footer = ({ loggedUser }) => {
 
-    const style = { background: '#212529', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', /* position: 'fixed', bottom: 0, */ padding: 5, width: '100%' }
+    const style = { background: '#212529', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', position: 'fixed', bottom: 0, padding: 5, width: '100%' }
 
     return (
 
