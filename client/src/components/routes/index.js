@@ -20,6 +20,8 @@ import TempDestinationEdit from '../pages/DestinationsPage/TempDestinationEdit'
 
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
+import Test01 from '../pages/Testing/Test01.js'
+
 
 
 
@@ -52,6 +54,8 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/destinations/new" exact render={(props) => <TempDestinationEdit {...props} type="new" showAlert={showAlert} />} />
             <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
+
+            <Route path="/testing/01" exact render={() => <Test01 />} />
 
 
 
