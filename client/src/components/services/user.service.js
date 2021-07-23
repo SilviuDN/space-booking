@@ -17,5 +17,7 @@ class UserService {
     userDelete = (user_id,) => this.app.delete(`/user/${user_id}/delete`)
 
     getUsers = () => this.app.get('/user')
+
+    searchBox = (string) => this.app.get(`/user/search/${string}`)
 }
 export default UserService

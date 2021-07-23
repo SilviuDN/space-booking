@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Table } from 'react-bootstrap'
 import CompanyCard from './CompanyCard'
 import CompanyService from '../../services/company.service'
+import SearchBox from '../../shared/searchBox/searchBox'
 
 class CompaniesList extends Component {
 
@@ -21,7 +22,7 @@ class CompaniesList extends Component {
 
     loadCompanies = (searchString) => {
 
-        !this.state.searchBox ?
+        !searchString ?
 
             this.companyService
                 .getCompanies()
@@ -40,23 +41,6 @@ class CompaniesList extends Component {
     componentDidMount = () => {
         this.loadCompanies()
     }
-
-
-
-    search = (e) => {
-
-        if (this.state.typingTimeout) {
-            clearTimeout(this.state.typingTimeout);
-        }
-
-        this.setState({
-            searchBox: e.target.value,
-            typingTimeout: setTimeout(() => {
-                this.loadCompanies(this.state.searchBox);
-            }, 500)
-        });
-    }
-
 
 
 
@@ -85,7 +69,7 @@ class CompaniesList extends Component {
                 'CARGANDO'
                 :
                 <>
-                    <input type="text" className="form-control" placeholder="Buscar empresa" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} />
+                    <SearchBox load={this.loadCompanies} />
 
                     <Table striped bordered hover>
                         <thead>

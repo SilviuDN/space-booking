@@ -38,7 +38,7 @@ class AirportsList extends Component {
             })
 
             this.AirportService.deleteAirport(airportId)
-                .then((res) => console.log(res))
+                .then((res) => console.log('FALTA ALERT Airport List linea 41/42'))
                 .catch(err => console.log(err))
         }
 
@@ -55,6 +55,7 @@ class AirportsList extends Component {
 
                 :
                 <>
+                    <input type="text" className="form-control" placeholder="name or iata code" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} />
                     <Table striped bordered hover>
                         <thead>
                             <tr>

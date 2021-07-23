@@ -15,8 +15,9 @@ class CompanyDetails extends Component {
 
 
     componentDidMount() {
-        console.log(this.props)
-        const company_id = this.props.match.params.company_id || this.props.id
+
+        const company_id = this.props.match?.params.company_id || this.props.id
+
         this.companyService
             .companyDetails(company_id)
             .then(response => this.setState({ company: response.data }))
@@ -52,7 +53,7 @@ class CompanyDetails extends Component {
 
                             <hr></hr>
 
-                            <Link to="/companies" className="btn btn-dark">Volver al listado</Link>
+                            <Link to="/admin" onClick={() => { this.props.setList('company') }} className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 
