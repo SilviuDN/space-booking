@@ -54,4 +54,22 @@ router.delete('/:airportId/delete', (req, res) => {
         .catch(err => console.log(err))
 })
 
+
+router.get('/search/:string', (req, res) => {
+    const { string } = req.params
+
+    console.log(string)
+
+    Airport.find({
+        "$or": [
+            { "name": { $regex: string, $options: 'i' } },
+            { "iata": { $regex: string, $options: 'i' } }
+        ]
+    })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error filtering users', err }))
+})
+
+
+
 module.exports = router
