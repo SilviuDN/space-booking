@@ -24,6 +24,7 @@ router.get('/:company_id/company', (req, res) => {
 
 router.put('/:company_id/edit', (req, res) => {
     const { companyName, logo, document } = req.body
+    console.log(logo)
     const companyAddress = ({ street, number, zipCode, city, country } = req.body)
     console.log(companyAddress, companyName, logo)
 

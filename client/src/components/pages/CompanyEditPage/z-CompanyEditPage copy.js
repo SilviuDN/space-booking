@@ -1,8 +1,6 @@
 import { Component } from 'react'
 import CompanyService from '../../services/company.service'
 import { Form, Button, Container } from 'react-bootstrap'
-import UploadsService from '../../services/upload.service'
-
 
 class CompanyEditPage extends Component {
 
@@ -17,11 +15,9 @@ class CompanyEditPage extends Component {
             country: '',
             street: '',
             zipCode: '',
-            logo: '',
 
         }
         this.companyService = new CompanyService()
-        this.uploadsService = new UploadsService()
     }
     componentDidMount() {
 
@@ -59,7 +55,6 @@ class CompanyEditPage extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        console.log(this.state.company_id)
 
         this.companyService
             .companyEdit(this.state)
@@ -73,7 +68,6 @@ class CompanyEditPage extends Component {
                     country: '',
                     street: '',
                     zipCode: '',
-                    logo: '',
 
                 })
                 this.props.history.push('/companies/')
@@ -82,31 +76,8 @@ class CompanyEditPage extends Component {
 
     }
 
-
-    handleFileUpload = e => {
-
-        // this.setState({ loading: true })
-
-        const uploadData = new FormData()
-        uploadData.append('file', e.target.files[0]) //key=file, value=e.target.files[0]
-
-        this.uploadsService
-            .fileUpload(uploadData)
-            // .then(response => console.log('The answer: ', response))
-            // .then(response => this.setState({
-            //     destination: {
-            //         ...this.state.destination,
-            //         image: response.data.imageUrl,
-            //     },
-            //     loading: false,
-            // }))
-            .then(response => this.setState({ logo: response.data.imageUrl }))
-            .catch(err => console.log(err))
-    }
-
-
     render() {
-        // console.log(this.state)
+        console.log(this.state)
         return (
 
             <Container>
@@ -116,11 +87,6 @@ class CompanyEditPage extends Component {
                     <Form.Group className="mb-3" controlId="companyName">
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control value={this.state.companyName} type="text" name='companyName' onChange={this.handleInputChange} />
-                    </Form.Group>
-
-                    <Form.Group controlId="imageUrl">
-                        <Form.Label>Image (URL)</Form.Label>
-                        <Form.Control type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
 
                     <Form.Label>Address
