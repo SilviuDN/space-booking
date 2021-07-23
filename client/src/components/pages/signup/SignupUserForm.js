@@ -55,22 +55,21 @@ class SignupUserForm extends Component {
 
 
 
-
-
-
-
-
     handleSubmit = (e) => {
 
         if (e) e.preventDefault()
-        console.log('entro al USER FORM submit')
 
+        console.log('entro al USER FORM submit')
 
         this.serviceAuth.signup(this.state.user)
             .then(res => {
+                this.props.showAlert('Welcome to our comunity! SignUp successful')
                 this.props.sharedFunction(res.data.response._id)
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.props.showAlert('Something went wrong! retry to signup!')
+                console.log(err)
+            })
     }
 
 

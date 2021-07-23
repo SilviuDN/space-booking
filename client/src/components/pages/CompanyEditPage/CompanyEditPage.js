@@ -73,6 +73,7 @@ class CompanyEditPage extends Component {
         this.companyService
             .companyEdit(this.state.company)
             .then(() => {
+                this.props.showAlert('Company successfully edited.')
                 this.setState({
                     company: {
                         ...this.state.company,
@@ -88,7 +89,10 @@ class CompanyEditPage extends Component {
                 })
                 this.props.history.push('/companies/')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                console.log(err)
+                this.props.showAlert('Something went wrong. Retry to edit.')
+            })
     }
 
 

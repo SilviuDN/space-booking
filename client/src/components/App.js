@@ -39,7 +39,7 @@ class App extends Component {
 
       <>
         <Switch>
-          <Route path="*" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} />} />
+          <Route path="*" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} showAlert={this.showAlert} />} />
         </Switch>
 
 

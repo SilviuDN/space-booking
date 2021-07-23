@@ -31,12 +31,15 @@ class Login extends Component {
         this.authService
             .login(email, pwd)
             .then(logedUser => {
-
+                this.props.showAlert('Welcome! Successfully logged in')
                 this.props.storeUser(logedUser.data)
                 this.props.updateModal(false)
                 this.props.history.push('/profile')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                this.props.showAlert('Something went wrong! Retry to logg in')
+                console.log(err)
+            })
     }
 
 

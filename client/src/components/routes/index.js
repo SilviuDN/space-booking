@@ -32,7 +32,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/admin" exact render={props => <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
 
             <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
-            <Route path="/signup/:company" exact render={props => <SignupPage {...props} />} />
+            <Route path="/signup/:company" exact render={props => <SignupPage {...props} showAlert={showAlert} />} />
 
             <Route path="/users/" exact render={() => <UsersPage />} />
             <Route path="/users/:user_id" exact render={props => <UserDetails {...props} />} />
@@ -40,7 +40,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
             <Route path="/companies" exact render={() => <CompaniesPage />} />
             <Route path="/companies/:company_id" exact render={props => <CompanyDetails {...props} />} />
-            <Route path="/companies/:company_id/edit" render={props => <CompanyEditPage {...props} />} />
+            <Route path="/companies/:company_id/edit" render={props => <CompanyEditPage {...props} showAlert={showAlert} />} />
 
 
             <Route path="/flights" exact render={() => <FlightsPage />} />

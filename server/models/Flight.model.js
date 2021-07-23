@@ -34,12 +34,11 @@ const flightSchema = new Schema({
         // required: true,
     },
 
-    flightCompany: {
+    flightCompany: {                        // el owner de la compania es el user del flight
         type: Schema.Types.ObjectId,
         ref: 'Company',
         // required: true,
     },
-
 },
 
     { timestamps: true }

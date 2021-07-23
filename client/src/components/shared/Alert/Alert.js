@@ -5,7 +5,8 @@ import logo from './logo.png'
 const Alert = ({ closeAlert, show, text }) => {
 
     return (
-        <Toast autohide delay={3000} show={show} onClose={closeAlert} style={{ zIndex: 9999, position: 'fixed', bottom: 38, right: 17, width: 300 }}>
+        <Toast autohide delay={3000} show={show} onClose={closeAlert} bg="success"
+            style={{ zIndex: 9999, position: 'fixed', bottom: 38, right: 17, width: 300 }}>
             <Toast.Header closeButton={false} >
                 <img
                     src={logo}
