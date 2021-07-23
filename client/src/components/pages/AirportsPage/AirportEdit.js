@@ -27,12 +27,10 @@ class AirportEdit extends Component {
 
     componentDidMount() {
 
-        const { id } = this.props
-        this.id = id
 
 
         this.AirportService
-            .airportDetails(id)
+            .airportDetails(this.props.id)
             .then(response => {
 
                 this.setState({
@@ -76,7 +74,7 @@ class AirportEdit extends Component {
         e.preventDefault()
 
         this.AirportService
-            .editAirport(this.state, this.id)
+            .editAirport(this.state, this.props.id)
             .then((res) => {
 
                 this.setState({
@@ -93,7 +91,7 @@ class AirportEdit extends Component {
 
                 })
 
-                this.props.setId(this.id)
+                this.props.setId(this.props.id)
                 this.props.setList('airportDetails')
 
             })
