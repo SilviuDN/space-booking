@@ -27,6 +27,8 @@ class SignupPage extends Component {
 
     }
 
+    componentDidMount = () => this.props.match.params.company === 'y' ? this.setState({ companyRender: true }) : this.setState({ companyRender: false })
+
 
     componentDidUpdate(prevProps, prevState) {
         if (prevProps.match.params.company !== this.props.match.params.company) {
