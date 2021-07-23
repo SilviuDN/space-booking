@@ -18,7 +18,7 @@ class IndexPage extends Component {
         return (
 
             <>
-
+                <h1>hello</h1>
             </>
         )
     }
