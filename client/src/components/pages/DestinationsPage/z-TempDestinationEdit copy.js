@@ -20,45 +20,70 @@ class TempDestinationEdit extends Component {
 
     componentDidMount() {
 
-        const { destination_id } = this.props.match.params
+        if (this.props.type === "edit") {
 
-        this.destinationsService
-            .getDestination(destination_id)
-            .then(response => {
-                this.setState({
-                    destination_id,
-                    name: response.data.name,
-                    description: response.data.description,
-                    image: response.data.image,
+            const { destination_id } = this.props.match.params
+
+            this.destinationsService
+                .getDestination(destination_id)
+                .then(response => {
+                    this.setState({
+                        destination_id,
+                        name: response.data.name,
+                        description: response.data.description,
+                        image: response.data.image,
+                    })
+
                 })
+                .catch(err => console.log(err))
+        }
 
-            })
-            .catch(err => console.log(err))
     }
 
 
 
     handleInputChange = e => {
         const { name, value } = e.target
-        this.setState({ [name]: value, destination_id: this.props.match.params.destination_id })
+        const destinationId = this.props.type === "edit" ? this.props.match.params.destination_id : ""
+        this.setState({ [name]: value, destination_id: destinationId })
     }
 
 
     handleFormSubmit = e => {
         e.preventDefault()
-        this.destinationsService
-            .editDestination(this.state)
-            .then(() => {
-                // this.props.closeModal()
-                // this.props.refreshFlights()
-                this.setState({
-                    name: '',
-                    description: '',
-                    image: '',
+
+        if (this.props.type === "edit") {
+
+            this.destinationsService
+                .editDestination(this.state)
+                .then(() => {
+                    this.setState({
+                        name: '',
+                        description: '',
+                        image: '',
+                    })
+                    this.props.history.push('/destinations')
                 })
-                this.props.history.push('/destinations')
-            })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+
+        }
+
+        if (this.props.type === "new") {
+            this.destinationsService
+                .saveDestination(this.state)
+                .then(() => {
+                    this.setState({
+                        name: '',
+                        description: '',
+                        image: '',
+                    })
+                    this.props.history.push('/destinations')
+                })
+                .catch(err => console.log(err))
+        }
+
+
+
     }
 
 
@@ -103,7 +128,7 @@ class TempDestinationEdit extends Component {
                     </Form.Group> */}
 
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Edit Destination</Button>
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Edit/New Destination</Button>
 
                 </Form>
 
