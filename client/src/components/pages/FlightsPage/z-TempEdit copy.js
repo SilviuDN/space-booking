@@ -21,80 +21,52 @@ class TempEdit extends Component {
     }
 
     componentDidMount() {
-        if (this.props.type === "edit") {
-            const { flight_id } = this.props.match.params
 
-            this.flightsService
-                .getFlight(flight_id)
-                .then(response => this.setState({
-                    price: response.data.price,
-                    capacity: response.data.capacity,
-                    flightNumber: response.data.flightNumber,
-                    airport: response.data.airport,
-                    destination: response.data.destination,
-                    date: response.data.date,
-                    flightCompany: response.data.flightCompany,
-                }))
-                .catch(err => console.log(err))
-        }
+        const { flight_id } = this.props.match.params
 
-
-
+        this.flightsService
+            .getFlight(flight_id)
+            .then(response => this.setState({
+                price: response.data.price,
+                capacity: response.data.capacity,
+                flightNumber: response.data.flightNumber,
+                airport: response.data.airport,
+                destination: response.data.destination,
+                date: response.data.date,
+                flightCompany: response.data.flightCompany,
+            }))
+            .catch(err => console.log(err))
     }
 
 
 
     handleInputChange = e => {
         const { name, value } = e.target
-        // console.log(this.props.match.params.flight_id)
-        const flightId = this.props.type === "edit" ? this.props.match.params.flight_id : ""
-        this.setState({ [name]: value, flight_id: flightId })
+        console.log(this.props.match.params.flight_id)
+        this.setState({ [name]: value, flight_id: this.props.match.params.flight_id })
     }
 
 
     handleFormSubmit = e => {
         e.preventDefault()
-        if (this.props.type === "edit") {
-            this.flightsService
-                .editFlight(this.state)
-                .then(() => {
-                    // this.props.closeModal()
-                    // this.props.refreshFlights()
-                    this.setState({
-                        price: '',
-                        capacity: '',
-                        flightNumber: '',
-                        airport: '',
-                        destination: '',
-                        date: '',
-                        flightCompany: '',
-                    })
-                    this.props.history.push('/flights')
+
+        this.flightsService
+            .editFlight(this.state)
+            .then(() => {
+                // this.props.closeModal()
+                // this.props.refreshFlights()
+                this.setState({
+                    price: '',
+                    capacity: '',
+                    flightNumber: '',
+                    airport: '',
+                    destination: '',
+                    date: '',
+                    flightCompany: '',
                 })
-                .catch(err => console.log(err))
-        }
-
-        if (this.props.type === "new") {
-            this.flightsService
-                .saveFlight(this.state)
-                .then(() => {
-                    // this.props.closeModal()	
-                    // this.props.refreshFlights()	
-                    this.setState({
-                        price: '',
-                        capacity: '',
-                        flightNumber: '',
-                        airport: '',
-                        destination: '',
-                        date: '',
-                        flightCompany: '',
-                    })
-                    this.props.history.push('/flights')
-                })
-                .catch(err => console.log(err))
-        }
-
-
+                this.props.history.push('/flights')
+            })
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -134,9 +106,7 @@ class TempEdit extends Component {
                         <Form.Control type="text" value={this.state.flightCompany} onChange={this.handleInputChange} name="flightCompany" />
                     </Form.Group>
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">
-                        {this.props.type === 'edit' ? 'Edit Flight' : 'Add New Flight'}
-                    </Button>
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Edit Flight</Button>
 
                 </Form>
 

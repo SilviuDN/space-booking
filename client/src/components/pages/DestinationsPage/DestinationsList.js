@@ -23,7 +23,7 @@ class DestinationsList extends Component {
                 this.setState({
                     destinations: this.state.destinations.filter(elem => elem._id !== destinationId)
                 })
-                this.props.history.push('/destinations')
+                // this.props.history.push('/destinations')
             })
             .catch(err => console.log(err))
     }
