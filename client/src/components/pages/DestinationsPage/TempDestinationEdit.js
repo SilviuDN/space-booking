@@ -41,12 +41,6 @@ class TempDestinationEdit extends Component {
                             image: response.data.image,
                         }
                     })
-                    // this.setState({
-                    //     destination_id,
-                    //     name: response.data.name,
-                    //     description: response.data.description,
-                    //     image: response.data.image,
-                    // })
 
                 })
                 .catch(err => console.log(err))
@@ -69,6 +63,7 @@ class TempDestinationEdit extends Component {
 
         if (this.props.type === "edit") {
 
+
             this.destinationsService
                 .editDestination(this.state.destination)
                 .then(() => {
@@ -80,11 +75,6 @@ class TempDestinationEdit extends Component {
                             image: '',
                         }
                     })
-                    // this.setState({
-                    //     name: '',
-                    //     description: '',
-                    //     image: '',
-                    // })
                     this.props.history.push('/destinations')
                 })
                 .catch(err => console.log(err))
@@ -103,11 +93,6 @@ class TempDestinationEdit extends Component {
                             image: '',
                         }
                     })
-                    // this.setState({
-                    //     name: '',
-                    //     description: '',
-                    //     image: '',
-                    // })
                     this.props.history.push('/destinations')
                 })
                 .catch(err => console.log(err))
@@ -128,13 +113,18 @@ class TempDestinationEdit extends Component {
         this.uploadsService
             .fileUpload(uploadData)
             // .then(response => console.log('The answer: ', response))
-            .then(response => this.setState({
-                destination: {
-                    ...this.state.destination,
-                    image: response.data.imageUrl,
-                },
-                loading: false,
-            }))
+            .then(response => {
+                const backedUpImage = response.data.imageUrl ? response.data.imageUrl : this.state.destination.image
+                this.setState({
+                    destination: {
+                        ...this.state.destination,
+                        image: backedUpImage,
+                    },
+                    loading: false,
+                })
+
+
+            })
             // .then(response => this.setState({ image: response.data.imageUrl }))
             .catch(err => console.log(err))
     }
@@ -162,10 +152,6 @@ class TempDestinationEdit extends Component {
                         <Form.Control type="file" onChange={this.handleFileUpload} />
                     </Form.Group>
 
-                    {/* <Form.Group controlId="image">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control type="text" value={this.state.image} onChange={this.handleInputChange} name="image" />
-                    </Form.Group> */}
 
                     {this.state.loading && <Spinner size={60} />}
                     {/* <Spinner size={60} /> */}
