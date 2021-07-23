@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import AuthService from '../../components/services/auth.service'
 import { Modal } from 'react-bootstrap'
 import Login from '../../components/pages/login/login'
+import logo from './logo.png'
 
 class Navigation extends Component {
     constructor() {
@@ -33,7 +34,14 @@ class Navigation extends Component {
             <>
                 <Navbar bg="dark" variant="dark" expand="md" style={{ marginBottom: '30px' }}>
                     <Container fluid>
-                        <Navbar.Brand href="/">LOGO</Navbar.Brand>
+                        <Navbar.Brand href="/">
+                            <img
+                                alt=""
+                                src={logo}
+
+                                height="30"
+                                className="d-inline-block align-top"
+                            />{' '}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end">
                             <Nav className="mr-auto">
