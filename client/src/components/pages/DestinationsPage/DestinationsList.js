@@ -1,7 +1,8 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import DestinationsService from '../../services/destinations.service'
 import DestinationCard from "./DestinationCard";
+import { Table } from 'react-bootstrap';
+import Spinner from "./Spinner";
 
 
 class DestinationsList extends Component {
@@ -13,6 +14,17 @@ class DestinationsList extends Component {
             // modal: false
         }
         this.destinationsService = new DestinationsService()
+    }
+
+    loadDestinations = () => {
+        this.destinationsService
+            .getDestinations()
+            .then(response => this.setState({ destinations: response.data }))
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount = () => {
+        this.loadDestinations()
     }
 
     removeDestination = destinationId => {
@@ -29,29 +41,33 @@ class DestinationsList extends Component {
     }
 
 
-    loadDestinations = () => {
-        this.destinationsService
-            .getDestinations()
-            .then(response => this.setState({ destinations: response.data }))
-            .catch(err => console.log(err))
-    }
-
-    componentDidMount = () => {
-        this.loadDestinations()
-    }
-
     render() {
         return (
             !this.state.destinations
                 ?
-                <h3>Cargando...</h3>
+                <Spinner />
                 :
-                (<>
+                <>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Destination</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                    <Link to="/destinations/new" className="btn btn-info">New destination</Link>
-                    <h4>Destinations List</h4>
-                    {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} />)}
-                </>)
+                            {/* {this.state.airport.map(elm => <AirportCard key={elm._id} {...elm} deleteAirport={this.deleteAirport} setList={this.props.setList} setId={this.props.setId} />)} */}
+                            {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} />)}
+                        </tbody>
+                    </Table>
+                </>
+            // (<>
+
+            //     <Link to="/destinations/new" className="btn btn-info">New destination</Link>
+            //     <h4>Destinations List</h4>
+            //     {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} />)}
+            // </>)
         )
     }
 }

@@ -1,7 +1,8 @@
 import { Component } from "react";
-import { Link } from "react-router-dom";
 import FlightsService from '../../services/flights.service'
 import FlightCard from "./FlightCard";
+import { Table } from 'react-bootstrap';
+import Spinner from "./Spinner";
 
 
 class FlightsList extends Component {
@@ -15,6 +16,17 @@ class FlightsList extends Component {
         this.flightsService = new FlightsService()
     }
 
+    loadFlights = () => {
+        this.flightsService
+            .getFlights()
+            .then(response => this.setState({ flights: response.data }))
+            // .then(response => this.setState({ flights: response.data }))
+            .catch(err => console.log(err))
+    }
+
+    componentDidMount = () => {
+        this.loadFlights()
+    }
 
     removeFlight = flightId => {
 
@@ -45,13 +57,24 @@ class FlightsList extends Component {
         return (
             !this.state.flights
                 ?
-                <h3>Cargando...</h3>
+                <Spinner />
                 :
                 (<>
+                    <Table striped bordered hover>
+                        <thead>
+                            <tr>
+                                <th>Flights</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} />)}
+                        </tbody>
+                    </Table>
 
-                    <Link to="/flights/new" className="btn btn-info">New flight</Link>
+                    {/* <Link to="/flights/new" className="btn btn-info">New flight</Link>
                     <h4>Flights List</h4>
-                    {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} />)}
+                    {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} />)} */}
                 </>)
         )
     }
