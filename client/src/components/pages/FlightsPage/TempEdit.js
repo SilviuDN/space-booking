@@ -104,6 +104,11 @@ class TempEdit extends Component {
 
                 <Form onSubmit={this.handleFormSubmit}>
 
+                    <Form.Group controlId="flightNumber">
+                        <Form.Label>Flight Number</Form.Label>
+                        <Form.Control type="text" value={this.state.flightNumber} onChange={this.handleInputChange} name="flightNumber" />
+                    </Form.Group>
+
                     <Form.Group controlId="destination">
                         <Form.Label>Destination</Form.Label>
                         <Form.Control type="text" value={this.state.destination} onChange={this.handleInputChange} name="destination" />
