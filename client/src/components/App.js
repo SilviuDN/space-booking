@@ -5,17 +5,25 @@ import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../layout/Navigation/Navigation';
 import Footer from '../layout/Footer/Footer';
+import Alert from './shared/Alert/Alert';
 
 
 class App extends Component {
 
   constructor() {
     super();
-    this.state = { loggedUser: null }
+    this.state = {
+      loggedUser: null,
+      toast: {
+        text: '',
+        show: false,
+      }
+    }
     this.authService = new AuthService();
   }
 
   storeUser = loggedUser => this.setState({ loggedUser });
+  showAlert = text => this.setState({ toast: { show: true, text } })
 
   getUser = () => {
     this.authService.isLoggedIn()
@@ -24,6 +32,7 @@ class App extends Component {
   }
 
   componentDidMount = () => this.getUser();
+
 
   render() {
     return (
@@ -34,8 +43,12 @@ class App extends Component {
         </Switch>
 
 
-        <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} />
+        <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} showAlert={this.showAlert} />
 
+        <Alert
+          show={this.state.toast.show}
+          text={this.state.toast.text}
+          closeAlert={() => this.setState({ toast: { ...this.state.toast, show: false } })} />
 
 
         <Footer loggedUser={this.state.loggedUser} />

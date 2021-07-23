@@ -24,7 +24,7 @@ import AdminPage from '../pages/AdminPage/AdminPage.js'
 
 
 
-const Routes = ({ storeUser, loggedUser }) => {
+const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
     return (
         <Switch>
@@ -44,13 +44,13 @@ const Routes = ({ storeUser, loggedUser }) => {
 
 
             <Route path="/flights" exact render={() => <FlightsPage />} />
-            <Route path="/flights/new" exact render={(props) => <TempEdit {...props} type="new" />} />
-            <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} type="edit" />} />
+            <Route path="/flights/new" exact render={(props) => <TempEdit {...props} type="new" showAlert={showAlert} />} />
+            <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
 
             <Route path="/destinations" exact render={() => <DestinationsPage />} />
-            <Route path="/destinations/new" exact render={(props) => <TempDestinationEdit {...props} type="new" />} />
-            <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} type="edit" />} />
+            <Route path="/destinations/new" exact render={(props) => <TempDestinationEdit {...props} type="new" showAlert={showAlert} />} />
+            <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
 

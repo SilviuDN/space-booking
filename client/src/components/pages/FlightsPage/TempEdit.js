@@ -58,6 +58,9 @@ class TempEdit extends Component {
             this.flightsService
                 .editFlight(this.state)
                 .then(() => {
+
+                    this.props.showAlert('Successfully eddited')
+
                     // this.props.closeModal()
                     // this.props.refreshFlights()
                     this.setState({
@@ -70,14 +73,19 @@ class TempEdit extends Component {
                         flightCompany: '',
                     })
                     this.props.history.push('/flights')
+                }).catch(err => {
+                    console.log("Error from new flight")
+                    this.props.showAlert("Error from new flight", err.message)
                 })
-                .catch(err => console.log(err))
         }
 
         if (this.props.type === "new") {
             this.flightsService
                 .saveFlight(this.state)
                 .then(() => {
+
+                    this.props.showAlert('Successfully added new destination')
+
                     // this.props.closeModal()	
                     // this.props.refreshFlights()	
                     this.setState({
@@ -90,8 +98,10 @@ class TempEdit extends Component {
                         flightCompany: '',
                     })
                     this.props.history.push('/flights')
+                }).catch(err => {
+                    console.log("Error from edit flight")
+                    this.props.showAlert("Error from edit flight", err.message)
                 })
-                .catch(err => console.log(err))
         }
 
 
