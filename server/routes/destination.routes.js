@@ -15,18 +15,6 @@ router.get('/:destination_id', (req, res) => {
 router.post('/new', (req, res) => {
 
     const { name, description, image } = req.body
-    // console.log(image)
-
-    // Destination
-    //     .findOne({ name })
-    //     .then(destination => {
-
-    //         Destination
-    //             .create({ name, description, image })
-    //             .then(() => res.status(200).json({ code: 200, message: 'Destination created' }))
-    //             .catch(err => console.log(err))
-    //     })
-    //     .catch(err => console.log(err))
 
     Destination
         .findOne({ name: name })

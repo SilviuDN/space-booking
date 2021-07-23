@@ -26,31 +26,18 @@ router.post('/new', (req, res) => {
     Flight
         .findOne({ flightNumber })
         .then(flight => {
-
-            Flight
-                .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
-                .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
-                .catch(err => console.log(err))
-
+            if (flight) {
+                res.status(400).json({ code: 400, message: 'Flight already exixts' })
+                return
+            } else {
+                Flight
+                    .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
+                    .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
+                    .catch(err => console.log(err))
+            }
         })
         .catch(err => console.log(err))
 })
-
-//     Flight
-//         .findOne({ flightNumber })
-//         .then(flight => {
-//             if (flight) {
-//                 res.status(400).json({ code: 400, message: 'Flight already exixts' })
-//                 return
-//             } else {
-//                 Flight
-//                     .create({ price, capacity, flightNumber, airport, destination, date, flightCompany })
-//                     .then(() => res.status(200).json({ code: 200, message: 'Flight created' }))
-//                     .catch(err => console.log(err))
-//             }
-//         })
-//         .catch(err => console.log(err))
-// })
 
 router.get('/:flight_id', (req, res) => {
 
