@@ -59,7 +59,6 @@ class SignupUserForm extends Component {
 
         if (e) e.preventDefault()
 
-        console.log('entro al USER FORM submit')
 
         this.serviceAuth.signup(this.state.user)
             .then(res => {
@@ -68,11 +67,14 @@ class SignupUserForm extends Component {
                 if (this.props.sharedFunction) {
                     this.props.sharedFunction(res.data.response._id)
                 }
+
             })
             .catch(err => {
                 this.props.showAlert('Something went wrong! retry to signup!')
                 console.log(err)
             })
+
+        this.props.props.history.push('/')
     }
 
 
