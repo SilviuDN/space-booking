@@ -32,7 +32,7 @@ class Navigation extends Component {
 
         return (
             <>
-                <Navbar bg="dark" variant="dark" expand="md" style={{ marginBottom: '30px' }}>
+                <Navbar bg="dark" variant="dark" expand="md">
                     <Container fluid>
                         <Navbar.Brand href="/">
                             <img
