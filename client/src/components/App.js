@@ -51,7 +51,7 @@ class App extends Component {
           closeAlert={() => this.setState({ toast: { ...this.state.toast, show: false } })} />
 
 
-        <Footer loggedUser={this.state.loggedUser} />
+        {/* <Footer loggedUser={this.state.loggedUser} /> */}
       </>
 
     )

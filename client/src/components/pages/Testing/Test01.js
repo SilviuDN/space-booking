@@ -1,9 +1,11 @@
 import FlightsPerDestination from "./FlightsPerDestination"
+import RandomChart from "./RandomChart"
 
 const Test01 = () => {
     return (
         <>
             <FlightsPerDestination />
+            <RandomChart />
         </>
     )
 }
