@@ -21,6 +21,7 @@ import TempDestinationEdit from '../pages/DestinationsPage/TempDestinationEdit'
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
 import Test01 from '../pages/Testing/Test01.js'
+import Test02 from '../pages/Testing/Test02.js'
 
 
 
@@ -56,6 +57,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
             <Route path="/testing/01" exact render={() => <Test01 />} />
+            <Route path="/testing/02" exact render={() => <Test02 />} />
 
 
 
