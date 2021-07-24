@@ -32,7 +32,7 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
                     {
                         loggedUser?.flights.includes(_id) || loggedUser?.role === 'admin' ?
 
-                            typeof setId === 'function' ?
+                            typeof setId !== 'function' ?
 
                                 <Link to={`/flights/${_id}/edit`}>
                                     <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
