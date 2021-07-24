@@ -6,11 +6,14 @@ import CompanyLists from '../CompaniesPage/CompaniesList'
 import Fligths from '../FlightsPage/FlightsList'
 import Destination from '../DestinationsPage/DestinationsList'
 import Airports from '../AirportsPage/AirportsList'
+import UserDetails from '../UserDetails/UserDetails'
 import AirportDetails from '../AirportsPage/AirportDetails'
+import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
-import UserDetails from '../UserDetails/UserDetails'
-import CompanyDetails from '../CompanyDetails/CompanyDetails'
+import AdminBigChart from '../Testing/adminBigChart'
+import FlightDetails from '../FlightsPage/FlightDetails'
+import FlightEdit from '../FlightsPage/FlightEdit'
 
 class AdminPage extends Component {
     constructor() {
@@ -19,9 +22,10 @@ class AdminPage extends Component {
             listState: 'user',
             chart: '',
             isLoading: false,
-            id: ''
+            id: '',
         }
     }
+
 
 
     setList = (listState) => {
@@ -38,39 +42,46 @@ class AdminPage extends Component {
 
 
     render() {
+
+
         return (
 
             <Row>
                 <Container fluid>
 
-                    <Row style={{ marginTop: 50 }}>
-                        <Col xs={{ span: 2, offset: 3 }} >
-                            1
+                    <Row style={{ marginTop: 0 }}>
+                        <Col xs={{ span: 2, offset: 2 }} className={'col'} >
+                            <AdminBigChart />
                         </Col>
-                        <Col xs={2} >
-                            2
+                        <Col xs={2} className={'col'}>
+                            <AdminBigChart />
                         </Col>
-                        <Col xs={2} >
-                            3
+                        <Col xs={2} className={'col'}>
+                            <AdminBigChart />
                         </Col>
-                        <Col xs={2} >
-                            4
+                        <Col xs={2} className={'col'}>
+                            <AdminBigChart />
                         </Col>
                     </Row>
 
-                    <Row style={{ marginTop: 50 }}>
+
+
+                    <Row style={{ marginTop: 20 }}>
                         <Col xs={1} >
                             <AdminNav setList={this.setList} />
                         </Col>
 
 
-                        <Col xs={{ span: 5, offset: 0 }} id="" >
+                        <Col xs={{ span: 5, offset: 0 }}  >
+
 
                             {
+
+
                                 this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} /> :
-                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                        this.state.listState === 'flights' ? <Fligths /> :
-                                            this.state.listState === 'destinations' ? <Destination /> :
+                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
+                                        this.state.listState === 'flights' ? <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
+                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                 this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} /> :
 
 
@@ -78,19 +89,22 @@ class AdminPage extends Component {
                                                     this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} setList={this.setList} /> :
                                                         this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                             this.state.listState === 'companyDetails' ? <CompanyDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                this.state.listState === 'flightDetails' ? <FlightDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
 
 
 
-                                                                this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                    this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                    this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                        this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                            this.state.listState === 'flightEdit' ? <FlightEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
 
-                                                                        null
+                                                                                null
+
                             }
 
                         </Col>
 
                         <Col xs={5} id="">
-                            <h1>test</h1>
+
                         </Col>
                     </Row>
 
@@ -102,5 +116,6 @@ class AdminPage extends Component {
         )
     }
 }
+
 
 export default AdminPage

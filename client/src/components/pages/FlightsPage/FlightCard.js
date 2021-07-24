@@ -3,22 +3,51 @@ import { Link } from 'react-router-dom'
 import editButton from './edit.png'
 import deleteButton from './delete.png'
 
-const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCompany, removeFlight }) => {
+const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCompany, removeFlight, setId, setList, loggedUser }) => {
 
     return (
         <>
+
             <tr>
                 <td>
-                    <Link to={`/flights/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
-                        <p>{flightNumber}</p>
-                    </Link>
+                    {
+                        !typeof setId === 'function' ?
+
+                            <Link to={`/flights/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                                <p>{flightNumber}</p>
+                            </Link>
+                            :
+                            <Link to={'/admin'} onClick={() => { setId(_id); setList('flightDetails') }} style={{ color: 'black', textDecoration: 'none' }}>
+                                <p>{flightNumber}</p>
+                            </Link>
+
+                    }
                 </td>
                 <td>
                     &nbsp;
-                    <Link to={`/flights/${_id}/edit`}>
-                        <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
-                    </Link>
+
+                    {
+                        loggedUser?.flights.includes(_id) || loggedUser?.role === 'admin' ?
+
+                            !typeof setId === 'function' ?
+
+                                <Link to={`/flights/${_id}/edit`}>
+                                    <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
+                                </Link>
+
+                                :
+
+                                <Link to={`/admin`} onClick={() => { setId(_id); setList('flightEdit') }}>
+                                    <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
+                                </Link>
+
+                            :
+                            null
+                    }
+
                     &nbsp;
+
+
                     <Link to={`/flights`} onClick={removeFlight}>
                         <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                     </Link>

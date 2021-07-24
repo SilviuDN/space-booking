@@ -68,7 +68,7 @@ class UserDetails extends Component {
 
                             <hr></hr>
 
-                            <Link to="/users" className="btn btn-dark">Volver al listado</Link>
+                            <Link to="/admin" onClick={() => this.props.setList('user')} className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 

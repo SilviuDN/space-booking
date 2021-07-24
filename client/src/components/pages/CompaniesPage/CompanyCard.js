@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const CompanyCard = ({ companyName, _id, deleteCompany, setList, setId }) => {
+const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser }) => {
     return (
 
         <>
@@ -22,11 +22,16 @@ const CompanyCard = ({ companyName, _id, deleteCompany, setList, setId }) => {
 
 
                     &nbsp;
-                    <Link to={`/companies/${_id}/edit`}>
-                        <Button variant="dark" block >Editar</Button>
-                    </Link>
+
+                    {loggedUser && loggedUser._id === moderator ?
+
+                        <Link to={`/companies/${_id}/edit`}>
+                            <Button variant="dark" block >Editar</Button>
+                        </Link>
+                        : null
+                    }
                     &nbsp;
-                    <Link to={`/companies`} onClick={(e) => deleteCompany(_id)}>
+                    <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
                         <Button variant="danger" block >Eliminar</Button>
                     </Link>
                 </td>

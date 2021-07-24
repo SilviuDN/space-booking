@@ -68,7 +68,7 @@ class FlightsList extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} />)}
+                            {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} id={this.state.id} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} />)}
                         </tbody>
                     </Table>
 

@@ -2,6 +2,7 @@ import { Component } from 'react'
 import { Table } from 'react-bootstrap'
 import UserCard from './UserCard'
 import UserService from '../../services/user.service'
+import SearchBox from '../../shared/searchBox/searchBox'
 
 class UsersList extends Component {
 
@@ -16,9 +17,9 @@ class UsersList extends Component {
         this.userService = new UserService()
     }
 
-    loadUsers = () => {
+    loadUsers = (search) => {
 
-        !this.state.searchBox ?
+        !search ?
 
             this.userService
                 .getUsers()
@@ -26,7 +27,7 @@ class UsersList extends Component {
                 .catch(err => console.log(err))
             :
             this.userService
-                .searchBox(this.state.searchBox)
+                .searchBox(search)
                 .then(response => this.setState({ user: response.data }))
                 .catch(err => console.log(err))
 
@@ -37,19 +38,6 @@ class UsersList extends Component {
     }
 
 
-    search = (e) => {
-
-        if (this.state.typingTimeout) {
-            clearTimeout(this.state.typingTimeout);
-        }
-
-        this.setState({
-            searchBox: e.target.value,
-            typingTimeout: setTimeout(() => {
-                this.loadUsers();
-            }, 500)
-        });
-    }
 
     deleteUser = user_id => {
 
@@ -65,6 +53,7 @@ class UsersList extends Component {
         }
     }
 
+
     render() {
         return (
 
@@ -73,7 +62,7 @@ class UsersList extends Component {
                 'CARGANDO'
                 :
                 <>
-                    <input type="text" className="form-control" placeholder="name/surname or email" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} />
+                    <SearchBox load={this.loadUsers} />
 
                     <Table striped bordered hover size="sm">
 

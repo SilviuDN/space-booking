@@ -23,3 +23,12 @@
 /* footer{
     display:none !important;
 } */
+
+.col {
+      margin-right: 40px;
+    }
+
+#admin-list {
+    height: 60vh;
+    overflow-y: scroll;
+}

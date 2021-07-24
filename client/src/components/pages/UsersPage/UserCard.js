@@ -4,7 +4,7 @@ import editButton from './edit.png'
 import deleteButton from './delete.png'
 
 // INSERT OWNER EL QUE SUPUESTAMENTE VMAOS A RECIBIR CUANDO HAGAMOS LO DEL OWNER, si soy owner  redirect a otro sitio
-const UserCard = ({ name, surname, _id, deleteUser, setList, setId, owner = false }) => {
+const UserCard = ({ name, surname, _id, deleteUser, setList, setId, }) => {
     return (
         <>
             <tr>

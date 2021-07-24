@@ -52,7 +52,7 @@ class CompaniesList extends Component {
             })
 
             this.companyService.companyDelete(company_id)
-                .then(() => console.log('yeeee'))
+                .then(() => console.log('FALTA ALERT'))
                 .catch(err => console.log(err))
 
         }
@@ -80,7 +80,7 @@ class CompaniesList extends Component {
                         </thead>
                         <tbody>
 
-                            {this.state.company.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} setList={this.props.setList} setId={this.props.setId} />)}
+                            {this.state.company.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} />)}
 
                         </tbody>
                     </Table>

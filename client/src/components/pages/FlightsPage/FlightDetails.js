@@ -15,7 +15,7 @@ class FlightDetails extends Component {
     }
 
     loadFlight = () => {
-        const { flight_id } = this.props.match.params
+        const flight_id = this.props.match?.params.flight_id || this.props.id
 
         this.flightsService
             .getFlight(flight_id)
