@@ -43,7 +43,7 @@ router.get('/:flight_id', (req, res) => {
 
     Flight
         .findById(req.params.flight_id)
-        // .populate('destination')
+        .populate('destination')
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching flight', err }))
 })
@@ -66,6 +66,22 @@ router.delete('/:flight_id/delete', (req, res) => {
         .findByIdAndRemove(req.params.flight_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting destination', err }))
+})
+
+
+
+
+router.get('/search/:string', (req, res) => {
+    const { string } = req.params
+
+
+    Flight.find({
+        "$or": [
+            { "flightNumber": { $regex: string, $options: 'i' } },
+        ]
+    })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error filtering flights', err }))
 })
 
 

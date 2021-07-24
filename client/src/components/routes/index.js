@@ -12,7 +12,7 @@ import CompanyEditPage from '../pages/CompanyEditPage/CompanyEditPage.js'
 
 import FlightDetails from '../pages/FlightsPage/FlightDetails'
 import FlightsPage from '../pages/FlightsPage/FlightsPage'
-import TempEdit from '../pages/FlightsPage/TempEdit'
+import TempEdit from '../pages/FlightsPage/EditCreateFlight'
 
 import DestinationsPage from '../pages/DestinationsPage/DestinationsPage'
 import DestinationDetails from '../pages/DestinationsPage/DestinationDetails'
@@ -31,7 +31,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
     return (
         <Switch>
 
-            <Route path="/admin" exact render={props => <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
+            <Route path="/admin" exact render={props => <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} />} />
 
             <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} showAlert={showAlert} />} />
@@ -45,7 +45,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/companies/:company_id/edit" render={props => <CompanyEditPage {...props} showAlert={showAlert} />} />
 
 
-            <Route path="/flights" exact render={() => <FlightsPage />} />
+            <Route path="/flights" exact render={() => <FlightsPage loggedUser={loggedUser} />} />
             <Route path="/flights/new" exact render={(props) => <TempEdit {...props} type="new" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />

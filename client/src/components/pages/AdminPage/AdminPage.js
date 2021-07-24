@@ -13,7 +13,7 @@ import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
 import AdminBigChart from '../Testing/adminBigChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
-import FlightEdit from '../FlightsPage/FlightEdit'
+import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 
 class AdminPage extends Component {
     constructor() {
@@ -66,13 +66,13 @@ class AdminPage extends Component {
 
 
 
-                    <Row style={{ marginTop: 20 }}>
+                    <Row style={{ marginTop: 0 }}>
                         <Col xs={1} >
                             <AdminNav setList={this.setList} />
                         </Col>
 
 
-                        <Col xs={{ span: 5, offset: 0 }}  >
+                        <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
 
 
                             {
@@ -95,9 +95,10 @@ class AdminPage extends Component {
 
                                                                     this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                                         this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                            this.state.listState === 'flightEdit' ? <FlightEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                            this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} /> :
+                                                                                this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
 
-                                                                                null
+                                                                                    null
 
                             }
 

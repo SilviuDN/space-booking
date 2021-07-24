@@ -1,12 +1,14 @@
 import FlightsList from './FlightsList'
+import { Container } from 'react-bootstrap'
 
-const FlightsPage = () => {
+const FlightsPage = ({ loggedUser }) => {
 
     return (
-        <>
+
+        <Container>
             <h1>Flights Page</h1>
-            <FlightsList />
-        </>
+            <FlightsList loggedUser={loggedUser} />
+        </Container>
     )
 }
 

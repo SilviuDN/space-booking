@@ -22,7 +22,7 @@ class TempEdit extends Component {
 
     componentDidMount() {
         if (this.props.type === "edit") {
-            const { flight_id } = this.props.match.params
+            const flight_id = this.props.match?.params.fligth_id || this.props.id
 
             this.flightsService
                 .getFlight(flight_id)
@@ -82,7 +82,9 @@ class TempEdit extends Component {
         if (this.props.type === "new") {
             this.flightsService
                 .saveFlight(this.state)
-                .then(() => {
+                .then(res => {
+
+                    console.log(res)
 
                     this.props.showAlert('Successfully added new destination')
 
@@ -107,10 +109,30 @@ class TempEdit extends Component {
 
     }
 
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.type !== this.props.type && this.setState({
+        price: '',
+        capacity: '',
+        flightNumber: '',
+        airport: '',
+        destination: '',
+        date: '',
+        flightCompany: '',
+    })
+
     render() {
         return (
             <Container>
-                <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
+
+                {
+                    typeof this.props.setId === 'function' ?
+
+                        <Link to="/admin" onClick={() => this.props.setList('flights')} className="btn btn-dark">Back to flights list</Link>
+                        :
+                        <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
+
+                }
+
 
                 <Form onSubmit={this.handleFormSubmit}>
 
