@@ -57,7 +57,7 @@ const userSchema = new Schema({
 
   //
   flights: [{
-    type: mongoose.Schema.Types.ObjectId, ref: 'Fligths'
+    type: mongoose.Schema.Types.ObjectId, ref: 'Flight'
   }],
 
   role: {

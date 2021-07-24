@@ -1,8 +1,10 @@
 import { Component } from "react";
 import FlightsService from '../../services/flights.service'
 import FlightCard from "./FlightCard";
+import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap';
 import Spinner from "./Spinner";
+import SearchBox from "../../shared/searchBox/searchBox";
 
 
 class FlightsList extends Component {
@@ -16,6 +18,8 @@ class FlightsList extends Component {
         this.flightsService = new FlightsService()
     }
 
+
+
     loadFlights = () => {
         this.flightsService
             .getFlights()
@@ -24,43 +28,83 @@ class FlightsList extends Component {
             .catch(err => console.log(err))
     }
 
+
+
     componentDidMount = () => {
         this.loadFlights()
     }
+
+
 
     removeFlight = flightId => {
 
-        this.flightsService
-            .deleteFlight(flightId)
-            .then(() => {
-                this.setState({
-                    flights: this.state.flights.filter(elem => elem._id !== flightId)
+        if (window.confirm(`Are you sure you want to delete flight with id ${flightId}?`)) {
+
+            this.flightsService
+                .deleteFlight(flightId)
+                .then(res => {
+                    this.setState({
+                        flights: this.state.flights.filter(elem => elem._id !== res.data._id)
+                    })
+                    // this.props.history.push('/flights')
                 })
-                // this.props.history.push('/flights')
-            })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+        }
+
     }
 
-    loadFlights = () => {
-        this.flightsService
-            .getFlights()
-            .then(response => this.setState({ flights: response.data }))
-            // .then(response => this.setState({ flights: response.data }))
-            .catch(err => console.log(err))
+
+
+    loadFlights = (searchString) => {
+        !searchString ?
+
+            this.flightsService
+                .getFlights()
+                .then(response => this.setState({ flights: response.data }))
+                // .then(response => this.setState({ flights: response.data }))
+                .catch(err => console.log(err))
+
+            :
+
+            this.flightsService
+                .searchFlight(searchString)
+                .then(response => this.setState({ flights: response.data }))
+                // .then(response => this.setState({ flights: response.data }))
+                .catch(err => console.log(err))
+
+
+
+
+
     }
+
+
 
     componentDidMount = () => {
         this.loadFlights()
     }
 
+
+
     render() {
         return (
+
+
+
             !this.state.flights
                 ?
                 <Spinner />
                 :
                 (<>
-                    <Table striped bordered hover>
+                    {
+                        this.props.loggedUser?.role === 'moderator' || this.props.loggedUser?.role === 'admin' ?
+
+                            <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('flightCreate') }} className="btn btn-dark">Create Flight</Link>
+                            : null
+                    }
+                    <SearchBox load={this.loadFlights} />
+
+                    <Table striped bordered hover >
                         <thead>
                             <tr>
                                 <th>Flights</th>

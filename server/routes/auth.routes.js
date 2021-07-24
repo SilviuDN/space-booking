@@ -93,12 +93,18 @@ router.post('/signup', (req, res) => {
 // Login(post)
 
 router.post('/login', (req, res) => {
-    console.log(req.body)
 
     const { email, pwd } = req.body
 
-    console.log(req.body)
     User.findOne({ email: email })
+        .populate({
+            path: 'flights',
+            populate: [{ path: 'flights' }],
+        })
+        .populate({
+            path: 'airport',
+            populate: [{ path: 'airport' }],
+        })
         .then(user => {
             if (!user) {
                 res.status(401).json({ code: 401, message: 'User not registered' })
@@ -110,6 +116,7 @@ router.post('/login', (req, res) => {
                 return
             }
 
+            console.log(user)
             req.session.currentUser = user
             res.json(req.session.currentUser)
         })

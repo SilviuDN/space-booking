@@ -1,8 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
-
 const User = require('../models/User.model')
+
+
 
 router.put('/:user_id/edit', (req, res) => {
     //
@@ -29,12 +30,17 @@ router.get('/:user_id/details', (req, res) => {
 
 
 router.delete('/:user_id/delete', (req, res) => {
+
     User.findByIdAndRemove(req.params.user_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting user', err }))
+
 })
 
+
+
 router.get('/', (req, res) => {
+
     User.find()
         .select('name')
         .sort({ createdAt: 1 })
@@ -48,9 +54,8 @@ router.get('/', (req, res) => {
 
 
 router.get('/search/:string', (req, res) => {
-    const { string } = req.params
 
-    console.log(string)
+    const { string } = req.params
 
     User.find({
         "$or": [
