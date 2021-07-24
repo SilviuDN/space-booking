@@ -99,11 +99,17 @@ router.post('/login', (req, res) => {
     User.findOne({ email: email })
         .populate({
             path: 'flights',
-            populate: [{ path: 'flights' }],
-        })
-        .populate({
-            path: 'airport',
-            populate: [{ path: 'airport' }],
+            model: 'Flight',
+            populate: [{
+                path: 'airport',
+                model: 'Airport'
+            }, {
+                path: 'destination',
+                model: 'Destination'
+            }, {
+                path: 'flightCompany',
+                model: 'Company'
+            }]
         })
         .then(user => {
             if (!user) {
