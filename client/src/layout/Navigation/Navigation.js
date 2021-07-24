@@ -72,7 +72,7 @@ class Navigation extends Component {
                         <Modal.Title>Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
-                        <Login updateModal={this.setModalState} storeUser={this.props.storeUser} history={this.props.history} showAlert={this.props.showAlert} />
+                        <Login updateModal={this.setModalState} storeUser={this.props.storeUser} history={this.props.history} showAlert={this.props.showAlert} setModalState={this.setModalState} />
                     </Modal.Body>
                 </Modal>
 

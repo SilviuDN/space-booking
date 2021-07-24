@@ -30,6 +30,9 @@ class FlightEdit extends Component {
         this.flightsService
             .getFlight(this.props.id)
             .then(flight => {
+
+                flight = flight.data
+
                 this.setState({
                     price: flight.price,
                     capacity: flight.capacity,
@@ -68,7 +71,7 @@ class FlightEdit extends Component {
                     date: '',
                     flightCompany: '',
                 })
-                this.props.history.push('/flights')
+                // this.props.history.push('/flights')
             })
             .catch(err => console.log(err))
     }
@@ -115,11 +118,9 @@ class FlightEdit extends Component {
                         <Form.Control type="text" value={this.state.flightCompany} onChange={this.handleInputChange} name="flightCompany" />
                     </Form.Group>
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">New Flight</Button>
+                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Update</Button>
 
                 </Form>
-
-
 
             </Container>
         )

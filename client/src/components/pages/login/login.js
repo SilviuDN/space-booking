@@ -73,7 +73,7 @@ class Login extends Component {
 
                         <hr />
 
-                        <Link to="/">
+                        <Link to="/" onClick={() => this.props.setModalState(false)}>
                             <Button variant="dark" >Back</Button>
                         </Link>
 
