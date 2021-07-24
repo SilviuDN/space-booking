@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 
-import { Form, Container, Row, Col, Button, } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Container, Row, Col, } from 'react-bootstrap'
+
 
 class FlightDetails extends Component {
 
