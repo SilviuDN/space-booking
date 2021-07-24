@@ -14,6 +14,9 @@ import UserEdit from '../UserEditPage/UserEditPage'
 import AdminBigChart from '../Testing/adminBigChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
+import DestinationDetails from '../DestinationsPage/DestinationDetails'
+
+
 
 class AdminPage extends Component {
     constructor() {
@@ -90,15 +93,16 @@ class AdminPage extends Component {
                                                         this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                             this.state.listState === 'companyDetails' ? <CompanyDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                                 this.state.listState === 'flightDetails' ? <FlightDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                    this.state.listState === 'destinationDetails' ? <DestinationDetails id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
 
 
 
-                                                                    this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                        this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                            this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} /> :
-                                                                                this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
+                                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                            this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                                                                this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} /> :
+                                                                                    this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
 
-                                                                                    null
+                                                                                        null
 
                             }
 

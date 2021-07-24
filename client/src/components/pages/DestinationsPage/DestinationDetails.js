@@ -16,7 +16,7 @@ class DestinationDetails extends Component {
 
 
     componentDidMount() {
-        const { destination_id } = this.props.match.params
+        const destination_id = this.props.match?.params.destination_id || this.props.id
         // console.log("Hello destination_id", destination_id)
 
         this.destinationsService
@@ -29,7 +29,7 @@ class DestinationDetails extends Component {
 
     deleteDestination = e => {
         e.preventDefault()
-        const { destination_id } = this.props.match.params
+        const destination_id = this.props.match?.params.destination_id || this.props.id
 
         this.destinationsService
             .deleteDestination(destination_id)

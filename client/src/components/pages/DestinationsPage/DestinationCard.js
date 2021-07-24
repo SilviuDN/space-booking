@@ -3,25 +3,41 @@ import { Link } from 'react-router-dom'
 import editButton from './edit.png'
 import deleteButton from './delete.png'
 
-const DestinationCard = ({ _id, name, description, image, removeDestination }) => {
+const DestinationCard = ({ _id, name, description, image, removeDestination, setId, setList, loggedUser }) => {
 
     return (
         <>
             <tr>
                 <td>
-                    <Link to={`/destinations/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
-                        <p>{name}</p>
-                    </Link>
+                    {
+                        typeof setId === 'function' ?
+
+                            <Link to={'/admin'} onClick={() => { setId(_id); setList('destinationDetails') }} style={{ color: 'black', textDecoration: 'none' }}>
+                                <p>{name}</p>
+                            </Link>
+
+                            :
+
+                            <Link to={`/destinations/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                                <p>{name}</p>
+                            </Link>
+
+                    }
+
                 </td>
                 <td>
+
                     &nbsp;
                     <Link to={`/destinations/${_id}/edit`}>
                         <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
                     </Link>
+
                     &nbsp;
                     <Link to={`/destinations`} onClick={removeDestination}>
                         <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                     </Link>
+
+
                 </td>
             </tr>
 
