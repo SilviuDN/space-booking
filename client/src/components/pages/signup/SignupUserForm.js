@@ -64,7 +64,10 @@ class SignupUserForm extends Component {
         this.serviceAuth.signup(this.state.user)
             .then(res => {
                 this.props.showAlert('Welcome to our comunity! SignUp successful')
-                this.props.sharedFunction(res.data.response._id)
+
+                if (this.props.sharedFunction) {
+                    this.props.sharedFunction(res.data.response._id)
+                }
             })
             .catch(err => {
                 this.props.showAlert('Something went wrong! retry to signup!')
