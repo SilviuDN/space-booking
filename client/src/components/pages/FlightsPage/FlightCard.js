@@ -7,17 +7,20 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
 
     return (
         <>
+            {console.log(typeof setId)}
 
             <tr>
                 <td>
                     {
-                        !typeof setId === 'function' ?
+                        typeof setId === 'function' ?
 
-                            <Link to={`/flights/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
+                            <Link to={'/admin'} onClick={() => { setId(_id); setList('flightDetails') }} style={{ color: 'black', textDecoration: 'none' }}>
                                 <p>{flightNumber}</p>
                             </Link>
+
                             :
-                            <Link to={'/admin'} onClick={() => { setId(_id); setList('flightDetails') }} style={{ color: 'black', textDecoration: 'none' }}>
+
+                            <Link to={`/flights/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
                                 <p>{flightNumber}</p>
                             </Link>
 
