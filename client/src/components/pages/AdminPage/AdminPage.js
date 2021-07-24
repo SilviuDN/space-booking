@@ -84,7 +84,7 @@ class AdminPage extends Component {
                                 this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} /> :
                                     this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
                                         this.state.listState === 'flights' ? <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
-                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} /> :
+                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
                                                 this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} /> :
 
 

@@ -12,6 +12,8 @@ const Flight = require('../models/Flight.model')
 router.get('/flights', (req, res) => {
     Flight.find()
         .populate('destination')
+        .populate('flightCompany')
+        .populate('airport')
         .sort({ createdAt: 1 })
         .then(response => res.json(response)
         )

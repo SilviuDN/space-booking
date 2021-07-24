@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import editButton from './edit.png'
 import deleteButton from './delete.png'
 
-const DestinationCard = ({ _id, name, description, image, removeDestination, setId, setList, loggedUser }) => {
+const DestinationCard = ({ _id, name, description, moderator, image, removeDestination, setId, setList, loggedUser }) => {
 
     return (
         <>
@@ -27,16 +27,42 @@ const DestinationCard = ({ _id, name, description, image, removeDestination, set
                 </td>
                 <td>
 
-                    &nbsp;
-                    <Link to={`/destinations/${_id}/edit`}>
-                        <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
-                    </Link>
 
-                    &nbsp;
-                    <Link to={`/destinations`} onClick={removeDestination}>
-                        <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
-                    </Link>
+                    {
 
+                        (loggedUser?._id === moderator && moderator) || loggedUser?.role === 'admin' ?
+
+                            typeof setId === 'function' ?
+                                <>
+                                    &nbsp;
+                                    <Link to={`/admin`} onClick={() => { setId(_id); setList('destinations'); }}>
+                                        <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
+                                    </Link>
+
+
+                                    &nbsp;
+                                    <Link to={`/admin`} onClick={() => { removeDestination(); setList('destinations') }}>
+                                        <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
+                                    </Link>
+                                </>
+                                :
+                                <>
+                                    &nbsp;
+                                    <Link to={`/destinations/${_id}/edit`}>
+                                        <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
+                                    </Link>
+
+
+                                    &nbsp;
+                                    <Link to={`/destinations`} onClick={removeDestination}>
+                                        <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
+                                    </Link>
+
+
+                                </>
+                            :
+                            null
+                    }
 
                 </td>
             </tr>

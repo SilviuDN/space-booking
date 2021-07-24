@@ -32,9 +32,9 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
 
                 {/* enseño un boton o no depende del rol o si es el owner*/}
                 {
-                    loggedUser?.flights.includes(_id) || loggedUser?.role === 'admin' ?
+                    loggedUser?._id === flightCompany.moderator || loggedUser?.role === 'admin' ?
 
-                        typeof setId !== 'function' ?
+                        typeof setId !== 'function' && loggedUser?.flight ?
 
                             <Link to={`/flights/${_id}/edit`}>
                                 <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
@@ -48,15 +48,12 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
                                 </Link>
 
                                 &nbsp;
-
-
-                                <Link to={`/flights`} onClick={() => removeFlight(_id)}>
+                                <Link to={`/admin`} onClick={() => { removeFlight(_id); setId(_id); setList('flightEdit') }}>
                                     <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                                 </Link>
                             </>
-                        :
 
-                        null
+                        : null
                 }
 
 

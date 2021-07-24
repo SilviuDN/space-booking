@@ -12,11 +12,11 @@ import CompanyEditPage from '../pages/CompanyEditPage/CompanyEditPage.js'
 
 import FlightDetails from '../pages/FlightsPage/FlightDetails'
 import FlightsPage from '../pages/FlightsPage/FlightsPage'
-import TempEdit from '../pages/FlightsPage/EditCreateFlight'
+import EditCreateFlight from '../pages/FlightsPage/EditCreateFlight'
 
 import DestinationsPage from '../pages/DestinationsPage/DestinationsPage'
 import DestinationDetails from '../pages/DestinationsPage/DestinationDetails'
-import TempDestinationEdit from '../pages/DestinationsPage/TempDestinationEdit'
+import DestinationEdit from '../pages/DestinationsPage/DestintationEdit'
 
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
@@ -47,13 +47,13 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
 
             <Route path="/flights" exact render={() => <FlightsPage loggedUser={loggedUser} />} />
-            <Route path="/flights/new" exact render={(props) => <TempEdit {...props} type="new" showAlert={showAlert} />} />
-            <Route path="/flights/:flight_id/edit" exact render={(props) => <TempEdit {...props} type="edit" showAlert={showAlert} />} />
+            <Route path="/flights/new" exact render={(props) => <EditCreateFlight {...props} type="new" showAlert={showAlert} />} />
+            <Route path="/flights/:flight_id/edit" exact render={(props) => <EditCreateFlight {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
 
-            <Route path="/destinations" exact render={() => <DestinationsPage />} />
-            <Route path="/destinations/new" exact render={(props) => <TempDestinationEdit {...props} type="new" showAlert={showAlert} />} />
-            <Route path="/destinations/:destination_id/edit" exact render={(props) => <TempDestinationEdit {...props} type="edit" showAlert={showAlert} />} />
+            <Route path="/destinations" exact render={() => <DestinationsPage loggedUser={loggedUser} />} />
+            <Route path="/destinations/new" exact render={(props) => <DestinationEdit {...props} type="new" showAlert={showAlert} />} />
+            <Route path="/destinations/:destination_id/edit" exact render={(props) => <DestinationEdit {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
             <Route path="/testing/01" exact render={() => <Test01 />} />

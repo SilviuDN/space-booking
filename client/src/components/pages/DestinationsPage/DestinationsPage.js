@@ -1,11 +1,11 @@
 import DestinationsList from './DestinationsList'
 
-const DestinationsPage = () => {
+const DestinationsPage = ({ loggedUser }) => {
 
     return (
         <>
             <h1>Destinations Page</h1>
-            <DestinationsList />
+            <DestinationsList loggedUser={loggedUser} />
         </>
     )
 }

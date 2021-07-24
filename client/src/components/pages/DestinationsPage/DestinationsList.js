@@ -58,7 +58,7 @@ class DestinationsList extends Component {
                         <tbody>
 
                             {/* {this.state.airport.map(elm => <AirportCard key={elm._id} {...elm} deleteAirport={this.deleteAirport} setList={this.props.setList} setId={this.props.setId} />)} */}
-                            {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} setList={this.props.setList} setId={this.props.setId} loggedUser={this.loggedUser} />)}
+                            {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} />)}
                         </tbody>
                     </Table>
                 </>
