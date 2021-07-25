@@ -101,3 +101,22 @@ Authorization!!!
         <AirportsList />
             <AirportCard />
                 <AirportDetails/>
+
+
+Paleta de colores
+
+azul :  #1f2745
+rgba(31,39,70,255)
+
+rosado : #ba2077
+rgba(182,28,115,255)
+
+letras celestes :  #22a9bf
+rgba(34,169,191,255)
+
+gris : #f3f4f7
+rgba(243,244,247,255)
+
+
+
+
