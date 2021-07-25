@@ -57,9 +57,9 @@ class IndexSearchPanel extends Component {
         return (
 
 
-            <div className='search-container'>
+            <div className='search-container '>
 
-                <Container >
+                <Container  >
 
                     <Row className="row searchbox">
                         <div className="round ">
