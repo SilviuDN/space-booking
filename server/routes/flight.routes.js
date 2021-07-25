@@ -46,6 +46,8 @@ router.get('/:flight_id', (req, res) => {
     Flight
         .findById(req.params.flight_id)
         .populate('destination')
+        .populate('flightCompany')
+        .populate('airport')
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching flight', err }))
 })
