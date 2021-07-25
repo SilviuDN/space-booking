@@ -3,6 +3,16 @@
     margin: 0px;
 }
 
+.a {
+    object-fit: cover;
+    /* Do not scale the image */
+    object-position: center;
+    /* Center the image within the element */
+    width: 45%;
+    max-height: 850px;
+    margin-bottom: 1rem;
+}
+
 .c {
     object-fit: cover;
     /* Do not scale the image */
@@ -21,11 +31,38 @@
     width: 70%;
     max-height: 200px;
     margin-bottom: 1rem;
-    padding: 20px;
-    border-radius: 40px
+    border-radius: 30px;
 }
 
-.carousel-item {
-    -webkit-transform: translateZ(0);
-    -moz-transform: translateZ(0);
+#why {
+    color: #22a9bf;
+    padding-top: 100px;
+    padding-bottom: 10px;
+}
+
+#our {
+    color: #1f2745;
+    font-size: 3em;
+}
+
+#support {
+    background-color: #1f2745;
+    color: white;
+}
+
+.btn-flat {
+    background-color: #ba2077;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    border-color: #ba2077;
+}
+
+.col24 {
+    height: 300px;
+    vertical-align: middle;
+}
+
+.text24 {
+    font-size: 50px;
 }
