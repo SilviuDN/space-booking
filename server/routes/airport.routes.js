@@ -26,6 +26,13 @@ router.get('/airports', (req, res) => {
 })
 
 
+router.get('/airportsData', (req, res) => {
+    Airport.find()
+        .select('iata name')
+        .then(response => res.send(response))
+        .catch(err => console.log(err))
+})
+
 //   /airport/:airport:\_id/edit GET
 
 router.get('/:airportId', (req, res) => {

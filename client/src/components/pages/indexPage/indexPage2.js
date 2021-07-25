@@ -1,5 +1,5 @@
 import IndexSearchPanel from "./indexSearchPanel"
-import './searchPanel.css'
+
 
 const IndexPage2 = () => {
 

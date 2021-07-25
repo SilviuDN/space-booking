@@ -30,7 +30,7 @@
     justify-content: space-between;
 }
 
-.row.searechbox{
+.row.searchbox{
     height: 80px;
     align-items: center;
 }
@@ -39,13 +39,14 @@
     height: 100px;
 }
 
+
 .span{
-    color: white;
+    color: rgb(255, 255, 255);
     margin-left: 10px;
 }
 
-.span.small{
-    color: rgb(161, 159, 159);
+.small{
+    color: rgb(201, 200, 200);
     font-size: 12px;
 }
 
@@ -59,6 +60,10 @@
     border: 1px solid #b92076 !important;
     border-radius: 2px !important;
     font-weight: bold !important;
+}
+
+.radio-text{
+margin-left: 5px;
 }
 
 
