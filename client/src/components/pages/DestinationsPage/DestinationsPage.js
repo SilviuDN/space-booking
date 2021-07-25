@@ -1,12 +1,15 @@
 import DestinationsList from './DestinationsList'
+import { Container } from 'react-bootstrap'
 
-const DestinationsPage = ({ loggedUser }) => {
+const DestinationsPage = ({ loggedUser, showAlert, history }) => {
 
     return (
-        <>
+
+        <Container>
+
             <h1>Destinations Page</h1>
-            <DestinationsList loggedUser={loggedUser} />
-        </>
+            <DestinationsList loggedUser={loggedUser} showAlert={showAlert} history={history} />
+        </Container>
     )
 }
 

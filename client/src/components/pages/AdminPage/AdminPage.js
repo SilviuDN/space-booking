@@ -15,6 +15,7 @@ import AdminBigChart from '../Testing/adminBigChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
+import EditDestination from '../DestinationsPage/DestintationEdit'
 
 
 
@@ -81,11 +82,11 @@ class AdminPage extends Component {
                             {
 
 
-                                this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} /> :
-                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
-                                        this.state.listState === 'flights' ? <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
-                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
-                                                this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} /> :
+                                this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
+                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
+                                        this.state.listState === 'flights' ? <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
+                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
+                                                this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
 
 
 
@@ -101,8 +102,10 @@ class AdminPage extends Component {
                                                                             this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                                                 this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} /> :
                                                                                     this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
+                                                                                        this.state.listState === 'editDestination' ? <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
+                                                                                            this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
 
-                                                                                        null
+                                                                                                null
 
                             }
 

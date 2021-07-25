@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 
+
 import { Container, Row, Col, } from 'react-bootstrap'
 
 
@@ -26,6 +27,8 @@ class FlightDetails extends Component {
             // .then(response => this.setState({ flight: response.data }))
             .catch(err => console.log(err))
     }
+
+
 
     componentDidMount = () => {
         this.loadFlight()
@@ -65,7 +68,7 @@ class FlightDetails extends Component {
                         <Col md={6}>
                             <img src={this.state.flight.destination?.image} alt=''></img>
                             {/* <Card.Img variant="top" src={this.state.flight.destination?.image} /> */}
-                            <h3>Destination: {this.state.flight.destination.name}</h3>
+                            <h3>Destination: {this.state.flight.destination?.name}</h3>
                             <p>Price: ${this.state.flight.price}</p>
 
                             <hr></hr>

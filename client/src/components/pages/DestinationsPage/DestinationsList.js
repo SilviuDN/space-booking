@@ -3,6 +3,8 @@ import DestinationsService from '../../services/destinations.service'
 import DestinationCard from "./DestinationCard";
 import { Table } from 'react-bootstrap';
 import Spinner from "./Spinner";
+import SearchBox from "../../shared/searchBox/searchBox";
+import { Link } from 'react-router-dom'
 
 
 class DestinationsList extends Component {
@@ -16,11 +18,22 @@ class DestinationsList extends Component {
         this.destinationsService = new DestinationsService()
     }
 
-    loadDestinations = () => {
-        this.destinationsService
-            .getDestinations()
-            .then(response => this.setState({ destinations: response.data }))
-            .catch(err => console.log(err))
+    loadDestinations = (searchString) => {
+
+        !searchString ?
+
+            this.destinationsService
+                .getDestinations()
+                .then(response => this.setState({ destinations: response.data }))
+                .catch(err => console.log(err))
+            :
+
+
+            this.destinationsService
+                .searchDestination(searchString)
+                .then(response => this.setState({ destinations: response.data }))
+                .catch(err => console.log(err))
+
     }
 
     componentDidMount = () => {
@@ -29,15 +42,26 @@ class DestinationsList extends Component {
 
     removeDestination = destinationId => {
 
-        this.destinationsService
-            .deleteDestination(destinationId)
-            .then(() => {
-                this.setState({
-                    destinations: this.state.destinations.filter(elem => elem._id !== destinationId)
+
+        if (window.confirm('¿ Are you sure want to delete this destination ?')) {
+
+            this.destinationsService
+                .deleteDestination(destinationId)
+                .then(res => {
+
+                    this.props.showAlert(`Successfully Deleted destination `)
+
+                    console.log(this.state)
+
+                    this.setState({
+                        destinations: this.state.destinations.filter(elem => elem._id !== res.data._id)
+                    })
+
                 })
-                // this.props.history.push('/destinations')
-            })
-            .catch(err => console.log(err))
+                .catch(err => console.log(err))
+
+            this.props.history.push('/destinations')
+        }
     }
 
 
@@ -48,6 +72,22 @@ class DestinationsList extends Component {
                 <Spinner />
                 :
                 <>
+                    {
+                        this.props.loggedUser?.role === 'moderator' || this.props.loggedUser?.role === 'admin' ?
+
+                            typeof this.props.setId === 'function' ?
+
+                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('createDestination') }} className="btn btn-dark">Create Destination</Link>
+                                :
+                                <Link to='/destinations/new' className="btn btn-dark">Create Destination</Link>
+
+
+
+                            : null
+                    }
+
+                    <SearchBox load={this.loadDestinations} />
+
                     <Table striped bordered hover>
                         <thead>
                             <tr>
@@ -58,7 +98,7 @@ class DestinationsList extends Component {
                         <tbody>
 
                             {/* {this.state.airport.map(elm => <AirportCard key={elm._id} {...elm} deleteAirport={this.deleteAirport} setList={this.props.setList} setId={this.props.setId} />)} */}
-                            {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} />)}
+                            {this.state.destinations.map(elem => <DestinationCard key={elem._id} {...elem} removeDestination={() => this.removeDestination(elem._id)} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} />)}
                         </tbody>
                     </Table>
                 </>

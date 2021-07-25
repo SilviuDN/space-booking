@@ -35,7 +35,7 @@ const DestinationCard = ({ _id, name, description, moderator, image, removeDesti
                             typeof setId === 'function' ?
                                 <>
                                     &nbsp;
-                                    <Link to={`/admin`} onClick={() => { setId(_id); setList('destinations'); }}>
+                                    <Link to={`/admin`} onClick={() => { setId(_id); setList('editDestination'); }}>
                                         <Button variant="primary" block size="sm" data-toggle="tooltip" data-placement="bottom" title="Edit" ><img alt="" src={editButton} style={{ width: '20px' }} /></Button>
                                     </Link>
 
@@ -54,7 +54,7 @@ const DestinationCard = ({ _id, name, description, moderator, image, removeDesti
 
 
                                     &nbsp;
-                                    <Link to={`/destinations`} onClick={removeDestination}>
+                                    <Link to={`/destinations`} onClick={() => removeDestination(_id)}>
                                         <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                                     </Link>
 

@@ -27,7 +27,7 @@ class TempDestinationEdit extends Component {
 
         if (this.props.type === "edit") {
 
-            const { destination_id } = this.props.match.params
+            const destination_id = this.props.match?.params.destination_id || this.props.id
 
             this.destinationsService
                 .getDestination(destination_id)
@@ -52,8 +52,16 @@ class TempDestinationEdit extends Component {
 
     handleInputChange = e => {
         const { name, value } = e.target
-        const destinationId = this.props.type === "edit" ? this.props.match.params.destination_id : ""
-        this.setState({ destination: { ...this.state.destination, [name]: value, destination_id: destinationId } })
+
+        const destinationId = this.props.type === "edit" ? this.props.match?.params.destination_id || this.props.id : ""
+
+        this.setState({
+            destination: {
+                ...this.state.destination,
+                [name]: value,
+                destination_id: destinationId
+            }
+        })
         // this.setState({ [name]: value, destination_id: destinationId })
     }
 
@@ -67,9 +75,9 @@ class TempDestinationEdit extends Component {
 
             this.destinationsService
                 .editDestination(this.state.destination)
-                .then(() => {
+                .then(res => {
 
-                    this.props.showAlert('Successfully eddited')
+                    this.props.showAlert(`${res.data.name} Successfully edited`)
 
                     this.setState({
                         destination: {
@@ -79,7 +87,11 @@ class TempDestinationEdit extends Component {
                             image: '',
                         }
                     })
-                    this.props.history.push('/destinations')
+
+                    this.props.history ?
+                        this.props.history?.push('/destinations')
+                        :
+                        this.props.setList('destinations')
                 })
                 .catch(err => {
                     console.log("Error from edit destination", err.message)
@@ -103,11 +115,15 @@ class TempDestinationEdit extends Component {
                             image: '',
                         }
                     })
-                    this.props.history.push('/destinations')
+
+                    this.props.history ?
+                        this.props.history?.push('/destinations')
+                        :
+                        this.props.setList('destinations')
                 })
                 .catch(err => {
                     console.log("Error from new destination", err.message)
-                    this.props.showAlert("Error from new destination", err.message)
+                    this.props.showAlert("Error Creating new destination", err.message)
                 })
         }
 
@@ -145,8 +161,12 @@ class TempDestinationEdit extends Component {
     render() {
         return (
             <Container>
-                <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
-
+                {
+                    typeof this.props.setList === 'function' ?
+                        <Link to="/admin" onClick={() => { this.props.setId(this.props.id); this.props.setList('destinations') }} className="btn btn-dark">Back to destinations list</Link>
+                        :
+                        <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
+                }
                 <Form onSubmit={this.handleFormSubmit}>
 
                     <Form.Group controlId="name">
@@ -169,21 +189,29 @@ class TempDestinationEdit extends Component {
                     {this.state.loading && <Spinner size={60} />}
                     {/* <Spinner size={60} /> */}
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit" disabled={this.state.loading}>
-                        {this.state.destination.destination_id
-                            ?
-                            (this.state.loading ? 'Uploading picture' : 'Edit destination')
+                    {
+                        this.props.setList === 'function' ?
+
+                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit" >Create Destination</Button>
+
                             :
-                            (this.state.loading ? 'Uploading picture' : 'Create destination')
-                        }
-                        {/* {this.state.destination.destination_id
+
+                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit" disabled={this.state.loading}>
+                                {this.state.destination.destination_id
+                                    ?
+                                    (this.state.loading ? 'Uploading picture' : 'Edit destination')
+                                    :
+                                    (this.state.loading ? 'Uploading picture' : 'Create destination')
+                                }
+                                {/* {this.state.destination.destination_id
                             ?
                             'Edit destination'
                             :
                             'Create destination'
                         } */}
-                        {this.state.loading && <Spinner size={60} />}</Button>
+                                {this.state.loading && <Spinner size={60} />}</Button>
 
+                    }
                 </Form>
 
 

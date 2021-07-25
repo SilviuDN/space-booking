@@ -99,7 +99,14 @@ class FlightsList extends Component {
                     {
                         this.props.loggedUser?.role === 'moderator' || this.props.loggedUser?.role === 'admin' ?
 
-                            <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('flightCreate') }} className="btn btn-dark">Create Flight</Link>
+                            typeof this.props.setList === 'function' ?
+
+                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('flightCreate') }} className="btn btn-dark">Create Flight</Link>
+
+                                :
+
+                                <Link to="/flights/new" className="btn btn-dark">Create Flight</Link>
+
                             : null
                     }
                     <SearchBox load={this.loadFlights} />

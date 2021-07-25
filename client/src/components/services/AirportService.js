@@ -11,6 +11,7 @@ class AirportService {
 
     getAirports = () => this.app.get('/airports')
 
+
     airportDetails = (airportId) => this.app.get(`/${airportId}`)
 
     editAirport = (airportObj, airportId) => this.app.put(`/${airportId}/edit`, airportObj)

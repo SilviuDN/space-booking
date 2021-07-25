@@ -20,7 +20,7 @@ const Airport = require('../models/Airport.model.js')
 // get all airports
 router.get('/airports', (req, res) => {
     Airport.find()
-        .limit(100)
+        // .limit(100)
         .then(response => res.send(response))
         .catch(err => console.log(err))
 })
