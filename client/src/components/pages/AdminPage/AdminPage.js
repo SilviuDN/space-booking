@@ -100,7 +100,7 @@ class AdminPage extends Component {
 
                                                                         this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
                                                                             this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                                this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} /> :
+                                                                                this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} /> :
                                                                                     this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
                                                                                         this.state.listState === 'editDestination' ? <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
                                                                                             this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :

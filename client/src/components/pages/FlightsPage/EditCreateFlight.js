@@ -21,8 +21,10 @@ class TempEdit extends Component {
                 date: '',
                 flightCompany: '',
             },
-            airportName: '',
-            companyName: '',
+            currentDestination: undefined,
+            currentCompany: undefined,
+            currentAirport: undefined,
+
             airports: [],
             destinations: [],
             companies: [],
@@ -40,10 +42,22 @@ class TempEdit extends Component {
             this.flightsService
                 .getFlight(flight_id)
                 .then(response => {
-                    // console.log(response.data)
                     let flight = response.data
                     this.setState({
-                        flight: flight
+
+                        flight: {
+                            flight_id: flight._id,
+                            price: flight.price,
+                            capacity: flight.capacity,
+                            flightNumber: flight.flightNumber,
+                            airport: flight.airport._id,
+                            destination: flight.destination._id,
+                            date: flight.date,
+                            flightCompany: flight.flightCompany._id,
+                        },
+                        currentDestination: flight.destination,
+                        currentCompany: flight.flightCompany,
+                        currentAirport: flight.airport,
                     })
                 })
                 .catch(err => console.log(err))
@@ -63,15 +77,7 @@ class TempEdit extends Component {
                 this.setState({ companies: response.data })
             })
             .then(() => {
-
-                this.CompanyService.companyDetails(this.state.flight.flightCompany)
-                    .then(response => {
-                        setTimeout(() => {
-                            this.setState({ companyName: response.data.companyName })
-                        }, 4000)
-                    })
-                    .catch(err => console.log(err))
-
+                console.log('load succedd');
             })
             .catch(err => console.log(err))
     }
@@ -84,12 +90,6 @@ class TempEdit extends Component {
             .then(response => {
 
                 this.setState({ airports: response.data })
-            })
-            .then(() => {
-
-                this.AirportService.airportDetails(this.state.flight.airport)
-                    .then(response => this.setState({ airportName: response.data.name }))
-                    .catch(err => console.log(err))
             })
             .catch(err => console.log(err))
 
@@ -108,13 +108,10 @@ class TempEdit extends Component {
 
         const { name, value } = e.target
 
-        const flightId = this.props.type === "edit" ? this.props.match?.params.flight_id || this.props.id : ''
-
         this.setState({
             flight: {
                 ...this.state.flight,
                 [name]: value,
-                flight_id: flightId
             }
         })
     }
@@ -126,7 +123,7 @@ class TempEdit extends Component {
         if (this.props.type === "edit") {
 
             this.flightsService
-                .editFlight(this.state)
+                .editFlight(this.state.flight)
                 .then(() => {
 
                     this.props.showAlert('Successfully eddited')
@@ -154,7 +151,7 @@ class TempEdit extends Component {
 
         if (this.props.type === "new") {
             this.flightsService
-                .saveFlight(this.state)
+                .saveFlight(this.state.flight)
                 .then(res => {
 
                     this.props.showAlert('Successfully added new destination')
@@ -184,8 +181,10 @@ class TempEdit extends Component {
     handleSelect(e) {
 
         this.setState({
-
-            [e.target.id]: e.target.value
+            flight: {
+                ...this.state.flight,
+                [e.target.id]: e.target.value
+            }
         })
 
     }
@@ -230,12 +229,12 @@ class TempEdit extends Component {
                         <Form.Label>Select Destination</Form.Label>
                         <Form.Control
                             as="select"
-                            value={this.state.destination}
+                            value={this.state.flight.destination}
                             onChange={e => {
                                 this.handleSelect(e);
                             }}
                         >
-                            <option value={this.state.flight.destination}>{this.state.flight.destination ? this.state.flight.destination : 'Select Destination...'}</option>
+                            <option value={this.state.currentDestination}>{this.state.currentDestination ? this.state.currentDestination?.name : 'Select Destination...'}</option>
                             {this.state.destinations?.map(destination => {
                                 return <option key={destination._id} value={destination._id}>{destination.name}</option>
                             })
@@ -257,13 +256,11 @@ class TempEdit extends Component {
                         <Form.Label>Airport Selection</Form.Label>
                         <Form.Control
                             as="select"
-                            value={this.state.airport}
-                            onChange={e => {
-                                this.handleSelect(e);
-                            }}
+                            value={this.state.flight.airport}
+                            onChange={e => this.handleSelect(e)}
                         >
-                            <option value={this.state.flight.airport}>
-                                {this.state.airportName ? this.state.airportName : 'Select Airport...'}
+                            <option value={this.state.currentAirport?._id}>
+                                {this.state.currentAirport ? this.state.currentAirport.name : 'Select Airport...'}
                             </option>
 
                             {this.state.airports?.map(airport => {
@@ -278,14 +275,14 @@ class TempEdit extends Component {
                         <Form.Label>Company</Form.Label>
                         <Form.Control
                             as="select"
-                            value={this.state.destination}
+                            value={this.state.flight.flightCompany?._id}
                             onChange={e => {
                                 this.handleSelect(e);
                             }}
                         >
-                            <option value={this.state.flight.flightCompany}>{this.state.companyName ? this.state.companyName : 'Select Company...'}</option>
-                            {this.state.destinations?.map(destination => {
-                                return <option key={destination._id} value={destination._id}>{destination.name}</option>
+                            <option value={this.state.currentCompany?._id}>{this.state.currentCompany ? this.state.currentCompany?.companyName : 'Select Company...'}</option>
+                            {this.state.companies?.map(company => {
+                                return <option key={company._id} value={company._id}>{company.companyName}</option>
                             })
                             }
                         </Form.Control>
@@ -294,7 +291,7 @@ class TempEdit extends Component {
 
                     <Form.Group controlId="date">
                         <Form.Label>Date</Form.Label>
-                        <Form.Control type="text" value={this.state.flight.date.split('T')[0]} onChange={this.handleInputChange} placeholder={'dd/mm/yy'} name="date" />
+                        <Form.Control type="date" value={this.state.flight.date.split('T')[0]} onChange={this.handleInputChange} placeholder={'dd/mm/yy'} name="date" />
                     </Form.Group>
 
 

@@ -1,5 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 import IndexPage from '../pages/indexPage/indexPage.js'
+import IndexPage2 from '../pages/indexPage/indexPage2.js'
 import SignupPage from '../pages/signup/SignupPage'
 
 import UserDetails from '../pages/UserDetails/UserDetails.js'
@@ -33,6 +34,8 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
         <Switch>
 
             <Route path="/admin" exact render={props => <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} />} />
+
+            <Route path="/index2" exact render={props => <IndexPage2 {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
 
             <Route path="/" exact render={props => <IndexPage {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} showAlert={showAlert} />} />

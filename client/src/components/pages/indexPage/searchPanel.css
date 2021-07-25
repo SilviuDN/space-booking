@@ -1,0 +1,71 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.search-container{
+    background-color:#1e2746;
+    width: 60%;
+    height: 280px;
+    border-radius: 5px;
+    padding: 0 20px;
+}
+
+.radio:nth-of-type(2){
+    margin-left: 30px;
+}
+.radio:nth-of-type(3){
+    margin-left: 30px;
+}
+
+
+.checkbox-search{
+    margin-right: 5px;
+}
+
+.round{
+    display:flex;
+    justify-content: space-between;
+}
+
+.row.searechbox{
+    height: 80px;
+    align-items: center;
+}
+
+.row:nth-of-type(2){
+    height: 100px;
+}
+
+.span{
+    color: white;
+    margin-left: 10px;
+}
+
+.span.small{
+    color: rgb(161, 159, 159);
+    font-size: 12px;
+}
+
+#checkbox-text{
+    margin-right: 30px;
+}
+
+.button{
+    width: 100%;
+    background-color: #b92076 !important;
+    border: 1px solid #b92076 !important;
+    border-radius: 2px !important;
+    font-weight: bold !important;
+}
+
+
+
+
+
+
+
+
+
