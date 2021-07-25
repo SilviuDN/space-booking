@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import AirportService from '../../services/AirportService';
 import Select from 'react-select'
 import styled from '@emotion/styled'
 
@@ -9,39 +8,58 @@ class searchBar extends Component {
         super()
         this.state = {
             selectedOption: null,
-            airports: []
+            airports: [],
+            destinations: [],
+            typingTimeout: 0,
         }
         // this.searchList = undefined
-        this.AirportService = new AirportService()
     }
+
+
 
     handleChange = selectedOption => {
 
-        console.log(selectedOption)
         this.setState({ selectedOption })
-        // code to make something happen after selecting an option
+
     }
 
 
 
-    loadData = () => {
 
-        this.AirportService
-            .getAirportsData()
+    handleSearch = (e) => {
+
+
+        if (this.state.typingTimeout) {
+            clearTimeout(this.state.typingTimeout);
+        }
+
+        this.setState({
+
+            typingTimeout: setTimeout(() => {
+                this.loadData(this.props.dataToLoad, e.target.value)
+            }, 400)
+        });
+    }
+
+
+
+
+    loadData = (service, searchString) => {
+
+        // le pasamos el servicio desde el padre como datatoload
+
+
+        service
+            .searchBoxData(searchString)
             .then(response => {
-                this.setState({ airports: response.data })
+                this.setState({ [this.props.dataKey]: response.data })
             })
 
             .catch(err => console.log(err))
-
-
-
-
     }
 
 
 
-    componentDidMount = () => this.loadData()
 
 
 
@@ -107,7 +125,7 @@ class searchBar extends Component {
         }
 
 
-        const options = this.state.airports?.map(
+        const options = this.state[this.props.dataKey]?.map(
             ({ name, _id }) => {
                 return {
                     id: _id,
@@ -119,8 +137,6 @@ class searchBar extends Component {
 
         return (
 
-            // id: name,
-            // value: name
 
 
 
@@ -131,11 +147,12 @@ class searchBar extends Component {
                     getOptionLabel={(options) => options['value']}
                     getOptionValue={(options) => options['id']}
                     onChange={this.handleChange}
+                    onKeyDown={this.handleSearch}
                     placeholder="Search..."
-                    openMenuOnClick={true}
+                    openMenuOnClick={false}
 
                     classNamePrefix="select"
-                    styles={StyledSearch}
+                    styles={customStyles}
                 />
             </div>
         )

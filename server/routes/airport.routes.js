@@ -26,22 +26,22 @@ router.get('/airports', (req, res) => {
 })
 
 
-router.get('/airportsData', (req, res) => {
-    Airport.find()
-        .select('iata name')
+router.get('/airportsData/:string', (req, res) => {
+
+    const { string } = req.params
+
+    Airport.find({
+        "$or": [
+            { "name": { $regex: string, $options: 'i' } },
+            { "iata": { $regex: string, $options: 'i' } },
+        ]
+    })
         .then(response => res.send(response))
         .catch(err => console.log(err))
 })
 
-//   /airport/:airport:\_id/edit GET
 
-router.get('/:airportId', (req, res) => {
 
-    Airport.findById(req.params.airportId)
-        .then(response => res.json(response))
-        .catch(err => console.log(err))
-
-})
 //   Airport ID and Update
 
 router.put('/:airportId/edit', (req, res) => {
@@ -75,6 +75,17 @@ router.get('/search/:string', (req, res) => {
     })
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering users', err }))
+})
+
+
+//   /airport/:airport:\_id/edit GET
+
+router.get('/:airportId', (req, res) => {
+
+    Airport.findById(req.params.airportId)
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
+
 })
 
 

@@ -3,14 +3,7 @@ const router = express.Router()
 const Destination = require('../models/Destination.model')
 
 
-router.get('/:destination_id', (req, res) => {
 
-    Destination
-        .findById(req.params.destination_id)
-        // .populate('reviews')
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
-})
 
 router.post('/new', (req, res) => {
 
@@ -75,6 +68,26 @@ router.get('/', (req, res) => {
 
 
 
+router.get('/destinationsData/:string', (req, res) => {
+
+    const { string } = req.params
+
+    Destination
+        .find({
+            "$or": [
+                { "name": { $regex: string, $options: 'i' } },
+            ]
+        })
+        .then(response => res.send(response))
+        .catch(err => console.log(err))
+})
+
+
+
+
+
+
+
 router.get('/search/:string', (req, res) => {
 
 
@@ -91,6 +104,17 @@ router.get('/search/:string', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering users', err }))
 })
 
-module.exports = router
+
+router.get('/:destination_id', (req, res) => {
+
+    Destination
+        .findById(req.params.destination_id)
+        // .populate('reviews')
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching destination', err }))
+})
+
+
+
 
 module.exports = router

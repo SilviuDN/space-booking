@@ -1,8 +1,9 @@
 import { Component } from 'react';
 import { Row, Col, Container, Button } from 'react-bootstrap';
-import RadioButton from './RadioButtons';
-import SearchBar from './searchBar';
-
+import RadioButton from '../../shared/RadioButtons/RadioButtons';
+import SearchBar from '../../shared/searchBox/searchBar';
+import AirportService from '../../services/AirportService';
+import DestinationService from '../../services/destinations.service';
 import './searchPanel.css'
 
 
@@ -13,11 +14,15 @@ class IndexSearchPanel extends Component {
             radioButtons: {
                 1: '',
                 2: '',
-                3: ''
+                3: '',
+                4: '',
+                5: '',
+                6: '',
             },
             checkBox: false,
-
         }
+        this.AirportService = new AirportService()
+        this.DestinationService = new DestinationService()
 
 
 
@@ -48,8 +53,8 @@ class IndexSearchPanel extends Component {
 
     render() {
 
-        let radios = [];
-        for (var i = 1; i < 4; i++) {
+        const radios = [];
+        for (let i = 1; i < 4; i++) {
             radios.push(<RadioButton key={i} value={i} setRadioValue={this.setRadioButton} />);
         }
 
@@ -79,13 +84,18 @@ class IndexSearchPanel extends Component {
 
                         <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
-                            <SearchBar />
+
+                            <SearchBar dataToLoad={this.AirportService} dataKey={'airports'} />
+
                             {/* <input type="text" className="form-control" placeholder="From" /> */}
                             <input type="checkbox" placeholder="From" /> <span className="span">Xxxxx</span>
                         </Col>
                         <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">To</small></span></label>
-                            <input type="text" className="form-control" placeholder="To" />
+
+                            <SearchBar dataToLoad={this.DestinationService} dataKey={'destinations'} />
+
+                            {/* <input type="text" className="form-control" placeholder="To" /> */}
                             <input type="checkbox" placeholder="From" /> <span className="span">Xxxxx</span>
                         </Col>
                         <Col md={2}>
