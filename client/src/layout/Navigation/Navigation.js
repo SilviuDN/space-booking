@@ -5,6 +5,7 @@ import AuthService from '../../components/services/auth.service'
 import { Modal } from 'react-bootstrap'
 import Login from '../../components/pages/login/login'
 import logo from './logo.png'
+import './Navigation.css'
 
 class Navigation extends Component {
     constructor() {
@@ -32,7 +33,7 @@ class Navigation extends Component {
 
         return (
             <>
-                <Navbar bg="dark" variant="dark" expand="md">
+                <Navbar className="blue-nav" variant="dark" expand="md" style={{}}>
                     <Container fluid>
                         <Navbar.Brand href="/">
                             <img

@@ -1,6 +1,7 @@
 // import { Link } from 'react-router-dom';
 import { Component } from 'react'
-import { Carousel, Row, Col, Button, ThemeProvider } from "react-bootstrap"
+import { Carousel, Row, Col, Button, Form, Container } from "react-bootstrap"
+import { Link } from 'react-router-dom'
 import c1 from './c1.jpg'
 import c2 from './c2.jpg'
 import c3 from './c3.jpg'
@@ -28,7 +29,7 @@ class IndexPage extends Component {
 
 
     render() {
-
+        const style = { background: '#1f2745', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', bottom: 0, padding: 5, width: '100%' }
         return (
 
             <>
@@ -155,11 +156,84 @@ class IndexPage extends Component {
 
                     </Col>
                 </Row>
-                <h3 id="why" align="center">Hot Deals</h3>
-                <h2 id="our" align="center">Popular Destinations</h2>
-                <p align="center"><img src={pinkline} alt="line" /></p>
-                <br />
-                <img src={destinations} alt="destinations" />
+                <Row>
+                    <Col>
+                        <h3 id="why" align="center">Hot Deals</h3>
+                        <h2 id="our" align="center">Popular Destinations</h2>
+                        <p align="center"><img src={pinkline} alt="line" /></p>
+                        <br />
+                        <img src={destinations} alt="destinations" /><br /><br />
+                        <p className="text-center"><Button bsPrefix="btn-flat" variant="primary" >
+
+                            <strong> GET TICKETS</strong>
+                        </Button></p>
+
+                    </Col>
+
+
+                </Row>
+
+                <footer style={style}>
+
+                    <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
+                    <Container fluid className="text-center text-md-left">
+                        <Row>
+                            <Col md="3">
+                                <h5 className="title">Footer Content</h5>
+                                <p>
+                                    la la la al al.
+                                </p>
+                            </Col>
+                            <Col md="3">
+                                <h5 className="title">Links</h5>
+                                <ul>
+                                    <li className="list-unstyled">
+                                        <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
+                                    </li>
+
+                                </ul>
+                            </Col>
+                            <Col md="3">
+                                <h5 className="title">Footer Content</h5>
+                                <p>
+                                    la la la la.
+                                </p>
+                            </Col>
+                            <Col md="3">
+                                <h5 className="title">Contact Us</h5>
+
+                                <Form className={'pb-5'}>
+                                    <Form.Group className="mb-3" controlId="formBasicEmail">
+
+                                        <Form.Control type="text" placeholder="Your name" name='name' />
+
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="formBasicPassword">
+
+                                        <Form.Control type="email" placeholder="email" name='email' />
+                                    </Form.Group>
+
+                                    <Form.Group className="mb-3" controlId="name">
+
+                                        <Form.Control type="text" placeholder="name" name='name' />
+                                    </Form.Group>
+                                </Form>
+                            </Col>
+
+                        </Row>
+                        <Row>
+                            <Col>
+                                &copy; {new Date().getFullYear()} Copyright: <a href="https://www.spacebooking.world"> SpaceBooking.World </a>
+                            </Col>
+
+                        </Row>
+                    </Container>
+
+
+                </footer>
+
+
             </>
         )
     }
