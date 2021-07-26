@@ -96,6 +96,8 @@ class ReturnedFlightCard extends Component {
                             </Row>
                         </Col>
 
+                        <hr className=" d-md-none"></hr>
+
                         <Col xs={12} md={4}>
                             <h3>Prime Discount</h3>
                             <p><small className="text-muted">Change dates FREE OF CHARGE</small></p>
