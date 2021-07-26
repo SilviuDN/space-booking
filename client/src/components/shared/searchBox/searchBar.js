@@ -167,7 +167,7 @@ class searchBar extends Component {
                     getOptionValue={(options) => options['id']}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSearch}
-                    placeholder="Search... Space = all options"
+                    placeholder="Search..."
                     openMenuOnClick={false}
 
                     classNamePrefix="select"
