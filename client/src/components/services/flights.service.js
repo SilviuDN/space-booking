@@ -20,6 +20,8 @@ class FlightService {
     deleteFlight = flight_id => this.app.delete(`/${flight_id}/delete`)
 
     searchFlight = searchString => this.app.get(`/search/${searchString}`)
+
+    searchTravels = (airport, destination, fromDate, toDate) => this.app.get(`/search/travels/${airport}/${destination}/${fromDate}/${toDate}`)
 }
 
 export default FlightService
