@@ -19,7 +19,8 @@ class searchBar extends Component {
 
     handleChange = selectedOption => {
 
-        this.setState({ selectedOption, })
+
+        this.setState({ selectedOption })
 
         this.props.setTravel(this.props.dataKey, selectedOption.id)
     }
@@ -33,13 +34,12 @@ class searchBar extends Component {
             clearTimeout(this.state.typingTimeout);
         }
 
-        console.log()
 
 
         this.setState({
 
             typingTimeout: setTimeout(() => {
-                e.keyCode === 32 ? this.loadData(this.props.dataToLoad, 'alldestinations') : this.loadData(this.props.dataToLoad, e.target.value)
+                this.loadData(this.props.dataToLoad, e.target.value)
 
             }, 400)
 
@@ -48,45 +48,25 @@ class searchBar extends Component {
 
 
 
-    loadData = (service, searchString) => {
 
-        console.log(this.props.destinationId)
+    loadData = (service, searchString, all) => {
 
-        if (this.props.dataKey === 'destinations') {
 
-            if (searchString === 'alldestinations') {
+        if (all !== 'all') {
 
-                service
-                    .getDestinations()
-                    .then(response => this.setState({ [this.props.dataKey]: response.data }))
-                    .catch(err => console.log(err))
-
-            } else {
-
-                service
-                    .searchBoxData(searchString)
-                    .then(response => this.setState({ [this.props.dataKey]: response.data }))
-                    .catch(err => console.log(err))
-            }
-
-        } else {
-
+            // le pasamos el servicio desde el padre como datatoload
             service
-                .searchAvailFlights(this.props.destinationId || this.state.selectedOption?.id)
-                .then(response => this.setState({ [this.props.dataKey]: response.data }))
+                .searchBoxData(searchString)
+                .then(response => {
+                    console.log(response)
+                    this.setState({ [this.props.dataKey]: response.data })
+                })
+
                 .catch(err => console.log(err))
 
         }
-
     }
 
-
-    componentDidMount = () => this.loadData(this.props.dataToLoad)
-
-
-    componentDidUpdate(prevProps, prevState) {
-        prevProps.destinationId !== this.props.destinationId && this.loadData(this.props.dataToLoad)
-    }
 
 
 
@@ -159,28 +139,21 @@ class searchBar extends Component {
 
                 const { name, _id } = data
 
-                if (this.props.dataKey === 'destinations') {
-
-                    return {
-                        id: _id,
-                        value: name,
-                    }
-                } else {
-
-                    const { name, _id } = data.airport
-                    const { city, country } = data.airport.address
+                if (data.address) {
+                    const { city, country } = data.address
                     return {
                         id: _id,
                         value: name + ' - ' + city + ' (' + country + ')',
                     }
-
-
+                } else {
+                    return {
+                        id: _id,
+                        value: name,
+                    }
                 }
 
             }
-
         )
-        console.log(options)
 
 
         return (
@@ -195,7 +168,7 @@ class searchBar extends Component {
                     onChange={this.handleChange}
                     onKeyDown={this.handleSearch}
                     placeholder="Search... Space = all options"
-                    openMenuOnClick={true}
+                    openMenuOnClick={false}
 
                     classNamePrefix="select"
                     styles={customStyles}

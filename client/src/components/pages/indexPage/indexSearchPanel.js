@@ -2,8 +2,8 @@ import { Component } from 'react';
 import { Row, Col, Container, Button, Form } from 'react-bootstrap';
 import RadioButton from '../../shared/RadioButtons/RadioButtons';
 import SearchBar from '../../shared/searchBox/searchBar';
-import AirportService from '../../services/AirportService';
 import DestinationService from '../../services/destinations.service';
+import FlightService from '../../services/flights.service';
 import './searchPanel.css'
 
 
@@ -25,7 +25,7 @@ class IndexSearchPanel extends Component {
             checkBox: false,
 
         }
-        this.AirportService = new AirportService()
+        this.FlightService = new FlightService()
         this.DestinationService = new DestinationService()
 
 
@@ -115,14 +115,6 @@ class IndexSearchPanel extends Component {
                     <Row className="row searchbox">
 
                         <Col md={5}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
-
-                            {/* SearchBar */}
-                            <SearchBar dataToLoad={this.AirportService} dataKey={'airports'} setTravel={this.setTravel} />
-
-                            <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
-                        </Col>
-                        <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">To</small></span></label>
 
                             {/* SearchBar */}
@@ -130,6 +122,29 @@ class IndexSearchPanel extends Component {
 
                             <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
                         </Col>
+
+                        <Col md={5}>
+
+                            {
+                                this.state.destinations ?
+                                    <>
+                                        <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
+
+                                        {/* SearchBar */}
+                                        <SearchBar dataToLoad={this.FlightService} dataKey={'airports'} destinationId={this.state.destinations} setTravel={this.setTravel} />
+
+                                        <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
+                                    </>
+                                    :
+                                    <>
+                                        {/* placeholder */}
+                                        <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
+                                        <input type="text" className="form-control" disabled />
+                                        <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
+                                    </>
+                            }
+                        </Col>
+
                         <Col md={2}>
                             {/* SELECT */}
                             <label className="checkbox-search" ><span className="span"><small className="small">Cabin class</small></span></label>

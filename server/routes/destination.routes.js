@@ -79,6 +79,8 @@ router.get('/destinationsData/:string', (req, res) => {
 
     const { string } = req.params
 
+    console.log(string)
+
     Destination
         .find({
             "$or": [
