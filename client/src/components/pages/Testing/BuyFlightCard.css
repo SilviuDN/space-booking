@@ -1,0 +1,14 @@
+.returnedFlightCardImage{
+    height: 40px;
+    width: 50px;
+    border-radius: 50%;;
+}
+
+Card.Header{
+    background-color: aqua;
+}
+
+.strikethrough{
+    text-decoration: line-through;
+    color: red;
+}

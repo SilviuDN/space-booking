@@ -13,7 +13,6 @@ class UsersList extends Component {
             searchBox: '',
             typingTimeout: 0
         }
-
         this.userService = new UserService()
     }
 

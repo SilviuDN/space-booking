@@ -1,7 +1,7 @@
 // import FlightsPerDestination from "./FlightsPerDestination"
 // import RandomChart from "./RandomChart"
 // import FlightsOccupationChart from "./FlightsOccupationChart"
-import ReturnedFlightCard from "./ReturnedFlightCard"
+import ReturnedFlightCard from "./BuyFlightCard"
 
 const Test02 = (props) => {  
     const flight_id = props.match.params.flight_id
