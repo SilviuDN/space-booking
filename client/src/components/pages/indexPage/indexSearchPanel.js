@@ -98,20 +98,24 @@ class IndexSearchPanel extends Component {
 
                 <Container  >
 
-                    <Row className="row searchbox">
-                        <div className="round ">
+                    {/* <Row className="row searchbox">
+                        <Col className="round ">
+
                             <div className="span">
 
                                 {radios}
 
                             </div>
-                            <div className='span'>
-                                <input type="checkbox" className="checkbox-search" />
-                                <span id="checkbox-text">Show offers</span>
-                            </div>
+                        </Col>
+                        <Col md={{ span: 4, offset: 4 }} className='span'>
 
-                        </div>
-                    </Row>
+                            <input type="checkbox" className="checkbox-search" />
+                            <span id="checkbox-text">Show offers</span>
+
+                        </Col>
+
+
+                    </Row> */}
                     <Row className="row searchbox">
 
                         <Col md={5}>
@@ -177,7 +181,7 @@ class IndexSearchPanel extends Component {
 
                     </Row>
                 </Container>
-            </Form>
+            </Form >
         )
 
 

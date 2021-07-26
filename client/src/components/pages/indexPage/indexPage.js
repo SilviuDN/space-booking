@@ -36,7 +36,7 @@ class IndexPage extends Component {
 
             <>
 
-                <Container fluid className="all">
+                <Container fluid className="all  p-0 overflow-hidden">
                     <IndexSearchPanel props={this.props} />
                     <Carousel fade controls={false} >
 

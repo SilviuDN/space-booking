@@ -5,22 +5,21 @@
 
 .search-container {
     background-color: #1e2746;
-    width: 60%;
-    height: 280px;
+    width: 70%;
     border-radius: 5px;
-    padding: 0 20px;
     position: absolute;
     z-index: 100;
-    top: 30%;
-    left: 20%
+    top: 20%;
+    left: 15%;
+    padding: 15px;
 }
 
 .radio:nth-of-type(2) {
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .radio:nth-of-type(3) {
-    margin-left: 30px;
+    margin-left: 10px;
 }
 
 .checkbox-search {
@@ -33,13 +32,15 @@
 }
 
 .row.searchbox {
-    height: 80px;
+    padding: 10px;
     align-items: center;
 }
 
+/*
 .row:nth-of-type(2) {
     height: 100px;
 }
+*/
 
 .span {
     color: rgb(255, 255, 255);
