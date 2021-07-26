@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import Select from 'react-select'
-import styled from '@emotion/styled'
+// import styled from '@emotion/styled'
 
 
 class searchBar extends Component {
@@ -19,10 +19,10 @@ class searchBar extends Component {
 
     handleChange = selectedOption => {
 
-        console.log(selectedOption)
 
         this.setState({ selectedOption })
 
+        this.props.setTravel(this.props.dataKey, selectedOption.id)
     }
 
 
@@ -30,35 +30,41 @@ class searchBar extends Component {
 
     handleSearch = (e) => {
 
-
         if (this.state.typingTimeout) {
             clearTimeout(this.state.typingTimeout);
         }
+
+
 
         this.setState({
 
             typingTimeout: setTimeout(() => {
                 this.loadData(this.props.dataToLoad, e.target.value)
+
             }, 400)
-        });
+
+        })
     }
 
 
 
 
-    loadData = (service, searchString) => {
-
-        // le pasamos el servicio desde el padre como datatoload
+    loadData = (service, searchString, all) => {
 
 
-        service
-            .searchBoxData(searchString)
-            .then(response => {
-                console.log(response)
-                this.setState({ [this.props.dataKey]: response.data })
-            })
+        if (all !== 'all') {
 
-            .catch(err => console.log(err))
+            // le pasamos el servicio desde el padre como datatoload
+            service
+                .searchBoxData(searchString)
+                .then(response => {
+                    console.log(response)
+                    this.setState({ [this.props.dataKey]: response.data })
+                })
+
+                .catch(err => console.log(err))
+
+        }
     }
 
 
@@ -68,23 +74,23 @@ class searchBar extends Component {
 
     render() {
 
-        const StyledSearch = styled(Select)`
-                width: 300px;
-                padding: 20px;
-                .select__menu-list::-webkit-scrollbar{
-                width: 4px;
-                height: 0px;
-                }
-                .select__menu-list::-webkit-scrollbar-track{
-                background: #f1f1f1;
-                }
-                .select__menu-list::-webkit-scrollbar-thumb{
-                background: #888;
-                }
-                .select__menu-list::-webkit-scrollbar-thumb:hover{
-                background: #555;
-                }
-                `
+        // const StyledSearch = styled(Select)`
+        //         width: 300px;
+        //         padding: 20px;
+        //         .select__menu-list::-webkit-scrollbar{
+        //         width: 4px;
+        //         height: 0px;
+        //         }
+        //         .select__menu-list::-webkit-scrollbar-track{
+        //         background: #f1f1f1;
+        //         }
+        //         .select__menu-list::-webkit-scrollbar-thumb{
+        //         background: #888;
+        //         }
+        //         .select__menu-list::-webkit-scrollbar-thumb:hover{
+        //         background: #555;
+        //         }
+        //         `
 
         const customStyles = {
             control: (base, state) => ({
@@ -153,8 +159,6 @@ class searchBar extends Component {
         return (
 
 
-
-
             <div>
                 <Select
                     value={this.state.selectedOption}
@@ -163,7 +167,7 @@ class searchBar extends Component {
                     getOptionValue={(options) => options['id']}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSearch}
-                    placeholder="Search..."
+                    placeholder="Search... Space = all options"
                     openMenuOnClick={false}
 
                     classNamePrefix="select"

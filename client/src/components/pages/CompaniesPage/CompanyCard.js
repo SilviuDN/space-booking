@@ -8,6 +8,7 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
             <tr>
                 <td>
                     {!typeof setList === 'function' ?
+
                         <Link to={`/companies/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
                             <p>{companyName} user</p>
                         </Link>
@@ -23,7 +24,7 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
 
                     &nbsp;
 
-                    {loggedUser && loggedUser._id === moderator ?
+                    {(loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin' ?
 
                         <Link to={`/companies/${_id}/edit`}>
                             <Button variant="dark" block >Editar</Button>

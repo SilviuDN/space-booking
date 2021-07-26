@@ -14,6 +14,7 @@ import CompanyEditPage from '../pages/CompanyEditPage/CompanyEditPage.js'
 import FlightDetails from '../pages/FlightsPage/FlightDetails'
 import FlightsPage from '../pages/FlightsPage/FlightsPage'
 import EditCreateFlight from '../pages/FlightsPage/EditCreateFlight'
+import FlightSearchList from '../pages/FlightsPage/Flightsfound'
 
 import DestinationsPage from '../pages/DestinationsPage/DestinationsPage'
 import DestinationDetails from '../pages/DestinationsPage/DestinationDetails'
@@ -22,7 +23,6 @@ import DestinationEdit from '../pages/DestinationsPage/DestintationEdit'
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
 import Test01 from '../pages/Testing/Test01.js'
-import Test02 from '../pages/Testing/Test02.js'
 
 
 
@@ -44,15 +44,25 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/users/:user_id" exact render={props => <UserDetails {...props} />} />
             <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} />} />
 
+
+
+
             <Route path="/companies" exact render={() => <CompaniesPage />} />
             <Route path="/companies/:company_id" exact render={props => <CompanyDetails {...props} />} />
             <Route path="/companies/:company_id/edit" render={props => <CompanyEditPage {...props} showAlert={showAlert} />} />
 
 
+
+
+
             <Route path="/flights" exact render={() => <FlightsPage loggedUser={loggedUser} />} />
             <Route path="/flights/new" exact render={(props) => <EditCreateFlight {...props} type="new" showAlert={showAlert} />} />
+            <Route path="/flights/found/:airport/:destination/:departureDate/:returnDate/:adults/:children" render={(props) => <FlightSearchList {...props} />} />
             <Route path="/flights/:flight_id/edit" exact render={(props) => <EditCreateFlight {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
+
+
+
 
             <Route path="/destinations" exact render={props => <DestinationsPage loggedUser={loggedUser} showAlert={showAlert} {...props} />} />
             <Route path="/destinations/new" exact render={(props) => <DestinationEdit {...props} type="new" showAlert={showAlert} />} />
@@ -60,7 +70,6 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
             <Route path="/testing/01" exact render={() => <Test01 />} />
-            <Route path="/testing/02/:flight_id" exact render={(props) => <Test02 {...props}/>} />
 
 
 

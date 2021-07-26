@@ -8,6 +8,7 @@
 const express = require('express')
 const router = express.Router()
 const Flight = require('../models/Flight.model')
+const mongoose = require('mongoose')
 
 router.get('/flights', (req, res) => {
     Flight.find()
@@ -72,6 +73,31 @@ router.delete('/:flight_id/delete', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting destination', err }))
 })
 
+
+
+router.get('/search/travels/:airport/:destination/:depDate/:retDate', (req, res) => {
+
+
+
+    const { airport, destination, depDate, retDate } = req.params
+
+
+    console.log(airport, destination, depDate, retDate)
+
+    const fromDate = new Date(depDate)
+    const toDate = new Date(retDate)
+
+    Flight
+        .find({
+            $and: [{ "airport": new mongoose.Types.ObjectId(airport) }, { "destination": new mongoose.Types.ObjectId(destination) },
+            { "date": { $gte: fromDate } }, { "date": { $lte: toDate } }]
+        })
+        .populate('destination')
+        .populate('flightCompany')
+        .populate('airport')
+        .then(response => res.send(response))
+        .catch(err => console.log(err))
+})
 
 
 

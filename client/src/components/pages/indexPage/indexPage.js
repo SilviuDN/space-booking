@@ -37,7 +37,7 @@ class IndexPage extends Component {
             <>
 
                 <Container fluid className="all">
-                    <IndexSearchPanel />
+                    <IndexSearchPanel props={this.props} />
                     <Carousel fade controls={false} >
 
                         <Carousel.Item >

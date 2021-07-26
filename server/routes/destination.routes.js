@@ -68,6 +68,13 @@ router.get('/', (req, res) => {
 
 
 
+
+
+
+
+
+
+
 router.get('/destinationsData/:string', (req, res) => {
 
     const { string } = req.params

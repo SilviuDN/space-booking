@@ -39,7 +39,6 @@ class UserDetails extends Component {
                 {!this.state.airportDetails ?
                     <>
                         <Spinner animation="grow" />
-                        <h3>cargando</h3>
                     </>
                     :
 

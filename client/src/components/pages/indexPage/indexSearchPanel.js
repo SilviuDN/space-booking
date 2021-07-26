@@ -11,9 +11,19 @@ class IndexSearchPanel extends Component {
     constructor() {
         super()
         this.state = {
+            destinations: '',
+            airports: '',
+            departureDate: '',
+            returnDate: '',
+            adults: 0,
+            children: 0,
+
+
             radioButtons: {
             },
+
             checkBox: false,
+
         }
         this.AirportService = new AirportService()
         this.DestinationService = new DestinationService()
@@ -22,6 +32,30 @@ class IndexSearchPanel extends Component {
 
     }
 
+
+
+    handleInput = (e) => {
+
+        if (e.target.id) {
+
+            this.setState({
+                [e.target.id]: e.target.value
+            })
+        } else {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
+
+    }
+
+
+
+    handleFormSubmit = (e) => {
+        e.preventDefault()
+
+        this.props.props.history.push(`/flights/found/${this.state.airports}/${this.state.destinations}/${this.state.departureDate}/${this.state.returnDate}/${this.state.adults}/${this.state.children}`)
+    }
 
 
     setRadioButton = (key, value) => {
@@ -37,11 +71,14 @@ class IndexSearchPanel extends Component {
 
 
 
-    handleFormSubmit = (e) => {
+    setTravel = (key, value) => {
 
-
+        this.setState({
+            [key]: value
+        })
 
     }
+
 
 
 
@@ -80,17 +117,17 @@ class IndexSearchPanel extends Component {
                         <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
 
-                            <SearchBar dataToLoad={this.AirportService} dataKey={'airports'} />
+                            {/* SearchBar */}
+                            <SearchBar dataToLoad={this.AirportService} dataKey={'airports'} setTravel={this.setTravel} />
 
-                            {/* <input type="text" className="form-control" placeholder="From" /> */}
                             <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
                         </Col>
                         <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">To</small></span></label>
 
-                            <SearchBar dataToLoad={this.DestinationService} dataKey={'destinations'} />
+                            {/* SearchBar */}
+                            <SearchBar dataToLoad={this.DestinationService} dataKey={'destinations'} setTravel={this.setTravel} />
 
-                            {/* <input type="text" className="form-control" placeholder="To" /> */}
                             <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
                         </Col>
                         <Col md={2}>
@@ -103,20 +140,20 @@ class IndexSearchPanel extends Component {
                     <Row className="row searchbox">
 
                         <Col md={3}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">Departure</small></span></label>
-                            <input type="date" className="form-control" placeholder="From" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Departure from date  </small></span></label>
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="From" id="departureDate" />
                         </Col>
                         <Col md={3}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">Return</small></span></label>
-                            <input type="date" className="form-control" placeholder="To" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Departure to date</small></span></label>
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="To" id="returnDate" />
                         </Col>
                         <Col md={2}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Adults(16+)</small></span></label>
-                            <input type="number" className="form-control" placeholder="Cabin Class" />
+                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="Cabin Class" name="adults" />
                         </Col>
                         <Col md={2}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Children</small></span></label>
-                            <input type="number" className="form-control" placeholder="Cabin Class" />
+                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="Cabin Class" name="children" />
                         </Col>
                         <Col md={2} >
                             <label className="checkbox-search" />
