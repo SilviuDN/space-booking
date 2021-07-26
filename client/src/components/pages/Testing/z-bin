@@ -1,3 +1,9 @@
+    Flight
+        .find({
+            $and: [{ "airport": new mongoose.Types.ObjectId(airport) }, { "destination": new mongoose.Types.ObjectId(destination) },
+            { "date": { $gte: fromDate } }, { "date": { $lte: toDate } }]
+        }) 
+ 
    <ResponsiveLine
         data={data}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}

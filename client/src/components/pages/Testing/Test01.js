@@ -2,6 +2,7 @@ import FlightsPerDestination from "./FlightsPerDestination"
 import RandomChart from "./RandomChart"
 import FlightsOccupationChart from "./FlightsOccupationChart"
 import SoldToCapacityComparation from "./SoldToCapacityComparation"
+import LinesChart from "./LinesChart"
 
 const Test01 = () => {
     return (
@@ -12,7 +13,7 @@ const Test01 = () => {
             <FlightsOccupationChart howManyDays={2}/>
             <FlightsOccupationChart howManyDays={3}/>
             <FlightsOccupationChart />
-            <SoldToCapacityComparation/>
+            <LinesChart/>
 
         </>
     )

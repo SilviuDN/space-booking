@@ -1,195 +1,130 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/line
-import { ResponsiveLine } from '@nivo/line'
-import React, { Component } from 'react';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
+import { Component } from "react";
 
+import FlightsService from '../../services/flights.service'
+import Spinner from "../FlightsPage/Spinner";
+import PieChart from "./PieChart";
+import BarChart from "./BarChart";
+import FlightCard from "../FlightsPage/FlightCard";
+// 
 
-const data = [
-    {
-      "id": "sold",
-      "color": "hsl(96, 70%, 50%)",
-      "data": [
-        {
-          "x": "plane",   //key - Data 
-          "y": 150        //value - soldTickets  
-        },
-        {
-          "x": "helicopter",
-          "y": 274
-        },
-        {
-          "x": "boat",
-          "y": 239
-        },
-        {
-          "x": "train",
-          "y": 290
-        },
-        {
-          "x": "subway",
-          "y": 172
-        },
-        {
-          "x": "bus",
-          "y": 208
-        },
-        {
-          "x": "car",
-          "y": 43
-        },
-        {
-          "x": "moto",
-          "y": 31
-        },
-        {
-          "x": "bicycle",
-          "y": 48
-        },
-        {
-          "x": "horse",
-          "y": 295
-        },
-        {
-          "x": "skateboard",
-          "y": 103
-        },
-        {
-          "x": "others",
-          "y": 296
+class SoldToCapacity extends Component {
+
+    constructor() {
+        super()
+        this.state = {
+            companies: undefined,
         }
-      ]
-    },
-    {
-        "id": "france",
-        "color": "hsl(168, 70%, 50%)",
-        "data": [
-          {
-            "x": "plane",
-            "y": 192
-          },
-          {
-            "x": "helicopter",
-            "y": 100
-          },
-          {
-            "x": "boat",
-            "y": 1
-          },
-          {
-            "x": "train",
-            "y": 260
-          },
-          {
-            "x": "subway",
-            "y": 4
-          },
-          {
-            "x": "bus",
-            "y": 296
-          },
-          {
-            "x": "car",
-            "y": 224
-          },
-          {
-            "x": "moto",
-            "y": 155
-          },
-          {
-            "x": "bicycle",
-            "y": 189
-          },
-          {
-            "x": "horse",
-            "y": 237
-          },
-          {
-            "x": "skateboard",
-            "y": 62
-          },
-          {
-            "x": "others",
-            "y": 127
-          }
+        this.flightsService = new FlightsService()
+    }
+
+    
+    loadFlights = () => {
+
+        this.flightsService
+            .getFlights()
+            .then(response => {
+              let {startDay, endDay} = this.params //POSIBILIDAD DE TENER UN SOLO PARAMETRO
+
+              // response.data
+
+
+
+                console.log(this.props.howManyDays)
+                let days = this.props.howManyDays || 30
+
+                const date = new Date();
+                const nowUnix = date.getTime();
+
+                const nextMonthUnix = nowUnix + days * 24 * 60 * 60 * 1000
+
+                // console.log(nowUnix)
+                // console.log(nextMonthUnix)
+                
+                const nextMonthFlights = response.data.filter(flight =>{
+                    let flightDate = new Date(flight.date)
+                    let flightDateUnix = flightDate.getTime()
+                    return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
+                })
+
+                // console.log(nextMonthFlights)
+                this.setState({ flights: nextMonthFlights })
+            //    this.setState({ flights: response.data })
+               console.log(this.state.flights)
+
+            })
+            .catch(err => console.log(err))
+    }
+
+    
+
+    // filterLastWeek = () => {
+
+    // }
+
+
+    componentDidMount = () => {
+        this.loadFlights()
+
+
+    }
+
+    calculateTotalSeats = (flights) => {
+        return flights.reduce( (acc, flight ) => acc + flight.capacity,0)
+    }
+
+
+    calculateSoldSeats(flights){
+        // return flights.reduce( (acc, flight ) => console.log(flight.soldTickets))
+        return flights.reduce( (acc, flight ) => acc + flight.soldTickets, 0)
+    }
+
+    calculateSeatsSituationData(flights){
+        const soldSeats = this.calculateSoldSeats(flights)
+        const availableSeats = this.calculateTotalSeats(flights) - soldSeats
+        const data = [
+            {
+                id: "sold",
+                label: "sold",
+                value: soldSeats,
+                color: "hsl(278, 70%, 50%)"
+            },
+            {
+                id: "available",
+                label: "available",
+                value: availableSeats,
+                color: "hsl(78, 70%, 50%)"
+            },
         ]
-      },
-    ]
+        return data
+    }
 
 
 
-export default class SoldToCapacityComparation extends Component {
-    // data = this.props.data
+
+
 
     render() {
-
-        // data={data}
         return (
-            <div style={{ height: '200px' }}>
-                   <ResponsiveLine
-        data={data}
-        margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
-        xScale={{ type: 'point' }}
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
-        axisTop={null}
-        axisRight={null}
-        axisBottom={{
-            orient: 'bottom',
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'transportation',
-            legendOffset: 36,
-            legendPosition: 'middle'
-        }}
-        axisLeft={{
-            orient: 'left',
-            tickSize: 5,
-            tickPadding: 5,
-            tickRotation: 0,
-            legend: 'count',
-            legendOffset: -40,
-            legendPosition: 'middle'
-        }}
-        pointSize={10}
-        pointColor={{ theme: 'background' }}
-        pointBorderWidth={2}
-        pointBorderColor={{ from: 'serieColor' }}
-        pointLabelYOffset={-12}
-        useMesh={true}
-        legends={[
-            {
-                anchor: 'bottom-right',
-                direction: 'column',
-                justify: false,
-                translateX: 100,
-                translateY: 0,
-                itemsSpacing: 0,
-                itemDirection: 'left-to-right',
-                itemWidth: 80,
-                itemHeight: 20,
-                itemOpacity: 0.75,
-                symbolSize: 12,
-                symbolShape: 'circle',
-                symbolBorderColor: 'rgba(0, 0, 0, .5)',
-                effects: [
-                    {
-                        on: 'hover',
-                        style: {
-                            itemBackground: 'rgba(0, 0, 0, .03)',
-                            itemOpacity: 1
-                        }
-                    }
-                ]
-            }
-        ]}
-    />
-            </div >
+
+            !this.state.flights
+            ?
+            <h1>Cargando</h1>
+            :
+            <>
+
+                {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
+                <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
+                <Spinner />
+
+
+                {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)}
+
+
+
+
+            </>
         )
     }
 }
+
+export default SoldToCapacity
