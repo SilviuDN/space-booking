@@ -4,6 +4,7 @@ import "./BuyFlightCard.css"
 
 
 import { Container, Card, Button, Row, Col} from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 
 
 class ReturnedFlightCard extends Component {
@@ -11,7 +12,7 @@ class ReturnedFlightCard extends Component {
     constructor() {
         super()
         this.state = {
-            flight: undefined
+            flight: undefined,
         }
         this.flightsService = new FlightsService()
     }
@@ -23,11 +24,9 @@ class ReturnedFlightCard extends Component {
         this.flightsService
             .getFlight(flight_id)
             .then(response => {
-                console.log("Zborul este: ", response.data)
                 this.setState({ 
                     flight: response.data
                 })
-                console.log("Zbor din stare: ", this.state.flight)
             })
             .catch(err => console.log(err))
     }
