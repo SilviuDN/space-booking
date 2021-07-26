@@ -12,6 +12,11 @@ const flightSchema = new Schema({
         // required: true,
     },
 
+    soldTickets: {
+        type: Number,
+        // required: true,
+    },
+
     flightNumber: {
         type: String,
         // required: true,

@@ -60,7 +60,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/destinations/:destination_id" exact render={(props) => <DestinationDetails {...props} />} />
 
             <Route path="/testing/01" exact render={() => <Test01 />} />
-            <Route path="/testing/02" exact render={() => <Test02 />} />
+            <Route path="/testing/02/:flight_id" exact render={(props) => <Test02 {...props}/>} />
 
 
 

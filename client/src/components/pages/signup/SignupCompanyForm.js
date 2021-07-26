@@ -50,7 +50,7 @@ class SignupCompanyForm extends Component {
         this.serviceAuth.newCompany(this.state.company, userId)
             .then(() => this.props.submitUserForm())
             .catch(err => {
-                this.props.showAlert('Something went wrong! Company not registered!')
+                // this.props.showAlert('Something went wrong! Company not registered!')
                 console.log(err)
             })
     }

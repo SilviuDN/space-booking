@@ -44,8 +44,6 @@ class AirportEdit extends Component {
                     },
                     name: response.data.name,
                     iata: response.data.code,
-
-
                 })
             }
             )
