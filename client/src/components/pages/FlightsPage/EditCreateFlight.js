@@ -260,7 +260,7 @@ class TempEdit extends Component {
                             onChange={e => this.handleSelect(e)}
                         >
                             <option value={this.state.currentAirport?._id}>
-                                {this.state.currentAirport ? this.state.currentAirport.name : 'Select Airport...'}
+                                {this.state.currentAirport ? this.state.currentAirport.name + ' (' + this.state.currentAirport.address.city + ')' : 'Select Airport...'}
                             </option>
 
                             {this.state.airports?.map(airport => {

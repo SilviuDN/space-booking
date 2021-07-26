@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Row, Col, Container, Button } from 'react-bootstrap';
+import { Row, Col, Container, Button, Form } from 'react-bootstrap';
 import RadioButton from '../../shared/RadioButtons/RadioButtons';
 import SearchBar from '../../shared/searchBox/searchBar';
 import AirportService from '../../services/AirportService';
@@ -12,12 +12,6 @@ class IndexSearchPanel extends Component {
         super()
         this.state = {
             radioButtons: {
-                1: '',
-                2: '',
-                3: '',
-                4: '',
-                5: '',
-                6: '',
             },
             checkBox: false,
         }
@@ -42,7 +36,8 @@ class IndexSearchPanel extends Component {
 
 
 
-    searchInput = (e) => {
+
+    handleFormSubmit = (e) => {
 
 
 
@@ -62,7 +57,7 @@ class IndexSearchPanel extends Component {
         return (
 
 
-            <div className='search-container '>
+            <Form onSubmit={this.handleFormSubmit} className='search-container '>
 
                 <Container  >
 
@@ -88,7 +83,7 @@ class IndexSearchPanel extends Component {
                             <SearchBar dataToLoad={this.AirportService} dataKey={'airports'} />
 
                             {/* <input type="text" className="form-control" placeholder="From" /> */}
-                            <input type="checkbox" placeholder="From" /> <span className="span">Xxxxx</span>
+                            <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
                         </Col>
                         <Col md={5}>
                             <label className="checkbox-search" ><span className="span"><small className="small">To</small></span></label>
@@ -96,9 +91,10 @@ class IndexSearchPanel extends Component {
                             <SearchBar dataToLoad={this.DestinationService} dataKey={'destinations'} />
 
                             {/* <input type="text" className="form-control" placeholder="To" /> */}
-                            <input type="checkbox" placeholder="From" /> <span className="span">Xxxxx</span>
+                            <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
                         </Col>
                         <Col md={2}>
+                            {/* SELECT */}
                             <label className="checkbox-search" ><span className="span"><small className="small">Cabin class</small></span></label>
                             <input type="text" className="form-control" placeholder="Cabin Class" />
                             <label />
@@ -107,20 +103,20 @@ class IndexSearchPanel extends Component {
                     <Row className="row searchbox">
 
                         <Col md={3}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">glgl</small></span></label>
-                            <input type="text" className="form-control" placeholder="From" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Departure</small></span></label>
+                            <input type="date" className="form-control" placeholder="From" />
                         </Col>
                         <Col md={3}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">glgl</small></span></label>
-                            <input type="text" className="form-control" placeholder="To" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Return</small></span></label>
+                            <input type="date" className="form-control" placeholder="To" />
                         </Col>
                         <Col md={2}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">glgl</small></span></label>
-                            <input type="text" className="form-control" placeholder="Cabin Class" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Adults(16+)</small></span></label>
+                            <input type="number" className="form-control" placeholder="Cabin Class" />
                         </Col>
                         <Col md={2}>
-                            <label className="checkbox-search" ><span className="span"><small className="small">glgl</small></span></label>
-                            <input type="text" className="form-control" placeholder="Cabin Class" />
+                            <label className="checkbox-search" ><span className="span"><small className="small">Children</small></span></label>
+                            <input type="number" className="form-control" placeholder="Cabin Class" />
                         </Col>
                         <Col md={2} >
                             <label className="checkbox-search" />
@@ -129,7 +125,7 @@ class IndexSearchPanel extends Component {
 
                     </Row>
                 </Container>
-            </div>
+            </Form>
         )
 
 

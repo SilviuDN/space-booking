@@ -34,6 +34,9 @@ router.get('/airportsData/:string', (req, res) => {
         "$or": [
             { "name": { $regex: string, $options: 'i' } },
             { "iata": { $regex: string, $options: 'i' } },
+            { "address.city": { $regex: string, $options: 'i' } },
+            { "address.state": { $regex: string, $options: 'i' } },
+            { "address.country": { $regex: string, $options: 'i' } },
         ]
     })
         .then(response => res.send(response))

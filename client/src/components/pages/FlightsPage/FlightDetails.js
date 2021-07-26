@@ -74,7 +74,7 @@ class FlightDetails extends Component {
                             <hr></hr>
 
                             <p>Seats: {this.state.flight.capacity}</p>
-                            <p>Airport: {this.state.flight.airport}</p>
+                            <p>Airport: {this.state.flight.airport._id}</p>
 
                             <hr></hr>
 

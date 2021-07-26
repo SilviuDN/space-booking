@@ -19,6 +19,8 @@ class searchBar extends Component {
 
     handleChange = selectedOption => {
 
+        console.log(selectedOption)
+
         this.setState({ selectedOption })
 
     }
@@ -52,6 +54,7 @@ class searchBar extends Component {
         service
             .searchBoxData(searchString)
             .then(response => {
+                console.log(response)
                 this.setState({ [this.props.dataKey]: response.data })
             })
 
@@ -126,11 +129,23 @@ class searchBar extends Component {
 
 
         const options = this.state[this.props.dataKey]?.map(
-            ({ name, _id }) => {
-                return {
-                    id: _id,
-                    value: name
+            (data) => {
+
+                const { name, _id } = data
+
+                if (data.address) {
+                    const { city, country } = data.address
+                    return {
+                        id: _id,
+                        value: name + ' - ' + city + ' (' + country + ')',
+                    }
+                } else {
+                    return {
+                        id: _id,
+                        value: name,
+                    }
                 }
+
             }
         )
 
