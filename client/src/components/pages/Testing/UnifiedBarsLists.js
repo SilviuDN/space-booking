@@ -10,12 +10,7 @@ class UnifiedBarsLists extends Component {
     constructor() {
         super()
         this.state = {
-            // type: 'company',
-            // type: 'destination',
-            // type: 'airport',
-            // type: 'flight',
             type: undefined,
-
             listForBarsChart: undefined,
         }
         this.companyService = new CompanyService()
@@ -24,28 +19,16 @@ class UnifiedBarsLists extends Component {
         this.flightService = new FlightsService()
     }
 
-
-    // <UnifiedList  list={this.setList} type={type}/>
-
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
-        // this.setState({ listForBarsChart: this.props.listForBarsChart })
-
-        // this.setState({
-        //     type: this.props.type
-        // })
-        console.log(this.props.type)
-
+        
         if(this.props.type == 'company'){
         this.companyService
             .getCompanies()
             .then(response => {
-                // console.log('antes', response.data)
                 this.setState({ 
                     type: 'company',
                     listForBarsChart: response.data })
-                // console.log('despues',this.state)
-                // console.log('despues',this.state.listForBarsChart)
             } )
             .catch(err => console.log(err))            
         }
@@ -54,11 +37,9 @@ class UnifiedBarsLists extends Component {
             this.destinationService
                 .getDestinations()
                 .then(response => {
-                    // console.log('antes', response.data)
                     this.setState({ 
                         type: 'destination', 
                         listForBarsChart: response.data })
-                    // console.log('despues',this.state.listForBarsChart)
                 } )
                 .catch(err => console.log(err))            
             }
@@ -67,11 +48,9 @@ class UnifiedBarsLists extends Component {
             this.airportService
                 .getAirports()
                 .then(response => {
-                    // console.log('antes', response.data)
                     this.setState({
                         type: 'airport', 
                         listForBarsChart: response.data.slice(0,6) })
-                    // console.log('despues',this.state.listForBarsChart)
                 } )
                 .catch(err => console.log(err))            
             }
@@ -80,7 +59,6 @@ class UnifiedBarsLists extends Component {
             this.flightService
                 .getFlights()
                 .then(response => {
-                    // console.log('antes', response.data)
                     this.setState({ 
                         type: 'flight', 
                         listForBarsChart: response.data })
@@ -142,7 +120,6 @@ class UnifiedBarsLists extends Component {
         let data        
         data = []
         this.state.listForBarsChart.forEach(elem => this.populateDataString(data, elem))     
-        // console.log(data)
         return data 
     }
 
@@ -154,7 +131,6 @@ class UnifiedBarsLists extends Component {
 
     render() {
 
-        // console.log(this.createData(this.state.type))
 
         return (
 
