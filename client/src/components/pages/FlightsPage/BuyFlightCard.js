@@ -77,7 +77,12 @@ class ReturnedFlightCard extends Component {
                             </Row>
 
                             <Row>
-                                <p>Full price: {this.numberWithCommas(this.state.flight?.price)}</p>
+                                <Col xs={5}>
+                                    <p>Full price: {this.numberWithCommas(this.state.flight?.price)}</p>
+                                </Col>
+                                <Col xs={2}></Col>
+                                <Col xs={5}><strong>Departure:</strong> <p>{this.state.flight?.date.split('T')[0]}</p> </Col>
+
                             </Row>
                         </Col>
 
