@@ -1,12 +1,6 @@
-// install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/bullet
 import { ResponsiveBullet } from '@nivo/bullet'
 import React, { Component } from 'react';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
 
 
 export default class BarChart extends Component {
@@ -29,9 +23,9 @@ export default class BarChart extends Component {
           "measures": [
             0
           ],
-          "markers": [
-            marker
-          ]
+          // "markers": [
+          //   marker
+          // ]
         },
       ]
 
@@ -45,7 +39,7 @@ export default class BarChart extends Component {
                 titleOffsetX={-70}
                 measureSize={0.4}
             />
-            <p>Only {capacity - soldTickets} seats left</p>
+            <p style={{ marginTop: '10px', fontSize: '10px'}}>Only {capacity - soldTickets} seats left</p>
 
         </div >
         )

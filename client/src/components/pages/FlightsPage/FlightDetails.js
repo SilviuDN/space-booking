@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
+import BarChart from '../Charts/BarChart'
 
 
 import { Container, Row, Col, } from 'react-bootstrap'
@@ -67,7 +68,8 @@ class FlightDetails extends Component {
                     <Row className="justify-content-around">
                         <Col md={6}>
                             <img src={this.state.flight.destination?.image} alt=''></img>
-                            {/* <Card.Img variant="top" src={this.state.flight.destination?.image} /> */}
+                            <div><BarChart key={this.state.flight._id} {...this.state.flight} /></div>
+                            {/* <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={this.state.flight._id} {...this.state.flight} /></div> */}
                             <h3>Destination: {this.state.flight.destination?.name}</h3>
                             <p>Price: ${this.state.flight.price}</p>
 
