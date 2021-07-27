@@ -23,9 +23,9 @@ export default class BarChart extends Component {
           "measures": [
             0
           ],
-          "markers": [
-            marker
-          ]
+          // "markers": [
+          //   marker
+          // ]
         },
       ]
 
@@ -39,7 +39,7 @@ export default class BarChart extends Component {
                 titleOffsetX={-70}
                 measureSize={0.4}
             />
-            <p>Only {capacity - soldTickets} seats left</p>
+            <p style={{ marginTop: '10px', fontSize: '10px'}}>Only {capacity - soldTickets} seats left</p>
 
         </div >
         )

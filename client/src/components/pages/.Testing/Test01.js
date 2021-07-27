@@ -3,10 +3,18 @@ import FlightsOccupationChart from "../Charts/FlightsOccupationChart"
 // import RadarCompaniesChart from "./bin/RadarCompaniesChart"
 // import RadarFlightsChart from "./RadarFlightsChart"
 import BarsLists from "../Charts/BarsLists"
+import Star from "../RatingComponent/Star"
+import Rating from "../RatingComponent/Rating"
+
+import '../RatingComponent/Rating.css'
 
 const Test01 = () => {
     return (
         <>
+
+        <div id="root">
+            <Rating stars={4} />
+        </div>
 
             <h3>BarsChart rating for each company:</h3>
             {/* <BarsLists/> */}

@@ -1,0 +1,13 @@
+/* source https://codesandbox.io/s/62x458v5pn?file=/src/Star.js */
+
+  .Star {
+    font-size: 2em;
+    color: #cfd8dc;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+ 
+  .Rating {
+    text-align: center;
+  }
+  

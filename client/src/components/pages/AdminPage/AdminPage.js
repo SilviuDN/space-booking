@@ -121,6 +121,9 @@ class AdminPage extends Component {
 
                         <Col xs={5} id="">
                         {
+                            // ["company", "flights", "destination", "airports"].includes(this.state.listState) ? 
+                            //     <BarsLists  type={this.state.listState} setList={this.setList} />:null
+                            
                                 this.state.listState === 'company' ? <BarsLists  type='company' setList={this.setList} /> :
                                     this.state.listState === 'flights' ? <BarsLists  type='flights' setList={this.setList} /> :
                                         this.state.listState === 'destinations' ? <BarsLists  type='company' setList={this.setList} /> :
