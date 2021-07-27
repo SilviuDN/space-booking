@@ -38,7 +38,7 @@ const userSchema = new Schema({
 
   typeOfId: {
     type: String,
-    enum: ['dni', 'passport', 'other'],
+    enum: ['DNI', 'PASSPORT', 'OTHER'],
   },
 
   phone: {
