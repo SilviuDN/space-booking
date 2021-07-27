@@ -19,6 +19,6 @@ class AirportService {
 
     searchBoxData = (searchString) => this.app.get(`/airportsData/${searchString}`)
 
-    searchAirport = (string) => this.app.get(`airports/search/${string}`)
+    searchAirport = (string) => this.app.get(`/search/${string}`)
 }
 export default AirportService
