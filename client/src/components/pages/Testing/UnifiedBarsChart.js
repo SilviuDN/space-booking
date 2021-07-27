@@ -57,10 +57,13 @@ import React, { Component } from 'react';
 
 
 export default class UnifiedBarsChart extends Component {
+
    
 
     render() {
 
+
+    let ChartType = this.props.type
       // console.log(typeof data2 === typeof this.props.data)
       // console.log(shallowEqual(data2, this.props.data))
 
@@ -108,20 +111,6 @@ export default class UnifiedBarsChart extends Component {
                 spacing: 10
             }
         ]}
-        // fill={[
-        //     {
-        //         match: {
-        //             id: 'fries'
-        //         },
-        //         id: 'dots'
-        //     },
-        //     {
-        //         match: {
-        //             id: 'sandwich'
-        //         },
-        //         id: 'lines'
-        //     }
-        // ]}
         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
         axisTop={null}
         axisRight={null}

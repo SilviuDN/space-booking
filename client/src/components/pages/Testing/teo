@@ -1,0 +1,14 @@
+//(component, props) => <component props />
+
+(componente, props, condition) => condition ?<Componente props />
+
+ resolveType(listState) return 
+
+ const Container  = () > {
+    shouldRender(type) {
+        
+    }
+
+    return shouldRender()
+}
+

@@ -10,7 +10,7 @@ const Test01 = () => {
     return (
         <>
 
-            <h3>UnifiedBarsChart rating for each company:</h3>
+            {/* <h3>UnifiedBarsChart rating for each company:</h3>
             <UnifiedBarsLists/>
 
             <FlightsOccupationChart howManyDays={1}/>
@@ -28,11 +28,22 @@ const Test01 = () => {
             <BarsCompanies/>
 
 
-            <h3>UnifiedBarsChart rating for each company:</h3>
+            <h3>UnifiedBarsChart rating for each company:</h3> */}
 
-            <UnifiedBarsLists/>
+
+            {/* <UnifiedBarsLists/> */}
+                        
+            <h3>Airport</h3>
+            <UnifiedBarsLists  type='airport'/>
+
+            <h3>Company</h3>
+            <UnifiedBarsLists  type='company'/>
             
-            {/* <UnifiedBarsLists  type='destination'/> */}
+            <h3>Destination</h3>
+            <UnifiedBarsLists  type='destination'/>
+            
+            <h3>Flight</h3>
+            <UnifiedBarsLists  type='flight'/>
 
 
             {/* <RadarCompaniesChart/>

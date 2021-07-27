@@ -44,13 +44,13 @@ class UnifiedBarsLists extends Component {
                 this.setState({ 
                     type: 'company',
                     listForBarsChart: response.data })
-                // console.log('despues',this.state)
+                console.log('despues',this.state)
                 // console.log('despues',this.state.listForBarsChart)
             } )
             .catch(err => console.log(err))            
         }
 
-        if(this.props.type == 'destination'){
+        if(this.state.type == 'destination'){
             this.destinationService
                 .getDestinations()
                 .then(response => {
@@ -63,7 +63,7 @@ class UnifiedBarsLists extends Component {
                 .catch(err => console.log(err))            
             }
 
-        if(this.props.type == 'airport'){
+        if(this.state.type == 'airport'){
             this.airportService
                 .getAirports()
                 .then(response => {
@@ -76,7 +76,7 @@ class UnifiedBarsLists extends Component {
                 .catch(err => console.log(err))            
             }
 
-        if(this.props.type == 'flight'){
+        if(this.state.type == 'flight'){
             this.flightService
                 .getFlights()
                 .then(response => {
