@@ -1,10 +1,11 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container, Row, Col, Image } from 'react-bootstrap'
 import FloatingLabel from 'react-bootstrap-floating-label'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
 import UploadService from '../../services/upload.service'
+import './signUp.css'
 
 class SignupUserForm extends Component {
     constructor() {
@@ -17,7 +18,7 @@ class SignupUserForm extends Component {
                 name: '',
                 surname: '',
                 personalId: '',
-                typeofId: 'dni',
+                typeOfId: 'DNI',
                 phone: '',
                 number: '',
                 city: '',
@@ -116,95 +117,106 @@ class SignupUserForm extends Component {
     render = () => {
         return (
             <Container>
+                <br />
                 <Form onSubmit={this.handleSubmit} className={'pb-5'}>
-                    {/* <Form.Group className="mb-3" controlId="formBasicEmail"> */}
-                    <FloatingLabel controlId="email"
-                        label="Email address"
-                        className="mb-3"
 
-                    >
-                        {/* <Form.Label>Email address</Form.Label> */}
-                        <Form.Control onChange={this.handleInput} value={this.state.email} type="email" placeholder="Enter email" name='email' />
-                        {/* <Form.Text className="text-muted">
-                                This email will be your user account
-                            </Form.Text> */}
-                    </FloatingLabel>
-                    {/* </Form.Group> */}
-
-                    {/* <Form.Group className="mb-3" controlId="formBasicPassword"> */}
-                    {/* <Form.Label>Password</Form.Label> */}
-                    <FloatingLabel controlId="pwd"
-                        label="Password"
-                        className="mb-3"
-                        type="password"
-
-                    >
-                        <Form.Control onChange={this.handleInput} value={this.state.pwd} type="password" placeholder="Password" name='pwd' />
-                        {/* </Form.Group> */}
-                    </FloatingLabel>
-
-                    {/* <Form.Group className="mb-3" controlId="name"> */}
-                    <FloatingLabel controlId="pwd"
-                        label="Name"
-                        className="mb-3"
-                        type="text"
-
-                    >
-                        {/* <Form.Label>Name</Form.Label> */}
-                        <Form.Control onChange={this.handleInput} value={this.state.name} type="text" placeholder="name" name='name' />
-                        {/* </Form.Group> */}
-                    </FloatingLabel>
-
-                    <FloatingLabel controlId="pwd"
-                        label="Surname"
-                        className="mb-3"
-                        type="text"
-
-                    >
-                        {/* <Form.Group className="mb-3" controlId="surname">
-                        <Form.Label>Surname</Form.Label> */}
-                        <Form.Control onChange={this.handleInput} value={this.state.text} type="text" placeholder="Surname" name='surname' />
-                        {/* </Form.Group> */}
-                    </FloatingLabel>
+                    <Form.Group as={Col} controlId="formBasicEmail" md={{ span: 8, offset: 2 }} className="mb-3">
 
 
+                        <Form.Control onChange={this.handleInput} value={this.state.email} type="email" placeholder="E-mail" name='email' />
+                        <Form.Text className="text-muted">
+                            This email will be your user account.
+                        </Form.Text>
 
-                    <Form.Group controlId="typeofId">
-                        <Form.Control
-                            as="select"
-                            custom
-                            value={this.state.typeofId}
-                            onChange={this.handleInput}
-                        >
-                            <option>dni</option>
-                            <option>passport</option>
-                        </Form.Control>
                     </Form.Group>
-                    <FloatingLabel controlId="personalID"
-                        label="Personal ID"
-                        className="mb-3"
-                        type="text"
 
-                    >
-                        {/* <Form.Group className="mb-3" controlId="personalId"> */}
-                        {/* <Form.Label></Form.Label> */}
-                        <Form.Control onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="personalId" name='personalId' />
-                        {/* </Form.Group> */}
-                    </FloatingLabel>
+                    <Form.Group as={Col} controlId="formBasicPassword" md={{ span: 8, offset: 2 }} className="mb-4">
 
-                    <FloatingLabel controlId="phone"
-                        label="Phone"
-                        className="mb-3"
-                        type="text"
+                        <Form.Control onChange={this.handleInput} value={this.state.pwd} type="password" placeholder="Password" name='pwd' />
+                    </Form.Group>
 
-                    >
-                        {/* <Form.Group className="mb-3" controlId="phone"> */}
-                        <Form.Label>Phone number</Form.Label>
-                        <Form.Control onChange={this.handleInput} value={this.state.phone} type="text" placeholder="phone" name='phone' />
-                        {/* </Form.Group> */}
-                    </FloatingLabel>
-                    <Form.Label>Address
-                        <Form.Group className="d-flex mb-2">
+
+                    <Form.Group as={Col} controlId="name" md={{ span: 8, offset: 2 }} className="mb-4">
+
+                        <Form.Control onChange={this.handleInput} value={this.state.name} type="text" placeholder="Name" name='name' />
+                    </Form.Group>
+                    <Form.Group as={Col} controlId="surname" md={{ span: 8, offset: 2 }} className="mb-4">
+
+                        <Form.Control onChange={this.handleInput} value={this.state.text} type="text" placeholder="Surname" name='surname' />
+                    </Form.Group>
+
+                    <Row >
+                        <Form.Group as={Col} controlId="typeofId" md={{ span: 2, offset: 2 }} className="mb-4">
+                            <Form.Control
+                                as="select"
+                                custom
+                                value={this.state.typeofId}
+                                onChange={this.handleInput}
+                                className="form-select"
+                                style={{ color: "gray" }}
+                            >
+
+                                <option>DNI</option>
+                                <option>PASSPORT</option>
+                                <option>OTHER</option>
+                            </Form.Control>
+
+                        </Form.Group>
+
+
+                        <Form.Group as={Col} controlId="personalId" md={6} className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="Number of personal ID" name='personalId' />
+                        </Form.Group>
+                    </Row>
+                    <Form.Group as={Col} controlId="phone" md={{ span: 8, offset: 2 }} className="mb-4">
+
+
+                        <Form.Control onChange={this.handleInput} value={this.state.phone} type="text" placeholder="Phone + " name='phone' />
+                        <br />
+
+                        <hr />
+                    </Form.Group>
+
+
+
+
+
+
+
+                    <Row>
+                        <Form.Group as={Col} md={{ span: 4, offset: 2 }} controlId="street" className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="Street" name='street' />
+                        </Form.Group>
+
+                        <Form.Group as={Col} md={2} controlId="number" className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.number} id='number' type="text" placeholder="Number" name='number' />
+                        </Form.Group>
+                        <Form.Group as={Col} md={2} controlId="zipCode" className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.zipCode} id='zipCode' type="text" placeholder="ZipCode" name='zipCode' />
+                        </Form.Group>
+                    </Row>
+
+
+
+                    <Row>
+
+                        <Form.Group as={Col} controlId="city" md={{ span: 4, offset: 2 }} className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="country" md={4} className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' />
+
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="phone" md={{ span: 8, offset: 2 }} className="mb-4">
+                            <hr />
+                        </Form.Group>
+                    </Row>
+
+                    {/* <Form.Group className="d-flex mb-2">
                             <Form.Control onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="street" name='street' />
 
                             <Form.Control onChange={this.handleInput} value={this.state.number} id='number' type="text" placeholder="number" name='number' />
@@ -214,23 +226,36 @@ class SignupUserForm extends Component {
                             <Form.Control onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' />
 
                             <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="country" name='country' />
+                        </Form.Group> */}
+
+                    <Row  >
+                        <Form.Group as={Col} md={{ span: 2, offset: 2 }} className="mb-3 align-self-center">
+                            <Form.Label><h4>Profile image</h4></Form.Label>
+
                         </Form.Group>
-                    </Form.Label>
+                        <Form.Group as={Col} md={4} className="mb-3  align-self-center">
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' controlId="formFile" />
+                        </Form.Group>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' />
-                    </Form.Group>
+                        <Form.Group as={Col} md={4} controlId="imagePreview" className="mb-4">
+                            {this.state.image_preview ? <Image src={this.state.image_preview} roundedCircle fluid alt="profile" style={{
+                                height: '120px', margin: "0% 11%"
+                            }} /> : null}
 
-                    {this.state.image_preview ? <img src={this.state.image_preview} alt="profile" style={{ width: '150px', height: '120px' }} /> : null}
+                        </Form.Group>
 
-                    {!this.props.companyRender ?
-                        <Button variant="primary" type="submit" className="d-block">
-                            Submit
-                        </Button>
+                        {!this.props.companyRender ?
 
-                        : null
-                    }
+                            <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3 align-self-center">
+                                <hr />
+                                <Button bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }} >
+                                    Submit
+                                </Button>
+                            </Form.Group>
+                            : null
+                        }
+
+                    </Row>
 
                 </Form>
             </Container >

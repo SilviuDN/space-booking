@@ -59,12 +59,11 @@ class Login extends Component {
                         <Form onSubmit={this.handleFormSubmit}>
 
                             <Form.Group controlId="email">
-                                {/* <FloatingLabel controlId="email"
-                                    label="Email address"
-                                    className="mb-3"
-                                    type="email"
-                                    value={this.state.email} onChange={this.handleInputChange} name="email"
-                                > */}
+                                {/* <FloatingLabel
+                                controlId="email"
+                                label="Email address"
+                                type="email" value={this.state.email} onChange={this.handleInputChange} name="email"
+                            /> */}
                                 <Form.Label>E-mail</Form.Label>
                                 <Form.Control type="email" value={this.state.email} onChange={this.handleInputChange} name="email" />
 
@@ -102,7 +101,7 @@ class Login extends Component {
                     </Col>
                 </Row>
 
-            </Container>
+            </Container >
 
         )
     }
