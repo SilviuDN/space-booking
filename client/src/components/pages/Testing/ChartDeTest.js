@@ -11,33 +11,32 @@ import React, { Component } from 'react';
 
 
 
-const  data = [
-    {
-      "id": "sold",
-      "color": "hsl(96, 70%, 50%)",
-      "data": [
-        {
-          "x": "Ironhack",   //key - Data 
-          "y": 150        //value - soldTickets  
-        },
-        {
-          "x": "adas",
-          "y": 274
-        },
-        {
-          "x": "boat",
-          "y": 239
-        },
-        {
-          "x": "train",
-          "y": 290
-        },
+// const  data = [
+//     {
+//       "id": "sold",
+//       "color": "hsl(96, 70%, 50%)",
+//       "data": [
+//         {
+//           "x": "Ironhack",   //key - Data 
+//           "y": 150        //value - soldTickets  
+//         },
+//         {
+//           "x": "adas",
+//           "y": 274
+//         },
+//         {
+//           "x": "boat",
+//           "y": 239
+//         },
+//         {
+//           "x": "train",
+//           "y": 290
+//         },
 
 
-      ]
-    },
-
-  ]
+//       ]
+//     },
+//   ]
 
 
 
@@ -48,8 +47,8 @@ export default class ChartDeTest extends Component {
       // console.dir(typeof data === typeof this.props.data[0])
       // console.dir(typeof this.props.data[0])
 
-      console.log("this.props", this.props.data)
-      this.props.data[0].data.forEach(elem => console.log(elem.x, typeof elem.x, elem.y, typeof elem.y))  
+      // console.log("this.props", this.props.data)
+      // this.props.data[0].data.forEach(elem => console.log(elem.x, typeof elem.x, elem.y, typeof elem.y))  
         
         return (
           // <h4>succes</h4>
@@ -70,7 +69,7 @@ export default class ChartDeTest extends Component {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'transportation',
+                legend: 'company',
                 legendOffset: 36,
                 legendPosition: 'middle'
               }}
@@ -79,7 +78,7 @@ export default class ChartDeTest extends Component {
                 tickSize: 5,
                 tickPadding: 5,
                 tickRotation: 0,
-                legend: 'count',
+                legend: 'rating',
                 legendOffset: -40,
                 legendPosition: 'middle'
               }}
@@ -121,214 +120,3 @@ export default class ChartDeTest extends Component {
     }
 }
 
-
-
-const  data3 = [
-  {
-    "id": "sold",
-    "color": "hsl(96, 70%, 50%)",
-    "data": [
-      {
-        "x": "plane",   //key - Data 
-        "y": 150        //value - soldTickets  
-      },
-      {
-        "x": "helicopter",
-        "y": 274
-      },
-      {
-        "x": "boat",
-        "y": 239
-      },
-      {
-        "x": "train",
-        "y": 290
-      },
-      {
-        "x": "subway",
-        "y": 172
-      },
-      {
-        "x": "bus",
-        "y": 208
-      },
-      {
-        "x": "car",
-        "y": 43
-      },
-      {
-        "x": "moto",
-        "y": 31
-      },
-      {
-        "x": "bicycle",
-        "y": 48
-      },
-      {
-        "x": "horse",
-        "y": 295
-      },
-      {
-        "x": "skateboard",
-        "y": 103
-      },
-      {
-        "x": "others",
-        "y": 296
-      }
-    ]
-  },
-
-    {
-      "id": "france",
-      "color": "hsl(168, 70%, 50%)",
-      "data": [
-        {
-          "x": "plane",
-          "y": 192
-        },
-        {
-          "x": "helicopter",
-          "y": 100
-        },
-        {
-          "x": "boat",
-          "y": 1
-        },
-        {
-          "x": "train",
-          "y": 260
-        },
-        {
-          "x": "subway",
-          "y": 4
-        },
-        {
-          "x": "bus",
-          "y": 296
-        },
-        {
-          "x": "car",
-          "y": 224
-        },
-        {
-          "x": "moto",
-          "y": 155
-        },
-        
-      ]
-    },
-]
-
-
-
-const data2 = [
-    {
-      "id": "sold",
-      "color": "hsl(96, 70%, 50%)",
-      "data": [
-        {
-          "x": "plane",   //key - Data 
-          "y": 150        //value - soldTickets  
-        },
-        {
-          "x": "helicopter",
-          "y": 274
-        },
-        {
-          "x": "boat",
-          "y": 239
-        },
-        {
-          "x": "train",
-          "y": 290
-        },
-        {
-          "x": "subway",
-          "y": 172
-        },
-        {
-          "x": "bus",
-          "y": 208
-        },
-        {
-          "x": "car",
-          "y": 43
-        },
-        {
-          "x": "moto",
-          "y": 31
-        },
-        {
-          "x": "bicycle",
-          "y": 48
-        },
-        {
-          "x": "horse",
-          "y": 295
-        },
-        {
-          "x": "skateboard",
-          "y": 103
-        },
-        {
-          "x": "others",
-          "y": 296
-        }
-      ]
-    },
-    {
-        "id": "france",
-        "color": "hsl(168, 70%, 50%)",
-        "data": [
-          {
-            "x": "plane",
-            "y": 192
-          },
-          {
-            "x": "helicopter",
-            "y": 100
-          },
-          {
-            "x": "boat",
-            "y": 1
-          },
-          {
-            "x": "train",
-            "y": 260
-          },
-          {
-            "x": "subway",
-            "y": 4
-          },
-          {
-            "x": "bus",
-            "y": 296
-          },
-          {
-            "x": "car",
-            "y": 224
-          },
-          {
-            "x": "moto",
-            "y": 155
-          },
-          {
-            "x": "bicycle",
-            "y": 189
-          },
-          {
-            "x": "horse",
-            "y": 237
-          },
-          {
-            "x": "skateboard",
-            "y": 62
-          },
-          {
-            "x": "others",
-            "y": 127
-          }
-        ]
-      },
-    ]

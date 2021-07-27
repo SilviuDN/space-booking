@@ -4,7 +4,6 @@ import FlightsService from '../../services/flights.service'
 import Spinner from "../FlightsPage/Spinner";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
-import FlightCard from "../FlightsPage/FlightCard";
 
 
 class FlightsOccupationChart extends Component {
@@ -23,7 +22,7 @@ class FlightsOccupationChart extends Component {
         this.flightsService
             .getFlights()
             .then(response => {
-                console.log(this.props.howManyDays)
+                // console.log(this.props.howManyDays)
                 let days = this.props.howManyDays || 30
 
                 const date = new Date();
@@ -43,7 +42,7 @@ class FlightsOccupationChart extends Component {
                 // console.log(nextMonthFlights)
                 this.setState({ flights: nextMonthFlights })
             //    this.setState({ flights: response.data })
-               console.log(this.state.flights)
+            //    console.log(this.state.flights)
 
             })
             .catch(err => console.log(err))
@@ -107,10 +106,12 @@ class FlightsOccupationChart extends Component {
             <>
 
                 {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
+                <hr></hr>
+                <h3>PieChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays}:</h3>
                 <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
                 <Spinner />
 
-
+                <h3>BarChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays} for each available flight:</h3>
                 {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)}
 
 

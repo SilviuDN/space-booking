@@ -1,16 +1,87 @@
 // install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/bar
 import { ResponsiveBar } from '@nivo/bar'
+import React, { Component } from 'react';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
 // website examples showcase many properties,
 // you'll often use just a few of them.
-const MyResponsiveBar = ({ data /* see data tab */ }) => (
+
+// const data2 = [
+//   {
+//       "x": "Ironhack",
+//       "y": 4,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "Ironhack2",
+//       "y": 3,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "SpaceBooking",
+//       "y": 3,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "ironhack3",
+//       "y": 4,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "c",
+//       "y": 4,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "d",
+//       "y": 4,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "a",
+//       "y": 2,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   },
+//   {
+//       "x": "SilviuCompany",
+//       "y": 4,
+//       "yColor": "hsl(19, 70%, 50%)",
+//   }
+// ]
+
+
+
+
+
+
+export default class BarsChart extends Component {
+   
+
+    render() {
+
+      // console.log(typeof data2 === typeof this.props.data)
+      // console.log(shallowEqual(data2, this.props.data))
+
+
+      // console.log("this.props in BarsChart", this.props.data)
+      
+      // this.props.data.forEach(elem => console.log(elem.x, typeof elem.x, elem.y, typeof elem.y, elem.yColor))  
+        
+        return (
+          // <h4>succes</h4>
+          <div style={{ height: '200px' }}>
     <ResponsiveBar
-        data={data}
-        keys={[ 'hot dog', 'burger', 'sandwich', 'kebab', 'fries', 'donut' ]}
-        indexBy="country"
+
+
+        data={this.props.data}
+
+
+        // data={data2}
+        keys={[ 'y',]}
+        indexBy="x"
+
         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
         padding={0.3}
         valueScale={{ type: 'linear' }}
@@ -37,20 +108,20 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
                 spacing: 10
             }
         ]}
-        fill={[
-            {
-                match: {
-                    id: 'fries'
-                },
-                id: 'dots'
-            },
-            {
-                match: {
-                    id: 'sandwich'
-                },
-                id: 'lines'
-            }
-        ]}
+        // fill={[
+        //     {
+        //         match: {
+        //             id: 'fries'
+        //         },
+        //         id: 'dots'
+        //     },
+        //     {
+        //         match: {
+        //             id: 'sandwich'
+        //         },
+        //         id: 'lines'
+        //     }
+        // ]}
         borderColor={{ from: 'color', modifiers: [ [ 'darker', 1.6 ] ] }}
         axisTop={null}
         axisRight={null}
@@ -58,7 +129,7 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'country',
+            legend: 'Company',
             legendPosition: 'middle',
             legendOffset: 32
         }}
@@ -66,7 +137,7 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: 'food',
+            legend: 'rating',
             legendPosition: 'middle',
             legendOffset: -40
         }}
@@ -98,4 +169,7 @@ const MyResponsiveBar = ({ data /* see data tab */ }) => (
             }
         ]}
     />
-)
+    </div >
+    )
+}
+}

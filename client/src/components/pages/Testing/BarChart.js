@@ -13,7 +13,7 @@ export default class BarChart extends Component {
 
     render() {
 
-      if(this.props.capacity == undefined) return <p>!</p>
+      if(this.props.capacity === undefined) return <p>!</p>
 
       let {capacity, soldTickets} = this.props
       let marker = 0.9 * capacity

@@ -1,8 +1,8 @@
 import { Component } from "react";
 import CompanyService from "../../../services/company.service";
-import RadarChart from "./RadarCompaniesChart";
+import BarsChart from "./BarsChart";
 
-class RadarCompanies extends Component {
+class BarsCompanies extends Component {
 
     constructor() {
         super()
@@ -19,7 +19,6 @@ class RadarCompanies extends Component {
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
         // this.setState({ listForLinesChart: this.props.listForLinesChart })
-
         this.companyService
             .getCompanies()
             .then(response => {
@@ -37,7 +36,7 @@ class RadarCompanies extends Component {
         // console.log(xValue)
         let yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
         // console.log(yValue)
-        let yColorValue = Math.floor(Math.random()*200)
+        // let yColorValue = Math.floor(Math.random()*200)
 
         data.push(
             {
@@ -93,4 +92,4 @@ class RadarCompanies extends Component {
     }
 }
 
-export default RadarCompanies
+export default BarsCompanies

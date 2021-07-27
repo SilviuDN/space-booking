@@ -1,15 +1,9 @@
 import { Component } from "react";
 
-import FlightsService from '../../services/flights.service'
-import Spinner from "../FlightsPage/Spinner";
-import PieChart from "./PieChart";
-import BarChart from "./BarChart";
-import FlightCard from "../FlightsPage/FlightCard";
-import LinesChart from "./LinesChart";
 import CompanyService from '../../services/company.service'
 import ChartDeTest from "./ChartDeTest";
 
-class CompaniesChart extends Component {
+class CompaniesLinesChart extends Component {
 
     constructor() {
         super()
@@ -146,13 +140,18 @@ class CompaniesChart extends Component {
             :
             <>
 
-                <h1>hei</h1>
-                <ChartDeTest data = {this.createData('company')}/>
+                {/* <h2>CompaniesLinesChart:</h2> */}
+                <ChartDeTest data = {this.createData('company')}/> 
+
+
+
                 {/* <ChartDeTest data = {this.createData(this.state.type)}/> */}
 
                 {/* <PieChart data={this.calculateSeatsSituationData(this.state.flights)} /> */}
 
                 {/* <LinesChart data={this.createData('company')}/> */}
+
+
 
 
                 
@@ -165,4 +164,4 @@ class CompaniesChart extends Component {
     }
 }
 
-export default CompaniesChart
+export default CompaniesLinesChart
