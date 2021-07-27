@@ -14,7 +14,6 @@ class UnifiedBarsLists extends Component {
             // type: 'destination',
             // type: 'airport',
             type: 'flight',
-            // type: undefined,
 
             listForBarsChart: undefined,
         }
@@ -30,11 +29,6 @@ class UnifiedBarsLists extends Component {
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
         // this.setState({ listForBarsChart: this.props.listForBarsChart })
-
-        // this.setState({
-        //     type: this.props.type
-        // })
-
         if(this.state.type == 'company'){
         this.companyService
             .getCompanies()
@@ -62,7 +56,7 @@ class UnifiedBarsLists extends Component {
                 .getAirports()
                 .then(response => {
                     // console.log('antes', response.data)
-                    this.setState({ listForBarsChart: response.data.slice(0,6) })
+                    this.setState({ listForBarsChart: response.data })
                     // console.log('despues',this.state.listForBarsChart)
                 } )
                 .catch(err => console.log(err))            
@@ -74,7 +68,7 @@ class UnifiedBarsLists extends Component {
                 .then(response => {
                     // console.log('antes', response.data)
                     this.setState({ listForBarsChart: response.data })
-                    console.log('despues',this.state.listForBarsChart.length)
+                    // console.log('despues',this.state.listForBarsChart)
                 } )
                 .catch(err => console.log(err))            
             }
@@ -115,7 +109,7 @@ class UnifiedBarsLists extends Component {
         // xValue = elem.name
         xValue = elem[name]
 
-        yValue = elem.soldTickets
+        yValue = elem.capacity
         }
 
         data.push(
@@ -129,9 +123,17 @@ class UnifiedBarsLists extends Component {
 
 
     createData(){
-        let data        
+        let data
+
+        // if(this.state.type == 'company'){
         data = []
         this.state.listForBarsChart.forEach(elem => this.populateDataString(data, elem))     
+        // }
+
+        // if(this.state.type == 'destination'){
+        // data = []
+        // this.state.listForBarsChart.forEach(elem => this.populateDataString(data, elem))     
+        // }
 
         return data 
     }
@@ -139,6 +141,8 @@ class UnifiedBarsLists extends Component {
 
     componentDidMount = () => {
         this.loadList()
+
+
     }
 
 
@@ -154,7 +158,7 @@ class UnifiedBarsLists extends Component {
             :
             <>
 
-                <UnifiedBarsChart data = {this.createData()} />               
+                <UnifiedBarsChart data = {this.createData()}/>               
 
 
 

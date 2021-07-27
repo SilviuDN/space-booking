@@ -29,7 +29,10 @@ const Test01 = () => {
 
 
             <h3>UnifiedBarsChart rating for each company:</h3>
+
             <UnifiedBarsLists/>
+            
+            {/* <UnifiedBarsLists  type='destination'/> */}
 
 
             {/* <RadarCompaniesChart/>
