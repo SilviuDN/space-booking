@@ -10,6 +10,8 @@ class UnifiedBarsLists extends Component {
         this.state = {
             // type: 'company',
             type: 'destination',
+            // type: 'airport',
+
             listForBarsChart: undefined,
         }
         this.companyService = new CompanyService()
@@ -43,6 +45,17 @@ class UnifiedBarsLists extends Component {
                 } )
                 .catch(err => console.log(err))            
             }
+
+        // if(this.state.type == 'destination'){
+        //     this.destinationService
+        //         .getDestinations()
+        //         .then(response => {
+        //             // console.log('antes', response.data)
+        //             this.setState({ listForBarsChart: response.data })
+        //             // console.log('despues',this.state.listForBarsChart)
+        //         } )
+        //         .catch(err => console.log(err))            
+        //     }
         
     }
 
