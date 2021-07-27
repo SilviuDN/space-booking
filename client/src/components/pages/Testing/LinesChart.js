@@ -120,6 +120,46 @@ const data = [
       },
     ]
 
+// const  data = [
+  // {
+  //     "id": "company",
+  //     "color": "hsl(168, 70%, 50%)",
+  //     "data": [
+  //         {
+  //             "x": "Ironhack",
+  //             "y": 4
+  //         },
+  //         {
+  //             "x": "Ironhack",
+  //             "y": 3
+  //         },
+  //         {
+  //             "x": "SpaceBooking",
+  //             "y": 3
+  //         },
+  //         {
+  //             "x": "ironhack",
+  //             "y": 4
+  //         },
+  //         {
+  //             "x": "c",
+  //             "y": 4
+  //         },
+  //         {
+  //             "x": "d",
+  //             "y": 4
+  //         },
+  //         {
+  //             "x": "a",
+  //             "y": 2
+  //         },
+  //         {
+  //             "x": "SilviuCompany",
+  //             "y": 4
+  //         }
+  //     ]
+  // },
+// ]
 
 
 export default class LinesChart extends Component {
@@ -135,7 +175,7 @@ export default class LinesChart extends Component {
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
-        yFormat=" >-.2f"
+        // yFormat=" >-.2f"
         axisTop={null}
         axisRight={null}
         axisBottom={{

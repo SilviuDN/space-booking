@@ -1,13 +1,13 @@
 import { Component } from "react";
 
-import FlightsService from '../../services/flights.service'
-import Spinner from "../FlightsPage/Spinner";
-import PieChart from "./PieChart";
-import BarChart from "./BarChart";
-import FlightCard from "../FlightsPage/FlightCard";
-import LinesChart from "./LinesChart";
-import CompanyService from '../../services/company.service'
-import ChartDeTest from "./ChartDeTest";
+import FlightsService from '../../../services/flights.service'
+import Spinner from "../../FlightsPage/Spinner";
+import PieChart from "../PieChart";
+import BarChart from "../BarChart";
+import FlightCard from "../../FlightsPage/FlightCard";
+import LinesChart from "../LinesChart";
+import CompanyService from '../../../services/company.service'
+import ChartDeTest from "../ChartDeTest";
 
 class CompaniesChart extends Component {
 
@@ -40,7 +40,7 @@ class CompaniesChart extends Component {
     }
 
     populateDataDataString(data, elem){
-        let xValue = elem.companyName.substr(0)
+        let xValue = elem.companyName
         // console.log(xValue)
         let yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
         // console.log(yValue)
@@ -55,11 +55,9 @@ class CompaniesChart extends Component {
     }
 
     createDataElement(type){
-        return [{
-            id: type,
-            color: "hsl(168, 70%, 50%)",
-            data: []
-        }]
+        return {
+            axis: undefined,            
+        }
     }
 
     createData(type){
@@ -70,29 +68,6 @@ class CompaniesChart extends Component {
 
 
 
-    // returnTypeValueCoordinates(type, elem){
-    //     let entryType = 
-    //         type == "airport" ? 'elem.name' :
-    //             type == "flight" ? 'elem.flightNumber' : 
-    //                 type == "company" ? 'elem.companyName' :
-    //                     type == "destination" ? 'elem.name'
-        
-    //     let quantity = 
-    //         type == "airport" ? 'elem.flights.length' :
-    //             type == "flight" ? 'elem.soldTickets' : 
-    //                 type == "company" ? 'elem.companyName' :
-    //                     type == "destination" ? 'elem.name'
-                
-    // }
-
-    // createXYEntry(type, elem){
-
-
-    //     return {
-    //         x: type,
-    //         y: quantity
-    //     }
-    // }
 
 
     componentDidMount = () => {

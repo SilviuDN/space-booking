@@ -9,130 +9,56 @@ import React, { Component } from 'react';
 // you'll often use just a few of them.
 
 
-// const data = [
-//     {
-//       "id": "sold",
-//       "color": "hsl(96, 70%, 50%)",
-//       "data": [
-//         {
-//           "x": "plane",   //key - Data 
-//           "y": 150        //value - soldTickets  
-//         },
-//         {
-//           "x": "helicopter",
-//           "y": 274
-//         },
-//         {
-//           "x": "boat",
-//           "y": 239
-//         },
-//         {
-//           "x": "train",
-//           "y": 290
-//         },
-//         {
-//           "x": "subway",
-//           "y": 172
-//         },
-//         {
-//           "x": "bus",
-//           "y": 208
-//         },
-//         {
-//           "x": "car",
-//           "y": 43
-//         },
-//         {
-//           "x": "moto",
-//           "y": 31
-//         },
-//         {
-//           "x": "bicycle",
-//           "y": 48
-//         },
-//         {
-//           "x": "horse",
-//           "y": 295
-//         },
-//         {
-//           "x": "skateboard",
-//           "y": 103
-//         },
-//         {
-//           "x": "others",
-//           "y": 296
-//         }
-//       ]
-//     },
-//     {
-//         "id": "france",
-//         "color": "hsl(168, 70%, 50%)",
-//         "data": [
-//           {
-//             "x": "plane",
-//             "y": 192
-//           },
-//           {
-//             "x": "helicopter",
-//             "y": 100
-//           },
-//           {
-//             "x": "boat",
-//             "y": 1
-//           },
-//           {
-//             "x": "train",
-//             "y": 260
-//           },
-//           {
-//             "x": "subway",
-//             "y": 4
-//           },
-//           {
-//             "x": "bus",
-//             "y": 296
-//           },
-//           {
-//             "x": "car",
-//             "y": 224
-//           },
-//           {
-//             "x": "moto",
-//             "y": 155
-//           },
-//           {
-//             "x": "bicycle",
-//             "y": 189
-//           },
-//           {
-//             "x": "horse",
-//             "y": 237
-//           },
-//           {
-//             "x": "skateboard",
-//             "y": 62
-//           },
-//           {
-//             "x": "others",
-//             "y": 127
-//           }
-//         ]
-//       },
-//     ]
+
+
+const  data = [
+    {
+      "id": "sold",
+      "color": "hsl(96, 70%, 50%)",
+      "data": [
+        {
+          "x": "Ironhack",   //key - Data 
+          "y": 150        //value - soldTickets  
+        },
+        {
+          "x": "adas",
+          "y": 274
+        },
+        {
+          "x": "boat",
+          "y": 239
+        },
+        {
+          "x": "train",
+          "y": 290
+        },
+
+
+      ]
+    },
+
+  ]
 
 
 
 export default class ChartDeTest extends Component {
-    
+   
 
     render() {
-      console.log(this.props)
+      // console.dir(typeof data === typeof this.props.data[0])
+      // console.dir(typeof this.props.data[0])
+
+      console.log("this.props", this.props.data)
+      this.props.data[0].data.forEach(elem => console.log(elem.x, typeof elem.x, elem.y, typeof elem.y))  
         
         return (
           // <h4>succes</h4>
           <div style={{ height: '200px' }}>
           <ResponsiveLine
               data={this.props.data}
+              // data={data}
+              // data={data2}
+              // data={data3}
               margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
               xScale={{ type: 'point' }}
               yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: true, reverse: false }}
@@ -194,3 +120,215 @@ export default class ChartDeTest extends Component {
         )
     }
 }
+
+
+
+const  data3 = [
+  {
+    "id": "sold",
+    "color": "hsl(96, 70%, 50%)",
+    "data": [
+      {
+        "x": "plane",   //key - Data 
+        "y": 150        //value - soldTickets  
+      },
+      {
+        "x": "helicopter",
+        "y": 274
+      },
+      {
+        "x": "boat",
+        "y": 239
+      },
+      {
+        "x": "train",
+        "y": 290
+      },
+      {
+        "x": "subway",
+        "y": 172
+      },
+      {
+        "x": "bus",
+        "y": 208
+      },
+      {
+        "x": "car",
+        "y": 43
+      },
+      {
+        "x": "moto",
+        "y": 31
+      },
+      {
+        "x": "bicycle",
+        "y": 48
+      },
+      {
+        "x": "horse",
+        "y": 295
+      },
+      {
+        "x": "skateboard",
+        "y": 103
+      },
+      {
+        "x": "others",
+        "y": 296
+      }
+    ]
+  },
+
+    {
+      "id": "france",
+      "color": "hsl(168, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",
+          "y": 192
+        },
+        {
+          "x": "helicopter",
+          "y": 100
+        },
+        {
+          "x": "boat",
+          "y": 1
+        },
+        {
+          "x": "train",
+          "y": 260
+        },
+        {
+          "x": "subway",
+          "y": 4
+        },
+        {
+          "x": "bus",
+          "y": 296
+        },
+        {
+          "x": "car",
+          "y": 224
+        },
+        {
+          "x": "moto",
+          "y": 155
+        },
+        
+      ]
+    },
+]
+
+
+
+const data2 = [
+    {
+      "id": "sold",
+      "color": "hsl(96, 70%, 50%)",
+      "data": [
+        {
+          "x": "plane",   //key - Data 
+          "y": 150        //value - soldTickets  
+        },
+        {
+          "x": "helicopter",
+          "y": 274
+        },
+        {
+          "x": "boat",
+          "y": 239
+        },
+        {
+          "x": "train",
+          "y": 290
+        },
+        {
+          "x": "subway",
+          "y": 172
+        },
+        {
+          "x": "bus",
+          "y": 208
+        },
+        {
+          "x": "car",
+          "y": 43
+        },
+        {
+          "x": "moto",
+          "y": 31
+        },
+        {
+          "x": "bicycle",
+          "y": 48
+        },
+        {
+          "x": "horse",
+          "y": 295
+        },
+        {
+          "x": "skateboard",
+          "y": 103
+        },
+        {
+          "x": "others",
+          "y": 296
+        }
+      ]
+    },
+    {
+        "id": "france",
+        "color": "hsl(168, 70%, 50%)",
+        "data": [
+          {
+            "x": "plane",
+            "y": 192
+          },
+          {
+            "x": "helicopter",
+            "y": 100
+          },
+          {
+            "x": "boat",
+            "y": 1
+          },
+          {
+            "x": "train",
+            "y": 260
+          },
+          {
+            "x": "subway",
+            "y": 4
+          },
+          {
+            "x": "bus",
+            "y": 296
+          },
+          {
+            "x": "car",
+            "y": 224
+          },
+          {
+            "x": "moto",
+            "y": 155
+          },
+          {
+            "x": "bicycle",
+            "y": 189
+          },
+          {
+            "x": "horse",
+            "y": 237
+          },
+          {
+            "x": "skateboard",
+            "y": 62
+          },
+          {
+            "x": "others",
+            "y": 127
+          }
+        ]
+      },
+    ]

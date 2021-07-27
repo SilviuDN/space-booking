@@ -4,6 +4,8 @@ import FlightsOccupationChart from "./FlightsOccupationChart"
 import SoldToCapacityComparation from "./SoldToCapacityComparation"
 import LinesChart from "./LinesChart"
 import CompaniesChart from "./CompaniesChart"
+import RadarChart from "./bin/RadarCompaniesChart"
+import RadarFlightsChart from "./RadarFlightsChart"
 
 const Test01 = () => {
     return (
@@ -11,13 +13,15 @@ const Test01 = () => {
             {/* <FlightsPerDestination /> */}
             {/* <RandomChart /> */}
 
-            <FlightsOccupationChart howManyDays={1}/>
+            {/* <FlightsOccupationChart howManyDays={1}/>
             <FlightsOccupationChart howManyDays={2}/>
             <FlightsOccupationChart howManyDays={3}/>
             <FlightsOccupationChart />
-            <LinesChart/>
+            <LinesChart/> */}
 
             <CompaniesChart/>
+            {/* <RadarChart/> */}
+            {/* <RadarFlightsChart/> */}
 
         </>
     )
