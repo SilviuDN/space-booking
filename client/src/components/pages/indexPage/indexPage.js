@@ -18,6 +18,10 @@ import blueline from './blueline.png'
 import pinkline from './pinkline.png'
 import destinations from './destinations.jpg'
 import IndexSearchPanel from "./indexSearchPanel"
+import logo from './logo.png'
+import mars from './mars.png'
+import andromeda from './andromeda.png'
+
 
 class IndexPage extends Component {
 
@@ -31,7 +35,9 @@ class IndexPage extends Component {
 
 
     render() {
-        const style = { background: '#1f2745', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', bottom: 0, padding: 5, width: '100%' }
+        const style = {
+            background: '#1f2745', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', bottom: 0, padding: "30px 30px", margin: "30px 0px 0px 0px", width: '100%'
+        }
         return (
 
             <>
@@ -103,7 +109,7 @@ class IndexPage extends Component {
                     <h2 id="our" align="center">Our Advantages</h2>
                     <p align="center"><img src={pinkline} alt="line" /></p>
 
-                    <Row  >
+                    <Row className="advantages" >
                         <Col sm={6} md={3} >
                             <p align="center"><img
                                 className="d-block  a"
@@ -149,10 +155,10 @@ class IndexPage extends Component {
                             <p align="center">We provide reliable ticket booking system, which is also perfect for first-time travellers.</p>
                         </Col>
                     </Row>
-                    <br /><br />
+
                     <Row id="support" >
                         <Col md={12} className="col24" >
-                            <br /><br /><br />
+
                             <h3 className="text-center text24" ><strong>24/7 SUPPORT</strong></h3>
                             <p className="text-center">Our Support Service is available 24 hours a day, 7 days a </p>
                             <p className="text-center"><Button bsPrefix="btn-flat" variant="primary" >
@@ -162,51 +168,79 @@ class IndexPage extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col>
+                        <Col md={12} >
                             <h3 id="why" align="center">Hot Deals</h3>
                             <h2 id="our" align="center">Popular Destinations</h2>
                             <p align="center"><img src={pinkline} alt="line" /></p>
                             <br />
-                            <img src={destinations} alt="destinations" className="destinations" /><br /><br />
-                            <p className="text-center"><Button bsPrefix="btn-flat" variant="primary" >
+                            <img src={destinations} alt="destinations" className="destinations" />
+                            <p className="text-center"><Button bsPrefix="btn-flat" variant="primary"  >
 
-                                <strong> GET TICKETS</strong>
+                                <strong> FIND TICKETS</strong>
                             </Button></p>
 
                         </Col>
 
 
                     </Row>
-                </Container>
+                </Container >
 
                 <footer style={style}>
 
-                    <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
-                    <Container fluid className="text-center text-md-left">
+                    <Container fluid >
                         <Row>
-                            <Col md="3">
-                                <h5 className="title">Footer Content</h5>
+                            <Col md="3" className="p-3" >
+                                <h5 className="title"><img
+                                    alt="logo"
+                                    src={logo}
+                                    height="40"
+                                    className="d-inline-block align-top"
+                                />{' '}</h5><br />
+                                <p align="justify">
+                                    SpaceBooking is a travel search engine which instantly searches all available flight, prices on an exhaustive number of travel sites such as online travel agencies, major and low-cost spacelines and tour-operators. We also compare hotel rooms and car rental deals. You can easily narrow down your search as much (or as little!) as you want. That means that if the trip you'd like is anywhere out there, you'll find it right away.
+                                </p>
                                 <p>
-                                    la la la al al.
+                                    <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
                                 </p>
                             </Col>
-                            <Col md="3">
-                                <h5 className="title">Links</h5>
-                                <ul>
-                                    <li className="list-unstyled">
-                                        <Link className="color-light" to="/signup/y" > SignUp for Companies </Link>
-                                    </li>
+                            <Col md="3" className="p-3">
+                                <h5 className="title text-center">Latest Destinations</h5>
 
-                                </ul>
+                                <Row>
+                                    <Col md={4}><img src={mars} style={{ height: "110px" }} /></Col>
+                                    <Col md={8}> <h5>Mars</h5>
+                                        <p align="justify">Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet".</p>
+                                    </Col>
+
+                                </Row>
+                                <Row>
+                                    <Col md={4}><img src={andromeda} style={{ height: "110px" }} /></Col>
+                                    <Col md={8}> <h5>Andromeda</h5>
+                                        <p align="justify">Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet".</p>
+                                    </Col>
+
+                                </Row>
                             </Col>
-                            <Col md="3">
-                                <h5 className="title">Footer Content</h5>
-                                <p>
-                                    la la la la.
-                                </p>
+                            <Col md="3" className="p-3">
+                                <Row>
+                                    <Col>
+                                        <h5 className="title text-center">What People Say</h5>
+                                        <p >"I must tell you how impressed I am by your customer service, I have contacted you twice now and each time I received a prompt reply plus the additionalattention of a manager. I have never received this kind of response from anyother spaceline tickets booking site." </p>
+                                        <h6>Jeff Bezos</h6>
+                                    </Col>
+                                </Row>
+                                <br /><br />
+                                <Row>
+                                    <Col>
+
+                                        <p >"I must tell you how impressed I am by your customer service, I have contacted you twice now and each time I received a prompt reply plus the additionalattention of a manager. I have never received this kind of response from anyother spaceline tickets booking site." </p>
+                                        <h6>Richard Branson</h6>
+                                    </Col>
+                                </Row>
+
                             </Col>
-                            <Col md="3">
-                                <h5 className="title">Contact Us</h5>
+                            <Col md="3" className="p-3">
+                                <h5 className="title text-center">Contact Us</h5>
 
                                 <Form className={'pb-5'}>
                                     <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -224,13 +258,18 @@ class IndexPage extends Component {
 
                                         <Form.Control type="text" placeholder="name" name='name' />
                                     </Form.Group>
+                                    <p className="text-center"><Button bsPrefix="btn-flat" variant="primary"  >
+
+                                        <strong> SEND</strong>
+                                    </Button></p>
                                 </Form>
+
                             </Col>
 
                         </Row>
                         <Row>
                             <Col>
-                                &copy; {new Date().getFullYear()} Copyright: <a href="https://www.spacebooking.world"> SpaceBooking.World </a>
+                                <p className="title text-center">&copy; {new Date().getFullYear()} Copyright: <a href="https://www.spacebooking.world"> SpaceBooking.World </a></p>
                             </Col>
 
                         </Row>

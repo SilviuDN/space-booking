@@ -10,7 +10,7 @@
     /* Center the image within the element */
     width: 45%;
     max-height: 850px;
-    margin-bottom: 1rem;
+    margin-top: 20px;
 }
 
 .c {
@@ -28,10 +28,12 @@
     /* Do not scale the image */
     object-position: center;
     /* Center the image within the element */
-    width: 70%;
+    width: 80%;
     max-height: 200px;
     margin-bottom: 1rem;
     border-radius: 30px;
+    margin-top: 40px;
+    margin-bottom: 20px;
 }
 
 #why {
@@ -48,6 +50,7 @@
 #support {
     background-color: #1f2745;
     color: white;
+    margin-top: 40px;
 }
 
 .btn-flat {
@@ -59,11 +62,12 @@
 }
 
 .col24 {
-    height: 300px;
-    vertical-align: middle;
+    height: 500px;
+    align-items: center;
 }
 
 .text24 {
+    padding-top: 150px;
     font-size: 3em;
 }
 
@@ -74,11 +78,10 @@
     /* Center the image within the element */
     width: 100%;
     max-height: 700px;
-    margin-bottom: 1rem;
-    border-radius: 10px;
+    margin-bottom: 50px;
     margin-right: 0px;
 }
 
-.all {
-    padding: 0px 0px;
+.advantages {
+    padding-bottom: 50px;
 }

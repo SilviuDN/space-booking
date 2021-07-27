@@ -124,7 +124,7 @@ class IndexSearchPanel extends Component {
                             {/* SearchBar */}
                             <SearchBar dataToLoad={this.DestinationService} dataKey={'destinations'} setTravel={this.setTravel} />
 
-                            <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
+                            {/* <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span> */}
                         </Col>
 
                         <Col md={5}>
@@ -137,20 +137,21 @@ class IndexSearchPanel extends Component {
                                         {/* SearchBar */}
                                         <SearchBar dataToLoad={this.FlightService} dataKey={'airports'} destinationId={this.state.destinations} setTravel={this.setTravel} />
 
-                                        <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
+                                        {/* <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span> */}
                                     </>
                                     :
                                     <>
                                         {/* placeholder */}
                                         <label className="checkbox-search" ><span className="span"><small className="small">From</small></span></label>
                                         <input type="text" className="form-control" disabled />
-                                        <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span>
+                                        {/* <input type="checkbox" placeholder="From" /> <span className="span">Add nearby ariports</span> */}
                                     </>
                             }
                         </Col>
 
                         <Col md={2}>
                             {/* SELECT */}
+                            <br></br>
                             <label className="checkbox-search" ><span className="span"><small className="small">Cabin class</small></span></label>
                             <input type="text" className="form-control" placeholder="Cabin Class" />
                             <label />
@@ -168,15 +169,15 @@ class IndexSearchPanel extends Component {
                         </Col>
                         <Col md={2}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Adults(16+)</small></span></label>
-                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="Cabin Class" name="adults" />
+                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="0" name="adults" />
                         </Col>
                         <Col md={2}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Children</small></span></label>
-                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="Cabin Class" name="children" />
+                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="0" name="children" />
                         </Col>
                         <Col md={2} >
                             <label className="checkbox-search" />
-                            <Button type="submit" className="button searcbox">Search Flight</Button>
+                            <Button type="submit" className="button searchbox">Search Flight</Button>
                         </Col>
 
                     </Row>

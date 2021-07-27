@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
+import FloatingLabel from 'react-bootstrap-floating-label'
 import { Link } from 'react-router-dom'
 import AuthService from '../../services/auth.service'
 
@@ -57,30 +58,46 @@ class Login extends Component {
 
                         <Form onSubmit={this.handleFormSubmit}>
 
-                            <Form.Group controlId="email">
-                                <Form.Label>User</Form.Label>
+                            {/* <Form.Group controlId="email"> */}
+                            <FloatingLabel controlId="email"
+                                label="Email address"
+                                className="mb-3"
+                                type="email"
+
+                            >
+                                {/* <Form.Label>E-mail</Form.Label> */}
                                 <Form.Control type="email" value={this.state.email} onChange={this.handleInputChange} name="email" />
-                            </Form.Group>
 
-                            <Form.Group controlId="pwd">
-                                <Form.Label>Password</Form.Label>
+                            </FloatingLabel>
+
+                            {/* </Form.Group> */}
+
+                            {/* <Form.Group controlId="pwd"> */}
+                            <FloatingLabel controlId="pwd"
+                                label="Password"
+                                className="mb-3"
+                                type="password"
+
+                            >
+                                {/* <Form.Label>Password</Form.Label> */}
                                 <Form.Control type="password" value={this.state.pwd} onChange={this.handleInputChange} name="pwd" />
-                            </Form.Group>
+                            </FloatingLabel>
+                            {/* </Form.Group> */}
 
-                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">Login</Button>
+                            <Button style={{ marginTop: '20px', width: '100%' }} bsPrefix="btn-flat" variant="primary" type="submit">Login</Button>
 
                         </Form>
 
                         <hr />
 
                         <Link to="/" onClick={() => this.props.setModalState(false)}>
-                            <Button variant="dark" >Back</Button>
+                            <Button bsPrefix="btn-flat" variant="primary" style={{ marginTop: '20px', width: '100%' }} >Cancel</Button>
                         </Link>
 
                         <hr />
 
-                        <p><small>Not registered ? signup <Link to="/signup/n" onClick={() => this.props.updateModal(false)}>here</Link></small></p>
-                        <small>Or new Company?  register <Link to="/signup/y" onClick={() => this.props.updateModal(false)}>here</Link></small>
+                        <p align="center"><small>If you have not yet registered you can do so by clicking on the following link: <Link to="/signup/n" onClick={() => this.props.updateModal(false)}> I'm not registered yet. </Link></small></p>
+                        {/* <small>Or new Company?  register <Link to="/signup/y" onClick={() => this.props.updateModal(false)}>here</Link></small> */}
                     </Col>
                 </Row>
 

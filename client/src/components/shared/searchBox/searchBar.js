@@ -115,12 +115,12 @@ class searchBar extends Component {
         const customStyles = {
             control: (base, state) => ({
                 ...base,
-                fontFamily: 'Times New Roman',
+                // fontFamily: 'Times New Roman',
                 fontSize: 18,
                 border: state.isFocused ? 0 : 0,
                 boxShadow: state.isFocused ? 0 : 0,
                 cursor: 'text',
-                borderRadius: 0,
+                borderRadius: 5,
                 borderBottom: 'solid 1px',
             }),
 
@@ -194,7 +194,7 @@ class searchBar extends Component {
                     getOptionValue={(options) => options['id']}
                     onChange={this.handleChange}
                     onKeyDown={this.handleSearch}
-                    placeholder="Search... Space = all options"
+                    placeholder="Search... "
                     openMenuOnClick={true}
 
                     classNamePrefix="select"

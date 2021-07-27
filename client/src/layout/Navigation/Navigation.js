@@ -69,8 +69,8 @@ class Navigation extends Component {
                 </Navbar>
 
                 <Modal show={this.state.modal} onHide={() => this.setModalState(false)}>
-                    <Modal.Header>
-                        <Modal.Title>Login</Modal.Title>
+                    <Modal.Header className="text-center">
+                        <Modal.Title className="w-100" >Login</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Login updateModal={this.setModalState} storeUser={this.props.storeUser} history={this.props.history} showAlert={this.props.showAlert} setModalState={this.setModalState} />

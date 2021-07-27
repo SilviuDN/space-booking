@@ -1,6 +1,7 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container } from 'react-bootstrap'
+import FloatingLabel from 'react-bootstrap-floating-label'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
 import UploadService from '../../services/upload.service'
@@ -116,29 +117,55 @@ class SignupUserForm extends Component {
         return (
             <Container>
                 <Form onSubmit={this.handleSubmit} className={'pb-5'}>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
+                    {/* <Form.Group className="mb-3" controlId="formBasicEmail"> */}
+                    <FloatingLabel controlId="email"
+                        label="Email address"
+                        className="mb-3"
+
+                    >
+                        {/* <Form.Label>Email address</Form.Label> */}
                         <Form.Control onChange={this.handleInput} value={this.state.email} type="email" placeholder="Enter email" name='email' />
-                        <Form.Text className="text-muted">
-                            This email will be your user account
-                        </Form.Text>
-                    </Form.Group>
+                        {/* <Form.Text className="text-muted">
+                                This email will be your user account
+                            </Form.Text> */}
+                    </FloatingLabel>
+                    {/* </Form.Group> */}
 
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Label>Password</Form.Label>
+                    {/* <Form.Group className="mb-3" controlId="formBasicPassword"> */}
+                    {/* <Form.Label>Password</Form.Label> */}
+                    <FloatingLabel controlId="pwd"
+                        label="Password"
+                        className="mb-3"
+                        type="password"
+
+                    >
                         <Form.Control onChange={this.handleInput} value={this.state.pwd} type="password" placeholder="Password" name='pwd' />
-                    </Form.Group>
+                        {/* </Form.Group> */}
+                    </FloatingLabel>
 
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Name</Form.Label>
+                    {/* <Form.Group className="mb-3" controlId="name"> */}
+                    <FloatingLabel controlId="pwd"
+                        label="Name"
+                        className="mb-3"
+                        type="text"
+
+                    >
+                        {/* <Form.Label>Name</Form.Label> */}
                         <Form.Control onChange={this.handleInput} value={this.state.name} type="text" placeholder="name" name='name' />
-                    </Form.Group>
+                        {/* </Form.Group> */}
+                    </FloatingLabel>
 
+                    <FloatingLabel controlId="pwd"
+                        label="Surname"
+                        className="mb-3"
+                        type="text"
 
-                    <Form.Group className="mb-3" controlId="surname">
-                        <Form.Label>Surname</Form.Label>
+                    >
+                        {/* <Form.Group className="mb-3" controlId="surname">
+                        <Form.Label>Surname</Form.Label> */}
                         <Form.Control onChange={this.handleInput} value={this.state.text} type="text" placeholder="Surname" name='surname' />
-                    </Form.Group>
+                        {/* </Form.Group> */}
+                    </FloatingLabel>
 
 
 
@@ -152,18 +179,30 @@ class SignupUserForm extends Component {
                             <option>dni</option>
                             <option>passport</option>
                         </Form.Control>
-
-                        <Form.Group className="mb-3" controlId="personalId">
-                            <Form.Label></Form.Label>
-                            <Form.Control onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="personalId" name='personalId' />
-                        </Form.Group>
                     </Form.Group>
+                    <FloatingLabel controlId="personalID"
+                        label="Personal ID"
+                        className="mb-3"
+                        type="text"
 
-                    <Form.Group className="mb-3" controlId="phone">
+                    >
+                        {/* <Form.Group className="mb-3" controlId="personalId"> */}
+                        {/* <Form.Label></Form.Label> */}
+                        <Form.Control onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="personalId" name='personalId' />
+                        {/* </Form.Group> */}
+                    </FloatingLabel>
+
+                    <FloatingLabel controlId="phone"
+                        label="Phone"
+                        className="mb-3"
+                        type="text"
+
+                    >
+                        {/* <Form.Group className="mb-3" controlId="phone"> */}
                         <Form.Label>Phone number</Form.Label>
                         <Form.Control onChange={this.handleInput} value={this.state.phone} type="text" placeholder="phone" name='phone' />
-                    </Form.Group>
-
+                        {/* </Form.Group> */}
+                    </FloatingLabel>
                     <Form.Label>Address
                         <Form.Group className="d-flex mb-2">
                             <Form.Control onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="street" name='street' />
@@ -194,7 +233,7 @@ class SignupUserForm extends Component {
                     }
 
                 </Form>
-            </Container>
+            </Container >
         )
     }
 }
