@@ -58,31 +58,32 @@ class Login extends Component {
 
                         <Form onSubmit={this.handleFormSubmit}>
 
-                            {/* <Form.Group controlId="email"> */}
-                            <FloatingLabel controlId="email"
-                                label="Email address"
-                                className="mb-3"
-                                type="email"
-
-                            >
-                                {/* <Form.Label>E-mail</Form.Label> */}
+                            <Form.Group controlId="email">
+                                {/* <FloatingLabel controlId="email"
+                                    label="Email address"
+                                    className="mb-3"
+                                    type="email"
+                                    value={this.state.email} onChange={this.handleInputChange} name="email"
+                                > */}
+                                <Form.Label>E-mail</Form.Label>
                                 <Form.Control type="email" value={this.state.email} onChange={this.handleInputChange} name="email" />
 
-                            </FloatingLabel>
+                                {/* </FloatingLabel> */}
 
-                            {/* </Form.Group> */}
+                            </Form.Group>
 
-                            {/* <Form.Group controlId="pwd"> */}
-                            <FloatingLabel controlId="pwd"
-                                label="Password"
-                                className="mb-3"
-                                type="password"
+                            <Form.Group controlId="pwd">
+                                {/* <FloatingLabel controlId="pwd"
+                                    label="Password"
+                                    className="mb-3"
+                                    type="password"
+                                    value={this.state.pwd} onChange={this.handleInputChange} name="pwd"
 
-                            >
-                                {/* <Form.Label>Password</Form.Label> */}
+                                > */}
+                                <Form.Label>Password</Form.Label>
                                 <Form.Control type="password" value={this.state.pwd} onChange={this.handleInputChange} name="pwd" />
-                            </FloatingLabel>
-                            {/* </Form.Group> */}
+                                {/* </FloatingLabel> */}
+                            </Form.Group>
 
                             <Button style={{ marginTop: '20px', width: '100%' }} bsPrefix="btn-flat" variant="primary" type="submit">Login</Button>
 
