@@ -5,6 +5,7 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
     return (
 
         <>
+            {console.log(loggedUser)}
             <tr>
                 <td>
                     {!typeof setList === 'function' ?
@@ -25,16 +26,18 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
                     &nbsp;
 
                     {(loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin' ?
+                        <>
 
-                        <Link to={`/companies/${_id}/edit`}>
-                            <Button variant="dark" block >Editar</Button>
-                        </Link>
+                            <Link to={`/companies/${_id}/edit`}>
+                                <Button variant="dark" block >Editar</Button>
+                            </Link>
+                            &nbsp;
+                            <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
+                                <Button variant="danger" block >Eliminar</Button>
+                            </Link>
+                        </>
                         : null
                     }
-                    &nbsp;
-                    <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
-                        <Button variant="danger" block >Eliminar</Button>
-                    </Link>
                 </td>
             </tr>
 

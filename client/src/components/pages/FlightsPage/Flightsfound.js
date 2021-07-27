@@ -2,7 +2,9 @@ import ReturnedFlightCard from "./BuyFlightCard"
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 import Spinner from 'react-bootstrap/Spinner';
-import { Container } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
+import IsearchPannelLeft from '../../pages/indexPage/isearchPannelLeft'
+// import IndexSearchPanel from "../../pages/indexPage/indexSearchPanel";
 
 
 class FlightsFound extends Component {
@@ -37,23 +39,42 @@ class FlightsFound extends Component {
         this.loadFlight()
     }
 
+    componentDidUpdate(prevProps, prevState) {
+
+        // console.log(prevProps)
+
+        prevProps.location.pathname !== this.props.location.pathname && this.loadFlight()
+
+    }
+
     render() {
         console.log(this.props.match.params)
 
 
         return (
-            <Container>
+            <Container fluid >
 
-                {!this.state.flight ?
+                <Row>
 
-                    <Spinner animation="grow" />
+                    <Col xl={2} lg={3} md={4} sm={12}>
 
-                    :
+                        <IsearchPannelLeft props={this.props} />
+                        {/* <IsearchPannelLeft props={this.props} cols={12} /> */}
 
-                    this.state.flight.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} />)
+                    </Col>
+                    <Col xl={9} lg={9} md={8} sm={12}>
 
-                }
+                        {!this.state.flight ?
 
+                            <Spinner animation="grow" />
+
+                            :
+
+                            this.state.flight.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} />)
+
+                        }
+                    </Col>
+                </Row>
             </Container>
         )
     }

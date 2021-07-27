@@ -44,6 +44,12 @@ class AdminPage extends Component {
         })
     }
 
+    setChart = (chart) => {
+        this.setState({
+            chart
+        })
+    }
+
 
     render() {
 
