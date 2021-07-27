@@ -52,30 +52,34 @@ class FlightsFound extends Component {
 
 
         return (
-            <Container fluid >
 
-                <Row>
+            <div className="flights-found">
 
-                    <Col xl={2} lg={3} md={4} sm={12}>
+                <Container fluid >
 
-                        <IsearchPannelLeft props={this.props} />
-                        {/* <IsearchPannelLeft props={this.props} cols={12} /> */}
+                    <Row>
 
-                    </Col>
-                    <Col xl={9} lg={9} md={8} sm={12}>
+                        <Col xl={2} lg={3} md={4} sm={12}>
 
-                        {!this.state.flight ?
+                            <IsearchPannelLeft props={this.props} />
+                            {/* <IsearchPannelLeft props={this.props} cols={12} /> */}
 
-                            <Spinner animation="grow" />
+                        </Col>
+                        <Col xl={9} lg={9} md={8} sm={12}>
 
-                            :
+                            {!this.state.flight ?
 
-                            this.state.flight.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} />)
+                                <Spinner animation="grow" />
 
-                        }
-                    </Col>
-                </Row>
-            </Container>
+                                :
+
+                                this.state.flight.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} />)
+
+                            }
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
         )
     }
 }
