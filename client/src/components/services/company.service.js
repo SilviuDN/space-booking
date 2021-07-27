@@ -10,9 +10,14 @@ class CompanyService {
     }
 
     companyDetails = (company_id) => this.app.get(`/${company_id}/company`)
+
     companyEdit = (state) => this.app.put(`/${state.company_id}/edit`, state)
+
     companyDelete = (company_id) => this.app.delete(`/${company_id}/delete`)
-    getCompanies = () => this.app.get('/')
+
+    getCompanies = (status) => this.app.get(`/${status}`)
+
+    setStatus = (company_id, status) => this.app.put(`/setStatus/${company_id}`, { status })
 
     searchBox = (string) => this.app.get(`/search/${string}`)
 }

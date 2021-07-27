@@ -18,5 +18,7 @@ class AirportService {
     deleteAirport = (airport_id) => this.app.delete(`/${airport_id}/delete`)
 
     searchBoxData = (searchString) => this.app.get(`/airportsData/${searchString}`)
+
+    searchAirport = (string) => this.app.get(`airports/search/${string}`)
 }
 export default AirportService

@@ -42,12 +42,6 @@ router.delete('/:company_id/delete', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error deleting company', err }))
 })
 
-router.get('/', (req, res) => {
-    Company
-        .find()
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
-})
 
 
 
@@ -64,5 +58,28 @@ router.get('/search/:string', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering companiesr', err }))
 })
+
+
+router.put('/setStatus/:companyId', (req, res) => {
+    const { companyId } = req.params
+    const { status } = req.body
+
+
+    Company.findByIdAndUpdate(companyId, { status }, { new: true })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error setting status', err }))
+})
+
+
+router.get('/:status', (req, res) => {
+
+    const { status } = req.params
+
+    Company
+        .find(status === 'true' ? { status: true } : { status: false })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error fetching user', err }))
+})
+
 
 module.exports = router

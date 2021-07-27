@@ -1,11 +1,10 @@
 import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser }) => {
+const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser, acceptCompany, status }) => {
     return (
 
         <>
-            {console.log(loggedUser)}
             <tr>
                 <td>
                     {!typeof setList === 'function' ?
@@ -37,6 +36,19 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
                             </Link>
                         </>
                         : null
+
+                    }
+                    {
+                        loggedUser?.role === 'admin' ?
+                            status === false ?
+
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Pending</Link>
+
+                                :
+
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Live</Link>
+                            :
+                            null
                     }
                 </td>
             </tr>

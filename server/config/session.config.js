@@ -10,7 +10,7 @@ module.exports = app => {
             cookie: {
                 // sameSite: 'none',
                 httpOnly: true,
-                maxAge: 600000
+                maxAge: 60000000
             },
             store: MongoStore.create({
                 mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/space-booking'

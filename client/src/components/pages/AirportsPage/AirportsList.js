@@ -28,6 +28,11 @@ class AirportsList extends Component {
         this.loadAirports()
     }
 
+    search = (e) => {
+
+
+    }
+
     deleteAirport = airportId => {
         // const confirm = 
 
