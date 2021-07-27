@@ -4,7 +4,6 @@ import FlightsService from '../../services/flights.service'
 import Spinner from "../FlightsPage/Spinner";
 import PieChart from "./PieChart";
 import BarChart from "./BarChart";
-import FlightCard from "../FlightsPage/FlightCard";
 
 
 class FlightsOccupationChart extends Component {
@@ -23,16 +22,12 @@ class FlightsOccupationChart extends Component {
         this.flightsService
             .getFlights()
             .then(response => {
-                console.log(this.props.howManyDays)
                 let days = this.props.howManyDays || 30
 
                 const date = new Date();
                 const nowUnix = date.getTime();
 
                 const nextMonthUnix = nowUnix + days * 24 * 60 * 60 * 1000
-
-                // console.log(nowUnix)
-                // console.log(nextMonthUnix)
                 
                 const nextMonthFlights = response.data.filter(flight =>{
                     let flightDate = new Date(flight.date)
@@ -40,22 +35,13 @@ class FlightsOccupationChart extends Component {
                     return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
                 })
 
-                // console.log(nextMonthFlights)
                 this.setState({ flights: nextMonthFlights })
-            //    this.setState({ flights: response.data })
-               console.log(this.state.flights)
 
             })
             .catch(err => console.log(err))
     }
 
     
-
-    // filterLastWeek = () => {
-
-    // }
-
-
     componentDidMount = () => {
         this.loadFlights()
 
@@ -68,7 +54,6 @@ class FlightsOccupationChart extends Component {
 
 
     calculateSoldSeats(flights){
-        // return flights.reduce( (acc, flight ) => console.log(flight.soldTickets))
         return flights.reduce( (acc, flight ) => acc + flight.soldTickets, 0)
     }
 
@@ -107,11 +92,12 @@ class FlightsOccupationChart extends Component {
             <>
 
                 {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
+
+                {/* <p>PieChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays}:</p> */}
                 <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
-                <Spinner />
 
-
-                {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)}
+                {/* <p>BarChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays} for each available flight:</p> */}
+                {/* {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)} */}
 
 
 

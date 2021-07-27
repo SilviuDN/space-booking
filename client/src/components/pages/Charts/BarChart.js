@@ -1,38 +1,34 @@
-// install (please make sure versions match peerDependencies)
 // yarn add @nivo/core @nivo/bullet
 import { ResponsiveBullet } from '@nivo/bullet'
 import React, { Component } from 'react';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
 
-const soldTickets = 60
-const capacity = 240
-const marker = 0.9 * capacity
-const data = [
-    {
-      "id": "seats.",
-      "ranges": [
-        soldTickets,
-        0,
-        capacity
-      ],
-      "measures": [
-        0
-      ],
-      "markers": [
-        marker
-      ]
-    },
-  ]
 
 export default class BarChart extends Component {
-    // data = this.props.data
-
 
     render() {
+
+      if(this.props.capacity === undefined) return <p>!</p>
+
+      let {capacity, soldTickets} = this.props
+      let marker = 0.9 * capacity
+
+      let data = [
+        {
+          "id": "seats.",
+          "ranges": [
+            soldTickets,
+            0,
+            capacity
+          ],
+          "measures": [
+            0
+          ],
+          "markers": [
+            marker
+          ]
+        },
+      ]
+
         return (
             <div style={{ height: '10px', width: '400px'}}>
             <ResponsiveBullet

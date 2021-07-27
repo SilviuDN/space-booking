@@ -1,69 +1,28 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/bar
 import { ResponsiveBar } from '@nivo/bar'
 import React, { Component } from 'react';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
 
-// const data2 = [
-//   {
-//       "x": "Ironhack",
-//       "y": 4,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "Ironhack2",
-//       "y": 3,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "SpaceBooking",
-//       "y": 3,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "ironhack3",
-//       "y": 4,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "c",
-//       "y": 4,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "d",
-//       "y": 4,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "a",
-//       "y": 2,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   },
-//   {
-//       "x": "SilviuCompany",
-//       "y": 4,
-//       "yColor": "hsl(19, 70%, 50%)",
-//   }
-// ]
-
-
-
-
-
-
-export default class UnifiedBarsChart extends Component {
-
-   
+export default class BarsChart extends Component {
+ 
 
     render() {
 
 
-    let ChartType = this.props.type 
+    let chartType = this.props.type 
+    let legend 
+    switch(chartType){
+        case 'company':
+        case 'destination':
+            legend = 'rating'
+            break
+        case 'airport':
+            legend = 'flights'
+            break
+        case 'flight':
+            legend = 'sold tickets'
+            break
+        default:
+            legend = ''
+    }
         
         return (
           <div style={{ height: '200px' }}>
@@ -72,8 +31,6 @@ export default class UnifiedBarsChart extends Component {
 
                 data={this.props.data}
 
-
-                // data={data2}
                 keys={[ 'y',]}
                 indexBy="x"
 
@@ -110,7 +67,7 @@ export default class UnifiedBarsChart extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'Company',
+                    legend: `${chartType}`,
                     legendPosition: 'middle',
                     legendOffset: 32
                 }}
@@ -118,7 +75,7 @@ export default class UnifiedBarsChart extends Component {
                     tickSize: 5,
                     tickPadding: 5,
                     tickRotation: 0,
-                    legend: 'rating',
+                    legend: `${legend}`,
                     legendPosition: 'middle',
                     legendOffset: -40
                 }}

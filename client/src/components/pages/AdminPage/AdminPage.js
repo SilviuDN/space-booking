@@ -11,11 +11,12 @@ import AirportDetails from '../AirportsPage/AirportDetails'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
-import AdminBigChart from '../Testing/adminBigChart'
+import FlightsOccupationChart from '../Charts/FlightsOccupationChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
+import BarsLists from '../Charts/BarsLists'
 
 
 
@@ -62,16 +63,16 @@ class AdminPage extends Component {
 
                     <Row style={{ marginTop: 0 }}>
                         <Col xs={{ span: 2, offset: 2 }} className={'col'} >
-                            <AdminBigChart />
+                        <FlightsOccupationChart howManyDays={1}/>
                         </Col>
                         <Col xs={2} className={'col'}>
-                            <AdminBigChart />
+                        <FlightsOccupationChart howManyDays={2}/>
                         </Col>
                         <Col xs={2} className={'col'}>
-                            <AdminBigChart />
+                        <FlightsOccupationChart howManyDays={3}/>
                         </Col>
                         <Col xs={2} className={'col'}>
-                            <AdminBigChart />
+                        <FlightsOccupationChart />
                         </Col>
                     </Row>
 
@@ -117,7 +118,14 @@ class AdminPage extends Component {
 
                         </Col>
 
+
                         <Col xs={5} id="">
+                        {
+                                this.state.listState === 'company' ? <BarsLists  type='company' setList={this.setList} /> :
+                                    this.state.listState === 'flights' ? <BarsLists  type='flights' setList={this.setList} /> :
+                                        this.state.listState === 'destinations' ? <BarsLists  type='company' setList={this.setList} /> :
+                                            this.state.listState === 'airports' ? <BarsLists  type='flights' setList={this.setList} /> :null
+                        }
 
                         </Col>
                     </Row>

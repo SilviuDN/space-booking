@@ -3,19 +3,14 @@ import CompanyService from "../../services/company.service";
 import DestinationService from "../../services/destinations.service"
 import AirportService from "../../services/AirportService"
 import FlightsService from "../../services/flights.service"
-import UnifiedBarsChart from "./UnifiedBarsChart";
+import BarsChart from "./BarsChart";
 
-class UnifiedBarsLists extends Component {
+class BarsLists extends Component {
 
     constructor() {
         super()
         this.state = {
-            // type: 'company',
-            // type: 'destination',
-            // type: 'airport',
-            type: 'flight',
-            // type: undefined,
-
+            type: undefined,
             listForBarsChart: undefined,
         }
         this.companyService = new CompanyService()
@@ -24,56 +19,49 @@ class UnifiedBarsLists extends Component {
         this.flightService = new FlightsService()
     }
 
-
-    // <UnifiedList  list={this.setList} type={type}/>
-
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
-        // this.setState({ listForBarsChart: this.props.listForBarsChart })
-
-        // this.setState({
-        //     type: this.props.type
-        // })
-
-        if(this.state.type == 'company'){
+        
+        if(this.props.type == 'company'){
         this.companyService
             .getCompanies()
             .then(response => {
-                // console.log('antes', response.data)
-                this.setState({ listForBarsChart: response.data })
-                // console.log('despues',this.state.listForBarsChart)
+                this.setState({ 
+                    type: 'company',
+                    listForBarsChart: response.data })
             } )
             .catch(err => console.log(err))            
         }
 
-        if(this.state.type == 'destination'){
+        if(this.props.type == 'destination'){
             this.destinationService
                 .getDestinations()
                 .then(response => {
-                    // console.log('antes', response.data)
-                    this.setState({ listForBarsChart: response.data })
-                    // console.log('despues',this.state.listForBarsChart)
+                    this.setState({ 
+                        type: 'destination', 
+                        listForBarsChart: response.data })
                 } )
                 .catch(err => console.log(err))            
             }
 
-        if(this.state.type == 'airport'){
+        if(this.props.type == 'airport'){
             this.airportService
                 .getAirports()
                 .then(response => {
-                    // console.log('antes', response.data)
-                    this.setState({ listForBarsChart: response.data.slice(0,6) })
-                    // console.log('despues',this.state.listForBarsChart)
+                    this.setState({
+                        type: 'airport', 
+                        listForBarsChart: response.data.slice(0,6) })
                 } )
                 .catch(err => console.log(err))            
             }
 
-        if(this.state.type == 'flight'){
+        if(this.props.type == 'flight'){
             this.flightService
                 .getFlights()
                 .then(response => {
-                    // console.log('antes', response.data)
-                    this.setState({ listForBarsChart: response.data })
+                    this.setState({ 
+                        type: 'flight', 
+                        listForBarsChart: response.data })
                     console.log('despues',this.state.listForBarsChart.length)
                 } )
                 .catch(err => console.log(err))            
@@ -88,7 +76,7 @@ class UnifiedBarsLists extends Component {
             this.state.type == 'airport' ?'name':
             this.state.type == 'flight' ?'flightNumber': null
 
-
+        
 
         if(this.state.type == 'company'){
         // xValue = elem.companyName
@@ -132,7 +120,6 @@ class UnifiedBarsLists extends Component {
         let data        
         data = []
         this.state.listForBarsChart.forEach(elem => this.populateDataString(data, elem))     
-
         return data 
     }
 
@@ -144,7 +131,6 @@ class UnifiedBarsLists extends Component {
 
     render() {
 
-        // console.log(this.createData(this.state.type))
 
         return (
 
@@ -154,7 +140,7 @@ class UnifiedBarsLists extends Component {
             :
             <>
 
-                <UnifiedBarsChart data = {this.createData()} />               
+                <BarsChart data = {this.createData()} type = {this.props.type}/>               
 
 
 
@@ -164,4 +150,4 @@ class UnifiedBarsLists extends Component {
     }
 }
 
-export default UnifiedBarsLists
+export default BarsLists

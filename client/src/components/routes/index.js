@@ -22,7 +22,7 @@ import DestinationEdit from '../pages/DestinationsPage/DestintationEdit'
 
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
-import Test01 from '../pages/Testing/Test01.js'
+import Test01 from '../pages/.Testing/Test01.js'
 
 
 
