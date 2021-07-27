@@ -25,10 +25,15 @@ class AdminPage extends Component {
         this.state = {
             listState: 'user',
             chart: '',
+            searchBox: '',
             isLoading: false,
             id: '',
+
         }
     }
+
+
+    // this.state[this.state.listState]
 
 
 
@@ -44,11 +49,7 @@ class AdminPage extends Component {
         })
     }
 
-    setChart = (chart) => {
-        this.setState({
-            chart
-        })
-    }
+
 
 
     render() {

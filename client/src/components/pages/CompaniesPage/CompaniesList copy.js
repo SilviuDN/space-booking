@@ -25,6 +25,10 @@ class CompaniesList extends Component {
 
     loadCompanies = (searchString) => {
 
+        // this.setState({
+        //     loading: true
+        // })
+
         !searchString ?
 
             this.companyService
@@ -48,10 +52,19 @@ class CompaniesList extends Component {
     }
 
 
+
     componentDidMount = () => {
 
         this.loadCompanies()
     }
+
+    componentDidUpdate = (prevProps, prevState) => {
+        // prevState.status !== this.props.status && this.loadCompanies()
+
+        // console.log(prevState.status)
+        console.log(this.state.status)
+    }
+
 
 
     acceptCompany = (company, status) => {
@@ -63,7 +76,6 @@ class CompaniesList extends Component {
 
 
     }
-
 
     deleteCompany = company_id => {
 
@@ -81,6 +93,7 @@ class CompaniesList extends Component {
     }
 
     setStatus = () => {
+
 
         this.setState({
             status: !this.state.status,
