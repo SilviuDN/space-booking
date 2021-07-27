@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
-const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser }) => {
+const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser, acceptCompany, status }) => {
     return (
 
         <>
@@ -25,16 +25,31 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
                     &nbsp;
 
                     {(loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin' ?
+                        <>
 
-                        <Link to={`/companies/${_id}/edit`}>
-                            <Button variant="dark" block >Editar</Button>
-                        </Link>
+                            <Link to={`/companies/${_id}/edit`}>
+                                <Button variant="dark" block >Editar</Button>
+                            </Link>
+                            &nbsp;
+                            <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
+                                <Button variant="danger" block >Eliminar</Button>
+                            </Link>
+                        </>
                         : null
+
                     }
-                    &nbsp;
-                    <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
-                        <Button variant="danger" block >Eliminar</Button>
-                    </Link>
+                    {
+                        loggedUser?.role === 'admin' ?
+                            status === false ?
+
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Pending</Link>
+
+                                :
+
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Live</Link>
+                            :
+                            null
+                    }
                 </td>
             </tr>
 

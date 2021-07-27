@@ -1,50 +1,13 @@
-// install (please make sure versions match peerDependencies)
-// yarn add @nivo/core @nivo/pie
 import { ResponsivePie } from '@nivo/pie'
 import React, { Component } from 'react';
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-
-// const data = [
-//     {
-//         "id": "mercury",
-//         "label": "mercury",
-//         "value": 10000,
-//         "color": "hsl(278, 70%, 50%)"
-//     },
-//     {
-//         "id": "venus",
-//         "label": "venus",
-//         "value": 8000,
-//         "color": "hsl(78, 70%, 50%)"
-//     },
-//     {
-//         "id": "mars",
-//         "label": "mars",
-//         "value": 12000,
-//         "color": "hsl(336, 70%, 50%)"
-//     },
-//     {
-//         "id": "proxima b",
-//         "label": "proxima b",
-//         "value": 16000,
-//         "color": "hsl(16, 70%, 50%)"
-//     },
-// ]
-
 
 export default class PieChart extends Component {
-    // data = this.props.data
 
     render() {
         return (
             <div style={{ height: '200px' }}>
             <ResponsivePie
                 data={this.props.data}
-                // data={data}
 
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}

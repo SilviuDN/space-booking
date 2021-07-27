@@ -3,7 +3,7 @@ import { Component } from "react";
 import FlightsService from '../../services/flights.service'
 import Spinner from "../FlightsPage/Spinner";
 import PieChart from "./PieChart";
-import FlightCard from "../FlightsPage/FlightCard";
+import BarChart from "./BarChart";
 
 
 class FlightsOccupationChart extends Component {
@@ -22,24 +22,26 @@ class FlightsOccupationChart extends Component {
         this.flightsService
             .getFlights()
             .then(response => {
-               this.setState({ flights: response.data })
-            //    console.log("*****************************************")
-               console.log(this.state.flights)
-               console.log("total", this.calculateTotalSeats(this.state.flights))
-               console.log("sold", this.calculateSoldSeats(this.state.flights))
-               console.log(this.calculateSeatsSituationData(this.state.flights))
+                let days = this.props.howManyDays || 30
+
+                const date = new Date();
+                const nowUnix = date.getTime();
+
+                const nextMonthUnix = nowUnix + days * 24 * 60 * 60 * 1000
+                
+                const nextMonthFlights = response.data.filter(flight =>{
+                    let flightDate = new Date(flight.date)
+                    let flightDateUnix = flightDate.getTime()
+                    return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
+                })
+
+                this.setState({ flights: nextMonthFlights })
 
             })
             .catch(err => console.log(err))
     }
 
     
-
-    // filterLastWeek = () => {
-
-    // }
-
-
     componentDidMount = () => {
         this.loadFlights()
 
@@ -52,14 +54,12 @@ class FlightsOccupationChart extends Component {
 
 
     calculateSoldSeats(flights){
-        // return flights.reduce( (acc, flight ) => console.log(flight.soldTickets))
         return flights.reduce( (acc, flight ) => acc + flight.soldTickets, 0)
     }
 
     calculateSeatsSituationData(flights){
         const soldSeats = this.calculateSoldSeats(flights)
         const availableSeats = this.calculateTotalSeats(flights) - soldSeats
-        console.log("$$$$$$$",soldSeats, availableSeats)
         const data = [
             {
                 id: "sold",
@@ -85,16 +85,21 @@ class FlightsOccupationChart extends Component {
     render() {
         return (
 
-            this.state.flights===undefined
+            !this.state.flights
             ?
             <h1>Cargando</h1>
             :
             <>
+
+                {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
+
+                {/* <p>PieChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays}:</p> */}
                 <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
-                <Spinner />
-                {/* <tbody>
-                    {this.state.flights.map(elem => <FlightCard key={elem._id} {...elem} removeFlight={() => this.removeFlight(elem._id)} id={this.state.id} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} />)}
-                </tbody> */}
+
+                {/* <p>BarChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays} for each available flight:</p> */}
+                {/* {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)} */}
+
+
 
 
             </>
