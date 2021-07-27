@@ -4,6 +4,7 @@ import AirportService from '../../services/AirportService'
 import AirportCard from '../AirportsPage/AirportCard'
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
+import SearchBox from '../../shared/searchBox/searchBox'
 
 
 class AirportsList extends Component {
@@ -17,21 +18,28 @@ class AirportsList extends Component {
         this.AirportService = new AirportService()
     }
 
-    loadAirports = () => {
-        this.AirportService
-            .getAirports()
-            .then(response => this.setState({ airport: response.data }))
-            .catch(err => console.log(err))
+    loadAirports = (string) => {
+
+        string === '' ?
+            this.AirportService
+                .getAirports()
+                .then(response => this.setState({ airport: response.data }))
+                .catch(err => console.log(err))
+
+            :
+
+            this.AirportService
+                .searchAirport(string)
+                .then(response => this.setState({ airport: response.data }))
+                .catch(err => console.log(err))
+
     }
+
 
     componentDidMount = () => {
         this.loadAirports()
     }
 
-    search = (e) => {
-
-
-    }
 
     deleteAirport = airportId => {
         // const confirm = 
@@ -60,7 +68,9 @@ class AirportsList extends Component {
 
                 :
                 <>
-                    <input type="text" className="form-control" placeholder="name or iata code" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} />
+                    {/* <input type="text" className="form-control" placeholder="name or iata code" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} /> */}
+                    <SearchBox load={this.loadAirports} />
+
                     <Table striped bordered hover>
                         <thead>
                             <tr>

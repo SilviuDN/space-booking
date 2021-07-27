@@ -43,7 +43,7 @@ class AirportEdit extends Component {
                         city: response.data.address.city,
                     },
                     name: response.data.name,
-                    iata: response.data.code,
+                    iata: response.data.iata,
                 })
             }
             )

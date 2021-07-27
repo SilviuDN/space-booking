@@ -30,6 +30,7 @@ class UserDetails extends Component {
             .catch(err => console.log(err))
     }
 
+
     render() {
 
 
@@ -48,7 +49,7 @@ class UserDetails extends Component {
 
                             <hr />
 
-                            <p><strong>IATA code:</strong> {this.state.airportDetails.code}</p>
+                            <p><strong>IATA code:</strong> {this.state.airportDetails.iata}</p>
                             <br />
                             <p><strong>Exact Location</strong></p>
                             <p>lat: {this.state.airportDetails.lat}</p>
