@@ -12,12 +12,19 @@ class Checkout extends Component {
 
         this.state = {
 
-            user: undefined
-
+            user: undefined,
+            radioButtons: {
+                1: false,
+                2: false,
+                3: false,
+            }
         }
 
         this.userService = new UserService()
+    }
 
+    onChangeValue(event) {
+        console.log(event.target.value);
     }
 
     componentDidMount() {
@@ -42,7 +49,7 @@ class Checkout extends Component {
                     <h3>cargando</h3> :
 
                     <>
-                        <Link ><h3>Return to previous page</h3></Link>
+                        <Link to="" ><h3>Return to previous page</h3></Link>
                         <br />
 
                         <Row className="justify-content-around">
@@ -60,25 +67,16 @@ class Checkout extends Component {
                                 <br />
                                 <Card body>
 
-                                    <h3>¿Cómo deseas pagar?</h3>
+                                    <h3>Payment Method</h3>
                                     <br />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Tarjeta de crédito'
-                                    />
-                                    <hr />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Tarjeta de débito'
-                                    />
-                                    <hr />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Pago desde tu banca por internet'
-                                    />
+
+                                    <div onChange={this.onChangeValue}>
+                                        <input type="radio" value="Credit Card" name="gender" /> Tarjeta de crédito
+                                        <hr />
+                                        <input type="radio" value="Debit Card" name="gender" /> Tarjeta de débito
+                                        <hr />
+                                        <input type="radio" value="Bank" name="gender" /> Pago desde tu banca por internet
+                                    </div>
 
                                 </Card>
                                 <br />
@@ -90,13 +88,13 @@ class Checkout extends Component {
 
                                         <Row>
 
-                                            <Form.Group as={Col} md={6} controlId="street" className="mb-4">
+                                            <Form.Group as={Col} md={6} className="mb-4">
                                                 <FormLabel>NÚMERO DE TARJETA</FormLabel>
                                                 <Form.Control id='street' type="text" placeholder="Ingresa el número de tarjeta" name='street' />
                                             </Form.Group>
 
 
-                                            <Form.Group as={Col} md={6} controlId="number" className="mb-4">
+                                            <Form.Group as={Col} md={6} className="mb-4">
                                                 <FormLabel>TITULAR DE LA TARJETA</FormLabel>
 
                                                 <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
@@ -106,19 +104,19 @@ class Checkout extends Component {
 
                                         <Row>
 
-                                            <Form.Group as={Col} md={3} controlId="street" className="mb-4">
+                                            <Form.Group as={Col} md={3} className="mb-4">
                                                 <FormLabel>VENCIMIENTO</FormLabel>
                                                 <Form.Control id='street' type="text" placeholder="Ingresa el número de tarjeta" name='street' />
                                             </Form.Group>
 
 
-                                            <Form.Group as={Col} md={3} controlId="number" className="mb-4">
+                                            <Form.Group as={Col} md={3} className="mb-4">
                                                 <FormLabel>COD. SEGURIDAD</FormLabel>
 
                                                 <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
                                             </Form.Group>
 
-                                            <Form.Group as={Col} md={6} controlId="number" className="mb-4">
+                                            <Form.Group as={Col} md={6} className="mb-4">
                                                 <FormLabel>DOCUMENTO DEL TITULAR DE LA TARJETA</FormLabel>
 
                                                 <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
@@ -136,7 +134,7 @@ class Checkout extends Component {
                                 <Card body>
                                     <h3>Documentación requerida</h3>
                                     <p>Chequea las condiciones de entrada de tu destino tanto para la ida como para la vuelta.</p>
-                                    <Link>Ver condiciones</Link>
+                                    <Link to="">Ver condiciones</Link>
 
                                 </Card>
                                 <br />
@@ -237,7 +235,7 @@ class Checkout extends Component {
 
 
 
-                                <Link as={Button} bsPrefix="btn-flat" variant="primary" to="/admin" onClick={() => this.props.setList('user')} className="btn btn-flat">Comprar</Link>
+                                <Link as={Button} variant="primary" to="/admin" onClick={() => this.props.setList('user')} className="btn btn-flat">Comprar</Link>
 
                             </Col>
                             <Col md={4}>
@@ -297,7 +295,7 @@ class Checkout extends Component {
                                     <p>x No permite</p>
 
 
-                                    <Link>Ver política de cambios y cancelaciones</Link>
+                                    <Link to="">Ver política de cambios y cancelaciones</Link>
 
 
 

@@ -12,9 +12,9 @@ class IndexSearchPanel extends Component {
         this.state = {
             destinations: '',
             airports: '',
-            departureDate: '',
-            returnDate: '',
-            adults: 0,
+            departureDate: undefined,
+            returnDate: undefined,
+            adults: 1,
             children: 0,
 
 
@@ -140,15 +140,15 @@ class IndexSearchPanel extends Component {
 
                         <Col md={12}>
                             <label className="" ><span className="span"><small className="small">Departure from date  </small></span></label>
-                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="From" id="departureDate" required />
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="From" id="departureDate" />
                         </Col>
                         <Col md={12}>
                             <label className="" ><span className="span"><small className="small">Departure to date</small></span></label>
-                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="To" id="returnDate" required />
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="To" id="returnDate" />
                         </Col>
                         <Col md={12}>
                             <label className="" ><span className="span"><small className="small">Adults(16+)</small></span></label>
-                            <input type="number" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="0" name="adults" />
+                            <input type="number" value={this.state.adults} className="form-control" onChange={(e) => this.handleInput(e)} placeholder="0" name="adults" />
                         </Col>
                         <Col md={12}>
                             <label className="" ><span className="span"><small className="small">Children</small></span></label>
