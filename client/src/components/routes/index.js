@@ -49,7 +49,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} />} />
 
 
-            <PlanetRoutes />
+
 
 
 
@@ -80,7 +80,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
 
 
-
+            <PlanetRoutes />
 
 
 
