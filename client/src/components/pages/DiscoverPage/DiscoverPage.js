@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
 import Planets from './Planets/planets';
+import PlanetDetails from './planetDetails/PlanetDetails';
 
 
 
@@ -15,10 +16,16 @@ class DiscoverPage extends Component {
 
 
     changeView = (view) => {
+
         this.setState({
             view: view
         })
+
     }
+
+    // loadDetails = () => {
+    //     this.props.history.push(`/discover/details/${this.state.view}`)
+    // }
 
 
 
@@ -27,8 +34,8 @@ class DiscoverPage extends Component {
 
 
             this.state.view === 'discover' ? <Planets changeView={this.changeView} /> :
-
-                null
+                this.state.view !== '' ? <PlanetDetails view={this.state.view} /> :
+                    null
 
 
 

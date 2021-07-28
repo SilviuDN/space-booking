@@ -14,7 +14,7 @@
 
 .info{
     display: hidden;
-    transition: all 0.7s ease-in;
+    transition: all 0.3s ease-in;
     color: black;
 }
 

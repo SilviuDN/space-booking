@@ -85,37 +85,37 @@ class Planets extends Component {
                     <Row className={'pb-5'}>
                         <Col xs={{ span: 1, offset: 3 }} >
                             {/* <p>earth</p> */}
-                            <MercuryPlanet />
+                            <MercuryPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                         <Col xs={{ span: 1, offset: 1 }}>
 
-                            <VenusPlanet />
+                            <VenusPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
 
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <EarthPlanet />
+                            <EarthPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
 
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <MarsPlanet />
+                            <MarsPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                     </Row>
 
                     <Row style={{ marginTop: '100px' }}>
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <JupiterPlanet />
+                            <JupiterPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <SaturnPlanet />
+                            <SaturnPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <UranusPlanet />
+                            <UranusPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <NeptunePlanet />
+                            <NeptunePlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
                         <Col xs={{ span: 1, offset: 1 }}>
-                            <PlutoPlanet />
+                            <PlutoPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
 
                     </Row>

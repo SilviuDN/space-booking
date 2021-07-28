@@ -7,7 +7,7 @@ import UserDetails from '../pages/UserDetails/UserDetails.js'
 import UsersPage from '../pages/UsersPage/UsersPage.js'
 import UserEditPage from '../pages/UserEditPage/UserEditPage.js'
 
-import DiscoverPage from '../pages/DiscoverPage/DiscoverPage.js'
+// import DiscoverPage from '../pages/DiscoverPage/DiscoverPage.js'
 
 import CompaniesPage from '../pages/CompaniesPage/CompaniesPage.js'
 import CompanyDetails from '../pages/CompanyDetails/CompanyDetails.js'
@@ -25,6 +25,8 @@ import DestinationEdit from '../pages/DestinationsPage/DestintationEdit'
 import AdminPage from '../pages/AdminPage/AdminPage.js'
 
 import Test01 from '../pages/.Testing/Test01.js'
+
+import PlanetRoutes from './Planet.routes.js'
 
 
 
@@ -47,7 +49,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} />} />
 
 
-            <Route path="/discover" exact render={() => <DiscoverPage />} />
+            <PlanetRoutes />
 
 
 

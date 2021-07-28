@@ -8,7 +8,7 @@ const SunPlanet = (props) => {
 
 
 
-    const info = `<h1>Characteristics of the Sun</h1>
+    const info = `<h1>Sun</h1>
     <p> <strong>Mass:</strong> 1.98892 x 10<small>30</small> kg --
     <strong>Diameter:</strong>: 1,391,000 kilometers </p>
     <p> <strong>Radius:</strong>: 695,500 km --
@@ -18,22 +18,15 @@ const SunPlanet = (props) => {
     `
 
 
-    const renderPlanetInfo = () => {
-
-    }
-
-
-
-
-
 
     return (
 
         <div class="content-sun"
             style={{ backgroundImage: `url(${sun})` }}
-            onClick={(e) => props.changeView(e)}
+            onClick={() => props.changeView('sun')}
             onMouseEnter={() => props.showInfo(info)}
-            onMouseOut={() => props.hideInfo()}>
+        // onMouseOut={() => props.hideInfo()}
+        >
 
 
             <div class="sombra3dsun" style={{
