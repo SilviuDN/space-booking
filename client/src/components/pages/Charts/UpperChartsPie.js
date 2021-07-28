@@ -54,5 +54,3 @@ class UpperChartsPie extends Component {
 }
 
 export default UpperChartsPie
-
-

@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
-import AdminNav from './AdminNav'
+import AdminNav from '../AdminPage/AdminNav'
 import UsersList from '../UsersPage/UsersList'
 import CompanyLists from '../CompaniesPage/CompaniesList'
 import Fligths from '../FlightsPage/FlightsList'
@@ -11,18 +11,17 @@ import AirportDetails from '../AirportsPage/AirportDetails'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
+import FlightsOccupationChart from '../Charts/FlightsOccupationChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
-import UpperChartsPie from '../Charts/UpperChartsPie'
-import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
-import UpperChartsPie from '../Charts/UpperChartsPie'
+import UpperCharts from './UpperCharts'
 
 
 
-class AdminPage extends Component {
+class Test01 extends Component {
     constructor() {
         super()
         this.state = {
@@ -61,11 +60,11 @@ class AdminPage extends Component {
         return (
 
             <Row>
-                <Container fluid>
+                <Container fluid>  
 
-                <Row style={{ marginTop: 0 }}>
+                    <Row style={{ marginTop: 0 }}>
                         <Col xs={{ span: 4, offset: 2 }} className={'col'} >
-                        <UpperChartsPie/>
+                        <UpperCharts/>
                         </Col>
 
                         <Col xs={{ span: 4,  offset: 1  }} className={'col'} >
@@ -75,7 +74,7 @@ class AdminPage extends Component {
                         }
                         </Col>
 
-                    </Row>   
+                    </Row>       
 
 
 
@@ -111,17 +110,19 @@ class AdminPage extends Component {
                                                                                 this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} /> :
                                                                                     this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
                                                                                         this.state.listState === 'editDestination' ? <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
-                                                                                            this.state.listState === 'editCompany' ? <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
+                                                                                            this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
 
-                                                                                                this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
-
-                                                                                                    null
+                                                                                                null
 
                             }
 
                         </Col>
 
 
+                        <Col xs={5} id="">
+
+
+                        </Col>
                     </Row>
 
                 </Container>
@@ -134,4 +135,4 @@ class AdminPage extends Component {
 }
 
 
-export default AdminPage
+export default Test01

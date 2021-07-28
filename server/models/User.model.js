@@ -60,6 +60,10 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId, ref: 'Flight'
   }],
 
+  ratedFlights: [{
+    type: mongoose.Schema.Types.ObjectId, ref: 'Flight'
+  }],
+
   role: {
     type: String,
     enum: ['user', 'moderador', 'admin'],

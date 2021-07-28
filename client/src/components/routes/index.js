@@ -27,7 +27,7 @@ import AdminPage from '../pages/AdminPage/AdminPage.js'
 import Test01 from '../pages/.Testing/Test01.js'
 
 import PlanetRoutes from './Planet.routes.js'
-import Checkout from '../pages/CheckoutPage/CheckoutPage.js'
+// import Checkout from '../pages/CheckoutPage/CheckoutPage.js'
 
 
 
@@ -65,7 +65,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
             <Route path="/flights" exact render={() => <FlightsPage loggedUser={loggedUser} />} />
             <Route path="/flights/new" exact render={(props) => <EditCreateFlight {...props} type="new" showAlert={showAlert} />} />
-            <Route path="/flights/found/:airport/:destination/:departureDate/:returnDate/:adults/:children" render={(props) => <FlightSearchList {...props} />} />
+            <Route path="/flights/found/:airport/:destination/:departureDate/:returnDate/:adults/:children" render={(props) => <FlightSearchList {...props} showAlert={showAlert} loggedUser={loggedUser} />} />
             <Route path="/flights/:flight_id/edit" exact render={(props) => <EditCreateFlight {...props} type="edit" showAlert={showAlert} />} />
             <Route path="/flights/:flight_id" exact render={(props) => <FlightDetails {...props} />} />
 
@@ -80,7 +80,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/testing/01" exact render={() => <Test01 />} />
 
 
-            <Route path="/users/checkout/:user_id" exact render={props => <Checkout {...props} />} />
+            {/* <Route path="/users/checkout/:user_id" exact render={props => <Checkout {...props} />} /> */}
 
 
             <PlanetRoutes />

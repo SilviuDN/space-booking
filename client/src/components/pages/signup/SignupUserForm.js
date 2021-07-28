@@ -210,7 +210,7 @@ class SignupUserForm extends Component {
                             <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' />
 
                         </Form.Group>
-                        <Form.Group as={Col} controlId="phone" md={{ span: 8, offset: 2 }} className="mb-4">
+                        <Form.Group as={Col} controlId="hr" md={{ span: 8, offset: 2 }} className="mb-4">
                             <hr />
                         </Form.Group>
                     </Row>
@@ -243,6 +243,7 @@ class SignupUserForm extends Component {
 
                         </Form.Group>
 
+
                         {!this.props.companyRender ?
 
                             <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3 align-self-center">
@@ -255,6 +256,9 @@ class SignupUserForm extends Component {
                         }
 
                     </Row>
+                    <Form.Group as={Col} controlId="hr" md={{ span: 8, offset: 2 }} className="mb-4">
+                        <hr />
+                    </Form.Group>
 
                 </Form>
             </Container >

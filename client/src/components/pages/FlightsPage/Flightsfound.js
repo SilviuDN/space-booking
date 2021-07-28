@@ -4,6 +4,7 @@ import FlightsService from '../../services/flights.service'
 import Spinner from 'react-bootstrap/Spinner';
 import { Container, Row, Col } from 'react-bootstrap'
 import IsearchPannelLeft from '../../pages/indexPage/isearchPannelLeft'
+import Checkout from "../CheckoutPage/CheckoutPage";
 // import IndexSearchPanel from "../../pages/indexPage/indexSearchPanel";
 
 
@@ -12,74 +13,80 @@ class FlightsFound extends Component {
         super()
         this.state = {
             flight: undefined,
+            payment: false,
+            adults: 1,
+            children: 0,
+
+            flightsAvail: undefined,
         }
         this.flightsService = new FlightsService()
     }
 
 
-    loadFlight = () => {
+    loadFlights = () => {
 
-
-        const { airport, destination, departureDate, returnDate, /* adults, children  */ } = this.props.match.params
-
+        const { airport, destination, departureDate, returnDate, adults, children } = this.props.match.params
 
         this.flightsService
             .searchTravels(airport, destination, departureDate, returnDate)
             .then(response => {
-                console.log()
                 this.setState({
-                    flight: response.data
+                    flightsAvail: response.data,
+                    adults,
+                    children
                 })
             })
             .catch(err => console.log(err))
     }
 
 
+    setPayMethod = (flight) => this.setState({ payment: !this.state.payment, flight })
+
+
     componentDidMount() {
-        this.loadFlight()
+        this.loadFlights()
     }
 
-    componentDidUpdate(prevProps, prevState) {
 
-        // console.log(prevProps)
+    componentDidUpdate = (prevProps, prevState) => prevProps.location.pathname !== this.props.location.pathname && this.loadFlights()
 
-        prevProps.location.pathname !== this.props.location.pathname && this.loadFlight()
 
-    }
 
     render() {
-        console.log(this.props.match.params)
-
 
         return (
 
-            <div className="flights-found">
+            !this.state.payment ?
 
-                <Container fluid >
+                <div className="flights-found">
 
-                    <Row>
+                    <Container fluid >
 
-                        <Col xl={2} lg={3} md={4} sm={12}>
+                        <Row>
+                            <Col xl={2} lg={3} md={4} sm={12}>
 
-                            <IsearchPannelLeft props={this.props} />
-                            {/* <IsearchPannelLeft props={this.props} cols={12} /> */}
+                                <IsearchPannelLeft props={this.props} />
 
-                        </Col>
-                        <Col xl={9} lg={9} md={8} sm={12}>
+                            </Col>
+                            <Col xl={9} lg={9} md={8} sm={12}>
+                                {
+                                    !this.state.flightsAvail ?
 
-                            {!this.state.flight ?
+                                        <Spinner animation="grow" />
 
-                                <Spinner animation="grow" />
+                                        :
 
-                                :
+                                        this.state.flightsAvail.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} setPayMethod={this.setPayMethod} />)
+                                }
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
 
-                                this.state.flight.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} />)
+                :
 
-                            }
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+                <Checkout flightDetails={this.state} setPayMethod={this.setPayMethod} props={{ ...this.props }} />
+
         )
     }
 }

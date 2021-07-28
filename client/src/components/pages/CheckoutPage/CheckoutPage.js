@@ -5,319 +5,293 @@ import { Link } from 'react-router-dom'
 import './CheckoutPage.css'
 
 class Checkout extends Component {
-
     constructor() {
-
         super()
 
         this.state = {
-
-            user: undefined
-
+            user: undefined,
         }
 
         this.userService = new UserService()
-
     }
 
-    componentDidMount() {
-
-        const user_id = this.props.match?.params.user_id || this.props.id
-
-        this.userService
-            .userDetails(user_id)
-            .then(response => this.setState({ user: response.data }))
-            .catch(err => console.log(err))
-
+    onChangeValue(event) {
+        // por si queremos usar los radials
+        // console.log(event.target.value);
     }
+
+
 
     render() {
 
         return (
 
             <Container>
+                <Button onClick={() => this.props.setPayMethod(undefined)}><h3>Return to previous page</h3></Button>
 
-                {!this.state.user ?
+                <br />
 
-                    <h3>cargando</h3> :
-
-                    <>
-                        <Link ><h3>Return to previous page</h3></Link>
+                <Row className="justify-content-around">
+                    <Col md={8}>
+                        <h4>Not long to go! Complete your data and finalize your purchase</h4>
                         <br />
 
-                        <Row className="justify-content-around">
+                        <Card body>¡ With your Space card you can earn double Space Points on this purchase!</Card>
 
-                            <Col md={8}>
+                        <br />
 
+                        <Card body>
+                            <h3>Payment Method</h3>
 
+                            <br />
 
+                            <div onChange={this.onChangeValue}>
+                                <input type="radio" value="Credit Card" name="gender" /> Credit Card
+                                <hr />
+                                <input type="radio" value="Debit Card" name="gender" /> Debit Card
+                                <hr />
+                                <input type="radio" value="Bank" name="gender" /> By Bank
+                            </div>
+                        </Card>
 
+                        <br />
 
-                                <h4>Not long to go! Complete your data and finalize your purchase</h4>
-                                <br />
+                        <Card body>
+                            <h3>Insert Card data</h3>
 
-                                <Card body>¡ With your Space card you can earn double Space Points on this purchase!</Card>
-                                <br />
-                                <Card body>
+                            <br />
 
-                                    <h3>¿Cómo deseas pagar?</h3>
-                                    <br />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Tarjeta de crédito'
-                                    />
-                                    <hr />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Tarjeta de débito'
-                                    />
-                                    <hr />
-                                    <Form.Check
-                                        type='radio'
-                                        id='radio'
-                                        label='Pago desde tu banca por internet'
-                                    />
+                            <Form>
+                                <Row>
+                                    <Form.Group as={Col} md={6} className="mb-4">
+                                        <FormLabel>Card Number</FormLabel>
+                                        <Form.Control id='cardNumber' type="text" placeholder="Ingresa el número de tarjeta" name='cardNumber' />
+                                    </Form.Group>
 
-                                </Card>
-                                <br />
-                                <Card body>
 
-                                    <h3>Ingresa datos de la tarjeta</h3>
-                                    <br />
-                                    <Form>
+                                    <Form.Group as={Col} md={6} className="mb-4">
+                                        <FormLabel>Card owner</FormLabel>
 
-                                        <Row>
+                                        <Form.Control id='cardOwner' type="text" placeholder="owner" name='cardOwner' />
+                                    </Form.Group>
+                                </Row>
 
-                                            <Form.Group as={Col} md={6} controlId="street" className="mb-4">
-                                                <FormLabel>NÚMERO DE TARJETA</FormLabel>
-                                                <Form.Control id='street' type="text" placeholder="Ingresa el número de tarjeta" name='street' />
-                                            </Form.Group>
+                                <Row>
+                                    <Form.Group as={Col} md={3} className="mb-4">
+                                        <FormLabel>Expiration</FormLabel>
+                                        <Form.Control id='expDate' type="text" placeholder="expiration date" name='street' />
+                                    </Form.Group>
 
+                                    <Form.Group as={Col} md={3} className="mb-4">
+                                        <FormLabel>Segurity code</FormLabel>
 
-                                            <Form.Group as={Col} md={6} controlId="number" className="mb-4">
-                                                <FormLabel>TITULAR DE LA TARJETA</FormLabel>
+                                        <Form.Control id='codeNumber' type="text" placeholder="Code" name='number' />
+                                    </Form.Group>
 
-                                                <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
-                                            </Form.Group>
+                                    <Form.Group as={Col} md={6} className="mb-4">
+                                        <FormLabel>Document from card owner</FormLabel>
 
-                                        </Row>
+                                        <Form.Control id='docNumber' type="text" placeholder="Doc. number" name='number' />
+                                    </Form.Group>
+                                </Row>
+                            </Form>
+                        </Card>
 
-                                        <Row>
+                        <br />
 
-                                            <Form.Group as={Col} md={3} controlId="street" className="mb-4">
-                                                <FormLabel>VENCIMIENTO</FormLabel>
-                                                <Form.Control id='street' type="text" placeholder="Ingresa el número de tarjeta" name='street' />
-                                            </Form.Group>
+                        <h5>This is a safe place</h5>
+                        <p>Using safe conections to protect you information</p>
 
+                        <br />
 
-                                            <Form.Group as={Col} md={3} controlId="number" className="mb-4">
-                                                <FormLabel>COD. SEGURIDAD</FormLabel>
+                        <Card body>
+                            <h3>Required documentation</h3>
+                            <p>Check the entry conditions of your destination for both the outward and return.</p>
+                            <Link to="">View Conditions</Link>
+                        </Card>
 
-                                                <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
-                                            </Form.Group>
+                        <br />
 
-                                            <Form.Group as={Col} md={6} controlId="number" className="mb-4">
-                                                <FormLabel>DOCUMENTO DEL TITULAR DE LA TARJETA</FormLabel>
+                        <Card body>
 
-                                                <Form.Control id='number' type="text" placeholder="Como figura en la tarjeta" name='number' />
-                                            </Form.Group>
+                            <h3>Your flight only includes hand luggage</h3>
 
-                                        </Row>
-                                    </Form>
-                                </Card>
-                                <br />
-                                <h5>Este es un sitio seguro</h5>
-                                <p>Utilizamos conexiones seguras para proteger tu información</p>
+                            <h5 className="red">
+                                {this.props.flightDetails?.flight.airport.address.city + ' - ' + this.props.flightDetails?.flight.destination.name
+                                }
+                            </h5>
 
-                                <br />
+                            <p>Includes a backpack or purse</p>
+                            <p>
+                                Must fit under the front seat</p>
 
-                                <Card body>
-                                    <h3>Documentación requerida</h3>
-                                    <p>Chequea las condiciones de entrada de tu destino tanto para la ida como para la vuelta.</p>
-                                    <Link>Ver condiciones</Link>
+                            <p>
+                                Includes carry-on luggage</p>
+                            <p>It must fit in the upper compartment of the plane.
+                            </p>
 
-                                </Card>
-                                <br />
+                            <p>Does not include baggage to check
+                            </p>
+                            <p>You can add luggage at the airport for an extra charge.
+                            </p>
 
+                        </Card>
 
-                                <Card body>
-                                    <h3>Tu vuelo solo incluye equipaje de mano</h3>
+                        <Card body>
 
-                                    <h5 className="red">ORIGIN - TARGET </h5>
+                            <h3>Antes de finalizar revisá los datos ingresados</h3>
 
-                                    <p>Incluye una mochila o cartera</p>
-                                    <p>Debe caber bajo el asiento delantero.</p>
+                            <h5>Date</h5>
 
-                                    <p>Incluye equipaje de mano</p>
-                                    <p>Debe caber en el compartimiento superior del avión.</p>
+                            <p className="red">{this.props.flightDetails.flight.date.split('T')[0]}</p>
 
-                                    <p>No incluye equipaje para documentar</p>
-                                    <p>Podrás sumar maletas en el aeropuerto por un cargo extra.</p>
+                            <h3>Datos del pasajero</h3>
 
-                                </Card>
+                            <Row>
+                                <Col> <p>Name:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.name} </p></Col>
+                            </Row>
 
-                                <Card body>
+                            <Row>
+                                <Col> <p>Surname:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.surname} </p></Col>
+                            </Row>
 
-                                    <h3>Antes de finalizar revisá los datos ingresados</h3>
+                            <Row>
+                                <Col> <p>Personal ID:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.typeOfId} {this.props.props.loggedUser.personalId} </p></Col>
+                            </Row>
 
-                                    <h5>Date</h5>
+                            <Row>
+                                <Col> <p>E-mail:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.email} </p></Col>
+                            </Row>
 
-                                    <p className="red">LA FECHA DE PARTIDA</p>
+                            <Row>
+                                <Col> <p>Phone Number:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.phone} </p></Col>
+                            </Row>
 
+                            <hr />
 
+                            <Row>
+                                <Col> <p>E-mail:</p></Col>
+                                <Col><p> {this.props.props.loggedUser.email} </p></Col>
+                            </Row>
 
+                            <hr />
 
-                                    <h3>Datos del pasajero</h3>
-                                    <Row>
-                                        <Col> <p>Name</p></Col>
-                                        <Col><p>: {this.state.user.name} </p></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>Surname</p></Col>
-                                        <Col><p>: {this.state.user.surname} </p></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>Personal ID</p></Col>
-                                        <Col><p>: {this.state.user.typeOfId} {this.state.user.personalId} </p></Col>
-                                    </Row>
+                            <p><strong>Address</strong></p>
 
-                                    <Row>
-                                        <Col> <p>E-mail</p></Col>
-                                        <Col><p>: {this.state.user.email} </p></Col>
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>Phone Number</p></Col>
-                                        <Col><p>: {this.state.user.phone} </p></Col>
-                                    </Row>
-                                    <hr />
-                                    <Row>
-                                        <Col> <p>E-mail</p></Col>
-                                        <Col><p>: {this.state.user.email} </p></Col>
-                                    </Row>
-                                    <hr />
-                                    <p><strong>Address</strong></p>
-                                    <Row>
-                                        <Col> <p>Street</p></Col>
-                                        <Col>  <p>: {this.state.user.address.street} {this.state.user.address.number}</p></Col>
+                            <Row>
+                                <Col> <p>Street:</p></Col>
+                                <Col>  <p>{this.props.props.loggedUser.address.street} {this.props.props.loggedUser.address.number}</p></Col>
+                            </Row>
 
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>Number</p></Col>
-                                        <Col>  <p>: {this.state.user.address.number} </p></Col>
+                            <Row>
+                                <Col> <p>Number:</p></Col>
+                                <Col>  <p> {this.props.props.loggedUser.address.number} </p></Col>
+                            </Row>
 
-                                    </Row>
+                            <Row>
+                                <Col> <p>ZipCode:</p></Col>
+                                <Col>  <p> {this.props.props.loggedUser.address.zipCode} </p></Col>
+                            </Row>
 
+                            <Row>
+                                <Col> <p>City:</p></Col>
+                                <Col>  <p> {this.props.props.loggedUser.address.city} </p></Col>
+                            </Row>
 
-                                    <Row>
-                                        <Col> <p>ZipCode</p></Col>
-                                        <Col>  <p>: {this.state.user.address.zipCode} </p></Col>
+                            <Row>
+                                <Col> <p>Country:</p></Col>
+                                <Col>  <p> {this.props.props.loggedUser.address.country} </p></Col>
+                            </Row>
+                        </Card>
 
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>City</p></Col>
-                                        <Col>  <p>: {this.state.user.address.city} </p></Col>
+                        <Link as={Button} variant="primary" to="/admin" onClick={() => this.props.setList('user')} className="btn btn-flat">Comprar</Link>
+                    </Col>
 
-                                    </Row>
-                                    <Row>
-                                        <Col> <p>Country</p></Col>
-                                        <Col>  <p>: {this.state.user.address.country} </p></Col>
+                    <Col md={4}>
 
-                                    </Row>
+                        <h4>Payment Details</h4>
 
-                                </Card>
+                        <br />
 
+                        <Card body>
+                            <Row>
+                                <Col md={8}>
+                                    <p> Number of passangers: {+this.props.flightDetails.adults + +this.props.flightDetails.children}</p>
 
+                                    <p>Adults: {this.props.flightDetails.adults}</p>
 
+                                    {
+                                        this.props.flightDetails.children >= 1 ?
 
+                                            <p>Child: {this.props.flightDetails.children}</p>
 
+                                            : null
+                                    }
+                                </Col>
 
+                                <Col md={4}>
+                                    <p className="red num"> € {(+this.props.flightDetails.adults + +this.props.flightDetails.children) * this.props.flightDetails.flight.price}</p>
+                                </Col>
+                            </Row>
 
+                            <Row>
+                                <Col md={8}>
+                                    <p>Taxes</p>
+                                </Col>
 
+                                <Col md={4} >
+                                    <p className="red num"> € {(21 * (+this.props.flightDetails.adults + +this.props.flightDetails.children) * this.props.flightDetails.flight.price) / 100}</p>
+                                </Col>
+                            </Row>
+                        </Card>
 
+                        <br />
 
-                                <Link as={Button} bsPrefix="btn-flat" variant="primary" to="/admin" onClick={() => this.props.setList('user')} className="btn btn-flat">Comprar</Link>
+                        <h4>
+                            Purchase details</h4>
 
-                            </Col>
-                            <Col md={4}>
+                        <br />
 
-                                <h4>Detalle del pago</h4>
-                                <br />
-                                <Card body>
+                        <Card body>
+                            <br />
 
-                                    <Row>
-                                        <Col md={8}>
-                                            <p>Vuelo para una persona</p>
+                            <h5 className="red"> {this.props.flightDetails?.flight.airport.address.city + ' (' + this.props.flightDetails?.flight.airport.address.country + ') ' + ' - ' +
+                                this.props.flightDetails?.flight.destination.name
+                            }</h5>
+                            <p>
+                                One way, {this.props.flightDetails?.adults} adult</p>
 
+                            {
+                                this.props.flightDetails.children >= 1 ?
 
-                                        </Col>
-                                        <Col md={4}>
-                                            <p className="red num"> € 3445</p>
+                                    <p>Child: {this.props.flightDetails?.children}</p>
 
-                                        </Col>
+                                    : null
+                            }
+                            <p className="red">Departure ({this.props.flightDetails?.flight.date.split('T')[0]})</p>
 
-                                    </Row>
+                            <div style={{ width: 80, height: 80 }}>
+                                <img src={this.props.flightDetails?.flight.flightCompany.logo} alt="company" style={{ width: '100%' }} />
+                            </div>
 
-                                    <Row>
-                                        <Col md={8}>
-                                            <p>Impuestos, tasas y cargos</p>
+                            <hr />
 
+                            <p>Changes</p>
+                            <p>Allowed (with additional cost)</p>
 
-                                        </Col>
-                                        <Col md={4} >
-                                            <p className="red num"> € 430</p>
+                            <p>Cancellation</p>
+                            <p>Not allowed</p>
 
-                                        </Col>
-
-                                    </Row>
-
-
-
-                                </Card>
-                                <br />
-                                <h4>Detalle de la compra</h4>
-                                <br />
-                                <Card body>
-                                    <br />
-
-                                    <h5 className="red"> ORIGEN(aeropuerto) - DESTINO(planeta) </h5>
-                                    <p>Solo ida, 1 adulto</p>
-
-                                    <p className="red">FECHA (dd mmm yyyy)</p>
-
-                                    <p className="red">LOGO FLIGHT COMPANY</p>
-
-
-                                    <hr />
-                                    <p>Cambios</p>
-                                    <p>- Permite (con costo)</p>
-
-                                    <p>Cancelacion</p>
-                                    <p>x No permite</p>
-
-
-                                    <Link>Ver política de cambios y cancelaciones</Link>
-
-
-
-
-
-
-
-
-                                </Card>
-
-
-
-
-
-                            </Col>
-
-                        </Row>
-                    </>
-                }
-
+                            <Link to="">
+                                See change and cancellation policy</Link>
+                        </Card>
+                    </Col>
+                </Row>
             </Container>
         )
     }
