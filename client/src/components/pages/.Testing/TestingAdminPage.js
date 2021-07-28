@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
-import AdminNav from './AdminNav'
+import AdminNav from '../AdminPage/AdminNav'
 import UsersList from '../UsersPage/UsersList'
 import CompanyLists from '../CompaniesPage/CompaniesList'
 import Fligths from '../FlightsPage/FlightsList'
@@ -20,7 +20,7 @@ import BarsLists from '../Charts/BarsLists'
 
 
 
-class AdminPage extends Component {
+class TestingAdminPage extends Component {
     constructor() {
         super()
         this.state = {
@@ -143,4 +143,4 @@ class AdminPage extends Component {
 }
 
 
-export default AdminPage
+export default TestingAdminPage

@@ -1,8 +1,9 @@
 # Space Booking
 
-## A space flights booking platform by Alexander Marino, Salvador Gallego y Silviu Dilimot
+- Final project for the IronHack WebDev Bootcamp, Madrid 2021
+- A space flights booking platform by Alexander Marino, Salvador Gallego y Silviu Dilimot under the supervision of Paula de Andres, Teodoro Lopez y German Alvarez
 
-## Enpoints:
+## Endpoints:
 
 ### auth.routes.js
 
@@ -45,9 +46,9 @@ Authorization!!!
 ### airport.routes.js
 -   /airport/new
 -   /airport GET
--   /airport/:airport:\_id/edit GET
--   /airport/:airport:\_id/edit PUT
--   /airport/:airport:\_id/delete DELETE
+-   /airport/:airport:/_id/edit GET
+-   /airport/:airport:/_id/edit PUT
+-   /airport/:airport:/_id/delete DELETE
 
 ### flight.routes.js
 /flight/ GET

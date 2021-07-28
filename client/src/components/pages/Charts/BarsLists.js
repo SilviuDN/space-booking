@@ -22,46 +22,46 @@ class BarsLists extends Component {
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
         
-        if(this.props.type == 'company'){
+        if(this.props.type === 'company'){
         this.companyService
             .getCompanies()
             .then(response => {
                 this.setState({ 
                     type: 'company',
-                    listForBarsChart: response.data })
+                    listForBarsChart: this.returnTopRatedCoDest(response.data, 3) }) //top howMany rated
             } )
             .catch(err => console.log(err))            
         }
 
-        if(this.props.type == 'destination'){
+        if(this.props.type === 'destinations'){
             this.destinationService
                 .getDestinations()
                 .then(response => {
                     this.setState({ 
-                        type: 'destination', 
-                        listForBarsChart: response.data })
+                        type: 'destinations', 
+                        listForBarsChart: this.returnTopRatedCoDest(response.data, 3) }) //top howMany rated
                 } )
                 .catch(err => console.log(err))            
             }
 
-        if(this.props.type == 'airport'){
+        if(this.props.type === 'airports'){
             this.airportService
                 .getAirports()
                 .then(response => {
                     this.setState({
-                        type: 'airport', 
-                        listForBarsChart: response.data.slice(0,6) })
+                        type: 'airports', 
+                        listForBarsChart: this.returnTopRatedApt(response.data, 4) }) //top howMany flights accomodating airports
                 } )
                 .catch(err => console.log(err))            
             }
 
-        if(this.props.type == 'flight'){
+        if(this.props.type === 'flights'){
             this.flightService
                 .getFlights()
                 .then(response => {
                     this.setState({ 
-                        type: 'flight', 
-                        listForBarsChart: response.data })
+                        type: 'flights', 
+                        listForBarsChart: this.returnTopRatedFlights(response.data, 4) })   //top sales for flights
                     console.log('despues',this.state.listForBarsChart.length)
                 } )
                 .catch(err => console.log(err))            
@@ -69,37 +69,53 @@ class BarsLists extends Component {
         
     }
 
+    calculateRatingsMedianCompDest(elem){
+        return elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
+    }
+
+    returnTopRatedCoDest(arr, howMany){
+        return arr.sort((a, b) => this.calculateRatingsMedianCompDest(a) - this.calculateRatingsMedianCompDest(b) ).slice(-howMany)
+    }
+
+    returnTopRatedApt(arr, howMany){
+        return arr.sort((a, b) => a.flights.length - b.flights.length  ).slice(-howMany)
+    }
+
+    returnTopRatedFlights(arr, howMany){
+        return arr.sort((a, b) => a.soldTickets.length - b.soldTickets.length  ).slice(-howMany)
+    }
+
     populateDataString(data, elem){
         let xValue, yValue
-        let name = this.state.type == 'company' ? 'companyName': 
-            this.state.type == 'destination' ?'name':
-            this.state.type == 'airport' ?'name':
-            this.state.type == 'flight' ?'flightNumber': null
+        let name = this.state.type === 'company' ? 'companyName': 
+            this.state.type === 'destinations' ?'name':
+            this.state.type === 'airports' ?'name':
+            this.state.type === 'flights' ?'flightNumber': null
 
         
 
-        if(this.state.type == 'company'){
+        if(this.state.type === 'company'){
         // xValue = elem.companyName
         xValue = elem[name]
 
         yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
         }
         
-        if(this.state.type == 'destination'){
+        if(this.state.type === 'destinations'){
         // xValue = elem.name
         xValue = elem[name]
 
         yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
         }
         
-        if(this.state.type == 'airport'){
+        if(this.state.type === 'airports'){
         // xValue = elem.name
         xValue = elem[name]
 
         yValue = elem.flights.length
         }
         
-        if(this.state.type == 'flight'){
+        if(this.state.type === 'flights'){
         // xValue = elem.name
         xValue = elem[name]
 
@@ -128,6 +144,7 @@ class BarsLists extends Component {
         this.loadList()
     }
 
+    componentDidUpdate = (prevProps, prevState) => prevProps.type !== this.props.type && this.loadList()
 
     render() {
 
