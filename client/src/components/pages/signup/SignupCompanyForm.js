@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
+import CompanyService from '../../services/company.service'
 import UploadService from '../../services/upload.service'
 import './signUp.css'
 
@@ -25,7 +26,7 @@ class SignupCompanyForm extends Component {
             loading: false
         }
 
-        this.serviceAuth = new ServiceAuth()
+        this.CompanyService = new CompanyService()
         this.uploadService = new UploadService()
     }
 
@@ -41,14 +42,9 @@ class SignupCompanyForm extends Component {
 
     handleSubmit = (userId) => {
 
-        // if (e) e.preventDefault()
-
-        console.log('entro al submit de company')
-
-
 
         // cuando acaba el insert llama al submit de userFOrm
-        this.serviceAuth.newCompany(this.state.company, userId)
+        this.CompanyService.newCompany(this.state.company, userId)
             .then(() => this.props.submitUserForm())
             .catch(err => {
                 // this.props.showAlert('Something went wrong! Company not registered!')

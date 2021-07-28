@@ -15,8 +15,6 @@ class AuthService {
 
     signup = (user) => this.app.post('/signup', { ...user })
 
-    newCompany = (companyData, userId) => this.app.post('/new', { ...companyData, userId })
-
     logout = () => this.app.get('/logout')
 
     isLoggedIn = () => this.app.post('/isLoggedIn')
