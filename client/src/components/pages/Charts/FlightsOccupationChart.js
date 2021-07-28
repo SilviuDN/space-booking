@@ -32,7 +32,8 @@ class FlightsOccupationChart extends Component {
                 const nextMonthFlights = response.data.filter(flight =>{
                     let flightDate = new Date(flight.date)
                     let flightDateUnix = flightDate.getTime()
-                    return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
+                    return (nextMonthUnix - flightDateUnix) * ( flightDateUnix - nowUnix ) > 0
+                    // return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
                 })
 
                 this.setState({ flights: nextMonthFlights })
@@ -78,7 +79,7 @@ class FlightsOccupationChart extends Component {
     }
 
 
-
+    componentDidUpdate = (prevProps, prevState) => prevProps.howManyDays !== this.props.howManyDays && this.loadFlights()
 
 
 

@@ -70,7 +70,7 @@ class BarsLists extends Component {
     }
 
     calculateRatingsMedianCompDest(elem){
-        return elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
+        return elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ Math.max(elem.reviews.length, 1)
     }
 
     returnTopRatedCoDest(arr, howMany){
@@ -98,14 +98,14 @@ class BarsLists extends Component {
         // xValue = elem.companyName
         xValue = elem[name]
 
-        yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
+        yValue = this.calculateRatingsMedianCompDest(elem)
         }
         
         if(this.state.type === 'destinations'){
         // xValue = elem.name
         xValue = elem[name]
 
-        yValue = elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ elem.reviews.length
+        yValue = this.calculateRatingsMedianCompDest(elem)
         }
         
         if(this.state.type === 'airports'){
