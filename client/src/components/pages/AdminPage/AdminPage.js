@@ -18,7 +18,6 @@ import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
 import UpperChartsPie from '../Charts/UpperChartsPie'
 import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
-import UpperChartsPie from '../Charts/UpperChartsPie'
 
 
 

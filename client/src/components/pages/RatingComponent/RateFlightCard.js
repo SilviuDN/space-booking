@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import FlightsService from '../../services/flights.service'
+import ReviewService from '../../services/reviews.service'
 import BarChart from '../Charts/BarChart'
 import Rating from './Rating' 
 
@@ -16,9 +16,10 @@ class RateFlightCard extends Component {
             ratingAirport: undefined,
             ratingDestination: undefined,
             ratingFlightCompany: undefined,
+            updated: undefined
 
         }
-        this.flightsService = new FlightsService()
+        this.reviewsService = new ReviewService()
     }
 
 
@@ -45,9 +46,31 @@ class RateFlightCard extends Component {
     }
 
     rateAirport = (mark) => {
-        console.log("*****************", mark)
+
+        // const id = this.props.airport._id
+        const id = '60fda21bf41b32ff2e256f12'
+
+        const review_info ={
+            id,
+            which: 'airport',
+            mark
+        }
+        // this.reviewsService
+        //     .leaveReview(review_info)
+        //     .then(response => this.setState({ ratingAirport: mark }))
+        //     .catch(err => console.lor(err))
         this.setState({ ratingAirport: mark })
     }
+
+
+
+
+
+
+
+
+
+
 
     rateDestination = (mark) => {
         this.setState({ ratingDestination: mark })
@@ -56,6 +79,21 @@ class RateFlightCard extends Component {
     rateFlightCompany = (mark) => {
         this.setState({ ratingFlightCompany: mark })
     }
+
+
+
+
+
+
+
+
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     prevProps.ratingAirport !== this.props.ratingAirport && this.rateAirport()
+
+
+    // } 
+
+
 
     render() {
 
