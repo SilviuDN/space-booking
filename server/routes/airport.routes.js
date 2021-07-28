@@ -3,28 +3,17 @@ const router = express.Router()
 const Airport = require('../models/Airport.model.js')
 
 
-// create new airport
-// router.post('/new', (req, res) => {
-
-//     console.log(req.body)
-
-//     const {iata, name, lat, lon} = req.body
-//     const address = {street, number, zipCode, city, state, country } = req.body
-
-//     Airport.create({iata, name, address, lat, lon})
-//         .then(response  =>  res.send(response))
-//         .catch(err => console.log(err))
-
-// })
-
 // get all airports
 router.get('/airports', (req, res) => {
+    console.log('llego')
+
     Airport.find()
-        // .limit(100)
-        .then(response => res.send(response))
+        .then(response => res.json(response))
         .catch(err => console.log(err))
 })
 
+
+// airport data for searchbar
 
 router.get('/airportsData/:string', (req, res) => {
 
@@ -39,36 +28,36 @@ router.get('/airportsData/:string', (req, res) => {
             { "address.country": { $regex: string, $options: 'i' } },
         ]
     })
-        .then(response => res.send(response))
-        .catch(err => console.log(err))
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error searching airports', err }))
 })
-
 
 
 //   Airport ID and Update
 
 router.put('/:airportId/edit', (req, res) => {
 
-    // check if we need full req body or to extract the params, for nested objects
-
     Airport.findByIdAndUpdate(req.params.airportId, req.body, { new: true })
-        .then(response => res.send(response))
-        .catch(err => console.log(err))
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error editing airport', err }))
 })
 
+
+// delete airport
 
 router.delete('/:airportId/delete', (req, res) => {
 
     Airport.findByIdAndRemove(req.params.airportId)
         .then(response => res.status(200).json({ code: 200, message: `${response.name} Airport deleted` }))
-        .catch(err => console.log(err))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error deleting airport', err }))
 })
 
 
-router.get('/search/:string', (req, res) => {
-    const { string } = req.params
+// search airport by string passed
 
-    console.log(string)
+router.get('/search/:string', (req, res) => {
+
+    const { string } = req.params
 
     Airport.find({
         "$or": [
@@ -77,7 +66,7 @@ router.get('/search/:string', (req, res) => {
         ]
     })
         .then(response => res.json(response))
-        .catch(err => res.status(500).json({ code: 500, message: 'Error filtering users', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error searching airport', err }))
 })
 
 
@@ -87,7 +76,7 @@ router.get('/:airportId', (req, res) => {
 
     Airport.findById(req.params.airportId)
         .then(response => res.json(response))
-        .catch(err => console.log(err))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error getting the airport', err }))
 
 })
 
