@@ -27,6 +27,7 @@ class AdminPage extends Component {
         super()
         this.state = {
             listState: 'user',
+            rightView: '',
             chart: '',
             searchBox: '',
             isLoading: false,
@@ -36,22 +37,10 @@ class AdminPage extends Component {
     }
 
 
-    // this.state[this.state.listState]
+    setList = (listState) => this.setState({ listState })
 
 
-
-    setList = (listState) => {
-        this.setState({
-            listState: listState,
-        })
-    }
-
-    setId = (id) => {
-        this.setState({
-            id
-        })
-    }
-
+    setId = (id) => this.setState({ id })
 
 
 
@@ -64,19 +53,19 @@ class AdminPage extends Component {
                 <Container fluid>
 
 
-                <Row style={{ marginTop: 0 }}>
+                    <Row style={{ marginTop: 0 }}>
                         <Col xs={{ span: 4, offset: 2 }} className={'col'} >
-                        <UpperChartsPie/>
+                            <UpperChartsPie />
                         </Col>
 
-                        <Col xs={{ span: 4,  offset: 1  }} className={'col'} >
-                        {
-                        ["company", "flights", "destinations", "airports"].includes(this.state.listState) ? 
-                                <BarsLists  type={this.state.listState} />:null
-                        }
+                        <Col xs={{ span: 4, offset: 1 }} className={'col'} >
+                            {
+                                ["company", "flights", "destinations", "airports"].includes(this.state.listState) ?
+                                    <BarsLists type={this.state.listState} /> : null
+                            }
                         </Col>
 
-                    </Row>   
+                    </Row>
 
 
 
