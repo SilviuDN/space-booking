@@ -53,11 +53,11 @@ class Navigation extends Component {
                                     ?
                                     <>
                                         <Link className="nav-link" to="/signup/n">Signup</Link>
-                                        <Link className="nav-link" to="" onClick={() => this.setModalState(true)}>Login</Link>
+                                        <Link className="nav-link" to="/" onClick={() => this.setModalState(true)}>Login</Link>
                                     </>
                                     :
                                     <>
-                                        <Link className="nav-link" to="/mi-perfil">Profile</Link>
+                                        <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
                                         <span className="nav-link" onClick={this.logout}>Log out</span>
                                     </>
                                 }
