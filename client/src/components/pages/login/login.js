@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
-import FloatingLabel from 'react-bootstrap-floating-label'
 import { Link } from 'react-router-dom'
 import AuthService from '../../services/auth.service'
 
@@ -35,7 +34,7 @@ class Login extends Component {
                 this.props.showAlert('Welcome! Successfully logged in')
                 this.props.storeUser(logedUser.data)
                 this.props.updateModal(false)
-                this.props.history.push('/profile')
+                this.props.history.push('/')
             })
             .catch(err => {
                 this.props.showAlert('Something went wrong! Retry to logg in')

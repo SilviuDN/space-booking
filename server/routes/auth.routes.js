@@ -6,55 +6,15 @@ const Company = require('../models/Company.model')
 const multerUpload = require('../config/cloudinary.config')
 
 
-router.post('/new', (req, res) => {
-
-
-    const { companyName, logo, document, userId } = req.body
-
-    const companyAddress = { street, number, zipCode, city, country } = req.body
-
-
-    Company.findOne({ companyName })
-        .then(company => {
-            if (company) {
-                res.status(400).json({ code: 400, message: 'Company already exist' })
-                return
-            }
-
-            Company.create({ companyName, logo, document, moderator: userId, companyAddress })
-                .then(response => {
-                    res.status(201).json({ code: 201, message: 'Company created', data: response })
-
-                })
-                .catch(err => console.log(err))
-        })
-        .catch(err => console.log(err))
-})
-
-
-
-
-// ----------------------------------------------------
-
 
 
 
 router.post('/signup', (req, res) => {
 
 
-    console.log(req.body)
-
-
-    // // pending profileImg
-
-    const { isCompany } = req.params
-    // company data
-    const { companyName, logo } = req.body
-
     // user data
     const { email, pwd, name, surname, personalId, typeOfId, phone } = req.body
     const address = { street, number, zipCode, city, country } = req.body
-
 
 
     User.findOne({ email: email })

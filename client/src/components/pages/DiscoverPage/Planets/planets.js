@@ -12,8 +12,6 @@ import PlutoPlanet from './PlutoPlanet';
 import SunPlanet from './SunPlanet';
 import Background from '../background.jpeg';
 import React from 'react';
-import ReactDOM from 'react-dom';
-// import createReactClass from "create-react-class";
 
 class Planets extends Component {
     constructor() {

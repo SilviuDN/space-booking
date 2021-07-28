@@ -17,6 +17,7 @@ import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
+import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
 
 
 
@@ -63,16 +64,16 @@ class AdminPage extends Component {
 
                     <Row style={{ marginTop: 0 }}>
                         <Col xs={{ span: 2, offset: 2 }} className={'col'} >
-                        <FlightsOccupationChart howManyDays={1}/>
+                            <FlightsOccupationChart howManyDays={1} />
                         </Col>
                         <Col xs={2} className={'col'}>
-                        <FlightsOccupationChart howManyDays={2}/>
+                            <FlightsOccupationChart howManyDays={2} />
                         </Col>
                         <Col xs={2} className={'col'}>
-                        <FlightsOccupationChart howManyDays={3}/>
+                            <FlightsOccupationChart howManyDays={3} />
                         </Col>
                         <Col xs={2} className={'col'}>
-                        <FlightsOccupationChart />
+                            <FlightsOccupationChart />
                         </Col>
                     </Row>
 
@@ -110,9 +111,11 @@ class AdminPage extends Component {
                                                                                 this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} /> :
                                                                                     this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
                                                                                         this.state.listState === 'editDestination' ? <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
-                                                                                            this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
+                                                                                            this.state.listState === 'editCompany' ? <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
 
-                                                                                                null
+                                                                                                this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
+
+                                                                                                    null
 
                             }
 
@@ -120,15 +123,15 @@ class AdminPage extends Component {
 
 
                         <Col xs={5} id="">
-                        {
-                            ["company", "flights", "destinations", "airports"].includes(this.state.listState) ? 
-                                <BarsLists  type={this.state.listState} />:null
-                            
-                                // this.state.listState === 'company' ? <BarsLists  type='company' setList={this.setList} /> :
-                                //     this.state.listState === 'flights' ? <BarsLists  type='flights' setList={this.setList} /> :
-                                //         this.state.listState === 'destinations' ? <BarsLists  type='company' setList={this.setList} /> :
-                                //             this.state.listState === 'airports' ? <BarsLists  type='flights' setList={this.setList} /> :null
-                        }
+                            {
+                                // ["company", "flights", "destination", "airports"].includes(this.state.listState) ? 
+                                //     <BarsLists  type={this.state.listState} setList={this.setList} />:null
+
+                                this.state.listState === 'company' ? <BarsLists type='company' setList={this.setList} /> :
+                                    this.state.listState === 'flights' ? <BarsLists type='flights' setList={this.setList} /> :
+                                        this.state.listState === 'destinations' ? <BarsLists type='company' setList={this.setList} /> :
+                                            this.state.listState === 'airports' ? <BarsLists type='flights' setList={this.setList} /> : null
+                            }
 
                         </Col>
                     </Row>

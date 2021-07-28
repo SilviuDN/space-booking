@@ -9,6 +9,8 @@ class CompanyService {
         })
     }
 
+    newCompany = (companyData, userId) => this.app.post('/new', { ...companyData, userId })
+
     companyDetails = (company_id) => this.app.get(`/${company_id}/company`)
 
     companyEdit = (state) => this.app.put(`/${state.company_id}/edit`, state)

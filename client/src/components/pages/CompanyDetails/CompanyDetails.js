@@ -31,6 +31,7 @@ class CompanyDetails extends Component {
 
             <Container>
                 {!this.state.company ?
+
                     <h3>cargando</h3> :
                     <Row className="justify-content-around">
                         <Col md={12}>
@@ -53,7 +54,10 @@ class CompanyDetails extends Component {
 
                             <hr></hr>
 
-                            <Link to="/admin" onClick={() => { this.props.setList('company') }} className="btn btn-dark">Volver al listado</Link>
+                            {typeof this.props.setList === 'function' ?
+                                <Link to="/admin" onClick={() => { this.props.setList('company') }} className="btn btn-dark">Volver al listado</Link>
+                                : null
+                            }
 
                         </Col>
 

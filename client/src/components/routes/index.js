@@ -27,6 +27,7 @@ import AdminPage from '../pages/AdminPage/AdminPage.js'
 import Test01 from '../pages/.Testing/Test01.js'
 
 import PlanetRoutes from './Planet.routes.js'
+import Checkout from '../pages/CheckoutPage/CheckoutPage.js'
 
 
 
@@ -78,6 +79,8 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
             <Route path="/testing/01" exact render={() => <Test01 />} />
 
+
+            <Route path="/users/checkout/:user_id" exact render={props => <Checkout {...props} />} />
 
 
             <PlanetRoutes />

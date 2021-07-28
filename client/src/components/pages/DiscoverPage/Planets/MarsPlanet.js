@@ -24,7 +24,7 @@ const VenusPlanet = (props) => {
 
         <div class="content-rotate-right"
             style={{ backgroundImage: `url(${mars})` }}
-            onClick={() => props.changeView('sun')}
+            onClick={() => props.changeView('mars')}
             onMouseEnter={() => props.showInfo(info)}
             onMouseOut={() => props.hideInfo()}
         >

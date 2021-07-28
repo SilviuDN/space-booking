@@ -4,7 +4,7 @@ import AuthService from './services/auth.service';
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from '../layout/Navigation/Navigation';
-import Footer from '../layout/Footer/Footer';
+// import Footer from '../layout/Footer/Footer';
 import Alert from './shared/Alert/Alert';
 
 

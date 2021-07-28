@@ -20,7 +20,7 @@ class FlightsFound extends Component {
     loadFlight = () => {
 
 
-        const { airport, destination, departureDate, returnDate, adults, children } = this.props.match.params
+        const { airport, destination, departureDate, returnDate, /* adults, children  */ } = this.props.match.params
 
 
         this.flightsService

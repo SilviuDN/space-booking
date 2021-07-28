@@ -22,7 +22,7 @@ const EarchPlanet = (props) => {
 
         <div class="content-rotate-left"
             style={{ backgroundImage: `url(${earth})` }}
-            onClick={() => props.changeView('sun')}
+            onClick={() => props.changeView('earth')}
             onMouseEnter={() => props.showInfo(info)}
             onMouseOut={() => props.hideInfo()}
         >

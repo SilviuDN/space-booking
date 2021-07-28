@@ -1,7 +1,6 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Row, Col, Image } from 'react-bootstrap'
-import FloatingLabel from 'react-bootstrap-floating-label'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
 import UploadService from '../../services/upload.service'

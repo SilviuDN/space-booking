@@ -13,6 +13,7 @@ class searchBar extends Component {
             typingTimeout: 0,
         }
         // this.searchList = undefined
+
     }
 
 
@@ -33,9 +34,6 @@ class searchBar extends Component {
             clearTimeout(this.state.typingTimeout);
         }
 
-        console.log()
-
-
         this.setState({
 
             typingTimeout: setTimeout(() => {
@@ -50,7 +48,6 @@ class searchBar extends Component {
 
     loadData = (service, searchString) => {
 
-        console.log(this.props.destinationId)
 
         if (this.props.dataKey === 'destinations') {
 
@@ -180,10 +177,10 @@ class searchBar extends Component {
             }
 
         )
-        console.log(options)
 
 
         return (
+
 
 
             <div>
@@ -196,6 +193,7 @@ class searchBar extends Component {
                     onKeyDown={this.handleSearch}
                     placeholder="Search... "
                     openMenuOnClick={true}
+
 
                     classNamePrefix="select"
                     styles={customStyles}

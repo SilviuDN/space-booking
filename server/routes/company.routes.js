@@ -3,15 +3,35 @@ const router = express.Router()
 const Company = require('../models/Company.model')
 
 
+
+
+
+
 router.post('/new', (req, res) => {
 
 
+    const { companyName, logo, document, userId } = req.body
 
-    Company.create({ companyName, logo, moderator: response._id })
-        .then(() => res.status(200).json({ code: 200, message: 'Company Inserted' }))
-        .catch(err => res.status(500).json({ code: 500, message: 'DB error while creating Company', err }))
+    const companyAddress = { street, number, zipCode, city, country } = req.body
 
+
+    Company.findOne({ companyName })
+        .then(company => {
+            if (company) {
+                res.status(400).json({ code: 400, message: 'Company already exist' })
+                return
+            }
+
+            Company.create({ companyName, logo, document, moderator: userId, companyAddress })
+                .then(response => {
+                    res.status(201).json({ code: 201, message: 'Company created', data: response })
+
+                })
+                .catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
 })
+
 
 
 
@@ -25,16 +45,17 @@ router.get('/:company_id/company', (req, res) => {
 
 
 router.put('/:company_id/edit', (req, res) => {
+
     const { companyName, logo, document } = req.body
-    console.log(logo)
-    const companyAddress = ({ street, number, zipCode, city, country } = req.body)
-    console.log(companyAddress, companyName, logo)
+    const companyAddress = { street, number, zipCode, city, country } = req.body
 
     Company
         .findByIdAndUpdate(req.params.company_id, { companyName, logo, document, companyAddress }, { new: true })
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error editing company', err }))
 })
+
+
 
 router.delete('/:company_id/delete', (req, res) => {
     Company.findByIdAndRemove(req.params.company_id)
@@ -46,9 +67,8 @@ router.delete('/:company_id/delete', (req, res) => {
 
 
 router.get('/search/:string', (req, res) => {
-    const { string } = req.params
 
-    console.log(string)
+    const { string } = req.params
 
     Company.find({
         "$or": [{
@@ -61,9 +81,9 @@ router.get('/search/:string', (req, res) => {
 
 
 router.put('/setStatus/:companyId', (req, res) => {
+
     const { companyId } = req.params
     const { status } = req.body
-
 
     Company.findByIdAndUpdate(companyId, { status }, { new: true })
         .then(response => res.json(response))
