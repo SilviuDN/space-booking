@@ -1,9 +1,10 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Form, Button, Container } from 'react-bootstrap'
+import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
 import React, { Component } from 'react';
 import ServiceAuth from '../../services/auth.service'
 import UploadService from '../../services/upload.service'
+import './signUp.css'
 
 class SignupCompanyForm extends Component {
     constructor() {
@@ -105,23 +106,29 @@ class SignupCompanyForm extends Component {
 
         return (
             <Container>
+
                 <h1>Company Form</h1>
 
                 <Form className='formSignup pb-5'>
-                    <Form.Group className="mb-3" controlId="comapnyName">
+                    <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
                         <Form.Label>Company Name</Form.Label>
                         <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="name" name='companyName' />
                     </Form.Group>
 
+                    <Row>
 
-                    <Form.Group className="mb-3">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' id='logo' />
-                    </Form.Group>
-
-                    {this.state.image_preview ? <img src={this.state.image_preview} alt="profile" style={{ width: '150px', height: '120px', display: 'block' }} /> : null}
-
-
+                        <Form.Group as={Col} md={{ span: 2, offset: 2 }} className="mb-3 align-self-center">
+                            <Form.Label><h4>Logo Image</h4></Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md={4} className="mb-3  align-self-center">
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' id='logo' />
+                        </Form.Group>
+                        <Form.Group as={Col} md={4} controlId="imagePreview" className="mb-4">
+                            {this.state.image_preview ? <Image src={this.state.image_preview} alt="profile" roundedCircle fluid alt="profile" className="logo1" style={{
+                                height: '120px', margin: "0% 11%"
+                            }} /> : null}
+                        </Form.Group>
+                    </Row>
                     <Form.Label>Address
                         <Form.Group className="d-flex mb-2">
                             <Form.Control onChange={this.handleInput} value={this.state.company.street} id='companyStreet' type="text" placeholder="street" name='street' />
