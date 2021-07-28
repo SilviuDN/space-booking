@@ -21,4 +21,5 @@ class AirportService {
 
     searchAirport = (string) => this.app.get(`/search/${string}`)
 }
+
 export default AirportService
