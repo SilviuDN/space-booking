@@ -161,11 +161,11 @@ class IndexSearchPanel extends Component {
 
                         <Col md={3}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Departure from date  </small></span></label>
-                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="From" id="departureDate" />
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="From" id="departureDate" required />
                         </Col>
                         <Col md={3}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Departure to date</small></span></label>
-                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="To" id="returnDate" />
+                            <input type="date" className="form-control" onChange={(e) => this.handleInput(e)} placeholder="To" id="returnDate" required />
                         </Col>
                         <Col md={2}>
                             <label className="checkbox-search" ><span className="span"><small className="small">Adults(16+)</small></span></label>

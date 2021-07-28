@@ -32,6 +32,10 @@ class IndexPage extends Component {
     }
 
 
+    scrollUp() {
+        window.scrollTo(0, 0)
+    }
+
 
 
     render() {
@@ -176,14 +180,14 @@ class IndexPage extends Component {
                             <img src={destinations} alt="destinations" className="destinations" />
                             <p className="text-center"><Button bsPrefix="btn-flat" variant="primary"  >
 
-                                <strong> FIND TICKETS</strong>
+                                <strong onClick={() => this.scrollUp()}> FIND TICKETS</strong>
                             </Button></p>
 
                         </Col>
 
 
                     </Row>
-                </Container >
+                </Container>
 
                 <footer style={style}>
 
