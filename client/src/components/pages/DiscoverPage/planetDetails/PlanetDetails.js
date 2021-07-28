@@ -25,6 +25,13 @@ class PlanetDetails extends Component {
 
     test() {
         console.log(this.props.view)
+
+
+
+
+        //             (component, props) => <component props />
+        //         (componente, props, condition) => condition ? <Componente props />
+        //  resolveType(listState) return
     }
 
 
