@@ -27,13 +27,6 @@ class Planets extends Component {
     }
 
 
-    renderInfo = () => {
-
-
-
-    }
-
-
     showInfo = (info) => {
         // alert('se viene')
         this.setState({
@@ -41,34 +34,21 @@ class Planets extends Component {
         })
 
         this.divRef.current.classList.add('white')
-
     }
+
 
     hideInfo = () => {
 
         this.divRef.current.classList.remove('white')
-
     }
+
 
 
     render() {
         return (
 
             <div style={{ backgroundImage: `url(${Background})`, height: '95vh' }} className={'pt-5 text-light'}>
-
-
                 <Container fluid className={'text-center'}>
-
-                    <Row>
-                        <Col md={12} className={'text-center'}>
-                            {/* <h3>{this.state.title}</h3> */}
-                        </Col>
-                    </Row>
-                    <Row >
-                        <Col md={12}>
-
-                        </Col>
-                    </Row>
 
                     <Row>
                         <Col xs={{ span: 1, offset: 1 }}>
@@ -80,6 +60,7 @@ class Planets extends Component {
                             {this.state.info ? <div dangerouslySetInnerHTML={{ __html: this.state.info }} /> : null}
                         </Col>
                     </Row>
+
                     <Row className={'pb-5'}>
                         <Col xs={{ span: 1, offset: 3 }} >
                             {/* <p>earth</p> */}
@@ -115,23 +96,10 @@ class Planets extends Component {
                         <Col xs={{ span: 1, offset: 1 }}>
                             <PlutoPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
                         </Col>
-
                     </Row>
 
-
                 </Container>
-
-
-            </div >
-
-
-
-
-
-
-
-
-
+            </div>
         )
     }
 }

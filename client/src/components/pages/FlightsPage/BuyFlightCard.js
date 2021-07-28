@@ -18,8 +18,6 @@ class ReturnedFlightCard extends Component {
 
     loadFlight = () => {
 
-        const flights1 = { ...this.props.flight }
-        console.log(flights1)
         this.setState({
             flight: this.props.flight
         })
@@ -30,9 +28,11 @@ class ReturnedFlightCard extends Component {
         this.loadFlight()
     }
 
+
     cutSubstring(phrase, word) {
         return phrase?.replace(/airport/ig, '')
     }
+
 
     numberWithCommas = (x) => {
         x = Math.round(parseInt(x))
@@ -40,15 +40,14 @@ class ReturnedFlightCard extends Component {
     }
 
 
+
     render() {
+
         const headerStyle = {
             backgroundColor: 'lightgreen',
         }
 
-
         return (
-
-
 
             <Card className={'mt-5'}>
                 <Card.Header as="h5" style={headerStyle}>Prime Offer %</Card.Header>
@@ -60,18 +59,19 @@ class ReturnedFlightCard extends Component {
                                     <img className="returnedFlightCardImage" src={this.state.flight?.flightCompany?.logo} alt={'logo'}></img>
                                     <span>     {this.state.flight?.flightCompany?.companyName}</span>
                                 </Col>
+
                                 <Col xs={2}></Col>
                                 <Col xs={5}>loremIpsum</Col>
                             </Row>
                             <Row>
                                 <Col xs={5}><p>From: {this.state.flight?.airport?.address.city}</p></Col>
-                                <Col xs={2}></Col>
-                                <Col xs={5}><p>To: {this.state.flight?.destination?.name}</p></Col>
+                                <Col xs={{ span: 5, offset: 2 }}><p>To: {this.state.flight?.destination?.name}</p></Col>
                             </Row>
                             <Row>
                                 <Col xs={5}>
                                     <p>Airport: {this.cutSubstring(this.state.flight?.airport?.name, 'airport')} | {this.state.flight?.airport?.iata}</p>
                                 </Col>
+
                                 <Col xs={2}></Col>
                                 <Col xs={5}>Dest Reviews Here</Col>
                             </Row>
@@ -80,9 +80,9 @@ class ReturnedFlightCard extends Component {
                                 <Col xs={5}>
                                     <p>Full price: {this.numberWithCommas(this.state.flight?.price)}</p>
                                 </Col>
+
                                 <Col xs={2}></Col>
                                 <Col xs={5}><strong>Departure:</strong> <p>{this.state.flight?.date.split('T')[0]}</p> </Col>
-
                             </Row>
                         </Col>
 
@@ -90,23 +90,21 @@ class ReturnedFlightCard extends Component {
 
                         <Col xs={12} md={4}>
                             <h3>Prime Discount</h3>
+
                             <p><small className="text-muted">Change dates FREE OF CHARGE</small></p>
                             <p>Only {this.state.flight?.capacity - this.state.flight?.soldTickets} seats left</p>
-                            {/* <p>Price: <span className="strikethrough">{this.state.flight.price}$</span> {this.state.flight.price * 0.8}$</p> */}
+
                             <p>Price: <span className="strikethrough">
                                 ${this.numberWithCommas(this.state.flight?.price)}
                             </span> ${this.numberWithCommas(this.state.flight?.price * 0.8)}
                             </p>
-                            <Button className='BuyFlightButton' variant="primary" >Discover</Button>{' '}
+
+                            <Button className='BuyFlightButton' onClick={() => { this.props.setPayMethod(this.props.flight) }} variant="primary" >Buy</Button>
 
                         </Col>
                     </Row>
                 </Card.Body>
             </Card>
-
-
-
-
         )
     }
 }
