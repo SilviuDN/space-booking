@@ -107,9 +107,9 @@ class SignupCompanyForm extends Component {
 
                 <Form className='formSignup pb-5'>
                     <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
-                        <h1>Company Form</h1>
-                        <Form.Label>Company Name</Form.Label>
-                        <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="name" name='companyName' />
+
+
+                        <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="Company Name" name='companyName' />
                     </Form.Group>
 
                     <Row>
