@@ -34,7 +34,7 @@ class DiscoverPage extends Component {
 
 
             this.state.view === 'discover' ? <Planets changeView={this.changeView} /> :
-                this.state.view !== '' ? <PlanetDetails view={this.state.view} /> :
+                this.state.view !== '' ? <PlanetDetails view={this.state.view} changeView={this.changeView} /> :
                     null
 
 

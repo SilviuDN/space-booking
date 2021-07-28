@@ -53,7 +53,7 @@ class IndexPage extends Component {
                                 alt="First slide"
                             />
 
-                        </Carousel.Item >
+                        </Carousel.Item>
                         <Carousel.Item >
                             <img
                                 className="d-block  c"
