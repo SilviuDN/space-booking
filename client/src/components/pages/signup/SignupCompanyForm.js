@@ -162,20 +162,30 @@ class SignupCompanyForm extends Component {
                         </Form.Group>
                     </Row>
 
-                    <Form.Group controlId="companyImg" className="mb-3">
+                    {/* <Form.Group controlId="companyImg" className="mb-3">
                         <Form.Label>Documents</Form.Label>
                         <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                    </Form.Group> */}
+
+                    <Row>
+
+                        <Form.Group as={Col} md={{ span: 2, offset: 2 }} className="mb-3 align-self-center">
+                            <Form.Label><h4>Documents</h4></Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md={4} className="mb-3  align-self-center" controlId="companyImg">
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                        </Form.Group>
+
+                    </Row>
+                    <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
+
+                        <Button onClick={(e) => this.props.sharedFunction(e)} bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }}>
+                            Submit
+                        </Button>
                     </Form.Group>
 
-
-
-
-                    <Button onClick={(e) => this.props.sharedFunction(e)} variant="primary" type="submit" className="d-block">
-                        Submit
-                    </Button>
-
                 </Form>
-            </Container>
+            </Container >
         )
     }
 }
