@@ -83,19 +83,37 @@ router.get('/search/travels/:airport/:destination/:depDate/:retDate', (req, res)
 
     console.log(airport, destination, depDate, retDate)
 
-    const fromDate = new Date(depDate)
-    const toDate = new Date(retDate)
+    if (depDate !== 'undefined' && retDate !== 'undefined') {
 
-    Flight
-        .find({
-            $and: [{ "airport": new mongoose.Types.ObjectId(airport) }, { "destination": new mongoose.Types.ObjectId(destination) },
-            { "date": { $gte: fromDate } }, { "date": { $lte: toDate } }]
-        })
-        .populate('destination')
-        .populate('flightCompany')
-        .populate('airport')
-        .then(response => res.send(response))
-        .catch(err => console.log(err))
+        const fromDate = new Date(depDate)
+        const toDate = new Date(retDate)
+
+        Flight
+            .find({
+                $and: [{ "airport": new mongoose.Types.ObjectId(airport) }, { "destination": new mongoose.Types.ObjectId(destination) },
+                { "date": { $gte: fromDate } }, { "date": { $lte: toDate } }]
+            })
+            .populate('destination')
+            .populate('flightCompany')
+            .populate('airport')
+            .then(response => res.json(response))
+            .catch(err => console.log(err))
+    } else {
+
+        const today = new Date()
+
+        Flight
+            .find({
+                $and: [{ "airport": new mongoose.Types.ObjectId(airport) }, { "destination": new mongoose.Types.ObjectId(destination) }, { "date": { $gte: today } }]
+            })
+            .populate('destination')
+            .populate('flightCompany')
+            .populate('airport')
+            .then(response => res.json(response))
+            .catch(err => console.log(err))
+
+    }
+
 })
 
 
