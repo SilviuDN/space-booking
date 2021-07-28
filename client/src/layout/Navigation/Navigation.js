@@ -46,23 +46,23 @@ class Navigation extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse className="justify-content-end">
                             <Nav className="mr-auto">
-                                <Link className="nav-link" to="/">Inicio</Link>
+                                <Link className="nav-link" to="/">Home</Link>
                                 {/* <Link className="nav-link" to="/"></Link> */}
 
                                 {!this.props.loggedUser
                                     ?
                                     <>
-                                        <Link className="nav-link" to="/signup/n">Registro</Link>
+                                        <Link className="nav-link" to="/signup/n">Signup</Link>
                                         <Link className="nav-link" to="" onClick={() => this.setModalState(true)}>Login</Link>
                                     </>
                                     :
                                     <>
-                                        <Link className="nav-link" to="/mi-perfil">Perfil</Link>
-                                        <span className="nav-link" onClick={this.logout}>Cerrar sesión</span>
+                                        <Link className="nav-link" to="/mi-perfil">Profile</Link>
+                                        <span className="nav-link" onClick={this.logout}>Log out</span>
                                     </>
                                 }
 
-                                <span className="nav-link">¡Hola, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>
+                                <span className="nav-link">¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>
