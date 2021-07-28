@@ -11,12 +11,12 @@ import AirportDetails from '../AirportsPage/AirportDetails'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
-import FlightsOccupationChart from '../Charts/FlightsOccupationChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
+import UpperChartsPie from '../Charts/UpperChartsPie'
 import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
 
 
@@ -62,20 +62,19 @@ class AdminPage extends Component {
             <Row>
                 <Container fluid>
 
-                    <Row style={{ marginTop: 0 }}>
-                        <Col xs={{ span: 2, offset: 2 }} className={'col'} >
-                            <FlightsOccupationChart howManyDays={1} />
+                <Row style={{ marginTop: 0 }}>
+                        <Col xs={{ span: 4, offset: 2 }} className={'col'} >
+                        <UpperChartsPie/>
                         </Col>
-                        <Col xs={2} className={'col'}>
-                            <FlightsOccupationChart howManyDays={2} />
+
+                        <Col xs={{ span: 4,  offset: 1  }} className={'col'} >
+                        {
+                        ["company", "flights", "destinations", "airports"].includes(this.state.listState) ? 
+                                <BarsLists  type={this.state.listState} />:null
+                        }
                         </Col>
-                        <Col xs={2} className={'col'}>
-                            <FlightsOccupationChart howManyDays={3} />
-                        </Col>
-                        <Col xs={2} className={'col'}>
-                            <FlightsOccupationChart />
-                        </Col>
-                    </Row>
+
+                    </Row>  
 
 
 
@@ -123,15 +122,7 @@ class AdminPage extends Component {
 
 
                         <Col xs={5} id="">
-                            {
-                                // ["company", "flights", "destination", "airports"].includes(this.state.listState) ? 
-                                //     <BarsLists  type={this.state.listState} setList={this.setList} />:null
 
-                                this.state.listState === 'company' ? <BarsLists type='company' setList={this.setList} /> :
-                                    this.state.listState === 'flights' ? <BarsLists type='flights' setList={this.setList} /> :
-                                        this.state.listState === 'destinations' ? <BarsLists type='company' setList={this.setList} /> :
-                                            this.state.listState === 'airports' ? <BarsLists type='flights' setList={this.setList} /> : null
-                            }
 
                         </Col>
                     </Row>

@@ -17,7 +17,7 @@ import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
-import UpperCharts from './UpperCharts'
+import UpperChartsTesting from './UpperChartsTesting'
 
 
 
@@ -64,7 +64,7 @@ class Test01 extends Component {
 
                     <Row style={{ marginTop: 0 }}>
                         <Col xs={{ span: 4, offset: 2 }} className={'col'} >
-                        <UpperCharts/>
+                        <UpperChartsTesting/>
                         </Col>
 
                         <Col xs={{ span: 4,  offset: 1  }} className={'col'} >
