@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
 import SearchBox from '../../shared/searchBox/searchBox'
 
-
 class AirportsList extends Component {
 
     constructor() {
@@ -18,9 +17,10 @@ class AirportsList extends Component {
         this.AirportService = new AirportService()
     }
 
+
     loadAirports = (string) => {
 
-        string === '' ?
+        !string ?
             this.AirportService
                 .getAirports()
                 .then(response => this.setState({ airport: response.data }))
@@ -32,7 +32,6 @@ class AirportsList extends Component {
                 .searchAirport(string)
                 .then(response => this.setState({ airport: response.data }))
                 .catch(err => console.log(err))
-
     }
 
 
@@ -42,7 +41,6 @@ class AirportsList extends Component {
 
 
     deleteAirport = airportId => {
-        // const confirm = 
 
         if (window.confirm('Are you sure you want to delete this airport?')) {
 
@@ -51,14 +49,14 @@ class AirportsList extends Component {
             })
 
             this.AirportService.deleteAirport(airportId)
-                .then((res) => console.log('FALTA ALERT Airport List linea 41/42'))
+                .then(() => console.log('FALTA ALERT Airport List linea 41/42'))
                 .catch(err => console.log(err))
         }
-
     }
 
 
     render() {
+
         return (
 
             !this.state.airport
@@ -68,7 +66,6 @@ class AirportsList extends Component {
 
                 :
                 <>
-                    {/* <input type="text" className="form-control" placeholder="name or iata code" name="search" value={this.state.searchBox} onChange={e => { this.search(e) }} /> */}
                     <SearchBox load={this.loadAirports} />
 
                     <Table striped bordered hover>
