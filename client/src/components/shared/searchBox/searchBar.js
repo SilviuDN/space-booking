@@ -50,7 +50,6 @@ class searchBar extends Component {
 
     loadData = (service, searchString) => {
 
-        console.log(this.props.destinationId)
 
         if (this.props.dataKey === 'destinations') {
 
@@ -180,7 +179,6 @@ class searchBar extends Component {
             }
 
         )
-        console.log(options)
 
 
         return (

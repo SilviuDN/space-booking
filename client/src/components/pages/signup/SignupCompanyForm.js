@@ -124,7 +124,7 @@ class SignupCompanyForm extends Component {
                             <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' id='logo' />
                         </Form.Group>
                         <Form.Group as={Col} md={4} controlId="imagePreview" className="mb-4">
-                            {this.state.image_preview ? <Image src={this.state.image_preview} alt="profile" roundedCircle fluid alt="profile" className="logo1" style={{
+                            {this.state.image_preview ? <Image src={this.state.image_preview} alt="profile" roundedCircle fluid className="logo1" style={{
                                 height: '120px', margin: "0% 11%"
                             }} /> : null}
                         </Form.Group>

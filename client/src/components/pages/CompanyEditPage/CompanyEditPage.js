@@ -26,20 +26,21 @@ class CompanyEditPage extends Component {
         this.uploadsService = new UploadsService()
     }
 
-    componentDidMount() {
 
-        const { company_id } = this.props.match.params
+    loadData() {
+        const company_id = this.props.match?.params.company_id || this.props.id
+
 
         this.companyService
             .companyDetails(company_id)
             .then(response => {
-                // console.log(response.data)
+                console.log(response.data)
                 this.setState({
                     company: {
                         ...this.state.company,
                         companyName: response.data.companyName,
                         moderator: response.data.moderator,
-                        companynumber: response.data.companyAddress.number,
+                        number: response.data.companyAddress.number,
                         city: response.data.companyAddress.city,
                         country: response.data.companyAddress.country,
                         street: response.data.companyAddress.street,
@@ -52,6 +53,13 @@ class CompanyEditPage extends Component {
     }
 
 
+
+    componentDidMount() {
+
+        this.loadData()
+    }
+
+
     handleInputChange = e => {
 
         e.preventDefault()
@@ -60,7 +68,7 @@ class CompanyEditPage extends Component {
             company: {
                 ...this.state.company,
                 [name]: value,
-                company_id: this.props.match.params.company_id
+                company_id: this.props.match?.params.company_id || this.props.id,
             }
         })
     }
@@ -87,12 +95,23 @@ class CompanyEditPage extends Component {
                         logo: '',
                     }
                 })
-                this.props.history.push('/companies/')
+
+                if (this.props.history) {
+
+                    this.props.history.push('/companies/')
+                } else {
+                    this.props.setList('company')
+
+                }
             })
             .catch(err => {
                 console.log(err)
                 this.props.showAlert('Something went wrong. Retry to edit.')
             })
+
+
+
+
     }
 
 

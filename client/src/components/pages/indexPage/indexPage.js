@@ -207,14 +207,14 @@ class IndexPage extends Component {
                                 <h5 className="title text-center">Latest Destinations</h5>
 
                                 <Row>
-                                    <Col md={4}><img src={mars} style={{ height: "110px" }} /></Col>
+                                    <Col md={4}><img src={mars} style={{ height: "110px" }} alt={'mars planet'} /></Col>
                                     <Col md={8}> <h5>Mars</h5>
                                         <p align="justify">Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet".</p>
                                     </Col>
 
                                 </Row>
                                 <Row>
-                                    <Col md={4}><img src={andromeda} style={{ height: "110px" }} /></Col>
+                                    <Col md={4}><img src={andromeda} style={{ height: "110px" }} alt={'andromeda planet'} /></Col>
                                     <Col md={8}> <h5>Andromeda</h5>
                                         <p align="justify">Mars is the fourth planet from the Sun and the second-smallest planet in the Solar System, being larger than only Mercury. In English, Mars carries the name of the Roman god of war and is often referred to as the "Red Planet".</p>
                                     </Col>

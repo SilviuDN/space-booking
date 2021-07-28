@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
 import Planets from './Planets/planets';
 import PlanetDetails from './planetDetails/PlanetDetails';
 

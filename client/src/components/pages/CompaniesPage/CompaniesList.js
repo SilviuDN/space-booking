@@ -94,6 +94,10 @@ class CompaniesList extends Component {
     }
 
 
+    // componentDidUpdate(prevProps, prevState) {
+    //     this.prevState !== this.state && this.loadCompanies()
+    // }
+
 
     render() {
         return (

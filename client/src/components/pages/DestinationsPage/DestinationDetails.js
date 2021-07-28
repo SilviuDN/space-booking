@@ -71,9 +71,18 @@ class DestinationDetails extends Component {
                                 </Card.Body>
                             </Card>
 
-                            <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
-                            <Link to={`/destinations/${this.state.destination._id}/edit`} className="btn btn-warning">Edit</Link>
-                            <button className="btn btn-danger" onClick={this.deleteDestination}>Delete</button>
+                            {
+                                typeof this.props.setList === 'function' ?
+
+                                    <Link to="/admin" onClick={() => this.props.setList('destinations')} className="btn btn-dark">Back to destinations list</Link>
+                                    :
+                                    <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
+
+                            }
+
+
+                            {/* <Link to={`/destinations/${this.state.destination._id}/edit`} className="btn btn-warning">Edit</Link>
+                            <button className="btn btn-danger" onClick={this.deleteDestination}>Delete</button> */}
                             {/* <Form onSubmit={this.deleteDestination}>
                                 <Button className="btn btn-danger" type="submit">Delete Destination</Button>
                             </Form> */}

@@ -1,6 +1,5 @@
 import shadow from './bolafinal.png'
 import sun from './sun.gif'
-import { React, ReactDOM } from 'react'
 
 
 

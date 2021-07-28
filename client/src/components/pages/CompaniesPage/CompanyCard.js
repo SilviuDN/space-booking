@@ -7,14 +7,14 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
         <>
             <tr>
                 <td>
-                    {!typeof setList === 'function' ?
+                    {typeof setList !== 'function' ?
 
                         <Link to={`/companies/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
-                            <p>{companyName} user</p>
+                            <p>{companyName}</p>
                         </Link>
                         :
                         <Link to={`/admin`} onClick={() => { setList('companyDetails'); setId(_id); }} style={{ color: 'black', textDecoration: 'none' }}>
-                            <p>{companyName} admin</p>
+                            <p>{companyName}</p>
                         </Link>
                     }
                 </td>
@@ -25,16 +25,27 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
                     &nbsp;
 
                     {(loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin' ?
-                        <>
 
-                            <Link to={`/companies/${_id}/edit`}>
-                                <Button variant="dark" block >Editar</Button>
-                            </Link>
-                            &nbsp;
-                            <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
-                                <Button variant="danger" block >Eliminar</Button>
-                            </Link>
-                        </>
+                        typeof setList === 'function' ?
+
+                            <>
+
+                                <Link to={`/admin`}>
+                                    <Button variant="dark" block onClick={() => { setList('editCompany'); setId(_id) }} >Editar</Button>
+                                </Link>
+                                &nbsp;
+                                <Link to={`/admin`} onClick={(e) => deleteCompany(_id)}>
+                                    <Button variant="danger" block >Eliminar</Button>
+                                </Link>
+                            </>
+                            :
+                            <>
+                                &nbsp;
+
+                                <Link to={`/companies/${_id}/edit`}>
+                                    <Button variant="dark" block >Editar</Button>
+                                </Link>
+                            </>
                         : null
 
                     }
