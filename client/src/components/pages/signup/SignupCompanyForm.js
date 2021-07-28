@@ -107,12 +107,13 @@ class SignupCompanyForm extends Component {
         return (
             <Container>
 
-                <h1>Company Form</h1>
+
 
                 <Form className='formSignup pb-5'>
                     <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
-                        <Form.Label>Company Name</Form.Label>
-                        <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="name" name='companyName' />
+
+
+                        <Form.Control onChange={this.handleInput} value={this.state.company.name} type="text" placeholder="Company Name" name='companyName' />
                     </Form.Group>
 
                     <Row>
@@ -129,7 +130,40 @@ class SignupCompanyForm extends Component {
                             }} /> : null}
                         </Form.Group>
                     </Row>
-                    <Form.Label>Address
+
+                    <Row>
+                        <Form.Group as={Col} md={{ span: 4, offset: 2 }} controlId="street" className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.company.street} id='companyStreet' type="text" placeholder="Street" name='street' />
+                        </Form.Group>
+
+                        <Form.Group as={Col} md={2} controlId="number" className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.company.number} id='companyNumber' type="text" placeholder="Number" name='number' />
+                        </Form.Group>
+                        <Form.Group as={Col} md={2} controlId="zipCode" className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.company.zipCode} id='companyzipCode' type="text" placeholder="ZipCode" name='zipCode' />
+                        </Form.Group>
+                    </Row>
+
+
+
+                    <Row>
+
+                        <Form.Group as={Col} controlId="city" md={{ span: 4, offset: 2 }} className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.company.city} id='companyCity' type="text" placeholder="City" name='city' />
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="country" md={4} className="mb-4">
+
+                            <Form.Control onChange={this.handleInput} value={this.state.company.country} id='companyCountry' type="text" placeholder="Country" name='country' />
+
+                        </Form.Group>
+                        <Form.Group as={Col} controlId="hr" md={{ span: 8, offset: 2 }} className="mb-4">
+                            <hr />
+                        </Form.Group>
+                    </Row>
+                    {/* <Form.Label>Address
                         <Form.Group className="d-flex mb-2">
                             <Form.Control onChange={this.handleInput} value={this.state.company.street} id='companyStreet' type="text" placeholder="street" name='street' />
 
@@ -141,19 +175,31 @@ class SignupCompanyForm extends Component {
 
                             <Form.Control onChange={this.handleInput} value={this.state.company.country} id='companycountry' type="text" placeholder="country" name='country' />
                         </Form.Group>
-                    </Form.Label>
+                    </Form.Label> */}
+                    {/* <Row>
+                        <Form.Group as={Col} md={{ span: 8, offset: 2 }} controlId="companyImg" className="mb-3">
+                            <Form.Label>Documents</Form.Label>
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                        </Form.Group>
 
-                    <Form.Group controlId="companyImg" className="mb-3">
-                        <Form.Label>Image</Form.Label>
-                        <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                    </Row> */}
+
+                    <Row>
+
+                        <Form.Group as={Col} md={{ span: 2, offset: 2 }} className="mb-3 align-self-center">
+                            <Form.Label><h4>Documents</h4></Form.Label>
+                        </Form.Group>
+                        <Form.Group as={Col} md={4} className="mb-3  align-self-center" controlId="companyImg">
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                        </Form.Group>
+
+                    </Row>
+                    <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
+
+                        <Button onClick={(e) => this.props.sharedFunction(e)} bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }}>
+                            Submit
+                        </Button>
                     </Form.Group>
-
-
-
-
-                    <Button onClick={(e) => this.props.sharedFunction(e)} variant="primary" type="submit" className="d-block">
-                        Submit
-                    </Button>
 
                 </Form>
             </Container>
