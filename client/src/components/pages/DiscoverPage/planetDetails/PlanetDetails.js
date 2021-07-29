@@ -61,14 +61,14 @@ class PlanetDetails extends Component {
                         return (<Carousel.Item style={{ height: '95vh' }} key={index}>
 
                             <Row >
-                                <Button className={'d-block button btn-sm'} style={{ marginLeft: 'auto', }} onClick={() => this.props.changeView('discover')}>Back to planets</Button>
-                                <Col lg={12} style={{ background: "rgba(0,0,0,0.5)", color: 'white', textAlign: 'center', maxHeight: '500px' }}>
 
-                                    <div style={{ padding: 30 }}>
+                                <Col lg={12} style={{ background: "rgba(0,0,0,0.5)", color: 'white', textAlign: 'center', maxHeight: '500px' }}>
+                                    <Button className={'d-block button1 btn-sm'} style={{ marginLeft: 'auto', }} onClick={() => this.props.changeView('discover')}>Back to planets</Button>
+                                    <div style={{ padding: 20 }}>
+
+                                        <h3 >{item.data[0].title}</h3>
                                         <hr />
-                                        <h1 >{item.data[0].title}</h1>
-                                        <hr />
-                                        <h4 className={'mt-4'}>{'Center: ' + item.data[0].center + '  --- ' + item.data[0].date_created.split('T')[0]}</h4>
+                                        <h5 className={'mt-4'}>{'Center: ' + item.data[0].center + '  --- ' + item.data[0].date_created.split('T')[0]}</h5>
 
                                         <p>{item.data[0].description}</p>
 

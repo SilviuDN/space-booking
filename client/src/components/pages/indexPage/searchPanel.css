@@ -66,10 +66,15 @@
 
 .button1 {
     width: 100%;
-    background-color: #f3f4f7 !important;
-    border: 1px solid #f3f4f7 !important;
+    background-color: rgba(182, 28, 115, 0.2) !important;
+    border: 1px solid rgba(182, 28, 115, 0.3) !important;
     border-radius: 2px !important;
     font-weight: bold !important;
+}
+
+.button1:hover {
+    background-color: rgba(182, 28, 115, 0.5) !important;
+    border: 1px solid rgba(182, 28, 115, 0.3) !important;
 }
 
 .radio-text {
@@ -81,4 +86,12 @@
     border-radius: 5px;
     padding: 10px 0 30px;
     margin-top: 45px;
+}
+
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
