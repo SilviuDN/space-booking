@@ -3,6 +3,7 @@ import CompanyService from "../../services/company.service";
 import DestinationService from "../../services/destinations.service"
 import AirportService from "../../services/AirportService"
 import FlightsService from "../../services/flights.service"
+import UserService from "../../services/user.service";
 import BarsChart from "./BarsChart";
 
 class BarsLists extends Component {
@@ -17,6 +18,7 @@ class BarsLists extends Component {
         this.destinationService = new DestinationService()
         this.airportService = new AirportService()
         this.flightService = new FlightsService()
+        this.userService = new UserService()
     }
 
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
@@ -65,7 +67,18 @@ class BarsLists extends Component {
                 } )
                 .catch(err => console.log(err))            
             }
-        
+ 
+        if(this.props.type === 'users'){
+            this.userService
+                .getUsers()
+                .then(response => {
+                    this.setState({ 
+                        type: 'users', 
+                        listForBarsChart: this.returnTopRatedUsers(response.data, 4) })   //top sales for flights
+                    console.log(this.state.listForBarsChart)
+                } )
+                .catch(err => console.log(err))            
+            }       
     }
 
     calculateRatingsMedianCompDest(elem){
@@ -81,7 +94,12 @@ class BarsLists extends Component {
     }
 
     returnTopRatedFlights(arr, howMany){
-        return arr.sort((a, b) => a.soldTickets.length - b.soldTickets.length  ).slice(-howMany)
+        return arr.sort((a, b) => a.soldTickets && b.soldTickets && (a.soldTickets.length - b.soldTickets.length)  ).slice(-howMany)
+    }
+
+    returnTopRatedUsers(arr, howMany){
+        // console.log(arr, howMany)
+        return arr.sort((a, b) => (a.flights && b.flightd && a?.flights.length - b?.flights.length ) ).slice(-howMany)
     }
 
     populateDataString(data, elem){
@@ -120,6 +138,13 @@ class BarsLists extends Component {
 
         yValue = elem.soldTickets
         }
+        
+        if(this.state.type === 'users'){
+            // xValue = elem.name
+            xValue = elem[name]
+    
+            yValue = elem.flights.length
+            }
 
         data.push(
             {
