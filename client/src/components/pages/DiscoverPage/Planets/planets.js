@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 import EarthPlanet from './EarthPlanet'
 import MercuryPlanet from './MercuryPlanet'
 import VenusPlanet from './VenusPlanet';
@@ -52,11 +52,13 @@ class Planets extends Component {
                     backgroundImage: `url(${Background})`, height: '95vh'
                 }
                 } className={'pt-5 text-light'} >
-                    <Container fluid className={'text-center'}>
+                    <Container fluid className={'text-center'} >
                         <br /><br /><br /><br />
-                        <Row>
+
+                        <Row >
                             <Col xs={{ span: 1, offset: 1 }}>
                                 <SunPlanet showInfo={this.showInfo} hideInfo={this.hideInfo} changeView={this.props.changeView} />
+
                             </Col>
 
                             <Col xs={{ span: 6, offset: 1 }} className='info' ref={this.divRef} >
