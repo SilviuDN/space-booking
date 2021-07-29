@@ -40,13 +40,10 @@ class FlightDetails extends Component {
     deleteFlight = e => {
         e.preventDefault()
         const { flight_id } = this.props.match.params
-        // console.log('**************************', flight_id)
 
         this.flightsService
             .deleteFlight(flight_id)
             .then(() => {
-                // this.props.closeModal()
-                // this.props.refreshFlights()
                 this.setState({
                     flight: undefined
                 })

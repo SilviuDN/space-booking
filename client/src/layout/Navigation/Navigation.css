@@ -9,3 +9,8 @@
     /*will change color of text within the element on hover */
     border-radius: 10%;
 }
+
+
+.cursor-pointer:hover{
+    cursor:pointer;
+}

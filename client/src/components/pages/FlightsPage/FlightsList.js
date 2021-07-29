@@ -72,8 +72,10 @@ class FlightsList extends Component {
                 // .then(response => this.setState({ flights: response.data }))
                 .catch(err => console.log(err))
 
-        this.props.sharedFunction('flightsList', this.loadFlights)
+        if (this.props.sharedFunction === 'function') {
+            this.props.sharedFunction('flightsList', this.loadFlights)
 
+        }
 
 
     }
