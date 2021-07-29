@@ -3,6 +3,8 @@ import ReviewService from '../../services/reviews.service'
 import FlightService from '../../services/flights.service'
 import BarChart from '../Charts/BarChart'
 import Rating from './Rating' 
+import  './Rating.css' 
+
 
 
 import { Container, Row, Col, } from 'react-bootstrap'
@@ -106,23 +108,29 @@ class RateFlightCard extends Component {
     render() {
         return (
 
-            <Container>
-
+           <>
                 {!this.state.flight
                     ?
-                    <h3>Cargando</h3>
+                    <h3></h3>
                     :
                     <Row className="justify-content-around">
-                        <Col md={6}>
+                        <Col md={12}>
+                            
                             {!this.state.ratingAirport
                             ?
-                            <div>
-                                <p>Airport:{this.state.flight.airport?.name}</p>
-                                <Rating  rateSomething={this.rateAirport}/>
-                            </div>
+                            <Row className="logInline">
+                                <Col md={3}  className="align-middle centerMe" >
+                                    <p >Airport:{this.state.flight.airport?.name}</p>
+                                </Col>
+                                <Col md={4} className="despered">
+                                     <Rating  rateSomething={this.rateAirport}/>
+                                </Col>
+                                
+                                
+                            </Row>
                             :
                             null}
-
+                            
 
                             {!this.state.ratingDestination
                             ?
@@ -142,6 +150,7 @@ class RateFlightCard extends Component {
                             </div>
                             :
                             null}
+                            <hr></hr>
 
 
                         </Col>
@@ -149,7 +158,7 @@ class RateFlightCard extends Component {
                     </Row>
                 }
 
-            </Container>
+            </>
         )
     }
 }

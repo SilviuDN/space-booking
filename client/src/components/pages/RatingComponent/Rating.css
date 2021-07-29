@@ -11,3 +11,18 @@
     text-align: center;
   }
   
+  .logInline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .centerMe{
+    align-self: center;
+    margin: 0;
+    padding: 0;
+  }
+
+  .despered{
+    display: inline-flex;
+  }

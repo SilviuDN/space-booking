@@ -56,7 +56,8 @@ class ReturnedFlightCard extends Component {
         const compRating = this.calculateRatingsMedianCompDest(this.state.flight?.flightCompany)
         const destRating = this.calculateRatingsMedianCompDest(this.state.flight?.destination)
         const airportRating = this.calculateRatingsMedianCompDest(this.state.flight?.airport)
-        // console.log(compRating)
+        const colorFilled = "silver"
+        const colorBorder = "red"
 
         return (
 
@@ -69,7 +70,7 @@ class ReturnedFlightCard extends Component {
                                 <Col xs={5} >
                                     <img className="returnedFlightCardImage" src={this.state.flight?.flightCompany?.logo} alt={'logo'}></img>
                                     <span>     {this.state.flight?.flightCompany?.companyName}</span>
-                                    <StaticRating  rating={compRating}/>
+                                    <StaticRating  rating={compRating} colorFilled={colorFilled} colorBorder={colorBorder}/>
                                 </Col>
 
                                 <Col xs={2}></Col>
@@ -81,13 +82,13 @@ class ReturnedFlightCard extends Component {
                                 </Col>
                                 <Col xs={{ span: 5, offset: 2 }}>
                                     <p>To: {this.state.flight?.destination?.name}</p>
-                                    <StaticRating  rating={destRating}/>
+                                    <StaticRating  rating={destRating} colorFilled={colorFilled} colorBorder={colorBorder}/>
                                 </Col>
                             </Row>
                             <Row>
                                 <Col xs={5}>
                                     <p>Airport: {this.cutSubstring(this.state.flight?.airport?.name, 'airport')} | {this.state.flight?.airport?.iata}</p>
-                                    <StaticRating  rating={airportRating}/>
+                                    <StaticRating  rating={airportRating} colorFilled={colorFilled} colorBorder={colorBorder}/>
                                 </Col>
 
                                 <Col xs={2}></Col>

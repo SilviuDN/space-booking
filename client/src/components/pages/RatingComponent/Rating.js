@@ -79,7 +79,7 @@ class Rating extends Component {
     }
     return (
       <div className="Rating">
-        <p>{this._meanings[value]}</p>
+        {/* <p>{this._meanings[value]}</p> */}
         {starSpans}
       </div>
     );

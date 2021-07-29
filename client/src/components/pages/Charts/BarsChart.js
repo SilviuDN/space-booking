@@ -39,7 +39,12 @@ export default class BarsChart extends Component {
                 valueScale={{ type: 'linear' }}
                 indexScale={{ type: 'band', round: true }}
                 valueFormat={{ format: '', enabled: false }}
-                colors={{ scheme: 'nivo' }}
+                // colors={{ scheme: 'nivo' }}      
+                // colors={{scheme: "green_blue"}}
+                // colors={{scheme: "reds"}}
+                // colors={{scheme: "accent"}}
+                // colors={{scheme: "category10"}}
+
                 defs={[
                     {
                         id: 'dots',
