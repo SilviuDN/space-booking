@@ -13,12 +13,12 @@ const reviewSchema = new Schema({
         // required: true,
     },
 
-    rating: {
+    reviews: [{
         type: Number,
         required: true,
         max: 5,
         min: 0,
-    },
+    }],
 
     comments: [{
         user: {

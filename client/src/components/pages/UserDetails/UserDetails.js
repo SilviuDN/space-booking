@@ -2,6 +2,7 @@ import { Component } from 'react'
 import UserService from '../../services/user.service'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import UnratedFlightsList from '../RatingComponent/UnratedFlightsList'
 
 class UserDetails extends Component {
 
@@ -65,6 +66,8 @@ class UserDetails extends Component {
                             <hr></hr>
 
                             <h5>History Flights</h5>
+
+                            <UnratedFlightsList {...this.state.user}/>
 
                             <hr></hr>
 

@@ -9,7 +9,7 @@ class ReviewService {
         })
     }
 
-    leaveReview = review_info => this.app.put(`/${review_info.id}/${review_info.which}`, review_info)
+    leaveReview = review_info => this.app.put(`/${review_info.id}/${review_info.which}/edit`, review_info)
 }
 
 export default ReviewService
