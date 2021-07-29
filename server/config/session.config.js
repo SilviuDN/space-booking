@@ -13,7 +13,7 @@ module.exports = app => {
                 maxAge: 60000000
             },
             store: MongoStore.create({
-                mongoUrl: process.env.MONGODB_URI || 'mongodb://localhost/space-booking'
+                mongoUrl: process.env.DB_REMOTE
             })
         })
     );
