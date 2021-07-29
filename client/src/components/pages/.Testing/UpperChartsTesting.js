@@ -1,11 +1,9 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
 import { Form, Button, Container, Col, Row } from 'react-bootstrap'
 
 import FlightsOccupationChart from '../Charts/FlightsOccupationChart'
-import Spinner from '../FlightsPage/Spinner'
 
-class UpperCharts extends Component {
+class UpperChartsTesting extends Component {
 
     constructor() {
         super()
@@ -55,6 +53,6 @@ class UpperCharts extends Component {
     }
 }
 
-export default UpperCharts
+export default UpperChartsTesting
 
 

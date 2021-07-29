@@ -6,6 +6,7 @@ class Test01 extends Component {
     constructor() {
         super()
         this.state = {
+            flight:undefined,
             listState: 'user',
             chart: '',
             searchBox: '',

@@ -1,5 +1,6 @@
 import { Component } from 'react'
-import FlightsService from '../../services/flights.service'
+import ReviewService from '../../services/reviews.service'
+import FlightService from '../../services/flights.service'
 import BarChart from '../Charts/BarChart'
 import Rating from './Rating' 
 
@@ -16,50 +17,89 @@ class RateFlightCard extends Component {
             ratingAirport: undefined,
             ratingDestination: undefined,
             ratingFlightCompany: undefined,
+            updated: undefined
 
         }
-        this.flightsService = new FlightsService()
+        this.reviewsService = new ReviewService()
+        this.flightsService = new FlightService()
     }
 
 
+
+    loadFlight = () => {
+
+        const flight_id = this.props.flightId
+
+        this.flightsService
+            .getFlight(flight_id)
+            .then(response => {
+                this.setState({ flight: response.data })
+            })
+            .then(response => this.setState({ flight: response.data }))
+            .catch(err => console.log(err))
+    }
 
 
 
     componentDidMount = () => {
+        this.loadFlight()
 
-    }
-
-    deleteFlight = e => {
-        // e.preventDefault()
-        // const { flight_id } = this.props.match.params
-
-        // this.flightsService
-        //     .deleteFlight(flight_id)
-        //     .then(() => {
-        //         this.setState({
-        //             flight: undefined
-        //         })
-        //         this.props.history.push('/flights')
-        //     })
-        //     .catch(err => console.log(err))
     }
 
     rateAirport = (mark) => {
-        console.log("*****************", mark)
-        this.setState({ ratingAirport: mark })
+        const id = this.state.flight.airport._id
+
+        const review_info ={
+            id,
+            which: 'airport',
+            mark
+        }
+        this.reviewsService
+            .leaveReview(review_info)
+            .then(response => this.setState({ ratingAirport: mark }))
+            .catch(err => console.log(err))
     }
 
     rateDestination = (mark) => {
-        this.setState({ ratingDestination: mark })
+        // this.setState({ ratingDestination: mark })
+        const id = this.state.flight.destination._id
+
+        const review_info ={
+            id,
+            which: 'destination',
+            mark
+        }
+        this.reviewsService
+            .leaveReview(review_info)
+            .then(response => this.setState({ ratingDestination: mark }))
+            .catch(err => console.log(err))
     }
 
     rateFlightCompany = (mark) => {
-        this.setState({ ratingFlightCompany: mark })
+        // this.setState({ ratingFlightCompany: mark })
+        const id = this.state.flight.flightCompany._id
+
+        const review_info ={
+            id,
+            which: 'company',
+            mark
+        }
+        this.reviewsService
+            .leaveReview(review_info)
+            .then(response => this.setState({ ratingFlightCompany: mark }))
+            .catch(err => console.log(err))
     }
 
+    
+
+    // componentDidUpdate = (prevProps, prevState) => {
+    //     prevProps.ratingAirport !== this.props.ratingAirport && this.rateAirport()
+
+    // } 
+
+
+
     render() {
-
-
         return (
 
             <Container>
@@ -70,11 +110,12 @@ class RateFlightCard extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
+                            <div>{this.state.flight._id}</div>
 
                             {!this.state.ratingAirport
                             ?
                             <div>
-                                <p>Airport:</p>
+                                <p>Airport:{this.state.flight.airport?.name}</p>
                                 <Rating  rateSomething={this.rateAirport}/>
                             </div>
                             :

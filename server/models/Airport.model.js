@@ -43,7 +43,7 @@ const airportSchema = new Schema(
         }],
 
         reviews: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Review'
+            type: Number, 
         }],
     },
     {

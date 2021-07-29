@@ -2,6 +2,7 @@ import { Component } from 'react'
 import UserService from '../../services/user.service'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import UnratedFlightsList from '../RatingComponent/UnratedFlightsList'
 
 class UserDetails extends Component {
 
@@ -74,7 +75,11 @@ class UserDetails extends Component {
 
                             <h5>History Flights</h5>
 
-                            <hr />
+                            <UnratedFlightsList {...this.state.user}/>
+
+                            <hr></hr>
+
+                            <Link to="/admin" onClick={() => this.props.setList('user')} className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 
