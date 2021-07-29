@@ -115,6 +115,9 @@ class RateFlightCard extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={12}>
+
+                                                        
+
                             
                             {!this.state.ratingAirport
                             ?
@@ -150,6 +153,17 @@ class RateFlightCard extends Component {
                             </div>
                             :
                             null}
+
+
+{/* 
+                            {!this.state.ratingAirport
+                            ?
+                            <div>
+                                <p>Airport</p>
+                                <Rating rateSomething={this.rateAirport}/>
+                            </div>
+                            :
+                            null} */}
                             <hr></hr>
 
 

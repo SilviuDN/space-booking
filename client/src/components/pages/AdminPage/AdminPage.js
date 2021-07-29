@@ -125,7 +125,7 @@ class AdminPage extends Component {
             case 'user':
             case 'userEdit':
             case 'userDetails':
-                return <BarsLists type={'flights'} />
+                return <BarsLists type={'users'} />
 
             default:
                 return null;
