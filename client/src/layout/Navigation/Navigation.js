@@ -33,7 +33,7 @@ class Navigation extends Component {
 
         return (
             <>
-                <Navbar className="blue-nav" variant="dark" expand="md" sticky="top">
+                <Navbar className="blue-nav py-4" variant="dark" expand="md" sticky="top">
                     <Container fluid>
                         <Navbar.Brand href="/">
                             <img

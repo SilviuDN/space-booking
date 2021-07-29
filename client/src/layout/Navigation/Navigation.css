@@ -1,3 +1,11 @@
 .blue-nav {
     background-color: #1f2745;
 }
+
+.nav-link:hover {
+    background-color: #ba2077;
+    /*will change background-color of element on hover */
+    color: white;
+    /*will change color of text within the element on hover */
+    border-radius: 10%;
+}
