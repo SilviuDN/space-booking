@@ -7,8 +7,7 @@ function StaticRating({rating}) {
 
     const starSpans = [];
 
-    for(let i=0; i<5; i++){    
-        console.log(i, rating)        
+    for(let i=0; i<5; i++){         
         let star = (i < rating) ? <Star color="silver" isFilled /> : <Star color="red" />
         starSpans.push(star)
     }

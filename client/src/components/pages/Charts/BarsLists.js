@@ -69,7 +69,7 @@ class BarsLists extends Component {
     }
 
     calculateRatingsMedianCompDest(elem){
-        return elem.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ Math.max(elem.reviews.length, 1)
+        return Math.round( elem?.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ Math.max(elem.reviews.length, 1) )
     }
 
     returnTopRatedCoDest(arr, howMany){

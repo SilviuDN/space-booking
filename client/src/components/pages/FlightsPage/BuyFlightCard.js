@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
+import StaticRating from '../RatingComponent/StaticRating'
 import "./BuyFlightCard.css"
 
 import { Card, Button, Row, Col } from 'react-bootstrap'
@@ -40,12 +41,22 @@ class ReturnedFlightCard extends Component {
     }
 
 
+    calculateRatingsMedianCompDest(elem){
+        return Math.round( elem?.reviews.reduce( (acc,elem) => acc + parseInt(elem), 0)/ Math.max(elem?.reviews.length, 1) )
+    }
 
     render() {
 
         const headerStyle = {
             backgroundColor: 'lightgreen',
         }
+
+        // console.log(this.state.flight?.flightCompany?.reviews)
+
+        const compRating = this.calculateRatingsMedianCompDest(this.state.flight?.flightCompany)
+        const destRating = this.calculateRatingsMedianCompDest(this.state.flight?.destination)
+        const airportRating = this.calculateRatingsMedianCompDest(this.state.flight?.airport)
+        // console.log(compRating)
 
         return (
 
@@ -58,18 +69,25 @@ class ReturnedFlightCard extends Component {
                                 <Col xs={5} >
                                     <img className="returnedFlightCardImage" src={this.state.flight?.flightCompany?.logo} alt={'logo'}></img>
                                     <span>     {this.state.flight?.flightCompany?.companyName}</span>
+                                    <StaticRating  rating={compRating}/>
                                 </Col>
 
                                 <Col xs={2}></Col>
                                 <Col xs={5}>loremIpsum</Col>
                             </Row>
                             <Row>
-                                <Col xs={5}><p>From: {this.state.flight?.airport?.address.city}</p></Col>
-                                <Col xs={{ span: 5, offset: 2 }}><p>To: {this.state.flight?.destination?.name}</p></Col>
+                                <Col xs={5}>
+                                    <p>From: {this.state.flight?.airport?.address.city}</p>
+                                </Col>
+                                <Col xs={{ span: 5, offset: 2 }}>
+                                    <p>To: {this.state.flight?.destination?.name}</p>
+                                    <StaticRating  rating={destRating}/>
+                                </Col>
                             </Row>
                             <Row>
                                 <Col xs={5}>
                                     <p>Airport: {this.cutSubstring(this.state.flight?.airport?.name, 'airport')} | {this.state.flight?.airport?.iata}</p>
+                                    <StaticRating  rating={airportRating}/>
                                 </Col>
 
                                 <Col xs={2}></Col>
@@ -95,8 +113,8 @@ class ReturnedFlightCard extends Component {
                             <p>Only {this.state.flight?.capacity - this.state.flight?.soldTickets} seats left</p>
 
                             <p>Price: <span className="strikethrough">
-                                ${this.numberWithCommas(this.state.flight?.price)}
-                            </span> ${this.numberWithCommas(this.state.flight?.price * 0.8)}
+                                ${this.numberWithCommas(this.state.flight?.price * 1.15)}
+                            </span> ${this.numberWithCommas(this.state.flight?.price )}
                             </p>
 
                             <Button className='BuyFlightButton' onClick={() => { this.props.setPayMethod(this.props.flight) }} variant="primary" >Buy</Button>
