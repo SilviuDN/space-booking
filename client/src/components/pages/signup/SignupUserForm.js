@@ -63,6 +63,8 @@ class SignupUserForm extends Component {
 
         this.serviceAuth.signup(this.state.user)
             .then(res => {
+                console.log(res)
+
                 this.props.showAlert('Welcome to our comunity! SignUp successful')
 
                 if (this.props.sharedFunction) {

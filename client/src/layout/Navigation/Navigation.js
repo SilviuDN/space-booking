@@ -56,10 +56,21 @@ class Navigation extends Component {
                                         <Link className="nav-link" to="/" onClick={() => this.setModalState(true)}>Login</Link>
                                     </>
                                     :
-                                    <>
-                                        <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
-                                        <span className="nav-link" onClick={this.logout}>Log out</span>
-                                    </>
+
+                                    this.props.loggedUser.role === 'moderator' ?
+
+                                        <>
+                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>Profile</Link>
+                                            <Link className="nav-link" to={`/flights/new`}> New Flight</Link>
+                                            <span className="nav-link" onClick={this.logout}>Log out</span>
+                                        </>
+
+                                        :
+
+                                        <>
+                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
+                                            <span className="nav-link" onClick={this.logout}>Log out</span>
+                                        </>
                                 }
 
                                 <span className="nav-link">¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>

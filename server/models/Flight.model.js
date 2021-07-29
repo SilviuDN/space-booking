@@ -14,6 +14,7 @@ const flightSchema = new Schema({
 
     soldTickets: {
         type: Number,
+        default: 0,
         // required: true,
     },
 
