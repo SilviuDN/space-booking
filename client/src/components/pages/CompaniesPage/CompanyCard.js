@@ -55,11 +55,11 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
                         loggedUser?.role === 'admin' ?
                             status === false ?
 
-                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Pending</Link>
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status, moderator); }}> Pending</Link>
 
                                 :
 
-                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> LIVE </Link>
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status, moderator); }}> LIVE </Link>
                             :
                             null
                     }

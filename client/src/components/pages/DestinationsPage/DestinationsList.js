@@ -38,6 +38,7 @@ class DestinationsList extends Component {
 
     componentDidMount = () => {
         this.loadDestinations()
+        this.props.sharedFunction('destinationsList', this.loadDestinations)
     }
 
     removeDestination = destinationId => {
@@ -76,7 +77,7 @@ class DestinationsList extends Component {
 
                             typeof this.props.setId === 'function' ?
 
-                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); }} className="btn btn-dark">Create Destination</Link>
+                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('createDestination') }} className="btn btn-dark">Create Destination</Link>
                                 :
                                 <Link to='/destinations/new' className="btn btn-dark">Create Destination</Link>
 

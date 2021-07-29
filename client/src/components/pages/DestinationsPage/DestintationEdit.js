@@ -94,7 +94,6 @@ class TempDestinationEdit extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        console.log(this.props)
 
         if (this.props.type === "edit") {
 
@@ -114,13 +113,14 @@ class TempDestinationEdit extends Component {
                         }
                     })
 
-                    this.props.history ?
+                    if (this.props.history) {
                         this.props.history?.push('/destinations')
-                        :
-                        this.props.setList('destinations')
+                    } else {
+                        this.props.sharedFunction()
+                    }
+
                 })
                 .catch(err => {
-                    console.log("Error from edit destination", err.message)
                     this.props.showAlert("Error from edit destination", err.message)
                 })
 
@@ -142,13 +142,15 @@ class TempDestinationEdit extends Component {
                         }
                     })
 
-                    this.props.history ?
+                    if (this.props.history) {
                         this.props.history?.push('/destinations')
-                        :
-                        this.props.setList('destinations')
+                    } else {
+                        this.props.sharedFunction()
+                    }
+
+
                 })
                 .catch(err => {
-                    console.log("Error from new destination", err.message)
                     this.props.showAlert("Error Creating new destination", err.message)
                 })
         }

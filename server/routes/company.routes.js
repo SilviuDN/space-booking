@@ -1,19 +1,15 @@
 const express = require('express')
 const router = express.Router()
 const Company = require('../models/Company.model')
-
-
-
+const User = require('../models/User.model')
 
 
 
 router.post('/new', (req, res) => {
 
-
     const { companyName, logo, document, userId } = req.body
 
     const companyAddress = { street, number, zipCode, city, country } = req.body
-
 
     Company.findOne({ companyName })
         .then(company => {
@@ -31,7 +27,6 @@ router.post('/new', (req, res) => {
         })
         .catch(err => console.log(err))
 })
-
 
 
 
@@ -65,7 +60,6 @@ router.delete('/:company_id/delete', (req, res) => {
 
 
 
-
 router.get('/search/:string', (req, res) => {
 
     const { string } = req.params
@@ -80,15 +74,22 @@ router.get('/search/:string', (req, res) => {
 })
 
 
-router.put('/setStatus/:companyId', (req, res) => {
 
-    const { companyId } = req.params
+router.put('/setStatus/:companyId/:moderatorId', (req, res) => {
+
+    const { companyId, moderatorId } = req.params
     const { status } = req.body
 
-    Company.findByIdAndUpdate(companyId, { status }, { new: true })
-        .then(response => res.json(response))
+    const userRole = status ? 'moderator' : 'user'
+
+    const company = Company.findByIdAndUpdate(companyId, { status }, { new: true })
+    const user = User.findByIdAndUpdate(moderatorId, { role: userRole }, { new: true })
+
+    Promise.all([company, user])
+        .then(({ company, user }) => res.json(company))
         .catch(err => res.status(500).json({ code: 500, message: 'Error setting status', err }))
 })
+
 
 
 router.get('/:status', (req, res) => {

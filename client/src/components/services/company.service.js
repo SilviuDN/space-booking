@@ -4,7 +4,7 @@ class CompanyService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: process.env.REACT_APP_BASE_URL+'/company',
+            baseURL: process.env.REACT_APP_BASE_URL + '/company',
             withCredentials: true
         })
     }
@@ -19,7 +19,7 @@ class CompanyService {
 
     getCompanies = (status) => this.app.get(`/${status}`)
 
-    setStatus = (company_id, status) => this.app.put(`/setStatus/${company_id}`, { status })
+    setStatus = (company_id, status, moderatorId) => this.app.put(`/setStatus/${company_id}/${moderatorId}`, { status })
 
     searchBox = (string) => this.app.get(`/search/${string}`)
 }

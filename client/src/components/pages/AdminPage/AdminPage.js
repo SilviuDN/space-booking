@@ -52,7 +52,7 @@ class AdminPage extends Component {
                 return <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
 
             case 'destinations':
-                return <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} />
+                return <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
 
             case 'airports':
                 return <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
@@ -68,9 +68,9 @@ class AdminPage extends Component {
                 return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
 
             case 'editDestination':
-                return <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
+                return <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['destinationsList']} />
             case 'createDestination':
-                return <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
+                return <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['destinationsList']} />
 
             case 'editAirport':
                 return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />

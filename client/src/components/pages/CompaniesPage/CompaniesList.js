@@ -57,11 +57,14 @@ class CompaniesList extends Component {
     }
 
 
-    acceptCompany = (company, status) => {
+    acceptCompany = (company, status, moderatorId) => {
 
         this.companyService
-            .setStatus(company, status)
-            .then(() => this.loadCompanies())
+            .setStatus(company, status, moderatorId)
+            .then((response) => {
+                this.loadCompanies()
+                console.log(response)
+            })
             .catch(err => console.log(err))
     }
 
@@ -81,7 +84,6 @@ class CompaniesList extends Component {
 
     }
 
-    setOnlyStatus = () => this.setState({ status: !this.state.status })
 
     setStatus = () => {
 
