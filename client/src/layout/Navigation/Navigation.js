@@ -6,19 +6,35 @@ import { Modal } from 'react-bootstrap'
 import Login from '../../components/pages/login/login'
 import logo from './logo.png'
 import './Navigation.css'
+import CompanyService from '../../components/services/company.service'
 
 class Navigation extends Component {
     constructor() {
         super()
         this.state = {
             isLoggedIn: false,
-            modal: false
+            modal: false,
+            companyId: ''
+
         }
         this.authService = new AuthService()
+        this.CompanyService = new CompanyService()
     }
 
 
     setModalState = (action) => this.setState({ modal: action })
+
+
+    loadMyCompany = (user_id) => {
+
+        this.CompanyService
+            .getMyCompany(user_id)
+            .then(res => {
+                this.props.history.push(`/companies/${res.data[0]._id}`)
+            })
+            .catch(err => console.log(err))
+    }
+
 
 
     logout = () => {
@@ -27,6 +43,10 @@ class Navigation extends Component {
             .then(() => this.props.storeUser(undefined))
             .catch(err => console.log(err))
     }
+
+
+
+
 
     render() {
 
@@ -54,26 +74,30 @@ class Navigation extends Component {
                                     <>
                                         <Link className="nav-link" to="/signup/n">Signup</Link>
                                         <Link className="nav-link" to="/" onClick={() => this.setModalState(true)}>Login</Link>
+                                        <span className="nav-link">¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>
                                     </>
                                     :
 
                                     this.props.loggedUser.role === 'moderator' ?
 
                                         <>
-                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>Profile</Link>
                                             <Link className="nav-link" to={`/flights/new`}> New Flight</Link>
-                                            <span className="nav-link" onClick={this.logout}>Log out</span>
+                                            <span className="nav-link cursor-pointer" onClick={() => this.loadMyCompany(this.props.loggedUser._id)}> MyCompany</span>
+                                            <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
+
+                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
                                         </>
 
                                         :
 
                                         <>
+
                                             <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
-                                            <span className="nav-link" onClick={this.logout}>Log out</span>
+                                            <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
+                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
                                         </>
                                 }
 
-                                <span className="nav-link">¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</span>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

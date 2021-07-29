@@ -22,5 +22,7 @@ class CompanyService {
     setStatus = (company_id, status, moderatorId) => this.app.put(`/setStatus/${company_id}/${moderatorId}`, { status })
 
     searchBox = (string) => this.app.get(`/search/${string}`)
+
+    getMyCompany = (userId) => this.app.get(`/myCompany/${userId}`)
 }
 export default CompanyService

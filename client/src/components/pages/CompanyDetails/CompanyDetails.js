@@ -25,7 +25,7 @@ class CompanyDetails extends Component {
     }
 
 
-    componentDidMount = () => this.loadCompany()
+    componentDidMount = () => this.loadCompany(this.props.match?.params.company_id)
 
     componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadCompany()
 
@@ -59,6 +59,16 @@ class CompanyDetails extends Component {
                             <h3>Flights</h3>
 
                             <hr></hr>
+
+                            {
+                                !this.props.setList ?
+                                    <>
+                                        <Link to={`/companies/${this.state.company._id}/edit`} className="btn btn-info">Edit</Link>
+                                    </>
+                                    :
+                                    null
+                            }
+
 
 
                         </Col>
