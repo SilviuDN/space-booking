@@ -31,6 +31,30 @@ router.post('/new/:id/:which', (req, res) => {
         .catch(err => console.log(err))
 })
 
+
+
+router.put('/:id/:which/edit', (req, res) => {
+
+    const { which, id, mark } = req.body
+
+    console.log(which, id, mark)
+
+            which === 'airport' ? Airport.findByIdAndUpdate(id, { $push: { reviews: req.body.mark } })
+                .then(response => res.json(response))
+                .catch(err => console.log(err)) :
+
+                which === 'company' ? Company.findByIdAndUpdate(id, { $push: { reviews: req.body.mark } })
+                    .then(response => res.json(response))
+                    .catch(err => console.log(err)) :
+
+                    which === 'destination' ? Destination.findByIdAndUpdate(id, { $push: { reviews: req.body.mark } })
+                        .then(response => res.json(response))
+                        .catch(err => console.log(err)) :
+
+                        res.status(500).json({ code: 500, message: 'Coleccion no encontrada no encontrada', err })
+
+})
+
 router.delete('/:review_id/:which/:which_id/delete', (req, res) => {
 
     const { which_id, review_id, which } = req.params
@@ -52,5 +76,6 @@ router.delete('/:review_id/:which/:which_id/delete', (req, res) => {
         .catch(err => console.log(err))
 
 })
+
 
 module.exports = router

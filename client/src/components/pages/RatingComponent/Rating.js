@@ -34,6 +34,7 @@ class Rating extends Component {
       value: newValue,
       dynamicValue: newValue
     });
+    this.props.rateSomething(newValue)
   }
   handleMouseEnter(newValue) {
     this.setState({ dynamicValue: newValue });
@@ -42,6 +43,16 @@ class Rating extends Component {
   handleMouseLeave(newValue) {
     this.setState({ dynamicValue: this.state.value });
   }
+
+  // componentDidMount = () => {
+
+  //   console.log('DIN STEA ')
+  //   // this.props.rateSomething(this.state.value)
+
+  // }
+
+  // componentDidUpdate = (prevProps, prevState) => prevState.value !== this.state.value && this.props.rateSomething(this.state.value)
+
 
   render() {
     const { dynamicValue, value } = this.state;

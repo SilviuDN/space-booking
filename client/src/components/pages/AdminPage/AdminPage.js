@@ -11,14 +11,13 @@ import AirportDetails from '../AirportsPage/AirportDetails'
 import CompanyDetails from '../CompanyDetails/CompanyDetails'
 import AirportEdit from '../AirportsPage/AirportEdit'
 import UserEdit from '../UserEditPage/UserEditPage'
-import FlightsOccupationChart from '../Charts/FlightsOccupationChart'
 import FlightDetails from '../FlightsPage/FlightDetails'
 import EditCreateFlight from '../FlightsPage/EditCreateFlight'
 import DestinationDetails from '../DestinationsPage/DestinationDetails'
 import EditDestination from '../DestinationsPage/DestintationEdit'
 import BarsLists from '../Charts/BarsLists'
-import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
 import UpperChartsPie from '../Charts/UpperChartsPie'
+import CompanyEditPage from '../CompanyEditPage/CompanyEditPage'
 
 
 
@@ -161,7 +160,6 @@ class AdminPage extends Component {
                             }
 
                         </Col>
-
 
 
                     </Row>

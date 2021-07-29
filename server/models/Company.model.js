@@ -29,7 +29,7 @@ const companySchema = new Schema({
     },
 
     reviews: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Review'
+        type: Number
     }],
     status: {
         type: Boolean,

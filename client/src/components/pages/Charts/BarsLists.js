@@ -62,7 +62,6 @@ class BarsLists extends Component {
                     this.setState({ 
                         type: 'flights', 
                         listForBarsChart: this.returnTopRatedFlights(response.data, 4) })   //top sales for flights
-                    console.log('despues',this.state.listForBarsChart.length)
                 } )
                 .catch(err => console.log(err))            
             }
