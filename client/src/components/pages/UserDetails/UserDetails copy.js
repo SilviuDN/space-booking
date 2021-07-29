@@ -39,24 +39,6 @@ class UserDetails extends Component {
 
     componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadDetails()
 
-    updateRatedFlightsList = (flightId) => {
-        if( !this.state.user.ratedFlights?.includes(flightId) ){
-            console.log("hei",this.state.user.ratedFlights)
-            this.userService
-                .updateRatedFlights(this.state.user._id, flightId)
-                .then(response => {
-                    const newList = this.state.user.listedFlights?.push(flightId)
-                    this.setState({
-                        ...this.state.user,
-                        ratedFlights: newList,
-                    })
-
-                })
-                .catch(err => console.log(err))    
-
-        }
-    }
-
     render() {
 
         return (
@@ -93,7 +75,7 @@ class UserDetails extends Component {
 
                             <h5>History Flights</h5>
 
-                            <UnratedFlightsList {...this.state.user} updateRatedFlightsList={this.updateRatedFlightsList}/>
+                            <UnratedFlightsList {...this.state.user}/>
 
                             <hr></hr>
 

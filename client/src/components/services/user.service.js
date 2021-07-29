@@ -19,5 +19,9 @@ class UserService {
     getUsers = () => this.app.get('/user')
 
     searchBox = (string) => this.app.get(`/user/search/${string}`)
+
+    updateRatedFlights = (user_id, flight_id) => this.app.put(`/user/${user_id}/${flight_id}/rate`)
+
+    // updateRatedFlights = (user_id, flight_id) => this.app.put(`/user/rate`)
 }
 export default UserService

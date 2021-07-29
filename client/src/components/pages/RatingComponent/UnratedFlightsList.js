@@ -25,11 +25,12 @@ class UnratedFlightsList extends Component {
 
 
     render() {
-        console.log(this.props.flights)
         return (
 
             <>
-           {this.props.flights.map(flightId => <RateFlightCard key={flightId._id} flightId = {flightId}/>)}
+           {this.props.flights.map(flightId => this.props.ratedFlights.includes(flightId) 
+                ? null
+                : <RateFlightCard key={flightId._id} flightId = {flightId} updateRatedFlightsList={this.props.updateRatedFlightsList}/> )}
            </>
 
         )

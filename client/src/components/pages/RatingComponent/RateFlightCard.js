@@ -35,7 +35,7 @@ class RateFlightCard extends Component {
             .then(response => {
                 this.setState({ flight: response.data })
             })
-            .then(response => this.setState({ flight: response.data }))
+            // .then(response => this.setState({ flight: response.data }))
             .catch(err => console.log(err))
     }
 
@@ -48,6 +48,7 @@ class RateFlightCard extends Component {
 
     rateAirport = (mark) => {
         const id = this.state.flight.airport._id
+        this.props.updateRatedFlightsList(this.state.flight._id)
 
         const review_info ={
             id,
@@ -58,11 +59,13 @@ class RateFlightCard extends Component {
             .leaveReview(review_info)
             .then(response => this.setState({ ratingAirport: mark }))
             .catch(err => console.log(err))
+        
     }
 
     rateDestination = (mark) => {
         // this.setState({ ratingDestination: mark })
         const id = this.state.flight.destination._id
+        this.props.updateRatedFlightsList(this.state.flight._id)
 
         const review_info ={
             id,
@@ -78,6 +81,7 @@ class RateFlightCard extends Component {
     rateFlightCompany = (mark) => {
         // this.setState({ ratingFlightCompany: mark })
         const id = this.state.flight.flightCompany._id
+        this.props.updateRatedFlightsList(this.state.flight._id)
 
         const review_info ={
             id,
@@ -110,8 +114,6 @@ class RateFlightCard extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
-                            <div>{this.state.flight._id}</div>
-
                             {!this.state.ratingAirport
                             ?
                             <div>

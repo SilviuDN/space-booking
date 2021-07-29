@@ -68,4 +68,12 @@ router.get('/search/:string', (req, res) => {
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering users', err }))
 })
 
+
+router.put('/:user_id/:flight_id/rate', (req, res) => {
+    console.log('funciona!')
+    User.findByIdAndUpdate(req.params.user_id, { $push: { ratedFlights: req.params.flight_id } }, { new: true }) // reminder add password : hashPass
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error editing users', err }))
+})
+
 module.exports = router
