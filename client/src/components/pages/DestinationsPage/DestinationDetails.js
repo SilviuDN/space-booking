@@ -15,7 +15,8 @@ class DestinationDetails extends Component {
     }
 
 
-    componentDidMount() {
+    loadDestination() {
+
         const destination_id = this.props.match?.params.destination_id || this.props.id
         // console.log("Hello destination_id", destination_id)
 
@@ -26,6 +27,13 @@ class DestinationDetails extends Component {
             })
             .catch(err => console.log(err))
     }
+
+    componentDidMount = () => this.loadDestination()
+
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadDestination()
+
+
 
     deleteDestination = e => {
         e.preventDefault()
@@ -61,8 +69,8 @@ class DestinationDetails extends Component {
                                 <Card.Body>
                                     <Card.Title>Name: {this.state.destination.name}</Card.Title>
                                     <Card.Subtitle>Description: {this.state.destination.description}</Card.Subtitle>
-                                    {this.state.destination.reviews.map(elem =>
-                                        <Card.Subtitle>review: {elem}</Card.Subtitle>
+                                    {this.state.destination.reviews.map((elem, id) =>
+                                        <Card.Subtitle key={id}>review: {elem}</Card.Subtitle>
                                     )}
 
 
@@ -72,11 +80,11 @@ class DestinationDetails extends Component {
                             </Card>
 
                             {
-                                typeof this.props.setList === 'function' ?
+                                typeof this.props.setList !== 'function' ?
 
-                                    <Link to="/admin" onClick={() => this.props.setList('destinations')} className="btn btn-dark">Back to destinations list</Link>
-                                    :
                                     <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
+                                    :
+                                    null
 
                             }
 

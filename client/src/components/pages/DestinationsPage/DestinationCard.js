@@ -41,7 +41,7 @@ const DestinationCard = ({ _id, name, description, moderator, image, removeDesti
 
 
                                     &nbsp;
-                                    <Link to={`/admin`} onClick={() => { removeDestination(); setList('destinations') }}>
+                                    <Link to={`/admin`} onClick={() => { removeDestination() }}>
                                         <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                                     </Link>
                                 </>

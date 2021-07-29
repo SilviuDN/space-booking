@@ -2,6 +2,8 @@ import { Button } from "react-bootstrap"
 import { Link } from 'react-router-dom'
 
 const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setId, loggedUser, acceptCompany, status }) => {
+
+
     return (
 
         <>
@@ -24,7 +26,7 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
 
                     &nbsp;
 
-                    {(loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin' ?
+                    {((loggedUser && loggedUser?._id === moderator) || loggedUser?.role === 'admin') && !status ?
 
                         typeof setList === 'function' ?
 
@@ -57,7 +59,7 @@ const CompanyCard = ({ moderator, companyName, _id, deleteCompany, setList, setI
 
                                 :
 
-                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> Live</Link>
+                                <Link to="/admin" onClick={() => { acceptCompany(_id, !status); }}> LIVE </Link>
                             :
                             null
                     }

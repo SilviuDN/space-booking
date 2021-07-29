@@ -40,8 +40,8 @@ class UserDetails extends Component {
     componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadDetails()
 
     updateRatedFlightsList = (flightId) => {
-        if( !this.state.user.ratedFlights?.includes(flightId) ){
-            console.log("hei",this.state.user.ratedFlights)
+        if (!this.state.user.ratedFlights?.includes(flightId)) {
+            console.log("hei", this.state.user.ratedFlights)
             this.userService
                 .updateRatedFlights(this.state.user._id, flightId)
                 .then(response => {
@@ -52,7 +52,7 @@ class UserDetails extends Component {
                     })
 
                 })
-                .catch(err => console.log(err))    
+                .catch(err => console.log(err))
 
         }
     }
@@ -93,11 +93,10 @@ class UserDetails extends Component {
 
                             <h5>History Flights</h5>
 
-                            <UnratedFlightsList {...this.state.user} updateRatedFlightsList={this.updateRatedFlightsList}/>
+                            <UnratedFlightsList {...this.state.user} updateRatedFlightsList={this.updateRatedFlightsList} />
 
                             <hr></hr>
 
-                            <Link to="/admin" onClick={() => this.props.setList('user')} className="btn btn-dark">Volver al listado</Link>
 
                         </Col>
 
