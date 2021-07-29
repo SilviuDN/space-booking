@@ -19,5 +19,7 @@ class UserService {
     getUsers = () => this.app.get('/user')
 
     searchBox = (string) => this.app.get(`/user/search/${string}`)
+
+    boughtFly = (userId, flightId) => this.app.post(`/user/${userId}/fly/${flightId}/bought`)
 }
 export default UserService

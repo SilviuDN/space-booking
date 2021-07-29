@@ -6,12 +6,24 @@ const User = require('../models/User.model')
 
 
 router.put('/:user_id/edit', (req, res) => {
-    //
+
     const query = req.body.user
 
     User.findByIdAndUpdate(req.params.user_id, query, { new: true }) // reminder add password : hashPass
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error editing users', err }))
+})
+
+
+
+
+router.put('/:userId/bought/:flightId/edit', (req, res) => {
+
+    const { userId, flightId } = req.params
+
+    User.findByIdAndUpdate(userId, { $push: { flights: flightId } }, { new: true })
+        .then(response => res.json({ message: 'Error setting the flight in user', err }))
+        .catch(err => res.status(500).json({ code: 500, message: 'Error setting the flight in user', err }))
 })
 
 

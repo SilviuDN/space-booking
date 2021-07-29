@@ -21,6 +21,12 @@ class Checkout extends Component {
     }
 
 
+    setflightInUser = () => {
+        this.userService.setflightInUser(this.state.user)
+        console.log(this.props)
+    }
+
+
 
     render() {
 
@@ -149,34 +155,34 @@ class Checkout extends Component {
 
                             <Row>
                                 <Col> <p>Name:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.name} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.name} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>Surname:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.surname} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.surname} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>Personal ID:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.typeOfId} {this.props.props.loggedUser.personalId} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.typeOfId} {this.props.props.loggedUser?.personalId} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>E-mail:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.email} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.email} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>Phone Number:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.phone} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.phone} </p></Col>
                             </Row>
 
                             <hr />
 
                             <Row>
                                 <Col> <p>E-mail:</p></Col>
-                                <Col><p> {this.props.props.loggedUser.email} </p></Col>
+                                <Col><p> {this.props.props.loggedUser?.email} </p></Col>
                             </Row>
 
                             <hr />
@@ -185,31 +191,32 @@ class Checkout extends Component {
 
                             <Row>
                                 <Col> <p>Street:</p></Col>
-                                <Col>  <p>{this.props.props.loggedUser.address.street} {this.props.props.loggedUser.address.number}</p></Col>
+                                <Col>  <p>{this.props.props.loggedUser?.address.street} {this.props.props.loggedUser?.address.number}</p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>Number:</p></Col>
-                                <Col>  <p> {this.props.props.loggedUser.address.number} </p></Col>
+                                <Col>  <p> {this.props.props.loggedUser?.address.number} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>ZipCode:</p></Col>
-                                <Col>  <p> {this.props.props.loggedUser.address.zipCode} </p></Col>
+                                <Col>  <p> {this.props.props.loggedUser?.address.zipCode} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>City:</p></Col>
-                                <Col>  <p> {this.props.props.loggedUser.address.city} </p></Col>
+                                <Col>  <p> {this.props.props.loggedUser?.address.city} </p></Col>
                             </Row>
 
                             <Row>
                                 <Col> <p>Country:</p></Col>
-                                <Col>  <p> {this.props.props.loggedUser.address.country} </p></Col>
+                                <Col>  <p> {this.props.props.loggedUser?.address.country} </p></Col>
                             </Row>
                         </Card>
 
-                        <Link as={Button} variant="primary" to="/admin" onClick={() => this.props.setList('user')} className="btn btn-flat">Comprar</Link>
+                        <Link as={Button} variant="primary" onClick={() => this.setflightInUser()} className="btn btn-flat">Confirm Buy</Link>
+                        {/* <Link as={Button} variant="primary" to="/users/checkout/thankyou" onClick={() => this.setflightInUser()} className="btn btn-flat">Confirm Buy</Link> */}
                     </Col>
 
                     <Col md={4}>

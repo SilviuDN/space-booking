@@ -166,11 +166,6 @@ class TempEdit extends Component {
                     })
 
 
-
-
-
-
-
                     this.props.showAlert('Successfully eddited')
 
                     if (typeof this.props.sharedFunction === 'function') {
@@ -186,6 +181,7 @@ class TempEdit extends Component {
                     this.props.showAlert("Error from new flight", err.message)
                 })
         }
+
 
         if (this.props.type === "new") {
             this.flightsService
