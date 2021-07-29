@@ -92,7 +92,6 @@ class Navigation extends Component {
 
                                         <>
 
-                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
                                             <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
                                             <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
                                         </>
