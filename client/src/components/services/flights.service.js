@@ -4,7 +4,7 @@ class FlightService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/flight',
+            baseURL: process.env.REACT_APP_BASE_URL+'/flight',
             withCredentials: true
         })
     }

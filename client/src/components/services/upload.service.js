@@ -4,7 +4,7 @@ class UploadService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/upload',
+            baseURL: process.env.REACT_APP_BASE_URL+'/upload',
             withCredentials: true
         })
     }

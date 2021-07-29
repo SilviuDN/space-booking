@@ -4,7 +4,7 @@ class AuthService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api',
+            baseURL: process.env.REACT_APP_BASE_URL,
             withCredentials: true
         })
         this.axios = axios

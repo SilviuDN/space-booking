@@ -4,7 +4,7 @@ class CompanyService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/company',
+            baseURL: process.env.REACT_APP_BASE_URL+'/company',
             withCredentials: true
         })
     }

@@ -4,7 +4,7 @@ class ReviewService {
 
     constructor() {
         this.app = axios.create({
-            baseURL: 'http://localhost:5000/api/review',
+            baseURL: process.env.REACT_APP_BASE_URL+'/review',
             withCredentials: true
         })
     }
