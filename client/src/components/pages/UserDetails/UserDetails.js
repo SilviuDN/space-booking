@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import UserService from '../../services/user.service'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import UnratedFlightsList from '../RatingComponent/UnratedFlightsList'
+import profileWall from './profileWall.png'
 
 class UserDetails extends Component {
 
@@ -60,49 +61,149 @@ class UserDetails extends Component {
 
         return (
 
-            <Container>
+            <Container style={{ backgroundColor: "gray" }} >
 
                 {!this.state.user ?
 
                     <h3>cargando</h3> :
 
-                    <Row className="justify-content-around">
+                    <>
+                        <br /><br />
+                        <Card body rounded >
+                            <Row >
 
-                        <Col md={12}>
+                                <Card.Img src={profileWall} style={{ height: "200px" }} />
 
-                            <h3>{this.state.user.name} {this.state.user.surname}</h3>
-                            <p>{this.state.user.email}</p>
+                                <Card.ImgOverlay>
+                                    <Row>
+                                        <Col md={2} style={{ padding: "15px 0px 0px 25px", }}  >
 
-                            <hr />
+                                            <Image src={this.state.user.profileImg} roundedCircle style={{ height: "17vh", objectFit: "cover" }} alt="profile image" />
 
-                            <p>Personal ID: {this.state.user.personalId}</p>
-                            <p>Type of ID: {this.state.user.typeOfId}</p>
-                            <p>phone : {this.state.user.phone}</p>
+                                        </Col>
+                                        <Col md={9} className=" text-white">
+                                            <br />
+                                            <br />
+                                            <h2 style={{ paddingLeft: "10px" }}>   {this.state.user.name} {this.state.user.surname}</h2>
+                                            <hr />
 
-                            <hr />
-
-                            <p><strong>Address</strong></p>
-                            <p>Street : {this.state.user.address.street}</p>
-                            <p>Number: {this.state.user.address.number}</p>
-                            <p>Zipcode: {this.state.user.address.zipCode}</p>
-                            <p>City: {this.state.user.address.city}</p>
-                            <p>Country: {this.state.user.address.country}</p>
-
-                            <hr></hr>
-
-                            <h5>History Flights</h5>
-
-                            <UnratedFlightsList {...this.state.user} updateRatedFlightsList={this.updateRatedFlightsList} />
-
-                            <hr></hr>
+                                        </Col>
+                                    </Row>
+                                </Card.ImgOverlay>
 
 
-                        </Col>
 
-                    </Row>
+                                <br /><br />
+                                <Row>
+                                    <Col>
+                                        <strong>E-mail</strong>
+                                    </Col>
+                                    <Col>
+                                        <p>: {this.state.user.email}</p>
+                                    </Col>
+
+                                </Row>
+                                <Row>
+                                    <Col>
+                                        <strong>Phone number</strong>
+                                    </Col>
+                                    <Col>
+                                        <p>: {this.state.user.phone}</p>
+                                    </Col>
+
+                                </Row>
+
+
+
+                                <Row>
+                                    <Col>
+                                        <strong>Personal ID: </strong>
+                                    </Col>
+                                    <Col>
+                                        <p>: {this.state.user.typeOfId} - {this.state.user.personalId}</p>
+                                    </Col>
+
+                                </Row>
+
+
+
+
+
+
+
+
+
+                                <Row >
+
+                                    <Col md={6} style={{ borderRight: "1px solid #C8C9CA", borderTop: "1px solid #C8C9CA" }}>
+                                        <br />
+                                        <Row>
+                                            <Col  >
+                                                <strong>Street </strong>
+                                            </Col>
+                                            <Col >
+                                                <p>: {this.state.user.address.number} {this.state.user.address.street} </p>
+                                            </Col>
+                                        </Row>
+
+                                        <Row>
+                                            <Col  >
+                                                <strong>City</strong>
+                                            </Col>
+                                            <Col >
+                                                : {this.state.user.address.city}
+                                            </Col>
+                                        </Row>
+
+                                    </Col>
+
+                                    <Col md={6} style={{ borderTop: "1px solid #C8C9CA" }}>
+                                        <br />
+                                        <Row><Col  >
+                                            <strong>Zipcode </strong>
+                                        </Col>
+
+                                            <Col >
+                                                <p> : {this.state.user.address.zipCode}</p>
+                                            </Col></Row>
+
+
+
+                                        <Row>
+                                            <Col >
+                                                <strong>Country</strong>
+                                            </Col>
+                                            <Col ><p>: {this.state.user.address.country}</p>
+                                            </Col>
+
+                                        </Row>
+                                    </Col>
+
+                                </Row>
+
+
+
+
+                                <hr></hr>
+
+                                <h5>History Flights</h5>
+                                <hr></hr>
+                                <h5>Reviews</h5>
+                                <hr></hr>
+                                <UnratedFlightsList {...this.state.user} updateRatedFlightsList={this.updateRatedFlightsList} />
+
+
+
+
+
+
+                            </Row>
+                        </Card>
+                    </>
                 }
 
             </Container>
+
         )
     }
 }
