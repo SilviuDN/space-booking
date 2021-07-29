@@ -39,7 +39,7 @@ class UserEdit extends Component {
 
     loadUserData() {
 
-        const id = this.props.id || this.props.match.params.user_id
+        const id = this.props.match.params.user_id || this.props.id
 
         this.userService
 
@@ -134,12 +134,22 @@ class UserEdit extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
+        const id = this.props.match.params.user_id || this.props.id
 
         this.userService
-            .userEdit(this.state, this.props.id)
+            .userEdit(this.state, id)
             .then(() => {
-                this.props.sharedFunction()
                 this.props.showAlert('User Edit success')
+
+                if (this.props.sharedFunction) {
+
+                    this.props.sharedFunction()
+                }
+
+                if (this.props.history) {
+
+                    this.props.history.push(`/users/${id}`)
+                }
 
             })
             .catch(err => console.log(err))

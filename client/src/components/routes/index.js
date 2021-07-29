@@ -47,7 +47,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
             <Route path="/users/" exact render={() => <UsersPage />} />
             <Route path="/users/:user_id" exact render={props => <UserDetails {...props} />} />
-            <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} />} />
+            <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} showAlert={showAlert} />} />
 
 
 

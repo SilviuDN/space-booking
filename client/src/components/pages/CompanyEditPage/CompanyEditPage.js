@@ -90,7 +90,7 @@ class CompanyEditPage extends Component {
 
                     this.props.showAlert('Company edit Success.')
 
-                    this.props.history.push('/')
+                    this.props.history.push(`/companies/${this.props.match?.params.company_id}`)
                 }
             })
             .catch(err => {
