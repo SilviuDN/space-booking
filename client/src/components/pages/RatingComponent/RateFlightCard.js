@@ -2,8 +2,8 @@ import { Component } from 'react'
 import ReviewService from '../../services/reviews.service'
 import FlightService from '../../services/flights.service'
 import BarChart from '../Charts/BarChart'
-import Rating from './Rating' 
-import  './Rating.css' 
+import Rating from './Rating'
+import './Rating.css'
 
 
 
@@ -52,7 +52,7 @@ class RateFlightCard extends Component {
         const id = this.state.flight.airport._id
         this.props.updateRatedFlightsList(this.state.flight._id)
 
-        const review_info ={
+        const review_info = {
             id,
             which: 'airport',
             mark
@@ -61,7 +61,7 @@ class RateFlightCard extends Component {
             .leaveReview(review_info)
             .then(response => this.setState({ ratingAirport: mark }))
             .catch(err => console.log(err))
-        
+
     }
 
     rateDestination = (mark) => {
@@ -69,7 +69,7 @@ class RateFlightCard extends Component {
         const id = this.state.flight.destination._id
         this.props.updateRatedFlightsList(this.state.flight._id)
 
-        const review_info ={
+        const review_info = {
             id,
             which: 'destination',
             mark
@@ -85,7 +85,7 @@ class RateFlightCard extends Component {
         const id = this.state.flight.flightCompany._id
         this.props.updateRatedFlightsList(this.state.flight._id)
 
-        const review_info ={
+        const review_info = {
             id,
             which: 'company',
             mark
@@ -96,7 +96,7 @@ class RateFlightCard extends Component {
             .catch(err => console.log(err))
     }
 
-    
+
 
     // componentDidUpdate = (prevProps, prevState) => {
     //     prevProps.ratingAirport !== this.props.ratingAirport && this.rateAirport()
@@ -108,48 +108,55 @@ class RateFlightCard extends Component {
     render() {
         return (
 
-           <>
+            <>
                 {!this.state.flight
                     ?
                     <h3></h3>
                     :
                     <Row className="justify-content-around">
                         <Col md={12}>
-                            
+
                             {!this.state.ratingAirport
-                            ?
-                            <Row className="logInline">
-                                <Col md={3}  className="align-middle centerMe" >
-                                    <p >Airport:{this.state.flight.airport?.name}</p>
-                                </Col>
-                                <Col md={4} className="despered">
-                                     <Rating  rateSomething={this.rateAirport}/>
-                                </Col>
-                                
-                                
-                            </Row>
-                            :
-                            null}
-                            
+                                ?
+                                <Row >
+                                    <Col    >
+                                        <p >{this.state.flight.airport?.name}</p>
+                                    </Col>
+                                    <Col >
+                                        <Rating rateSomething={this.rateAirport} />
+                                    </Col>
+
+
+                                </Row>
+                                :
+                                null}
+
 
                             {!this.state.ratingDestination
-                            ?
-                            <div>
-                                <p>Destination:</p>
-                                <Rating rateSomething={this.rateDestination}/>
-                            </div>
-                            :
-                            null}
+                                ?
+                                <Row>
+                                    <Col>
+                                        <p>Destination:</p>
+                                    </Col>
+                                    <Col>
+                                        <Rating rateSomething={this.rateDestination} /></Col>
+                                </Row>
+                                :
+                                null}
 
 
                             {!this.state.ratingFlightCompany
-                            ?
-                            <div>
-                                <p>Flight Company:</p>
-                                <Rating rateSomething={this.rateFlightCompany}/>
-                            </div>
-                            :
-                            null}
+                                ?
+                                <Row>
+                                    <Col>
+                                        <p>Flight Company:</p>
+                                    </Col>
+                                    <Col>
+                                        <Rating rateSomething={this.rateFlightCompany} />
+                                    </Col>
+                                </Row>
+                                :
+                                null}
                             <hr></hr>
 
 

@@ -52,7 +52,7 @@ class CompaniesList extends Component {
 
     componentDidMount = () => {
         this.loadCompanies()
-        this.props.sharedFunction('companiesList', this.loadCompanies)
+        if (this.props.sharedFunction) this.props.sharedFunction('companiesList', this.loadCompanies)
         // this.props.sharedFunctionStatus('companiesList', this.loadCompanies)
     }
 

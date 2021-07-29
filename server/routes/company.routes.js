@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const Company = require('../models/Company.model')
 const User = require('../models/User.model')
-
+const mongoose = require('mongoose')
 
 
 router.post('/new', (req, res) => {
@@ -72,6 +72,19 @@ router.get('/search/:string', (req, res) => {
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering companiesr', err }))
 })
+
+
+router.get('/myCompany/:userId', (req, res) => {
+
+    const { userId } = req.params
+
+    console.log(userId)
+
+    Company.find({ moderator: new mongoose.Types.ObjectId(userId) })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json({ code: 500, message: 'Company not found', err }))
+})
+
 
 
 

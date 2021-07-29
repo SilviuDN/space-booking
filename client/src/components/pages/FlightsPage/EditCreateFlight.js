@@ -36,8 +36,11 @@ class TempEdit extends Component {
     }
 
 
-    loadFlights() {
+    loadFlights = () => {
+
         if (this.props.type === "edit") {
+
+
             const flight_id = this.props.match?.params.flight_id || this.props.id
 
             this.flightsService
@@ -47,6 +50,7 @@ class TempEdit extends Component {
                     this.setState({
 
                         flight: {
+                            ...this.state.flight,
                             flight_id: flight._id,
                             price: flight.price,
                             capacity: flight.capacity,
@@ -65,6 +69,7 @@ class TempEdit extends Component {
         } else {
             this.setState({
                 flight: {
+                    ...this.state.flight,
                     flight_id: '',
                     price: '',
                     capacity: '',
@@ -72,7 +77,6 @@ class TempEdit extends Component {
                     airport: '',
                     destination: '',
                     date: '',
-                    flightCompany: '',
                 },
                 currentDestination: '',
                 currentCompany: '',
@@ -80,32 +84,38 @@ class TempEdit extends Component {
             })
         }
 
+
+
         this.loadAirports()
         this.loadDestinations()
-        this.loadCompanies()
-
-
-
     }
 
 
-    componentDidMount = () => this.loadFlights()
+    componentDidMount = () => {
+        this.loadFlights()
+    }
 
 
-    loadCompanies() {
-        this.CompanyService.getCompanies()
+    loadCompanies = (e, user_id) => {
+        e.preventDefault()
+
+        this.CompanyService
+            .getMyCompany(user_id)
             .then(response => {
-                this.setState({ companies: response.data })
-            })
-            .then(() => {
-                console.log('load succedd');
+                this.setState({
+                    flight: {
+                        ...this.state.flight,
+                        flightCompany: response.data[0]._id
+                    }
+                })
+                this.handleFormSubmit()
             })
             .catch(err => console.log(err))
     }
 
 
 
-    loadAirports() {
+    loadAirports = () => {
 
         this.AirportService.getAirports()
             .then(response => {
@@ -113,11 +123,10 @@ class TempEdit extends Component {
                 this.setState({ airports: response.data })
             })
             .catch(err => console.log(err))
-
-
     }
 
-    loadDestinations() {
+
+    loadDestinations = () => {
 
         this.DestinationService.getDestinations()
             .then(response => this.setState({ destinations: response.data }))
@@ -138,8 +147,7 @@ class TempEdit extends Component {
     }
 
 
-    handleFormSubmit = e => {
-        e.preventDefault()
+    handleFormSubmit = () => {
 
         if (this.props.type === "edit") {
 
@@ -190,8 +198,6 @@ class TempEdit extends Component {
 
                     this.props.showAlert('Successfully added new destination')
 
-                    // this.props.closeModal()	
-                    // this.props.refreshFlights()	
                     this.setState({
                         price: '',
                         capacity: '',
@@ -244,7 +250,7 @@ class TempEdit extends Component {
                 }
 
 
-                <Form onSubmit={this.handleFormSubmit}>
+                <Form>
 
                     <Form.Group controlId="flightNumber">
                         <Form.Label>Flight Number</Form.Label>
@@ -298,7 +304,7 @@ class TempEdit extends Component {
                     </Form.Group>
 
 
-                    <Form.Group controlId="flightCompany">
+                    {/* <Form.Group controlId="flightCompany">
                         <Form.Label>Company</Form.Label>
                         <Form.Control
                             as="select"
@@ -313,7 +319,7 @@ class TempEdit extends Component {
                             })
                             }
                         </Form.Control>
-                    </Form.Group>
+                    </Form.Group> */}
 
 
                     <Form.Group controlId="date">
@@ -322,7 +328,7 @@ class TempEdit extends Component {
                     </Form.Group>
 
 
-                    <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">
+                    <Button onClick={(e) => this.loadCompanies(e, this.props.loggedUser._id)} style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit"  >
                         {this.props.type === 'edit' ? 'Edit Flight' : 'Add New Flight'}
                     </Button>
 

@@ -35,7 +35,7 @@ class Checkout extends Component {
         return (
 
             <Container>
-                <Button onClick={() => this.props.setPayMethod(undefined)}><h3>Return to previous page</h3></Button>
+                <Button className={'mt-5 mb-2'} onClick={() => this.props.setPayMethod(undefined)}><h3>Return to previous page</h3></Button>
 
                 <br />
 
@@ -217,8 +217,7 @@ class Checkout extends Component {
                             </Row>
                         </Card>
 
-                        <Link as={Button} variant="primary" onClick={() => this.setflightInUser()} className="btn btn-flat">Confirm Buy</Link>
-                        {/* <Link as={Button} variant="primary" to="/users/checkout/thankyou" onClick={() => this.setflightInUser()} className="btn btn-flat">Confirm Buy</Link> */}
+                        <Link as={Button} variant="primary" onClick={() => this.setflightInUser()} className="btn btn-dark d-block mt-2 mb-5">Purchase</Link>
                     </Col>
 
                     <Col md={4}>
