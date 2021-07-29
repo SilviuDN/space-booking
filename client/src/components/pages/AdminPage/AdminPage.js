@@ -97,6 +97,40 @@ class AdminPage extends Component {
         }
     }
 
+//renderChartSwitch(this.state.leftView)
+    renderChartSwitch(leftView) {
+        switch (leftView) {
+            case 'airports':
+            case 'editAirport':
+            case 'airportDetails':
+                return <BarsLists type={'airports'} />
+
+            case 'company':
+                case 'editCompany':
+                case 'companyDetails':
+                    return <BarsLists type={'company'} />
+
+            case 'destinations':
+                case 'editDestination':
+                case 'createDestination':
+                case 'destinationDetails':
+                    return <BarsLists type={'destinations'} />
+
+            case 'flights':
+                case 'flightEdit':
+                case 'flightCreate':
+                case 'flightDetails':
+                    return <BarsLists type={'flights'} />
+
+            case 'user':
+            case 'userEdit':
+            case 'userDetails':
+                return <BarsLists type={'flights'} />
+
+            default:
+                return null;
+    }
+}
 
     setLeftView = (leftView) => this.setState({ leftView })
 
@@ -126,10 +160,15 @@ class AdminPage extends Component {
                         </Col>
 
                         <Col xs={{ span: 4, offset: 1 }} className={'col'} >
+
                             {
+                                this.renderChartSwitch(this.state.leftView)
+                            }
+                            {/* {
                                 ["company", "flights", "destinations", "airports"].includes(this.state.leftView) ?
                                     <BarsLists type={this.state.leftView} /> : null
-                            }
+                            } */}
+                            
                         </Col>
 
                     </Row>
