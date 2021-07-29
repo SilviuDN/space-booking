@@ -51,7 +51,7 @@ router.delete('/:user_id/delete', (req, res) => {
 router.get('/', (req, res) => {
 
     User.find()
-        .select('name')
+        .select('name flights')
         .sort({ createdAt: 1 })
         .then(response =>
             setTimeout(() => {

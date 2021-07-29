@@ -116,6 +116,9 @@ class RateFlightCard extends Component {
                     <Row className="justify-content-around">
                         <Col md={12}>
 
+                                                        
+
+                            
                             {!this.state.ratingAirport
                                 ?
                                 <Row >
