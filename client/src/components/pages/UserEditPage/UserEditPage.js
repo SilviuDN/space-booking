@@ -134,17 +134,10 @@ class UserEdit extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-<<<<<<< HEAD
-        const user_id = this.props.match.params.user_id || this.props.id
-        console.log(user_id)
-        this.userService
-            .userEdit(this.state, user_id)
-=======
         const id = this.props.match.params.user_id || this.props.id
 
         this.userService
             .userEdit(this.state, id)
->>>>>>> e0e5b5b10ca047ff7140117665cf6d32015fa539
             .then(() => {
                 this.props.showAlert('User Edit success')
 
