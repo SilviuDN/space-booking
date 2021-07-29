@@ -26,8 +26,6 @@ class Checkout extends Component {
         this.userService.setflightInUser(this.props.props.loggedUser._id, this.props.flightDetails.flight._id)
             .then(response => this.props.props.history.push('/users/checkout/thankyou'))
             .catch(err => console.log(err))
-
-
     }
 
 

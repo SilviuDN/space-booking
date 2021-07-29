@@ -48,12 +48,12 @@ class AdminPage extends Component {
                 return <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
             case 'company':
                 return <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
-
             case 'flights':
                 return <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
 
             case 'destinations':
                 return <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} />
+
             case 'airports':
                 return <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
 
@@ -62,18 +62,18 @@ class AdminPage extends Component {
                 return <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['usersList']} />
             case 'editCompany':
                 return <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['companiesList']} />
-
             case 'flightEdit':
                 return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['flightsList']} />
-
-            case 'editAirport':
-                return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />
             case 'flightCreate':
                 return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
+
             case 'editDestination':
                 return <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
             case 'createDestination':
                 return <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
+
+            case 'editAirport':
+                return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />
 
 
 

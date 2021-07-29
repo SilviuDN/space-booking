@@ -32,7 +32,7 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
 
                 {/* enseño un boton o no depende del rol o si es el owner*/}
                 {
-                    loggedUser?._id === flightCompany.moderator || loggedUser?.role === 'admin' ?
+                    loggedUser?._id === flightCompany?.moderator || loggedUser?.role === 'admin' ?
 
                         typeof setId === 'function' ?
 

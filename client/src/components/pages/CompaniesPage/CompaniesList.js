@@ -53,6 +53,7 @@ class CompaniesList extends Component {
     componentDidMount = () => {
         this.loadCompanies()
         this.props.sharedFunction('companiesList', this.loadCompanies)
+        // this.props.sharedFunctionStatus('companiesList', this.loadCompanies)
     }
 
 
@@ -60,10 +61,8 @@ class CompaniesList extends Component {
 
         this.companyService
             .setStatus(company, status)
-            .then(response => this.loadCompanies())
+            .then(() => this.loadCompanies())
             .catch(err => console.log(err))
-
-
     }
 
 
@@ -81,6 +80,8 @@ class CompaniesList extends Component {
         }
 
     }
+
+    setOnlyStatus = () => this.setState({ status: !this.state.status })
 
     setStatus = () => {
 
@@ -126,7 +127,7 @@ class CompaniesList extends Component {
                         </thead>
                         <tbody>
 
-                            {this.state.company?.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} acceptCompany={this.acceptCompany} status={this.state.status} />)}
+                            {this.state.company?.map(elm => <CompanyCard key={elm._id} {...elm} deleteCompany={this.deleteCompany} setList={this.props.setList} setId={this.props.setId} loggedUser={this.props.loggedUser} acceptCompany={this.acceptCompany} />)}
 
                         </tbody>
                     </Table>

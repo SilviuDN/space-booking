@@ -23,7 +23,10 @@ class TempDestinationEdit extends Component {
         this.uploadsService = new UploadsService()
     }
 
-    componentDidMount() {
+
+
+
+    loadDestination() {
 
         if (this.props.type === "edit") {
 
@@ -44,11 +47,34 @@ class TempDestinationEdit extends Component {
 
                 })
                 .catch(err => console.log(err))
+        } else {
+
+
+            this.setState({
+                destination: {
+                    destination_id: '',
+                    name: '',
+                    description: '',
+                    image: '',
+                },
+                loading: false,
+
+            })
+
+
         }
+
 
     }
 
 
+    componentDidMount = () => this.loadDestination()
+
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.id !== this.props.id || prevProps.type !== this.props.type) {
+            this.loadDestination()
+        }
+    }
 
     handleInputChange = e => {
         const { name, value } = e.target
@@ -197,18 +223,13 @@ class TempDestinationEdit extends Component {
                             :
 
                             <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit" disabled={this.state.loading}>
-                                {this.state.destination.destination_id
-                                    ?
-                                    (this.state.loading ? 'Uploading picture' : 'Edit destination')
-                                    :
-                                    (this.state.loading ? 'Uploading picture' : 'Create destination')
+                                {
+                                    this.state.destination.destination_id && this.props.type === "edit"
+                                        ?
+                                        (this.state.loading ? 'Uploading picture' : 'Edit destination')
+                                        :
+                                        (this.state.loading ? 'Uploading picture' : 'Create destination')
                                 }
-                                {/* {this.state.destination.destination_id
-                            ?
-                            'Edit destination'
-                            :
-                            'Create destination'
-                        } */}
                                 {this.state.loading && <Spinner size={60} />}</Button>
 
                     }

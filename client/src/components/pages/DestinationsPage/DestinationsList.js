@@ -51,16 +51,15 @@ class DestinationsList extends Component {
 
                     this.props.showAlert(`Successfully Deleted destination `)
 
-                    console.log(this.state)
-
                     this.setState({
                         destinations: this.state.destinations.filter(elem => elem._id !== res.data._id)
                     })
 
+                    if (this.props.history) this.props.history.push('/destinations')
                 })
                 .catch(err => console.log(err))
 
-            this.props.history.push('/destinations')
+
         }
     }
 
@@ -77,11 +76,9 @@ class DestinationsList extends Component {
 
                             typeof this.props.setId === 'function' ?
 
-                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); this.props.setList('createDestination') }} className="btn btn-dark">Create Destination</Link>
+                                <Link to="/admin" onClick={(e) => { this.props.setId(this.props.id); }} className="btn btn-dark">Create Destination</Link>
                                 :
                                 <Link to='/destinations/new' className="btn btn-dark">Create Destination</Link>
-
-
 
                             : null
                     }
