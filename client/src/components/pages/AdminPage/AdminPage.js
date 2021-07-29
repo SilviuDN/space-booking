@@ -26,21 +26,89 @@ class AdminPage extends Component {
     constructor() {
         super()
         this.state = {
-            listState: 'user',
             rightView: '',
+            leftView: 'user',
             chart: '',
             searchBox: '',
             isLoading: false,
             id: '',
+            loadSharedFunction: {
+                user: undefined
+            }
+        }
 
+
+    }
+
+    sharedFunction = (key, fn) => this.setState({ loadSharedFunction: { ...this.state.loadSharedFunction, [key]: fn } })
+
+
+    renderSwitch(param) {
+        switch (param) {
+            case 'user':
+                return <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
+            case 'company':
+                return <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
+
+            case 'flights':
+                return <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
+
+            case 'destinations':
+                return <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} />
+            case 'airports':
+                return <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
+
+
+            case 'userEdit':
+                return <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['usersList']} />
+            case 'editCompany':
+                return <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['companiesList']} />
+
+            case 'flightEdit':
+                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['flightsList']} />
+
+            case 'editAirport':
+                return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />
+            case 'flightCreate':
+                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
+            case 'editDestination':
+                return <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
+            case 'createDestination':
+                return <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
+
+
+
+
+            case 'userDetails':
+                return <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} />
+            case 'airportDetails':
+                return <AirportDetails id={this.state.id} setList={this.setList} />
+            case 'companyDetails':
+                return <CompanyDetails id={this.state.id} setList={this.setList} setId={this.setId} />
+            case 'flightDetails':
+                return <FlightDetails id={this.state.id} setList={this.setList} setId={this.setId} />
+            case 'destinationDetails':
+                return <DestinationDetails id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} />
+
+
+
+
+            default:
+                return null;
         }
     }
 
 
-    setList = (listState) => this.setState({ listState })
+    setLeftView = (leftView) => this.setState({ leftView })
+
+
+    setList = (rightView) => this.setState({ rightView })
 
 
     setId = (id) => this.setState({ id })
+
+
+    // componentDidUpdate = (prevProps, prevState) => prevState.rightView !== this.state.rightView &&
 
 
 
@@ -60,18 +128,16 @@ class AdminPage extends Component {
 
                         <Col xs={{ span: 4, offset: 1 }} className={'col'} >
                             {
-                                ["company", "flights", "destinations", "airports"].includes(this.state.listState) ?
-                                    <BarsLists type={this.state.listState} /> : null
+                                ["company", "flights", "destinations", "airports"].includes(this.state.leftView) ?
+                                    <BarsLists type={this.state.leftView} /> : null
                             }
                         </Col>
 
                     </Row>
 
-
-
                     <Row style={{ marginTop: 0 }}>
                         <Col xs={1} >
-                            <AdminNav setList={this.setList} />
+                            <AdminNav setLeftView={this.setLeftView} />
                         </Col>
 
 
@@ -79,33 +145,18 @@ class AdminPage extends Component {
 
 
                             {
-
-                                this.state.listState === 'user' ? <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
-                                    this.state.listState === 'company' ? <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
-                                        this.state.listState === 'flights' ? <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
-                                            this.state.listState === 'destinations' ? <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} /> :
-                                                this.state.listState === 'airports' ? <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
+                                this.renderSwitch(this.state.leftView)
 
 
+                            }
 
-                                                    this.state.listState === 'airportDetails' ? <AirportDetails id={this.state.id} setList={this.setList} /> :
-                                                        this.state.listState === 'userDetails' ? <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                            this.state.listState === 'companyDetails' ? <CompanyDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                this.state.listState === 'flightDetails' ? <FlightDetails id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                    this.state.listState === 'destinationDetails' ? <DestinationDetails id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} /> :
+                        </Col>
 
+                        <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
 
 
-                                                                        this.state.listState === 'editAirport' ? <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                            this.state.listState === 'userEdit' ? <UserEdit id={this.state.id} setList={this.setList} setId={this.setId} /> :
-                                                                                this.state.listState === 'flightEdit' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} /> :
-                                                                                    this.state.listState === 'flightCreate' ? <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
-                                                                                        this.state.listState === 'editDestination' ? <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
-                                                                                            this.state.listState === 'editCompany' ? <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} /> :
-
-                                                                                                this.state.listState === 'createDestination' ? <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} /> :
-
-                                                                                                    null
+                            {
+                                this.renderSwitch(this.state.rightView)
 
                             }
 

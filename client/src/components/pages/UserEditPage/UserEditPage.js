@@ -36,7 +36,8 @@ class UserEdit extends Component {
         this.uploadService = new UploadService()
     }
 
-    componentDidMount() {
+
+    loadUserData() {
 
         const id = this.props.id || this.props.match.params.user_id
 
@@ -44,8 +45,6 @@ class UserEdit extends Component {
 
             .userDetails(id)
             .then(response => {
-
-                console.log(response)
                 this.setState({
                     user: {
                         ...this.state.user,
@@ -65,17 +64,20 @@ class UserEdit extends Component {
                             zipCode: response.data.address.zipCode,
                         }
                     },
-
-
                 })
             })
-
             .catch(err => console.log(err))
     }
 
-    handleInputChange = e => {
 
+
+    componentDidMount = () => this.loadUserData()
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadUserData()
+
+    handleInputChange = e => {
         e.preventDefault()
+
         const { name, value } = e.target
 
         if (e.target.className.includes('address')) {
@@ -90,14 +92,7 @@ class UserEdit extends Component {
                 }
             })
         } else {
-
-            this.setState({
-                user: {
-                    ...this.state.user,
-                    [name]: value,
-                }
-
-            })
+            this.setState({ user: { ...this.state.user, [name]: value, } })
         }
 
     }
@@ -143,31 +138,14 @@ class UserEdit extends Component {
         this.userService
             .userEdit(this.state, this.props.id)
             .then(() => {
-
-                // this.setState({
-
-                //     email: '',
-                //     name: '',
-                //     surname: '',
-                //     personalId: '',
-                //     typeofId: '',
-                //     phone: '',
-                //     number: '',
-                //     city: '',
-                //     country: '',
-                //     street: '',
-                //     zipCode: '',
-
-                // })
-
-
+                this.props.sharedFunction()
+                this.props.showAlert('User Edit success')
 
             })
-            .then(() => this.props.setList('user'))
-
             .catch(err => console.log(err))
-
     }
+
+
 
     render() {
 

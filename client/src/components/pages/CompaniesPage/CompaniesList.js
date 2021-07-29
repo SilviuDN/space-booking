@@ -48,9 +48,11 @@ class CompaniesList extends Component {
     }
 
 
-    componentDidMount = () => {
 
+
+    componentDidMount = () => {
         this.loadCompanies()
+        this.props.sharedFunction('companiesList', this.loadCompanies)
     }
 
 
@@ -129,8 +131,6 @@ class CompaniesList extends Component {
                         </tbody>
                     </Table>
                 </>
-
-
         )
 
     }

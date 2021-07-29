@@ -19,7 +19,9 @@ class UserDetails extends Component {
 
     }
 
-    componentDidMount() {
+
+    loadDetails = () => {
+
 
         const user_id = this.props.match?.params.user_id || this.props.id
 
@@ -29,6 +31,12 @@ class UserDetails extends Component {
             .catch(err => console.log(err))
 
     }
+
+
+    componentDidMount = () => this.loadDetails()
+
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadDetails()
 
     render() {
 
@@ -66,9 +74,7 @@ class UserDetails extends Component {
 
                             <h5>History Flights</h5>
 
-                            <hr></hr>
-
-                            <Link to="/admin" onClick={() => this.props.setList('user')} className="btn btn-dark">Volver al listado</Link>
+                            <hr />
 
                         </Col>
 

@@ -35,7 +35,8 @@ class TempEdit extends Component {
         this.CompanyService = new CompanyService()
     }
 
-    componentDidMount() {
+
+    loadFlights() {
         if (this.props.type === "edit") {
             const flight_id = this.props.match?.params.flight_id || this.props.id
 
@@ -61,6 +62,22 @@ class TempEdit extends Component {
                     })
                 })
                 .catch(err => console.log(err))
+        } else {
+            this.setState({
+                flight: {
+                    flight_id: '',
+                    price: '',
+                    capacity: '',
+                    flightNumber: '',
+                    airport: '',
+                    destination: '',
+                    date: '',
+                    flightCompany: '',
+                },
+                currentDestination: '',
+                currentCompany: '',
+                currentAirport: '',
+            })
         }
 
         this.loadAirports()
@@ -68,7 +85,11 @@ class TempEdit extends Component {
         this.loadCompanies()
 
 
+
     }
+
+
+    componentDidMount = () => this.loadFlights()
 
 
     loadCompanies() {
@@ -126,12 +147,10 @@ class TempEdit extends Component {
                 .editFlight(this.state.flight)
                 .then(() => {
 
-                    this.props.showAlert('Successfully eddited')
-
-                    // this.props.closeModal()
-                    // this.props.refreshFlights()
                     this.setState({
+
                         flight: {
+                            flight_id: '',
                             price: '',
                             capacity: '',
                             flightNumber: '',
@@ -139,10 +158,29 @@ class TempEdit extends Component {
                             destination: '',
                             date: '',
                             flightCompany: '',
-                        }
+                        },
+                        currentDestination: '',
+                        currentCompany: '',
+                        currentAirport: '',
 
                     })
-                    this.props.history.push('/flights')
+
+
+
+
+
+
+
+                    this.props.showAlert('Successfully eddited')
+
+                    if (typeof this.props.sharedFunction === 'function') {
+                        this.props.sharedFunction()
+                    }
+
+                    if (this.props.history) {
+                        this.props.history.push('/flights')
+                    }
+
                 }).catch(err => {
                     console.log("Error from new flight")
                     this.props.showAlert("Error from new flight", err.message)
@@ -190,18 +228,11 @@ class TempEdit extends Component {
     }
 
 
-
-
-
-    componentDidUpdate = (prevProps, prevState) => prevProps.type !== this.props.type && this.setState({
-        price: '',
-        capacity: '',
-        flightNumber: '',
-        airport: '',
-        destination: '',
-        date: '',
-        flightCompany: '',
-    })
+    componentDidUpdate = (prevProps, prevState) => {
+        if (prevProps.id !== this.props.id || prevProps.type !== this.props.type) {
+            this.loadFlights()
+        }
+    }
 
     render() {
         return (
@@ -210,7 +241,7 @@ class TempEdit extends Component {
                 {
                     typeof this.props.setId === 'function' ?
 
-                        <Link to="/admin" onClick={() => this.props.setList('flights')} className="btn btn-dark">Back to flights list</Link>
+                        null
                         :
                         <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
 
