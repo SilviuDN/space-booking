@@ -19,6 +19,7 @@ require('./config/cors.config')(app)
 
 require('./routes')(app)
 
+app.use((req, res) => res.sendFile(__dirname + "/public/index.html"));
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 
