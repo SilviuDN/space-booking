@@ -29,7 +29,6 @@ class UnratedFlightsList extends Component {
         return (
 
             <>
-            <StaticRating rating={3}/>
            {this.props.flights.map(flightId => this.props.ratedFlights.includes(flightId) 
                 ? null
                 : <RateFlightCard key={flightId._id} flightId = {flightId} updateRatedFlightsList={this.props.updateRatedFlightsList}/> )}

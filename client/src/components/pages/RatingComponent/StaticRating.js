@@ -3,12 +3,12 @@ import React, { Component } from "react";
 import FormImpl from "react-bootstrap/esm/Form";
 import Star from "./Star";
 
-function StaticRating({rating}) {
+function StaticRating({rating, colorFilled, colorBorder}) {
 
     const starSpans = [];
 
     for(let i=0; i<5; i++){         
-        let star = (i < rating) ? <Star color="silver" isFilled /> : <Star color="red" />
+        let star = (i < rating) ? <Star color={colorFilled} isFilled /> : <Star color={colorBorder} />
         starSpans.push(star)
     }
     return (

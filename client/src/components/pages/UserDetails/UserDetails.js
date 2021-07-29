@@ -30,7 +30,6 @@ class UserDetails extends Component {
             .userDetails(user_id)
             .then(response => this.setState({ user: response.data }))
             .catch(err => console.log(err))
-
     }
 
 

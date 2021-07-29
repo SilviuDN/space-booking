@@ -32,6 +32,12 @@ export default class BarChart extends Component {
         return (
             <div style={{ height: '10px', width: '400px'}}>
             <ResponsiveBullet
+                
+                // colors={{scheme: "green_blue"}}
+                // colors={{scheme: "reds"}}
+                // colors={{scheme: "accent"}}
+                // colors={{scheme: "category10"}}
+
                 data={data}
                 margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
                 spacing={46}

@@ -8,7 +8,10 @@ export default class PieChart extends Component {
             <div style={{ height: '200px' }}>
             <ResponsivePie
                 data={this.props.data}
-
+                // colors={{scheme: "green_blue"}}
+                // colors={{scheme: "reds"}}
+                // colors={{scheme: "accent"}}
+                // colors={{scheme: "category10"}}
                 margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
                 innerRadius={0.5}
                 padAngle={0.7}
