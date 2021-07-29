@@ -22,8 +22,12 @@ class Checkout extends Component {
 
 
     setflightInUser = () => {
-        this.userService.setflightInUser(this.state.user)
-        console.log(this.props)
+
+        this.userService.setflightInUser(this.props.props.loggedUser._id, this.props.flightDetails.flight._id)
+            .then(response => this.props.props.history.push('/users/checkout/thankyou'))
+            .catch(err => console.log(err))
+
+
     }
 
 
@@ -267,7 +271,7 @@ class Checkout extends Component {
                         <Card body>
                             <br />
 
-                            <h5 className="red"> {this.props.flightDetails?.flight.airport.address.city + ' (' + this.props.flightDetails?.flight.airport.address.country + ') ' + ' - ' +
+                            <h5 className="red"> {this.props.flightDetails?.flight.airport.address.city + ' (' + this.props.flightDetails?.flight.airport.address.country + ')  - ' +
                                 this.props.flightDetails?.flight.destination.name
                             }</h5>
                             <p>

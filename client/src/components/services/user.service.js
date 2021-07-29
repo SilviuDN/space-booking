@@ -21,7 +21,7 @@ class UserService {
     searchBox = (string) => this.app.get(`/user/search/${string}`)
 
 
-    setflightInUser = (userId, flightId) => this.app.post(`/user/${userId}/fly/${flightId}/bought`)
+    setflightInUser = (userId, flightId) => this.app.put(`/user/${userId}/bought/${flightId}/update`)
 
     updateRatedFlights = (user_id, flight_id) => this.app.put(`/user/${user_id}/${flight_id}/rate`)
 

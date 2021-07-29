@@ -17,12 +17,12 @@ router.put('/:user_id/edit', (req, res) => {
 
 
 
-router.put('/:userId/bought/:flightId/edit', (req, res) => {
+router.put('/:userId/bought/:flightId/update', (req, res) => {
 
     const { userId, flightId } = req.params
 
     User.findByIdAndUpdate(userId, { $push: { flights: flightId } }, { new: true })
-        .then(response => res.json({ message: 'Error setting the flight in user', err }))
+        .then(response => res.json({ message: 'new flight added', response }))
         .catch(err => res.status(500).json({ code: 500, message: 'Error setting the flight in user', err }))
 })
 
