@@ -31,10 +31,11 @@ class FlightDetails extends Component {
 
 
 
-    componentDidMount = () => {
-        this.loadFlight()
+    componentDidMount = () => this.loadFlight()
 
-    }
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadFlight()
+
 
     deleteFlight = e => {
         e.preventDefault()

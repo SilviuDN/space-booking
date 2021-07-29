@@ -64,15 +64,21 @@
     font-weight: bold !important;
 }
 
+.button1 {
+    width: 100%;
+    background-color: #f3f4f7 !important;
+    border: 1px solid #f3f4f7 !important;
+    border-radius: 2px !important;
+    font-weight: bold !important;
+}
+
 .radio-text {
     margin-left: 5px;
 }
-
 
 .left-panel {
     background-color: #1e2746;
     border-radius: 5px;
     padding: 10px 0 30px;
     margin-top: 45px;
-
 }

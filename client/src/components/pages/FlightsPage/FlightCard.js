@@ -42,7 +42,7 @@ const FlightCard = ({ _id, flightNumber, price, capacity, destination, flightCom
                                 </Link>
 
                                 &nbsp;
-                                <Link to={`/admin`} onClick={() => { removeFlight(_id); setId(_id); setList('flights') }}>
+                                <Link to={`/admin`} onClick={() => { removeFlight(_id); setId(_id); }}>
                                     <Button variant="danger" block size="sm"><img alt="" src={deleteButton} style={{ width: '20px' }} /></Button>
                                 </Link>
                             </>

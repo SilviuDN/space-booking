@@ -20,19 +20,20 @@ class FlightsList extends Component {
 
 
 
-    loadFlights = () => {
-        this.flightsService
-            .getFlights()
-            .then(response => this.setState({ flights: response.data }))
-            // .then(response => this.setState({ flights: response.data }))
-            .catch(err => console.log(err))
-    }
+    // loadFlights = () => {
+    //     console.log(this.props)
+    //     this.flightsService
+    //         .getFlights()
+    //         .then(response => this.setState({ flights: response.data }))
+    //         // .then(response => this.setState({ flights: response.data }))
+    //         .catch(err => console.log(err))
+    // }
 
 
 
-    componentDidMount = () => {
-        this.loadFlights()
-    }
+    componentDidMount = () => this.loadFlights()
+
+
 
 
 
@@ -60,8 +61,7 @@ class FlightsList extends Component {
 
             this.flightsService
                 .getFlights()
-                .then(response => this.setState({ flights: response.data }))
-                // .then(response => this.setState({ flights: response.data }))
+                .then(response => { this.setState({ flights: response.data }) })
                 .catch(err => console.log(err))
 
             :
@@ -72,7 +72,7 @@ class FlightsList extends Component {
                 // .then(response => this.setState({ flights: response.data }))
                 .catch(err => console.log(err))
 
-
+        this.props.sharedFunction('flightsList', this.loadFlights)
 
 
 

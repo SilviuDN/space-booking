@@ -4,7 +4,7 @@ import editButton from './edit.png'
 import deleteButton from './delete.png'
 
 // INSERT OWNER EL QUE SUPUESTAMENTE VMAOS A RECIBIR CUANDO HAGAMOS LO DEL OWNER, si soy owner  redirect a otro sitio
-const UserCard = ({ name, surname, _id, deleteUser, setList, setId, }) => {
+const UserCard = ({ name, surname, _id, deleteUser, setList, setId, loadUsers }) => {
     return (
         <>
             <tr>
@@ -15,13 +15,13 @@ const UserCard = ({ name, surname, _id, deleteUser, setList, setId, }) => {
                     {typeof setList === 'function' ?
 
                         <Link to={'/admin'} onClick={() => { setList('userDetails'); setId(_id); }} style={{ color: 'black', textDecoration: 'none' }}>
-                            <p>{name} {surname} admin</p>
+                            <p>{name} {surname} </p>
                         </Link>
 
                         :
 
                         <Link to={`/users/${_id}`} style={{ color: 'black', textDecoration: 'none' }}>
-                            <p>{name} {surname} user</p>
+                            <p>{name} {surname} </p>
                         </Link>
 
                     }

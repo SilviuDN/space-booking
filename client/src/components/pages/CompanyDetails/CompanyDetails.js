@@ -14,7 +14,7 @@ class CompanyDetails extends Component {
     }
 
 
-    componentDidMount() {
+    loadCompany() {
 
         const company_id = this.props.match?.params.company_id || this.props.id
 
@@ -23,6 +23,12 @@ class CompanyDetails extends Component {
             .then(response => this.setState({ company: response.data }))
             .catch(err => console.log(err))
     }
+
+
+    componentDidMount = () => this.loadCompany()
+
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadCompany()
+
 
     render() {
 
@@ -54,10 +60,6 @@ class CompanyDetails extends Component {
 
                             <hr></hr>
 
-                            {typeof this.props.setList === 'function' ?
-                                <Link to="/admin" onClick={() => { this.props.setList('company') }} className="btn btn-dark">Volver al listado</Link>
-                                : null
-                            }
 
                         </Col>
 

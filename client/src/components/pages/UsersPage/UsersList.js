@@ -11,7 +11,7 @@ class UsersList extends Component {
         this.state = {
             user: undefined,
             searchBox: '',
-            typingTimeout: 0
+            typingTimeout: 0,
         }
         this.userService = new UserService()
     }
@@ -32,8 +32,11 @@ class UsersList extends Component {
 
     }
 
+
+
     componentDidMount = () => {
         this.loadUsers()
+        this.props.sharedFunction('usersList', this.loadUsers)
     }
 
 
@@ -73,7 +76,7 @@ class UsersList extends Component {
                         </thead>
 
                         <tbody>
-                            {this.state.user.map(elm => <UserCard key={elm._id} {...elm} deleteUser={this.deleteUser} setList={this.props.setList} setId={this.props.setId} />)}
+                            {this.state.user.map(elm => <UserCard key={elm._id} {...elm} deleteUser={this.deleteUser} setList={this.props.setList} setId={this.props.setId} loadUsers={this.loadUsers} />)}
                         </tbody>
 
                     </Table>

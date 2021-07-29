@@ -60,9 +60,9 @@ class PlanetDetails extends Component {
 
                         return (<Carousel.Item style={{ height: '95vh' }} key={index}>
 
-                            <Row className={'mt-5'}>
-
-                                <Col lg={{ span: 4, offset: 1 }} style={{ background: '#1e2746', color: 'white', borderRadius: 8, textAlign: 'center', maxHeight: '300px', overflowY: 'scroll' }}>
+                            <Row >
+                                <Button className={'d-block button btn-sm'} style={{ marginLeft: 'auto', }} onClick={() => this.props.changeView('discover')}>Back to planets</Button>
+                                <Col lg={12} style={{ background: "rgba(0,0,0,0.5)", color: 'white', textAlign: 'center', maxHeight: '500px' }}>
 
                                     <div style={{ padding: 30 }}>
                                         <hr />
@@ -72,7 +72,7 @@ class PlanetDetails extends Component {
 
                                         <p>{item.data[0].description}</p>
 
-                                        <Button className={'d-block button'} style={{ marginLeft: 'auto' }} onClick={() => this.props.changeView('discover')}>Back to planets</Button>
+
                                     </div>
 
                                 </Col>

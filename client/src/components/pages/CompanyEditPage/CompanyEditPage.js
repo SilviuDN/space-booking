@@ -54,10 +54,9 @@ class CompanyEditPage extends Component {
 
 
 
-    componentDidMount() {
+    componentDidMount = () => this.loadData()
 
-        this.loadData()
-    }
+    componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadData()
 
 
     handleInputChange = e => {
@@ -76,42 +75,27 @@ class CompanyEditPage extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        // console.log(this.state.company_id)
 
         this.companyService
             .companyEdit(this.state.company)
             .then(() => {
+
                 this.props.showAlert('Company successfully edited.')
-                this.setState({
-                    company: {
-                        ...this.state.company,
-                        companyName: '',
-                        moderator: '',
-                        number: '',
-                        city: '',
-                        country: '',
-                        street: '',
-                        zipCode: '',
-                        logo: '',
-                    }
-                })
+
+                if (typeof this.props.sharedFunction === 'function') {
+
+                    this.props.sharedFunction()
+                }
 
                 if (this.props.history) {
 
                     this.props.history.push('/companies/')
-                } else {
-                    this.props.setList('company')
-
                 }
             })
             .catch(err => {
                 console.log(err)
                 this.props.showAlert('Something went wrong. Retry to edit.')
             })
-
-
-
-
     }
 
 
@@ -120,13 +104,14 @@ class CompanyEditPage extends Component {
         this.setState({ loading: true })
 
         const uploadData = new FormData()
-        uploadData.append('file', e.target.files[0]) //key=file, value=e.target.files[0]
+        uploadData.append('file', e.target.files[0])
 
         this.uploadsService
             .fileUpload(uploadData)
-            // .then(response => console.log('The answer: ', response))
             .then(response => {
+
                 const backedUpImage = response.data.imageUrl ? response.data.imageUrl : this.state.flight.logo
+
                 this.setState({
                     company: {
                         ...this.state.company,
@@ -135,13 +120,12 @@ class CompanyEditPage extends Component {
                     loading: false,
                 })
             })
-            // .then(response => this.setState({ logo: response.data.imageUrl }))
             .catch(err => console.log(err))
     }
 
 
     render() {
-        // console.log(this.state)
+
         return (
 
             <Container>
