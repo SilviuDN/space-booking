@@ -20,6 +20,9 @@ const destinationSchema = new Schema({
     image: {
         type: String //cloudinary
     },
+    code: {
+        type: String
+    }
 
 
 

@@ -53,14 +53,14 @@ class Navigation extends Component {
 
         return (
             <>
-                <Navbar className="blue-nav py-4" variant="dark" expand="md" sticky="top">
+                <Navbar className="blue-nav py-2" variant="dark" expand="md" sticky="top">
                     <Container fluid>
                         <Navbar.Brand href="/">
                             <img
                                 alt=""
                                 src={logo}
 
-                                height="30"
+                                height="50"
                                 className="d-inline-block align-top"
                             />{' '}</Navbar.Brand>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -92,7 +92,7 @@ class Navigation extends Component {
 
                                         <>
 
-                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}> Profile</Link>
+                                            <Link className="nav-link" to={`/discover`}> Discover</Link>
                                             <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
                                             <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
                                         </>

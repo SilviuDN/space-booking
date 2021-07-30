@@ -3,11 +3,12 @@
 }
 
 .nav-link:hover {
+    border-radius: 3px;
     background-color: #ba2077;
     /*will change background-color of element on hover */
     color: white;
     /*will change color of text within the element on hover */
-    border-radius: 10%;
+    
 }
 
 

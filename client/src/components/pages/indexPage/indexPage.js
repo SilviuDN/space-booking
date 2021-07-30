@@ -176,6 +176,7 @@ class IndexPage extends Component {
                             <h3 id="why" align="center">Hot Deals</h3>
                             <h2 id="our" align="center">Popular Destinations</h2>
                             <p align="center"><img src={pinkline} alt="line" /></p>
+                            <p className="text-center"><Link to='/discover'><Button bsPrefix="btn-flat" variant="primary">DISCOVER</Button> </Link></p>
                             <br />
                             <img src={destinations} alt="destinations" className="destinations" />
                             <p className="text-center"><Button bsPrefix="btn-flat" variant="primary"  >
