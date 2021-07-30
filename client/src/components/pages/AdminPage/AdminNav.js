@@ -9,7 +9,7 @@ const AdminNav = (props) => {
     return (
 
 
-        <Nav className=" d-md-block bg-light sidebar"
+        < Nav className=" d-md-block blue-nav py-6 sidebar"
         // activeKey="/home"
         // onSelect={selectedKey => alert(`selected ${selectedKey}`)}
         >
