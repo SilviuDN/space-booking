@@ -51,7 +51,7 @@ class searchBar extends Component {
 
         if (this.props.dataKey === 'destinations') {
 
-            if (searchString === 'alldestinations') {
+            if (searchString === 'alldestinations' || searchString === '') {
 
                 service
                     .getDestinations()
