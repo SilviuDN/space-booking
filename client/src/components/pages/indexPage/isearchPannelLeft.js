@@ -38,7 +38,7 @@ class IndexSearchPanel extends Component {
         if (e.target.id) {
 
             this.setState({
-                [e.target.id]: e.target.value
+                [e.target.id]: e.target.value === '' ? undefined : e.target.value
             })
         } else {
             this.setState({

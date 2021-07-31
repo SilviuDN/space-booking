@@ -78,7 +78,7 @@ class searchBar extends Component {
     }
 
 
-    componentDidMount = () => this.loadData(this.props.dataToLoad)
+    componentDidMount = () => this.loadData(this.props.dataToLoad, 'alldestinations')
 
 
     componentDidUpdate(prevProps, prevState) {
@@ -140,8 +140,11 @@ class searchBar extends Component {
             menu: styles => ({
                 ...styles,
                 marginTop: 0,
+                paddingTop: 5,
+                paddingBottom: 5,
                 boxShadow: 'none',
                 borderRadius: 0,
+                border: '1px solid #1e2746',
             }),
 
             singleValue: styles => ({
