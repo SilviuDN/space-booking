@@ -82,7 +82,7 @@ class FlightsFound extends Component {
 
                                             :
 
-                                            <h3>NO FLIGHTS FOUND</h3>
+                                            <h3 className={'mt-5'}>NO FLIGHTS FOUND</h3>
                                 }
                             </Col>
                         </Row>

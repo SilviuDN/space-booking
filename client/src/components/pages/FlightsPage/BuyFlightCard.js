@@ -240,7 +240,7 @@ class ReturnedFlightCard extends Component {
 
 
 
-                </Card >
+                </Card>
 
 
             </>
