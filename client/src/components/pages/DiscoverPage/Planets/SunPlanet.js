@@ -24,7 +24,7 @@ const SunPlanet = (props) => {
             style={{ backgroundImage: `url(${sun})` }}
             onClick={() => props.changeView('sun')}
             onMouseEnter={() => props.showInfo(info)}
-        // onMouseOut={() => props.hideInfo()}
+            onMouseOut={() => props.hideInfo()}
         >
 
 

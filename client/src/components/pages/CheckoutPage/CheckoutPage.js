@@ -29,6 +29,13 @@ class Checkout extends Component {
     }
 
 
+    calculateTotalPrice = () => {
+
+        return (((+this.props.flightDetails.adults + +this.props.flightDetails.children) * this.props.flightDetails.flight.price) + ((21 * (+this.props.flightDetails.adults + +this.props.flightDetails.children) * +this.props.flightDetails.flight.price) / 100)).toFixed(0)
+    }
+
+
+
 
     render() {
 
@@ -55,11 +62,11 @@ class Checkout extends Component {
 
                                 <div onChange={this.onChangeValue}>
                                     <input type="radio" value="Credit Card" name="gender" /> Credit Card
-                                <hr />
+                                    <hr />
                                     <input type="radio" value="Debit Card" name="gender" /> Debit Card
-                                <hr />
+                                    <hr />
                                     <input type="radio" value="Bank" name="gender" /> By Bank
-                            </div>
+                                </div>
                             </Card>
 
                             <br />
@@ -136,12 +143,12 @@ class Checkout extends Component {
                                     <li>
                                         Includes carry-on luggage</li>
                                     <li>It must fit in the upper compartment of the plane.
-                            </li>
+                                    </li>
 
                                     <li>Does not include baggage to check
-                            </li>
+                                    </li>
                                     <li>You can add luggage at the airport for an extra charge.
-                            </li>
+                                    </li>
 
                                 </ul>
 
@@ -261,7 +268,8 @@ class Checkout extends Component {
                                 <Row>
                                     <Col md={8} className="h3" style={{ color: '#ba2077' }}>Total</Col>
 
-                                    <Col md={4}>  <p className="h3" align="right" style={{ color: '#ba2077' }}>€ {((+this.props.flightDetails.adults + +this.props.flightDetails.children) * this.props.flightDetails.flight.price) + ((21 * (+this.props.flightDetails.adults + +this.props.flightDetails.children) * this.props.flightDetails.flight.price) / 100)} </p></Col>
+                                    <Col md={4}>  <p className="h3" align="right" style={{ color: '#ba2077' }}>€
+                                        {this.calculateTotalPrice()} </p></Col>
                                 </Row>
                             </Card>
 
