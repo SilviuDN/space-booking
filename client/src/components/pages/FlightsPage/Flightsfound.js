@@ -40,12 +40,15 @@ class FlightsFound extends Component {
     }
 
 
+
     setPayMethod = (flight) => this.setState({ payment: !this.state.payment, flight })
+
 
 
     componentDidMount() {
         this.loadFlights()
     }
+
 
 
     componentDidUpdate = (prevProps, prevState) => prevProps.location.pathname !== this.props.location.pathname && this.loadFlights()

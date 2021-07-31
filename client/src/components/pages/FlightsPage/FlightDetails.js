@@ -65,10 +65,12 @@ class FlightDetails extends Component {
                     :
                     <Row className="justify-content-around">
                         <Col md={6}>
-                            <img src={this.state.flight.destination?.image} alt=''></img>
+                            <div>
+                                <img src={this.state.flight.destination?.image} alt='destination' style={{ width: '100%' }} />
+
+                            </div>
                             <div><BarChart key={this.state.flight._id} {...this.state.flight} /></div>
-                            {/* <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={this.state.flight._id} {...this.state.flight} /></div> */}
-                            <h3>Destination: {this.state.flight.destination?.name}</h3>
+                            <h3 className={'mt-5'}>Destination: {this.state.flight.destination?.name}</h3>
                             <p>Price: ${this.state.flight.price}</p>
 
                             <hr></hr>
@@ -78,12 +80,6 @@ class FlightDetails extends Component {
 
                             <hr></hr>
 
-                            {/* <Form onSubmit={this.deleteFlight}>
-                                <Button className="btn btn-danger" type="submit">Delete Flight</Button>
-                            </Form>
-
-                            <Link to="/flights" className="btn btn-dark">Back to flights list</Link>
-                            <Link to={`/flights/${this.state.flight._id}/edit`} className="btn btn-warning">Edit</Link> */}
 
                         </Col>
 

@@ -3,7 +3,7 @@ import Routes from './routes'
 import AuthService from './services/auth.service';
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from '../layout/Navigation/Navigation';
+import Navigation from './layout/Navigation/Navigation';
 // import Footer from '../layout/Footer/Footer';
 import Alert from './shared/Alert/Alert';
 
@@ -40,7 +40,7 @@ class App extends Component {
 
       <>
         <Switch>
-          <Route path="*" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} showAlert={this.showAlert} />} />
+          <Route path="/" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} showAlert={this.showAlert} />} />
         </Switch>
 
 

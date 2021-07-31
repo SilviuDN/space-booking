@@ -299,7 +299,7 @@ class Checkout extends Component {
                                 <p >Departure ({this.props.flightDetails?.flight.date.split('T')[0]})</p>
 
                                 <div style={{ width: 80, height: 80 }}>
-                                    <img src={this.props.flightDetails?.flight.flightCompany.logo} alt="company" style={{ width: '100%' }} />
+                                    <img src={this.props.flightDetails?.flight.flightCompany?.logo} alt="company" style={{ width: '100%' }} />
                                 </div>
 
                                 <hr />

@@ -1,12 +1,12 @@
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
-import AuthService from '../../components/services/auth.service'
+import AuthService from '../../services/auth.service'
 import { Modal } from 'react-bootstrap'
-import Login from '../../components/pages/login/login'
+import Login from '../../pages/login/login'
 import logo from './logo.png'
 import './Navigation.css'
-import CompanyService from '../../components/services/company.service'
+import CompanyService from '../../services/company.service'
 
 class Navigation extends Component {
     constructor() {
@@ -59,7 +59,6 @@ class Navigation extends Component {
                             <img
                                 alt=""
                                 src={logo}
-
                                 height="50"
                                 className="d-inline-block align-top"
                             />{' '}</Navbar.Brand>
@@ -83,6 +82,7 @@ class Navigation extends Component {
                                         <>
                                             <Link className="nav-link" to={`/flights/new`}> New Flight</Link>
                                             <span className="nav-link cursor-pointer" onClick={() => this.loadMyCompany(this.props.loggedUser._id)}> MyCompany</span>
+                                            <Link className="nav-link" to={`/discover`}> Discover</Link>
                                             <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
 
                                             <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
@@ -90,12 +90,21 @@ class Navigation extends Component {
 
                                         :
 
-                                        <>
+                                        this.props.loggedUser.role === 'admin' ?
+                                            <>
+                                                <Link className="nav-link" to={`/admin`}> Admin panel</Link>
+                                                <Link className="nav-link" to={`/discover`}> Discover</Link>
+                                                <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
+                                                <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
+                                            </>
+                                            :
 
-                                            <Link className="nav-link" to={`/discover`}> Discover</Link>
-                                            <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
-                                            <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
-                                        </>
+                                            <>
+
+                                                <Link className="nav-link" to={`/discover`}> Discover</Link>
+                                                <span className="nav-link cursor-pointer" onClick={this.logout}>Log out</span>
+                                                <Link className="nav-link" to={`/users/${this.props.loggedUser._id}`}>¡Hi, {this.props.loggedUser ? this.props.loggedUser.name : 'Terricol@ :-D'}!</Link>
+                                            </>
                                 }
 
                             </Nav>

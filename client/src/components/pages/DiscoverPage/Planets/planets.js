@@ -40,6 +40,12 @@ class Planets extends Component {
     hideInfo = () => {
 
         this.divRef.current.classList.remove('white')
+
+        setTimeout(() => {
+            this.setState({
+                info: '',
+            })
+        }, 200);
     }
 
 

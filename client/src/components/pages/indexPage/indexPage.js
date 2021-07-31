@@ -38,7 +38,15 @@ class IndexPage extends Component {
 
 
 
+    componentDidMount() {
+        if (this.props.history.action === 'REPLACE') this.props.showAlert('ACCESS DENIED, try  popino@popino.com :: showCase tip :D')
+    }
+
+
+
     render() {
+
+
         const style = {
             background: '#1f2745', color: 'white', display: 'flex', justifyContent: 'center', fontSize: '.7em', bottom: 0, padding: "30px 30px", margin: "30px 0px 0px 0px", width: '100%'
         }

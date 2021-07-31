@@ -70,96 +70,26 @@ class ReturnedFlightCard extends Component {
 
         return (
             <>
-                {/* <Card className={'mt-5'}>
 
-                    <Card.Body>
-                        <Row>
-                            <Col xs={12} md={8}>
-                                <Row className="mb-4">
-                                    <Col xs={5} >
-                                        <img className="returnedFlightCardImage" src={this.state.flight?.flightCompany?.logo} alt={'logo'}></img>
-                                        <span>     {this.state.flight?.flightCompany?.companyName}</span>
-                                        <StaticRating rating={compRating} colorFilled={colorFilled} colorBorder={colorBorder} />
-                                    </Col>
-
-                                    <Col xs={2}></Col>
-                                    <Col xs={5}>loremIpsum</Col>
-                                </Row>
-                                <Row>
-                                    <Col xs={5}>
-                                        <p>From: {this.state.flight?.airport?.address.city}</p>
-                                    </Col>
-                                    <Col xs={{ span: 5, offset: 2 }}>
-                                        <p>To: {this.state.flight?.destination?.name}</p>
-                                        <StaticRating rating={destRating} colorFilled={colorFilled} colorBorder={colorBorder} />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs={5}>
-                                        <p>Airport: {this.cutSubstring(this.state.flight?.airport?.name, 'airport')} | {this.state.flight?.airport?.iata}</p>
-                                        <StaticRating rating={airportRating} colorFilled={colorFilled} colorBorder={colorBorder} />
-                                    </Col>
-
-                                    <Col xs={2}></Col>
-                                    <Col xs={5}>Dest Reviews Here</Col>
-                                </Row>
-
-                                <Row>
-                                    <Col xs={5}>
-                                        <p>Full price: {this.numberWithCommas(this.state.flight?.price)}</p>
-                                    </Col>
-
-                                    <Col xs={2}></Col>
-                                    <Col xs={5}><strong>Departure:</strong> <p>{this.state.flight?.date.split('T')[0]}</p> </Col>
-                                </Row>
-                            </Col>
-
-                            <hr className=" d-md-none"></hr>
-
-                            <Col xs={12} md={4}>
-                                <h3>Prime Discount</h3>
-
-                                <p><small className="text-muted">Change dates FREE OF CHARGE</small></p>
-                                <p>Only {this.state.flight?.capacity - this.state.flight?.soldTickets} seats left</p>
-
-                                <p>Price: <span className="strikethrough">
-                                    €{this.numberWithCommas(this.state.flight?.price * 1.15)}
-                                </span> $ {this.numberWithCommas(this.state.flight?.price)}
-                                </p>
-
-                                <Button className='BuyFlightButton' onClick={() => { this.props.setPayMethod(this.props.flight) }} variant="primary" >Buy</Button>
-
-                            </Col>
-                        </Row>
-                    </Card.Body> 
-
-                </Card>*/}
-                <br /><br />
-                <Card className="mx-0 px-2" >
+                <Card className="mx-0 px-2 mt-5" >
 
                     <Row style={{ fontSize: "1em" }}>
                         <Col md={9} style={{ borderRight: "1px solid #C8C9CA", }}>
-
-                            <Row >
-
+                            <Row>
                                 <Col md={3} style={{ backgroundColor: "#EEEEEE" }} >
                                     <p class="h4">GO</p>
 
                                 </Col>
+
                                 <Col md={3} >
                                     <p class="h4">{this.state.flight?.airport?.iata}</p>
-
-
-
                                 </Col>
 
                                 <Col md={2} style={{ backgroundColor: "#EEEEEE" }}>
-
                                     <p>Direct</p>
-
                                 </Col>
-                                <Col md={1} style={{ backgroundColor: "#EEEEEE" }}>
 
+                                <Col md={1} style={{ backgroundColor: "#EEEEEE" }}>
 
                                 </Col>
 

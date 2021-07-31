@@ -107,7 +107,7 @@ class TempEdit extends Component {
                     this.setState({
                         flight: {
                             ...this.state.flight,
-                            flightCompany: response.data[0]._id
+                            flightCompany: response.data[0]?._id
                         }
                     })
                     this.handleFormSubmit()
@@ -192,8 +192,7 @@ class TempEdit extends Component {
                     }
 
                 }).catch(err => {
-                    console.log("Error from new flight")
-                    this.props.showAlert("Error from new flight", err.message)
+                    this.props.showAlert("Error editing flight", err.message)
                 })
         }
 
@@ -203,7 +202,7 @@ class TempEdit extends Component {
                 .saveFlight(this.state.flight)
                 .then(res => {
 
-                    this.props.showAlert('Successfully added new destination')
+                    this.props.showAlert('Successfully added new flight')
 
                     this.setState({
                         price: '',
@@ -214,10 +213,13 @@ class TempEdit extends Component {
                         date: '',
                         flightCompany: '',
                     })
-                    this.props.history.push('/flights')
+
+                    if (this.props.history) {
+                        this.props.history.push('/flights')
+                    }
+
                 }).catch(err => {
-                    console.log("Error from edit flight")
-                    this.props.showAlert("Error from edit flight", err.message)
+                    this.props.showAlert("Error creating new flight", err.message)
                 })
 
         }
