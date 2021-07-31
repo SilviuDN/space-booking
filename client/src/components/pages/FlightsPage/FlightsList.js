@@ -19,22 +19,7 @@ class FlightsList extends Component {
     }
 
 
-
-    // loadFlights = () => {
-    //     console.log(this.props)
-    //     this.flightsService
-    //         .getFlights()
-    //         .then(response => this.setState({ flights: response.data }))
-    //         // .then(response => this.setState({ flights: response.data }))
-    //         .catch(err => console.log(err))
-    // }
-
-
-
     componentDidMount = () => this.loadFlights()
-
-
-
 
 
     removeFlight = flightId => {
@@ -55,7 +40,6 @@ class FlightsList extends Component {
     }
 
 
-
     loadFlights = (searchString) => {
         !searchString ?
 
@@ -72,12 +56,10 @@ class FlightsList extends Component {
                 // .then(response => this.setState({ flights: response.data }))
                 .catch(err => console.log(err))
 
-        if (this.props.sharedFunction === 'function') {
+        if (typeof this.props.sharedFunction === 'function') {
             this.props.sharedFunction('flightsList', this.loadFlights)
 
         }
-
-
     }
 
 

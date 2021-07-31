@@ -102,13 +102,19 @@ class TempEdit extends Component {
         this.CompanyService
             .getMyCompany(user_id)
             .then(response => {
-                this.setState({
-                    flight: {
-                        ...this.state.flight,
-                        flightCompany: response.data[0]._id
-                    }
-                })
-                this.handleFormSubmit()
+
+                if (this.props.type === "new") {
+                    this.setState({
+                        flight: {
+                            ...this.state.flight,
+                            flightCompany: response.data[0]._id
+                        }
+                    })
+                    this.handleFormSubmit()
+                } else {
+                    this.handleFormSubmit()
+
+                }
             })
             .catch(err => console.log(err))
     }
@@ -177,6 +183,7 @@ class TempEdit extends Component {
                     this.props.showAlert('Successfully eddited')
 
                     if (typeof this.props.sharedFunction === 'function') {
+                        alert('yes')
                         this.props.sharedFunction()
                     }
 
@@ -303,32 +310,13 @@ class TempEdit extends Component {
                         </Form.Control>
                     </Form.Group>
 
-
-                    {/* <Form.Group controlId="flightCompany">
-                        <Form.Label>Company</Form.Label>
-                        <Form.Control
-                            as="select"
-                            value={this.state.flight.flightCompany?._id}
-                            onChange={e => {
-                                this.handleSelect(e);
-                            }}
-                        >
-                            <option value={this.state.currentCompany?._id}>{this.state.currentCompany ? this.state.currentCompany?.companyName : 'Select Company...'}</option>
-                            {this.state.companies?.map(company => {
-                                return <option key={company._id} value={company._id}>{company.companyName}</option>
-                            })
-                            }
-                        </Form.Control>
-                    </Form.Group> */}
-
-
                     <Form.Group controlId="date">
                         <Form.Label>Date</Form.Label>
                         <Form.Control type="date" value={this.state.flight.date.split('T')[0]} onChange={this.handleInputChange} placeholder={'dd/mm/yy'} name="date" />
                     </Form.Group>
 
 
-                    <Button onClick={(e) => this.loadCompanies(e, this.props.loggedUser._id)} style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit"  >
+                    <Button onClick={(e) => this.loadCompanies(e, this.props.loggedUser._id)} style={{ marginTop: '20px', width: '100%' }} variant="dark" >
                         {this.props.type === 'edit' ? 'Edit Flight' : 'Add New Flight'}
                     </Button>
 

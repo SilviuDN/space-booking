@@ -55,7 +55,7 @@ class Rating extends Component {
 
 
   render() {
-    const { dynamicValue, value } = this.state;
+    const { dynamicValue,/*  value  */ } = this.state;
     const starSpans = [];
     const max = this.props.max;
     let count = dynamicValue;

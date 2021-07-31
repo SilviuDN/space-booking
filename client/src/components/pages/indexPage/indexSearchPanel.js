@@ -1,9 +1,9 @@
 import { Component } from 'react';
 import { Row, Col, Container, Button, Form } from 'react-bootstrap';
-import RadioButton from '../../shared/RadioButtons/RadioButtons';
 import SearchBar from '../../shared/searchBox/searchBar';
 import DestinationService from '../../services/destinations.service';
 import FlightService from '../../services/flights.service';
+// import RadioButton from '../../shared/RadioButtons/RadioButtons';
 import './searchPanel.css'
 
 
@@ -31,7 +31,9 @@ class IndexSearchPanel extends Component {
 
     handleInput = (e) => {
 
+
         if (e.target.id) {
+            console.log(e.target.id)
 
             this.setState({
                 [e.target.id]: e.target.value

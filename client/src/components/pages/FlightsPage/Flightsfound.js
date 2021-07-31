@@ -2,14 +2,9 @@ import ReturnedFlightCard from "./BuyFlightCard"
 import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 import Spinner from 'react-bootstrap/Spinner';
-import { Container, Row, Col, Form, Button } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import IsearchPannelLeft from '../../pages/indexPage/isearchPannelLeft'
 import Checkout from "../CheckoutPage/CheckoutPage";
-import Link from 'react-dom'
-import logo from '../indexPage/logo.png'
-import mars from '../indexPage/mars.png'
-import andromeda from '../indexPage/andromeda.png'
-
 // import IndexSearchPanel from "../../pages/indexPage/indexSearchPanel";
 
 

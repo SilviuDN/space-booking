@@ -50,10 +50,8 @@ class AdminPage extends Component {
                 return <CompanyLists id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
             case 'flights':
                 return <Fligths id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
-
             case 'destinations':
                 return <Destination id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />
-
             case 'airports':
                 return <Airports setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} />
 
@@ -63,15 +61,13 @@ class AdminPage extends Component {
             case 'editCompany':
                 return <CompanyEditPage type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['companiesList']} />
             case 'flightEdit':
-                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['flightsList']} />
+                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'edit'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['flightsList']} loggedUser={this.props.loggedUser} />
             case 'flightCreate':
-                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} />
-
+                return <EditCreateFlight id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} loggedUser={this.props.loggedUser} sharedFunction={this.state.loadSharedFunction['flightsList']} />
             case 'editDestination':
                 return <EditDestination type={'edit'} id={this.state.id} setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['destinationsList']} />
             case 'createDestination':
                 return <EditDestination id={this.state.id} setList={this.setList} setId={this.setId} type={'new'} showAlert={this.props.showAlert} sharedFunction={this.state.loadSharedFunction['destinationsList']} />
-
             case 'editAirport':
                 return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />
 
@@ -97,7 +93,7 @@ class AdminPage extends Component {
         }
     }
 
-//renderChartSwitch(this.state.leftView)
+    //renderChartSwitch(this.state.leftView)
     renderChartSwitch(leftView) {
         switch (leftView) {
             case 'airports':
@@ -106,21 +102,21 @@ class AdminPage extends Component {
                 return <BarsLists type={'airports'} />
 
             case 'company':
-                case 'editCompany':
-                case 'companyDetails':
-                    return <BarsLists type={'company'} />
+            case 'editCompany':
+            case 'companyDetails':
+                return <BarsLists type={'company'} />
 
             case 'destinations':
-                case 'editDestination':
-                case 'createDestination':
-                case 'destinationDetails':
-                    return <BarsLists type={'destinations'} />
+            case 'editDestination':
+            case 'createDestination':
+            case 'destinationDetails':
+                return <BarsLists type={'destinations'} />
 
             case 'flights':
-                case 'flightEdit':
-                case 'flightCreate':
-                case 'flightDetails':
-                    return <BarsLists type={'flights'} />
+            case 'flightEdit':
+            case 'flightCreate':
+            case 'flightDetails':
+                return <BarsLists type={'flights'} />
 
             case 'user':
             case 'userEdit':
@@ -129,8 +125,8 @@ class AdminPage extends Component {
 
             default:
                 return null;
+        }
     }
-}
 
     setLeftView = (leftView) => this.setState({ leftView })
 
@@ -168,7 +164,7 @@ class AdminPage extends Component {
                                 ["company", "flights", "destinations", "airports"].includes(this.state.leftView) ?
                                     <BarsLists type={this.state.leftView} /> : null
                             } */}
-                            
+
                         </Col>
 
                     </Row>

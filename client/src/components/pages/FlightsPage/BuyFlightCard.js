@@ -2,8 +2,6 @@ import { Component } from 'react'
 import FlightsService from '../../services/flights.service'
 import StaticRating from '../RatingComponent/StaticRating'
 import "./BuyFlightCard.css"
-import Link from 'react-dom'
-
 import { Card, Button, Row, Col, Image } from 'react-bootstrap'
 
 
@@ -48,13 +46,13 @@ class ReturnedFlightCard extends Component {
 
     render() {
 
-        const headerStyle = {
-            backgroundColor: 'lightgreen',
-        }
+        // const headerStyle = {
+        //     backgroundColor: 'lightgreen',
+        // }
 
         // console.log(this.state.flight?.flightCompany?.reviews)
 
-        const compRating = this.calculateRatingsMedianCompDest(this.state.flight?.flightCompany)
+        // const compRating = this.calculateRatingsMedianCompDest(this.state.flight?.flightCompany)
         const destRating = this.calculateRatingsMedianCompDest(this.state.flight?.destination)
         const airportRating = this.calculateRatingsMedianCompDest(this.state.flight?.airport)
         const colorFilled = "rgba(182,28,115,0.7)"

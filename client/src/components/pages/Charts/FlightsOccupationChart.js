@@ -1,9 +1,8 @@
 import { Component } from "react";
-
 import FlightsService from '../../services/flights.service'
-import Spinner from "../FlightsPage/Spinner";
 import PieChart from "./PieChart";
-import BarChart from "./BarChart";
+// import Spinner from "../FlightsPage/Spinner";
+// import BarChart from "./BarChart";
 
 
 class FlightsOccupationChart extends Component {
@@ -28,11 +27,11 @@ class FlightsOccupationChart extends Component {
                 const nowUnix = date.getTime();
 
                 const nextMonthUnix = nowUnix + days * 24 * 60 * 60 * 1000
-                
-                const nextMonthFlights = response.data.filter(flight =>{
+
+                const nextMonthFlights = response.data.filter(flight => {
                     let flightDate = new Date(flight.date)
                     let flightDateUnix = flightDate.getTime()
-                    return (nextMonthUnix - flightDateUnix) * ( flightDateUnix - nowUnix ) > 0
+                    return (nextMonthUnix - flightDateUnix) * (flightDateUnix - nowUnix) > 0
                     // return flightDateUnix < nextMonthUnix && flightDateUnix > nowUnix
                 })
 
@@ -42,7 +41,7 @@ class FlightsOccupationChart extends Component {
             .catch(err => console.log(err))
     }
 
-    
+
     componentDidMount = () => {
         this.loadFlights()
 
@@ -50,15 +49,15 @@ class FlightsOccupationChart extends Component {
     }
 
     calculateTotalSeats = (flights) => {
-        return flights.reduce( (acc, flight ) => acc + flight.capacity,0)
+        return flights.reduce((acc, flight) => acc + flight.capacity, 0)
     }
 
 
-    calculateSoldSeats(flights){
-        return flights.reduce( (acc, flight ) => acc + flight.soldTickets, 0)
+    calculateSoldSeats(flights) {
+        return flights.reduce((acc, flight) => acc + flight.soldTickets, 0)
     }
 
-    calculateSeatsSituationData(flights){
+    calculateSeatsSituationData(flights) {
         const soldSeats = this.calculateSoldSeats(flights)
         const availableSeats = this.calculateTotalSeats(flights) - soldSeats
         const data = [
@@ -87,23 +86,23 @@ class FlightsOccupationChart extends Component {
         return (
 
             !this.state.flights
-            ?
-            <h1>Cargando</h1>
-            :
-            <>
+                ?
+                <h1>Cargando</h1>
+                :
+                <>
 
-                {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
+                    {/* SEAT SITUATION FOR ALL FLIGHTS FROM NEXT howManyDays */}
 
-                {/* <p>PieChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays}:</p> */}
-                <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
+                    {/* <p>PieChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays}:</p> */}
+                    <PieChart data={this.calculateSeatsSituationData(this.state.flights)} />
 
-                {/* <p>BarChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays} for each available flight:</p> */}
-                {/* {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)} */}
-
-
+                    {/* <p>BarChart: totalSoldSeats from totalSeats for the next {this.props.howManyDays} for each available flight:</p> */}
+                    {/* {this.state.flights.map(elem => <div style={{ marginBottom: '30px', width: '400px'}}><BarChart key={elem._id} {...elem} /></div>)} */}
 
 
-            </>
+
+
+                </>
         )
     }
 }

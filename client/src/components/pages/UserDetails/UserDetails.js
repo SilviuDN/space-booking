@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import UserService from '../../services/user.service'
-import { Container, Row, Col, Card, Image, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import UnratedFlightsList from '../RatingComponent/UnratedFlightsList'
 import profileWall from './profileWall.png'

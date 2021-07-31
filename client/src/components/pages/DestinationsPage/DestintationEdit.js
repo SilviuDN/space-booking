@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
 import DestinationsService from '../../services/destinations.service'
 import UploadsService from '../../services/upload.service'
-import Spinner from './Spinner'
+import Spinner from 'react-bootstrap/Spinner';
 
 class TempDestinationEdit extends Component {
 
@@ -191,30 +191,30 @@ class TempDestinationEdit extends Component {
             <Container>
                 {
                     typeof this.props.setList === 'function' ?
-                        <Link to="/admin" onClick={() => { this.props.setId(this.props.id); this.props.setList('destinations') }} className="btn btn-dark">Back to destinations list</Link>
+                        null
                         :
                         <Link to="/destinations" className="btn btn-dark">Back to destinations list</Link>
                 }
                 <Form onSubmit={this.handleFormSubmit}>
 
                     <Form.Group controlId="name">
-                        <Form.Label>Name</Form.Label>
+                        <Form.Label className={'mt-4'}>Name</Form.Label>
                         <Form.Control type="text" value={this.state.destination.name} onChange={this.handleInputChange} name="name" />
                     </Form.Group>
 
                     <Form.Group controlId="description">
-                        <Form.Label>Description</Form.Label>
+                        <Form.Label className={'mt-4'}>Description</Form.Label>
                         <Form.Control type="text" value={this.state.destination.description} onChange={this.handleInputChange} name="description" />
                     </Form.Group>
 
 
                     <Form.Group controlId="imageUrl">
-                        <Form.Label>Image (URL)</Form.Label>
-                        <Form.Control type="file" onChange={this.handleFileUpload} />
+                        <Form.Label className={'mt-4'}>Destination image </Form.Label>
+                        <Form.Control type="file" className={'d-block'} onChange={this.handleFileUpload} />
                     </Form.Group>
 
 
-                    {this.state.loading && <Spinner size={60} />}
+                    {/* {this.state.loading && <Spinner size={60} />} */}
                     {/* <Spinner size={60} /> */}
 
                     {
@@ -224,21 +224,30 @@ class TempDestinationEdit extends Component {
 
                             :
 
-                            <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit" disabled={this.state.loading}>
-                                {
-                                    this.state.destination.destination_id && this.props.type === "edit"
-                                        ?
-                                        (this.state.loading ? 'Uploading picture' : 'Edit destination')
-                                        :
-                                        (this.state.loading ? 'Uploading picture' : 'Create destination')
-                                }
-                                {this.state.loading && <Spinner size={60} />}</Button>
+                            this.state.loading ?
 
+                                <Button variant="dark" className="d-block" style={{ marginTop: '20px', width: '100%' }} disabled>
+                                    <Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />Loading...
+                                </Button>
+
+                                :
+                                <Button style={{ marginTop: '20px', width: '100%' }} variant="dark" type="submit">
+                                    {
+                                        this.state.destination.destination_id && this.props.type === "edit"
+                                            ?
+                                            (this.state.loading ? 'Uploading picture' : 'Edit destination')
+                                            :
+                                            (this.state.loading ? 'Uploading picture' : 'Create destination')
+                                    }
+                                </Button>
                     }
                 </Form>
-
-
-
             </Container>
         )
     }

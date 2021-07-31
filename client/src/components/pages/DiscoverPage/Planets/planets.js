@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import { Container, Row, Col } from 'react-bootstrap'
 import EarthPlanet from './EarthPlanet'
 import MercuryPlanet from './MercuryPlanet'
 import VenusPlanet from './VenusPlanet';

@@ -1,13 +1,14 @@
 import { Component } from 'react'
 import ReviewService from '../../services/reviews.service'
 import FlightService from '../../services/flights.service'
-import BarChart from '../Charts/BarChart'
+import { Row, Col, } from 'react-bootstrap'
 import Rating from './Rating'
 import './Rating.css'
+import Spinner from 'react-bootstrap/Spinner';
+// import BarChart from '../Charts/BarChart'
 
 
 
-import { Container, Row, Col, } from 'react-bootstrap'
 
 
 class RateFlightCard extends Component {
@@ -111,14 +112,14 @@ class RateFlightCard extends Component {
             <>
                 {!this.state.flight
                     ?
-                    <h3></h3>
+                    <Spinner animation="grow" />
                     :
                     <Row className="justify-content-around">
                         <Col md={12}>
 
-                                                        
 
-                            
+
+
                             {!this.state.ratingAirport
                                 ?
                                 <Row >

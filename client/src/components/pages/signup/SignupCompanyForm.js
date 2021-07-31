@@ -2,7 +2,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
 import React, { Component } from 'react';
-import ServiceAuth from '../../services/auth.service'
 import CompanyService from '../../services/company.service'
 import UploadService from '../../services/upload.service'
 import './signUp.css'
@@ -130,42 +129,32 @@ class SignupCompanyForm extends Component {
                         </Form.Group>
                     </Row>
                     <Row>
-                        <Form.Group as={Col} md={{ span: 4, offset: 2 }} controlId="street" className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="Street" name='street' />
+                        <Form.Group as={Col} md={{ span: 4, offset: 2 }} className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.street} id='Cstreet' type="text" placeholder="Street" name='street' />
                         </Form.Group>
 
-                        <Form.Group as={Col} md={2} controlId="number" className="mb-4">
-
-                            <Form.Control onChange={this.handleInput} value={this.state.number} id='number' type="text" placeholder="Number" name='number' />
+                        <Form.Group as={Col} md={2} className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.number} id='Cnumber' type="text" placeholder="Number" name='number' />
                         </Form.Group>
-                        <Form.Group as={Col} md={2} controlId="zipCode" className="mb-4">
-
-                            <Form.Control onChange={this.handleInput} value={this.state.zipCode} id='zipCode' type="text" placeholder="ZipCode" name='zipCode' />
+                        <Form.Group as={Col} md={2} className="mb-4">
+                            <Form.Control onChange={this.handleInput} value={this.state.zipCode} id='CzipCode' type="text" placeholder="ZipCode" name='zipCode' />
                         </Form.Group>
                     </Row>
 
-
-
                     <Row>
+                        <Form.Group as={Col} md={{ span: 4, offset: 2 }} className="mb-4">
 
-                        <Form.Group as={Col} controlId="city" md={{ span: 4, offset: 2 }} className="mb-4">
-
-                            <Form.Control onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' />
+                            <Form.Control onChange={this.handleInput} value={this.state.city} id='Ccity' type="text" placeholder="City" name='city' />
                         </Form.Group>
-                        <Form.Group as={Col} controlId="country" md={4} className="mb-4">
+                        <Form.Group as={Col} md={4} className="mb-4">
 
-                            <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' />
+                            <Form.Control onChange={this.handleInput} value={this.state.country} id='Ccountry' type="text" placeholder="Country" name='country' />
 
                         </Form.Group>
-                        <Form.Group as={Col} controlId="hr" md={{ span: 8, offset: 2 }} className="mb-4">
+                        <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-4">
                             <hr />
                         </Form.Group>
                     </Row>
-
-                    {/* <Form.Group controlId="companyImg" className="mb-3">
-                        <Form.Label>Documents</Form.Label>
-                        <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
-                    </Form.Group> */}
 
                     <Row>
 

@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import UserService from '../../services/user.service'
-import { Jumbotron, Container, Row, Col, Card, Form, FormLabel, Button, Image } from 'react-bootstrap'
+// import UserService from '../../services/user.service'
+import { Jumbotron, Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './CheckoutPage.css'
 import Astronaut from './astronaut.webp'
@@ -31,7 +31,7 @@ class ThankyouPage extends Component {
                         <p className="lead"><strong>Please check your email</strong> for further instructions on how to complete your account setup.</p>
                         <hr />
                         <p>
-                            Having trouble? <a href="">Contact us</a>
+                            Having trouble? <a href="/">Contact us</a>
                         </p>
                         <p class="lead">
                             <Link to="/"> <Button to="/" bsPrefix="btn-flat" variant="primary" className="btn-sm" >

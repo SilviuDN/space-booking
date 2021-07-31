@@ -39,7 +39,7 @@ class UserEdit extends Component {
 
     loadUserData() {
 
-        const id = this.props.match.params.user_id || this.props.id
+        const id = this.props.match?.params.user_id || this.props.id
 
         this.userService
 
@@ -134,7 +134,7 @@ class UserEdit extends Component {
 
     handleFormSubmit = e => {
         e.preventDefault()
-        const id = this.props.match.params.user_id || this.props.id
+        const id = this.props.match?.params.user_id || this.props.id
 
         this.userService
             .userEdit(this.state, id)
@@ -165,60 +165,6 @@ class UserEdit extends Component {
                 <br />
 
                 <Form className={'pb-5'}>
-                    {/* <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Label>Email address</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.user.email} type="email" placeholder="Enter email" name='email' />
-                        
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="name">
-                        <Form.Label>Name</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.user.name} type="text" placeholder="name" name='name' />
-                    </Form.Group>
-
-
-                    <Form.Group className="mb-3" controlId="surname">
-                        <Form.Label>Surname</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.user.surname} type="text" placeholder="Surname" name='surname' />
-                    </Form.Group>
-
-
-
-                    <Form.Group controlId="typeofId">
-                        <Form.Control
-                            as="select"
-                            custom
-                            value={this.state.typeofId}
-                            onChange={this.handleInput}
-                        >
-                            <option>dni</option>
-                            <option>passport</option>
-                        </Form.Control>
-
-                        <Form.Group className="mb-3" controlId="personalId">
-                            <Form.Label></Form.Label>
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.personalId} type="text" placeholder="personalId" name='personalId' />
-                        </Form.Group>
-                    </Form.Group>
-
-                    <Form.Group className="mb-3" controlId="phone">
-                        <Form.Label>Phone number</Form.Label>
-                        <Form.Control onChange={this.handleInputChange} value={this.state.user.phone} type="text" placeholder="phone" name='phone' />
-                    </Form.Group>
-
-                    <Form.Label>Address
-                        <Form.Group className="d-flex mb-2">
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.street} className={'address'} id='street' type="text" placeholder="street" name='street' />
-
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.number} className={'address'} id='number' type="text" placeholder="number" name='number' />
-
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.zipCode} className={'address'} id='zipCode' type="text" placeholder="zipCode" name='zipCode' />
-
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.city} className={'address'} id='city' type="text" placeholder="City" name='city' />
-
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.country} className={'address'} id='country' type="text" placeholder="country" name='country' />
-                        </Form.Group>
-                    </Form.Label> */}
 
                     <Form.Group as={Col} controlId="formBasicEmail" md={{ span: 8, offset: 2 }} className="mb-3">
 
@@ -343,7 +289,7 @@ class UserEdit extends Component {
                                         role="status"
                                         aria-hidden="true"
                                     />Loading...
-                        </Button>
+                                </Button>
 
 
                                 :
