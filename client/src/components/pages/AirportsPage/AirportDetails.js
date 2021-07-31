@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import AirportService from '../../services/AirportService'
+import AirportService from '../../../services/AirportService'
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
 

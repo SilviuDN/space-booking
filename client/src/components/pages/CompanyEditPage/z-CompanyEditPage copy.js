@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import CompanyService from '../../services/company.service'
+import CompanyService from '../../../services/company.service'
 import { Form, Button, Container } from 'react-bootstrap'
 
 class CompanyEditPage extends Component {

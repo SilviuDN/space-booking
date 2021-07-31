@@ -1,6 +1,6 @@
 import './App.css';
 import Routes from './routes'
-import AuthService from './services/auth.service';
+import AuthService from './../services/auth.service';
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 import Navigation from './layout/Navigation/Navigation';

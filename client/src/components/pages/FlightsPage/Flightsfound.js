@@ -1,6 +1,6 @@
 import ReturnedFlightCard from "./BuyFlightCard"
 import { Component } from 'react'
-import FlightsService from '../../services/flights.service'
+import FlightsService from '../../../services/flights.service'
 import Spinner from 'react-bootstrap/Spinner';
 import { Container, Row, Col } from 'react-bootstrap'
 import IsearchPannelLeft from '../../pages/indexPage/isearchPannelLeft'

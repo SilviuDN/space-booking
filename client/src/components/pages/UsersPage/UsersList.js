@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Table } from 'react-bootstrap'
 import UserCard from './UserCard'
-import UserService from '../../services/user.service'
+import UserService from '../../../services/user.service'
 import SearchBox from '../../shared/searchBox/searchBox'
 
 class UsersList extends Component {

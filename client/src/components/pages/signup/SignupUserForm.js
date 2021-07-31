@@ -2,8 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Row, Col, Image } from 'react-bootstrap'
 import React, { Component } from 'react';
-import ServiceAuth from '../../services/auth.service'
-import UploadService from '../../services/upload.service'
+import ServiceAuth from '../../../services/auth.service'
+import UploadService from '../../../services/upload.service'
 import Spinner from 'react-bootstrap/Spinner';
 import './signUp.css'
 

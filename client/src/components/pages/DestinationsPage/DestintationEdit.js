@@ -1,8 +1,8 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Container } from 'react-bootstrap'
-import DestinationsService from '../../services/destinations.service'
-import UploadsService from '../../services/upload.service'
+import DestinationsService from '../../../services/destinations.service'
+import UploadsService from '../../../services/upload.service'
 import Spinner from 'react-bootstrap/Spinner';
 
 class TempDestinationEdit extends Component {

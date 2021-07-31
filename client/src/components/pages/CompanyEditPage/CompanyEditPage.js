@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import CompanyService from '../../services/company.service'
+import CompanyService from '../../../services/company.service'
 import { Form, Button, Container } from 'react-bootstrap'
-import UploadsService from '../../services/upload.service'
+import UploadsService from '../../../services/upload.service'
 
 
 class CompanyEditPage extends Component {

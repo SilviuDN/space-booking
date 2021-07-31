@@ -1,5 +1,5 @@
 import { Component } from "react";
-import FlightsService from '../../services/flights.service'
+import FlightsService from '../../../services/flights.service'
 import FlightCard from "./FlightCard";
 import { Link } from 'react-router-dom'
 import { Table } from 'react-bootstrap';

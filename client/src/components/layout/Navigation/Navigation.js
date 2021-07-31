@@ -1,12 +1,12 @@
 import { Navbar, Nav, Container } from 'react-bootstrap'
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
-import AuthService from '../../services/auth.service'
+import AuthService from '../../../services/auth.service'
 import { Modal } from 'react-bootstrap'
 import Login from '../../pages/login/login'
 import logo from './logo.png'
 import './Navigation.css'
-import CompanyService from '../../services/company.service'
+import CompanyService from '../../../services/company.service'
 
 class Navigation extends Component {
     constructor() {

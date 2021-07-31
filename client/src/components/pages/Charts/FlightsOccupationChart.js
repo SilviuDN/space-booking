@@ -1,5 +1,5 @@
 import { Component } from "react";
-import FlightsService from '../../services/flights.service'
+import FlightsService from '../../../services/flights.service'
 import PieChart from "./PieChart";
 // import Spinner from "../FlightsPage/Spinner";
 // import BarChart from "./BarChart";

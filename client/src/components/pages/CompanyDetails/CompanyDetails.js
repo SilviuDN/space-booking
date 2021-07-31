@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import CompanyService from '../../services/company.service'
+import CompanyService from '../../../services/company.service'
 import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 

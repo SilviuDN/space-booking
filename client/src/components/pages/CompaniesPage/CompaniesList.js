@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Table, Col, Row } from 'react-bootstrap'
 import CompanyCard from './CompanyCard'
-import CompanyService from '../../services/company.service'
+import CompanyService from '../../../services/company.service'
 import SearchBox from '../../shared/searchBox/searchBox'
 import Spinner from 'react-bootstrap/Spinner';
 

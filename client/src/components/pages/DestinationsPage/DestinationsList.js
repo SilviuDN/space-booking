@@ -1,5 +1,5 @@
 import { Component } from "react";
-import DestinationsService from '../../services/destinations.service'
+import DestinationsService from '../../../services/destinations.service'
 import DestinationCard from "./DestinationCard";
 import { Table } from 'react-bootstrap';
 import Spinner from "./Spinner";

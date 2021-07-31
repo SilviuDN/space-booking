@@ -1,7 +1,7 @@
 import { Component } from 'react'
-import UserService from '../../services/user.service'
+import UserService from '../../../services/user.service'
 import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
-import UploadService from '../../services/upload.service'
+import UploadService from '../../../services/upload.service'
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';
 

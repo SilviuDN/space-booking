@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import { Form, Button, Container } from 'react-bootstrap'
-import FlightsService from '../../services/flights.service'
-import AirportService from '../../services/AirportService'
-import DestinationService from '../../services/destinations.service'
-import CompanyService from '../../services/company.service'
+import FlightsService from '../../../services/flights.service'
+import AirportService from '../../../services/AirportService'
+import DestinationService from '../../../services/destinations.service'
+import CompanyService from '../../../services/company.service'
 import { Link } from 'react-router-dom'
 
 class TempEdit extends Component {

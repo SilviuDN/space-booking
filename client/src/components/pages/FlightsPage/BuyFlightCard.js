@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import FlightsService from '../../services/flights.service'
+import FlightsService from '../../../services/flights.service'
 import StaticRating from '../RatingComponent/StaticRating'
 import "./BuyFlightCard.css"
 import { Card, Button, Row, Col, Image } from 'react-bootstrap'

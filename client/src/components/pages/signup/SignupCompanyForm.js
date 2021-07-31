@@ -2,8 +2,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
 import React, { Component } from 'react';
-import CompanyService from '../../services/company.service'
-import UploadService from '../../services/upload.service'
+import CompanyService from '../../../services/company.service'
+import UploadService from '../../../services/upload.service'
 import './signUp.css'
 
 class SignupCompanyForm extends Component {

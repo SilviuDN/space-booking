@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import ReviewService from '../../services/reviews.service'
+import ReviewService from '../../../services/reviews.service'
 import RateFlightCard from './RateFlightCard'
 // import { Container, Row, Col, } from 'react-bootstrap'
 // import BarChart from '../Charts/BarChart'

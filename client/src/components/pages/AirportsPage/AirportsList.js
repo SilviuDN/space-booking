@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { Table } from 'react-bootstrap'
-import AirportService from '../../services/AirportService'
+import AirportService from '../../../services/AirportService'
 import AirportCard from '../AirportsPage/AirportCard'
 import 'bootstrap/dist/css/bootstrap.css';
 import Spinner from 'react-bootstrap/Spinner';

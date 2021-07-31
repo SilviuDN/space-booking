@@ -1,8 +1,8 @@
 import { Component } from 'react';
 import { Row, Col, Container, Button, Form } from 'react-bootstrap';
 import SearchBar from '../../shared/searchBox/searchBar';
-import DestinationService from '../../services/destinations.service';
-import FlightService from '../../services/flights.service';
+import DestinationService from '../../../services/destinations.service';
+import FlightService from '../../../services/flights.service';
 // import RadioButton from '../../shared/RadioButtons/RadioButtons';
 import './searchPanel.css'
 

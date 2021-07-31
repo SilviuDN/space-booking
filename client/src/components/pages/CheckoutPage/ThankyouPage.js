@@ -1,5 +1,5 @@
 import { Component } from 'react'
-// import UserService from '../../services/user.service'
+// import UserService from '../../../services/user.service'
 import { Jumbotron, Container, Row, Col, Button, Image } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './CheckoutPage.css'

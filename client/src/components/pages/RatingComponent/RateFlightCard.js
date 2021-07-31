@@ -1,6 +1,6 @@
 import { Component } from 'react'
-import ReviewService from '../../services/reviews.service'
-import FlightService from '../../services/flights.service'
+import ReviewService from '../../../services/reviews.service'
+import FlightService from '../../../services/flights.service'
 import { Row, Col, } from 'react-bootstrap'
 import Rating from './Rating'
 import './Rating.css'
