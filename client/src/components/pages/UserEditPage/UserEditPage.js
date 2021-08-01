@@ -18,7 +18,7 @@ class UserEdit extends Component {
                 name: '',
                 surname: '',
                 personalId: '',
-                typeofId: 'dni',
+                typeOfId: 'dni',
                 phone: '',
                 address: {
                     number: '',
@@ -52,7 +52,7 @@ class UserEdit extends Component {
                         name: response.data.name,
                         surname: response.data.surname,
                         personalId: response.data.personalId,
-                        typeofId: response.data.typeofId,
+                        typeOfId: response.data.typeOfId,
                         phone: response.data.phone,
                         profileImg: response.data.profileImg,
                         address: {
@@ -91,8 +91,14 @@ class UserEdit extends Component {
                     }
                 }
             })
+
         } else {
-            this.setState({ user: { ...this.state.user, [name]: value, } })
+
+            if (e.target.id === 'typeOfId') {
+                this.setState({ user: { ...this.state.user, typeOfId: value } })
+            } else {
+                this.setState({ user: { ...this.state.user, [name]: value, } })
+            }
         }
 
     }
@@ -188,7 +194,7 @@ class UserEdit extends Component {
                     </Form.Group>
 
                     <Row >
-                        <Form.Group as={Col} controlId="typeofId" md={{ span: 2, offset: 2 }} className="mb-4">
+                        <Form.Group as={Col} controlId="typeOfId" md={{ span: 2, offset: 2 }} className="mb-4">
                             <Form.Control
                                 as="select"
                                 custom
@@ -227,16 +233,16 @@ class UserEdit extends Component {
 
                     <Row>
                         <Form.Group as={Col} md={{ span: 4, offset: 2 }} controlId="street" className="mb-4">
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.street} className={'address'} id='street' type="text" placeholder="Street" name='street' />
+                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.street} className={'address'} type="text" placeholder="Street" name='street' />
                         </Form.Group>
 
                         <Form.Group as={Col} md={2} controlId="number" className="mb-4">
 
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.number} className={'address'} id='number' type="text" placeholder="Number" name='number' />
+                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.number} className={'address'} type="text" placeholder="Number" name='number' />
                         </Form.Group>
                         <Form.Group as={Col} md={2} controlId="zipCode" className="mb-4">
 
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.zipCode} className={'address'} id='zipCode' type="text" placeholder="ZipCode" name='zipCode' />
+                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.zipCode} className={'address'} type="text" placeholder="ZipCode" name='zipCode' />
                         </Form.Group>
                     </Row>
 
@@ -246,11 +252,11 @@ class UserEdit extends Component {
 
                         <Form.Group as={Col} controlId="city" md={{ span: 4, offset: 2 }} className="mb-4">
 
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.city} className={'address'} id='city' type="text" placeholder="City" name='city' />
+                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.city} className={'address'} type="text" placeholder="City" name='city' />
                         </Form.Group>
                         <Form.Group as={Col} controlId="country" md={4} className="mb-4">
 
-                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.country} className={'address'} id='country' type="text" placeholder="Country" name='country' />
+                            <Form.Control onChange={this.handleInputChange} value={this.state.user.address.country} className={'address'} type="text" placeholder="Country" name='country' />
 
                         </Form.Group>
                         <Form.Group as={Col} controlId="hr" md={{ span: 8, offset: 2 }} className="mb-4">
@@ -267,7 +273,7 @@ class UserEdit extends Component {
 
                         </Form.Group>
                         <Form.Group as={Col} md={4} className="mb-3  align-self-center">
-                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' controlId="formFile" />
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' />
                         </Form.Group>
 
                         <Form.Group as={Col} md={4} controlId="profileImg" className="mb-4">
@@ -281,7 +287,7 @@ class UserEdit extends Component {
 
                             {this.state.uploading ?
 
-                                <Button variant="primary" className="d-block" disabled>
+                                <Button variant="primary" bsPrefix="btn-flat" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }} disabled>
                                     <Spinner
                                         as="span"
                                         animation="grow"

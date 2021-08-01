@@ -37,7 +37,10 @@ class UserDetails extends Component {
     componentDidMount = () => this.loadDetails()
 
 
+
     componentDidUpdate = (prevProps, prevState) => prevProps.id !== this.props.id && this.loadDetails()
+
+
 
     updateRatedFlightsList = (flightId) => {
         if (!this.state.user.ratedFlights?.includes(flightId)) {
@@ -69,7 +72,7 @@ class UserDetails extends Component {
 
                         <>
                             <br /><br />
-                            <Card body rounded >
+                            <Card body >
                                 <Row >
 
                                     <Card.Img src={profileWall} style={{ height: "200px" }} />
@@ -78,7 +81,7 @@ class UserDetails extends Component {
                                         <Row>
                                             <Col md={2} style={{ padding: "15px 0px 0px 25px", }}  >
 
-                                                <Link to={`/users/${this.props.match?.params.user_id}/edit`}  ><Image src={this.state.user.profileImg} roundedCircle style={{ height: "17vh", objectFit: "cover" }} alt="profile image" /></Link>
+                                                <Link to={`/users/${this.props.match?.params.user_id || this.props.id}/edit`}><Image src={this.state.user.profileImg} roundedCircle style={{ height: "17vh", objectFit: "cover" }} alt="profile image" /></Link>
 
                                             </Col>
                                             <Col md={9} className=" text-white">
@@ -208,7 +211,7 @@ class UserDetails extends Component {
                     }
 
                 </Container>
-            </div >
+            </div>
         )
     }
 }
