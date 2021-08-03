@@ -66,7 +66,7 @@ class UsersList extends Component {
                 <>
                     <SearchBox load={this.loadUsers} />
 
-                    <Table striped bordered hover size="sm">
+                    <Table striped bordered hover size="sm" className="tableList">
 
                         <thead>
                             <tr>

@@ -38,13 +38,11 @@ class UpperChartsPie extends Component {
         return (
             <>
 
-                <Form onSubmit={this.handleFormSubmit}>
 
-                    <Form.Label>How Many</Form.Label>
-                    <Form.Control type="text" value={this.state.howManyDays} onChange={this.handleInputChange} name="howManyDays" />
+                <Form.Label>How Many</Form.Label>
+                <Form.Control type="text" value={this.state.howManyDays} onChange={this.handleInputChange} name="howManyDays" />
 
-                    <FlightsOccupationChart howManyDays={+this.state.howManyDays} />
-                </Form>
+                <FlightsOccupationChart howManyDays={+this.state.howManyDays} />
 
 
             </>

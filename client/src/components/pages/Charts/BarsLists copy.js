@@ -24,45 +24,17 @@ class BarsLists extends Component {
     // DE MOMENTO pido la lista del servidor, pero despues this.setState({ flights: this.props.flightsList }))
     loadList = () => {
 
-        if (this.props.type === 'users') {
-            this.userService
-                .getUsers()
-                .then(response => {
-                    this.setState({
-                        type: 'users',
-                        listForBarsChart: this.filterByUserFlights(response.data)
-                    })   //top sales for flights
-                    console.log(this.state.listForBarsChart)
-                })
-                .catch(err => console.log(err))
-        }
-
-
         if (this.props.type === 'company') {
             this.companyService
-                .getCompanies(true)
+                .getCompanies()
                 .then(response => {
                     this.setState({
                         type: 'company',
-                        listForBarsChart: this.filterByReviews(response.data)
-                    })
+                        listForBarsChart: this.returnTopRatedCoDest(response.data, 3)
+                    }) //top howMany rated
                 })
                 .catch(err => console.log(err))
         }
-
-
-        if (this.props.type === 'flights') {
-            this.flightService
-                .getFlights()
-                .then(response => {
-                    this.setState({
-                        type: 'flights',
-                        listForBarsChart: this.filterBySoldTickets(response.data)
-                    })   //top sales for flights
-                })
-                .catch(err => console.log(err))
-        }
-
 
         if (this.props.type === 'destinations') {
             this.destinationService
@@ -70,12 +42,11 @@ class BarsLists extends Component {
                 .then(response => {
                     this.setState({
                         type: 'destinations',
-                        listForBarsChart: this.filterByReviews(response.data)
+                        listForBarsChart: this.returnTopRatedCoDest(response.data, 3)
                     }) //top howMany rated
                 })
                 .catch(err => console.log(err))
         }
-
 
         if (this.props.type === 'airports') {
             this.airportService
@@ -88,89 +59,103 @@ class BarsLists extends Component {
                 })
                 .catch(err => console.log(err))
         }
+
+        if (this.props.type === 'flights') {
+            this.flightService
+                .getFlights()
+                .then(response => {
+                    this.setState({
+                        type: 'flights',
+                        listForBarsChart: this.returnTopRatedFlights(response.data, 4)
+                    })   //top sales for flights
+                })
+                .catch(err => console.log(err))
+        }
+
+        if (this.props.type === 'users') {
+            this.userService
+                .getUsers()
+                .then(response => {
+                    this.setState({
+                        type: 'users',
+                        listForBarsChart: this.returnTopRatedUsers(response.data, 4)
+                    })   //top sales for flights
+                    console.log(this.state.listForBarsChart)
+                })
+                .catch(err => console.log(err))
+        }
     }
-
-
-    filterByReviews = (data) => {
-        return data
-            .sort((a, b) => a.reviews.length - b.reviews.length)
-            .filter(elem => elem.reviews.length >= 1).slice(0, 5)
-    }
-
-    filterBySoldTickets = (data) => data.filter(elem => elem.soldTickets >= 1).slice(0, 4)
-
-    filterByUserFlights = (data) => {
-        return data
-            .sort((a, b) => a.flights.length - b.flights.lenght)
-            .filter(elm => elm.flights.length > 0).slice(0, 5)
-
-        // data.filter(elem => elem.soldTickets >= 1).slice(0, 4)
-    }
-
-    returnTopRatedUsers(arr, howMany) {
-        // console.log(arr, howMany)
-        return arr.sort((a, b) => (a.flights && b.flights && a?.flights.length - b?.flights.length)).slice(-howMany)
-    }
-
 
     calculateRatingsMedianCompDest(elem) {
-        return Math.ceil(elem.reviews.reduce((acc, elm, i, arr) => (acc + elm) / arr.length), 0)
+        return Math.round(elem?.reviews.reduce((acc, elem) => acc + parseInt(elem), 0) / Math.max(elem.reviews.length, 1))
     }
 
-
-    soldTicketsFlights(arr) {
-        return arr.soldTickets.reduce((acc, elm) => acc + elm)
-        // console.log(arr)
+    returnTopRatedCoDest(arr, howMany) {
+        return arr.sort((a, b) => this.calculateRatingsMedianCompDest(a) - this.calculateRatingsMedianCompDest(b)).slice(-howMany)
     }
-
 
     returnTopRatedApt(arr, howMany) {
         return arr.sort((a, b) => a.flights.length - b.flights.length).slice(-howMany)
     }
 
+    returnTopRatedFlights(arr, howMany) {
+        return arr.sort((a, b) => a.soldTickets && b.soldTickets && (a.soldTickets.length - b.soldTickets.length)).slice(-howMany)
+    }
 
+    returnTopRatedUsers(arr, howMany) {
+        // console.log(arr, howMany)
+        return arr.sort((a, b) => (a.flights && b.flightd && a?.flights.length - b?.flights.length)).slice(-howMany)
+    }
 
-    populateDataString = (data, elem) => {
+    populateDataString(data, elem) {
         let xValue, yValue
+        let name = this.state.type === 'company' ? 'companyName' :
+            this.state.type === 'destinations' ? 'name' :
+                this.state.type === 'airports' ? 'name' :
+                    this.state.type === 'flights' ? 'flightNumber' : null
 
-        if (this.state.type === 'users') {
-            xValue = elem.name
-            yValue = elem.flights.length
-        }
 
 
         if (this.state.type === 'company') {
-            xValue = elem.companyName
-            yValue = this.calculateRatingsMedianCompDest(elem) || 0.1
+            // xValue = elem.companyName
+            xValue = elem[name]
+
+            yValue = this.calculateRatingsMedianCompDest(elem)
         }
 
+        if (this.state.type === 'destinations') {
+            // xValue = elem.name
+            xValue = elem[name]
+
+            yValue = this.calculateRatingsMedianCompDest(elem)
+        }
+
+        if (this.state.type === 'airports') {
+            // xValue = elem.name
+            xValue = elem[name]
+
+            yValue = elem.flights.length
+        }
 
         if (this.state.type === 'flights') {
-            xValue = elem.flightNumber
+            // xValue = elem.name
+            xValue = elem[name]
+
             yValue = elem.soldTickets
         }
 
+        if (this.state.type === 'users') {
+            // xValue = elem.name
+            xValue = elem[name]
 
-        if (this.state.type === 'destinations') {
-            xValue = elem.name
-            yValue = this.calculateRatingsMedianCompDest(elem) || 0.1
+            yValue = elem.flights.length
         }
-
-
-        // if (this.state.type === 'airports') {
-        // xValue = elem.name
-        // xValue = elem[name]
-
-        // yValue = elem.flights.length
-        // }
-
 
         data.push(
             {
                 x: xValue, // NOMBRE
                 y: yValue, // MEDIANA DEL RATING
                 yColor: "hsl(19, 70%, 50%)"
-
             }
         )
     }
@@ -180,7 +165,6 @@ class BarsLists extends Component {
         let data
         data = []
         this.state.listForBarsChart.forEach(elem => this.populateDataString(data, elem))
-        console.log(data)
         return data
     }
 
@@ -189,11 +173,10 @@ class BarsLists extends Component {
         this.loadList()
     }
 
-
     componentDidUpdate = (prevProps, prevState) => prevProps.type !== this.props.type && this.loadList()
 
-
     render() {
+
 
         return (
 
@@ -203,11 +186,11 @@ class BarsLists extends Component {
                 :
                 <>
 
-                    {this.state.type !== 'airports' ?
+                    <BarsChart data={this.createData()} type={this.props.type} />
 
-                        <BarsChart data={this.createData()} type={this.props.type} />
-                        : null
-                    }
+
+
+
                 </>
         )
     }

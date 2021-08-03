@@ -11,8 +11,8 @@ class IndexSearchPanel extends Component {
     constructor() {
         super()
         this.state = {
-            destinations: '',
-            airports: '',
+            destinations: undefined,
+            airports: undefined,
             departureDate: undefined,
             returnDate: undefined,
             adults: 1,

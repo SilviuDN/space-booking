@@ -1,28 +1,21 @@
 .sidebar {
         position: fixed;
-        top: 0px;
+        top: 0px; 
         bottom: 0;
-        left: 0;
+        left: -100px;
         min-height: 100vh !important;
         z-index: 100;
         padding: 70px 0 0;
-        box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+        box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.1);
+        border-right: 1px dashed #b92076 ;
+        transition: all .3s;
+        width: 120px;
+    }
+
+    .sidebar:hover{
+        left: 0px;
     }
     
-    /* .sidebar-sticky {
-        margin-right: 0;
-        width: 30%;
-        padding-bottom: 50px;
-}
-    .sidebar-sticky img{
-        display: block;
-        margin-left: 30px;
-        width: 100%;
-} */
-
-/* footer{
-    display:none !important;
-} */
 
 .col {
       margin-right: 40px;
@@ -31,4 +24,11 @@
 #admin-list {
     height: 60vh;
     overflow-y: scroll;
+}
+
+tr > th,
+tr > td > a > p {color:white}
+
+.tableList{
+  background: rgba(0, 0, 0, .5)
 }

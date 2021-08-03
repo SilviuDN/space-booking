@@ -116,11 +116,11 @@ class CompaniesList extends Component {
                             <SearchBox load={this.loadCompanies} />
                         </Col>
                         <Col md={1} className={'text-center'} style={{ lineHeight: '40px' }}>
-                            <input type="checkbox" checked={this.state.checked} onChange={() => this.setStatus()} />
+                            <input type="checkbox" checked={this.state.checked} onChange={() => this.setStatus()} style={{ boxShadow: '0px 0px 0px 7px black' }} />
                         </Col>
 
                     </Row>
-                    <Table striped bordered hover>
+                    <Table striped bordered hover className={'tableList'}>
                         <thead>
                             <tr>
                                 <th>Compañia</th>

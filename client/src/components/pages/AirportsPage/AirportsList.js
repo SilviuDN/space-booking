@@ -68,7 +68,7 @@ class AirportsList extends Component {
                 <>
                     <SearchBox load={this.loadAirports} />
 
-                    <Table striped bordered hover>
+                    <Table striped bordered hover className="tableList">
                         <thead>
                             <tr>
                                 <th>Airport</th>

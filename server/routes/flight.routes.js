@@ -7,9 +7,7 @@ const mongoose = require('mongoose')
 
 router.get('/flights', (req, res) => {
     Flight.find()
-        .populate('destination')
-        .populate('flightCompany')
-        .populate('airport')
+        .populate('destination flightCompany airport')
         .sort({ createdAt: 1 })
         .then(response => res.json(response)
         )

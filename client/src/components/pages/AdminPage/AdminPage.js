@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Col, Row, Container } from 'react-bootstrap'
+import background from './adminPanel.jpeg'
 import AdminNav from './AdminNav'
 import UsersList from '../UsersPage/UsersList'
 import CompanyLists from '../CompaniesPage/CompaniesList'
@@ -42,7 +43,10 @@ class AdminPage extends Component {
     sharedFunction = (key, fn) => this.setState({ loadSharedFunction: { ...this.state.loadSharedFunction, [key]: fn } })
 
 
-    renderSwitch(param) {
+    renderSwitch = (param) => {
+
+
+
         switch (param) {
             case 'user':
                 return <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
@@ -146,64 +150,68 @@ class AdminPage extends Component {
 
         return (
 
-            <Row>
+            <div style={{ background: `url(${background})`, minHeight: '92vh', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }
+            }>
+
+
                 <Container fluid>
+                    <Row>
 
 
-                    <Row style={{ marginTop: 0 }}>
-                        <Col xs={{ span: 4, offset: 2 }} className={'col'} >
-                            <UpperChartsPie />
-                        </Col>
+                        <Row style={{ marginTop: 0 }}>
+                            <Col xs={{ span: 4, offset: 1 }} className={'col'} >
+                                {
+                                    this.renderChartSwitch(this.state.leftView)
+                                }
+                            </Col>
 
-                        <Col xs={{ span: 4, offset: 1 }} className={'col'} >
+                            <Col xs={{ span: 4, offset: 1 }} className={'col'} >
+                                <UpperChartsPie />
 
-                            {
-                                this.renderChartSwitch(this.state.leftView)
-                            }
-                            {/* {
+
+                                {/* {
                                 ["company", "flights", "destinations", "airports"].includes(this.state.leftView) ?
                                     <BarsLists type={this.state.leftView} /> : null
                             } */}
 
-                        </Col>
+                            </Col>
 
-                    </Row>
+                        </Row>
 
-                    <Row style={{ marginTop: 0 }}>
-                        <Col xs={1} >
+                        <Row style={{ marginTop: 0 }}>
                             <AdminNav setLeftView={this.setLeftView} />
-                        </Col>
 
 
-                        <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
+                            <Col xs={{ span: 5, offset: 0 }} id="admin-list" style={{ marginLeft: 30 }}>
 
 
-                            {
-                                this.renderSwitch(this.state.leftView)
+                                {
+                                    this.renderSwitch(this.state.leftView)
 
 
-                            }
+                                }
 
-                        </Col>
+                            </Col>
 
-                        <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
+                            <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
 
 
-                            {
-                                this.renderSwitch(this.state.rightView)
+                                {
+                                    this.renderSwitch(this.state.rightView)
 
-                            }
+                                }
 
-                        </Col>
+                            </Col>
+
+
+                        </Row>
+
+
 
 
                     </Row>
-
                 </Container>
-
-
-
-            </Row>
+            </div>
         )
     }
 }

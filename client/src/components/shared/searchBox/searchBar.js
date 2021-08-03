@@ -22,7 +22,7 @@ class searchBar extends Component {
 
         this.setState({ selectedOption, })
 
-        this.props.setTravel(this.props.dataKey, selectedOption.id)
+        this.props.setTravel(this.props.dataKey, selectedOption.id || this.props.dataKey, undefined)
     }
 
 
@@ -47,7 +47,6 @@ class searchBar extends Component {
 
 
     loadData = (service, searchString) => {
-
 
         if (this.props.dataKey === 'destinations') {
 
