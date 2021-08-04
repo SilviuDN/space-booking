@@ -3,7 +3,12 @@ import React, { Component } from 'react';
 // import { Form } from 'react-bootstrap'
 
 export default class PieChart extends Component {
+    // constructor() {
+    //     super()
+    //     this.state = {
 
+    //     }
+    // }
     render() {
         return (
             <div style={{ height: '200px' }}>
@@ -126,7 +131,7 @@ export default class PieChart extends Component {
                     ]}
                 />
 
-            </div >
+            </div>
         )
     }
 }

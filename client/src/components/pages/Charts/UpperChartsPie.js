@@ -36,16 +36,15 @@ class UpperChartsPie extends Component {
     render() {
 
         return (
+
+
             <>
-
-
                 <Form.Label>How Many</Form.Label>
                 <Form.Control type="text" value={this.state.howManyDays} onChange={this.handleInputChange} name="howManyDays" />
 
                 <FlightsOccupationChart howManyDays={+this.state.howManyDays} />
-
-
             </>
+
 
         )
     }
