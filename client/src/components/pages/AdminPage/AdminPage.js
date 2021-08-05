@@ -193,7 +193,7 @@ class AdminPage extends Component {
 
                             </Col>
 
-                            <Col xs={{ span: 5, offset: 0 }} id="admin-list" >
+                            <Col xs={{ span: 6, offset: 0 }} id="admin-list" >
 
 
                                 {
