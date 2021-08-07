@@ -10,6 +10,7 @@ class AuthService {
         this.axios = axios
     }
 
+    recoverPassword = (email) => this.app.post(`/pass/recover/${email}`)
 
     login = (email, pwd) => this.app.post('/login', { email, pwd })
 

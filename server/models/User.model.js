@@ -73,7 +73,9 @@ const userSchema = new Schema({
   profileImg: {                                                     //Cloudinary
     type: String,
     // required: true,
-  }
+  },
+
+  token: String
 
 },
 

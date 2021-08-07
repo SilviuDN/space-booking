@@ -132,7 +132,7 @@ class Checkout extends Component {
                                 <h3>Your flight only includes hand luggage</h3>
 
                                 <h5  >
-                                    {this.props.flightDetails?.flight.airport.address.city + ' - ' + this.props.flightDetails?.flight.destination.name
+                                    {this.props.flightDetails?.flight.airport.address.city + ' - ' + this.props.flightDetails?.flight.destination?.name
                                     }
                                 </h5>
                                 <ul>
@@ -284,7 +284,7 @@ class Checkout extends Component {
                                 <br />
 
                                 <h5 className="h3" style={{ color: '#ba2077' }} align="center"> {this.props.flightDetails?.flight.airport.address.city + ' (' + this.props.flightDetails?.flight.airport.address.country + ')  - ' +
-                                    this.props.flightDetails?.flight.destination.name
+                                    this.props.flightDetails?.flight.destination?.name
                                 }</h5>
                                 <p>
                                     One way, {this.props.flightDetails?.adults} adult</p>

@@ -2,8 +2,10 @@ const express = require('express')
 const router = express.Router()
 const bcrypt = require('bcrypt')
 const User = require('./../models/User.model')
-const Company = require('../models/Company.model')
-const multerUpload = require('../config/cloudinary.config')
+const Transporter = require('./../config/nodemailer.config')
+const { randomToken, emails } = require('../utils')
+// const Company = require('../models/Company.model')
+// const multerUpload = require('../config/cloudinary.config')
 
 
 
@@ -91,8 +93,39 @@ router.post('/login', (req, res) => {
 
 
 
+router.post('/pass/recover/:email', (req, res) => {
+
+    const { email } = req.params
+
+    const token = randomToken(20)
+
+    User.findOneAndUpdate({ email }, { token })
+        .then(response => {
+            if (!response) {
+                res.status(404).json({ code: 404, message: 'User not found' })
+                return
+            }
+
+
+            const email = emails(response, req)
+
+            // console.log(email)
+
+            Transporter
+                .sendMail(email)
+                .then(() => res.json({ message: `Email sent to ${response.email}`, response }))
+                .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+
+
+
+        })
+        .catch(err => console.log(err))
+})
+
+
+
 router.get('/logout', (req, res) => {
-    req.session.destroy(err => res.json({ mssage: 'Logout successful' }))
+    req.session.destroy(err => res.json({ message: 'Logout successful' }))
 })
 
 

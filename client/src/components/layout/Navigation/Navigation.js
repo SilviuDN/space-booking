@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import AuthService from '../../../services/auth.service'
 import { Modal } from 'react-bootstrap'
 import Login from '../../pages/login/login'
+import PasswordRecover from '../../pages/login/recoverPassword'
 import logo from './logo.png'
 import './Navigation.css'
 import CompanyService from '../../../services/company.service'
@@ -11,16 +12,12 @@ import CompanyService from '../../../services/company.service'
 import { useState } from 'react'
 
 export default function Navigation({ storeUser, history, loggedUser, showAlert }) {
-    // this.state = {
-    //     isLoggedIn: false,
-    //     modal: false,
-    //     companyId: ''
 
-    // }
     const authService = new AuthService()
     const companyService = new CompanyService()
 
-    const [modal, setModal] = useState(false)
+    const [loginModal, setLoginModal] = useState(false)
+    const [recoverPassModal, setRecoverPassModal] = useState(false)
 
 
     // useEffect(() => {
@@ -81,7 +78,7 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
                                 ?
                                 <>
                                     <Link className="nav-link" to="/signup/n">Signup</Link>
-                                    <Link className="nav-link" to="/" onClick={() => setModal(true)}>Login</Link>
+                                    <Link className="nav-link" to="/" onClick={() => setLoginModal(true)}>Login</Link>
                                     <span className="nav-link">¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</span>
                                 </>
                                 :
@@ -121,12 +118,21 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
                 </Container>
             </Navbar>
 
-            <Modal show={modal} onHide={() => setModal(false)}>
+            <Modal show={loginModal} onHide={() => setLoginModal(false)}>
                 <Modal.Header className="text-center">
                     <Modal.Title className="w-100" >Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Login updateModal={setModal} storeUser={storeUser} history={history} showAlert={showAlert} />
+                    <Login setLoginModal={setLoginModal} storeUser={storeUser} history={history} showAlert={showAlert} recoverPassModal={setRecoverPassModal} />
+                </Modal.Body>
+            </Modal>
+
+            <Modal show={recoverPassModal} onHide={() => setRecoverPassModal(false)}>
+                <Modal.Header className="text-center">
+                    <Modal.Title className="w-100" >Password recovery</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <PasswordRecover recoverPassModal={setRecoverPassModal} history={history} showAlert={showAlert} />
                 </Modal.Body>
             </Modal>
 

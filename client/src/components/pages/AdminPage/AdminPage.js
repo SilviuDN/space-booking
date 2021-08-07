@@ -182,7 +182,7 @@ class AdminPage extends Component {
                             <AdminNav setLeftView={this.setLeftView} />
 
 
-                            <Col xs={{ span: 5, offset: 0 }} id="admin-list" style={{ marginLeft: 30 }}>
+                            <Col xs={{ span: 5, offset: 0 }} id="admin-list" style={{ marginLeft: 100 }}>
 
 
                                 {

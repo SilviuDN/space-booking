@@ -6,7 +6,7 @@ import AuthService from '../../../services/auth.service'
 import { useState } from 'react'
 
 
-export default function Login({ setLoginModal, recoverPassModal, storeUser, showAlert, history }) {
+export default function ResetPassword({ setLoginModal, recoverPassModal, storeUser, showAlert, history }) {
 
     const [email, setEmail] = useState('')
     const [pwd, setPwd] = useState('')
