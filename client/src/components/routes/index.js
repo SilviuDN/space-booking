@@ -38,7 +38,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
 
     return (
         <Switch>
-            <Route path="/reset/email/:token" exact render={props => <ResetPassword {...props} storeUser={storeUser} loggedUser={loggedUser} />} />
+            <Route path="/reset/password/:token" exact render={props => <ResetPassword {...props} storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} />} />
 
             <Route path="/admin" exact render={props => loggedUser?.role === 'admin' ? <AdminPage {...props} storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} /> : <Redirect to={"/"} />} />
 
@@ -47,7 +47,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/signup/:company" exact render={props => <SignupPage {...props} showAlert={showAlert} />} />
 
             <Route path="/users/" exact render={() => <UsersPage />} />
-            <Route path="/users/:user_id" exact render={props => <UserDetails {...props} />} />
+            <Route path="/users/:user_id" exact render={props => loggedUser ? <UserDetails {...props} /> : <Redirect to={"/"} />} />
             <Route path="/users/:user_id/edit" render={props => <UserEditPage {...props} showAlert={showAlert} />} />
 
 

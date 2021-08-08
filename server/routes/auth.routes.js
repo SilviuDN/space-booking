@@ -21,18 +21,14 @@ router.post('/signup', (req, res) => {
 
     User.findOne({ email: email })
         .then(user => {
-            // console.log('find user--> ', user)
             if (user) {
                 res.status(400).json({ code: 400, message: 'User already exixts' })
                 return
             }
 
-            // console.log('second then')
-
             const bcryptSalt = 10
             const salt = bcrypt.genSaltSync(bcryptSalt)
             const hashPass = bcrypt.hashSync(pwd, salt)
-            console.log(hashPass)
 
             User.create({ email, password: hashPass, name, surname, personalId, typeOfId, phone, address })
                 .then((response) => {
@@ -84,7 +80,6 @@ router.post('/login', (req, res) => {
                 return
             }
 
-            console.log(user)
             req.session.currentUser = user
             res.json(req.session.currentUser)
         })
@@ -99,27 +94,45 @@ router.post('/pass/recover/:email', (req, res) => {
 
     const token = randomToken(20)
 
-    User.findOneAndUpdate({ email }, { token })
+    User.findOneAndUpdate({ email }, { token }, { new: true })
         .then(response => {
             if (!response) {
                 res.status(404).json({ code: 404, message: 'User not found' })
                 return
             }
 
-
             const email = emails(response, req)
-
-            // console.log(email)
 
             Transporter
                 .sendMail(email)
                 .then(() => res.json({ message: `Email sent to ${response.email}`, response }))
                 .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
-
-
-
         })
         .catch(err => console.log(err))
+})
+
+
+router.post('/pass/update', (req, res) => {
+
+    const { token, password } = req.body
+
+    const bcryptSalt = 10
+    const salt = bcrypt.genSaltSync(bcryptSalt)
+    const hashPass = bcrypt.hashSync(password, salt)
+
+    User.findOneAndUpdate({ token }, { password: hashPass }, { new: true })
+        .then(response => {
+            if (!response) {
+                res.status(404).json({ code: 404, message: 'User not found' })
+                return
+            }
+
+            req.session.currentUser = response
+
+            return User.findOneAndUpdate(response.email, { token: null })
+        })
+        .then(() => res.json(req.session.currentUser))
+        .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
 })
 
 

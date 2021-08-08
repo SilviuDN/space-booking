@@ -12,6 +12,8 @@ class AuthService {
 
     recoverPassword = (email) => this.app.post(`/pass/recover/${email}`)
 
+    updatePassword = (token, password) => this.app.post(`/pass/update`, { token, password })
+
     login = (email, pwd) => this.app.post('/login', { email, pwd })
 
     signup = (user) => this.app.post('/signup', { ...user })

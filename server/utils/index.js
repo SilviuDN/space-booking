@@ -40,7 +40,7 @@ module.exports = {
             subject: 'Reset your password ',
             text: '',
             html: `'<h1> reset password</h1><br>
-                <a href="${baseUrl}/reset/email/${userObj.token}">Get confirmed</a>`,
+                <a href="${baseUrl}/reset/password/${userObj.token}">Get confirmed</a>`,
         }
 
     },

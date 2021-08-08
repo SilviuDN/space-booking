@@ -77,12 +77,12 @@ class ReturnedFlightCard extends Component {
                         <Col md={9} style={{ borderRight: "1px solid #C8C9CA", }}>
                             <Row>
                                 <Col md={3} style={{ backgroundColor: "#EEEEEE" }} >
-                                    <p class="h4">GO</p>
+                                    <p className="h4">GO</p>
 
                                 </Col>
 
                                 <Col md={3} >
-                                    <p class="h4">{this.state.flight?.airport?.iata}</p>
+                                    <p className="h4">{this.state.flight?.airport?.iata}</p>
                                 </Col>
 
                                 <Col md={2} style={{ backgroundColor: "#EEEEEE" }}>
@@ -94,9 +94,7 @@ class ReturnedFlightCard extends Component {
                                 </Col>
 
                                 <Col md={3} style={{ backgroundColor: "rgba(182,28,115,255)", color: "white" }}>
-                                    <p class="h4" > {this.state.flight?.destination?.code}</p>
-
-
+                                    <p className="h4" > {this.state.flight?.destination?.code}</p>
                                 </Col>
 
                             </Row>
@@ -127,54 +125,57 @@ class ReturnedFlightCard extends Component {
                             <Row style={{ borderBottom: "1px solid #C8C9CA", }}>
                                 <Col md={3}> <p><Image src={this.state.flight?.flightCompany?.logo} roundedCircle alt={'logo'} style={{ height: "20px" }} /> {this.state.flight?.flightCompany?.companyName}</p></Col>
                                 <Col md={3}> 00:05</Col>
-
-
-
-
                                 <Col md={2}><p>{days} days</p></Col>
                                 <Col md={1}></Col>
                                 <Col md={3}>06:00</Col>
                             </Row>
 
                             <Row>
-                                <Col md={3} style={{ margin: "10px" }}><Button variant="dark " size="sm">Flexible booking</Button></Col>
+                                <Col md={3} style={{ margin: "10px" }}>
+                                    <Button variant="dark " size="sm">Flexible booking</Button>
+                                </Col>
                                 <Col md={9}></Col>
 
                             </Row>
-
                         </Col>
 
                         <Col md={3}>
                             <Row>
 
                                 <Col>
-                                    <Row><p className="h6">Final price</p></Row>
-                                    <Row> <p class="h2" align="right"> <Col><span className="strikethrough">€ {this.numberWithCommas(this.state.flight?.price * 1.15)}
-                                    </span></Col> <Col >€ {this.numberWithCommas(this.state.flight?.price)}</Col></p></Row>
-                                    <Row> <p class="h6" align="center">Only {this.state.flight?.capacity - this.state.flight?.soldTickets} seats left!</p></Row>
-                                </Col>
+                                    <Row>
+                                        <p className="h6">Final price</p>
+                                    </Row>
 
+                                    <Row>
+                                        <Col>
+                                            <p className="h2" align="right">
+                                                <span className="strikethrough">€ {this.numberWithCommas(this.state.flight?.price * 1.15)}</span>
+                                            </p>
+                                        </Col>
+
+                                        <Col >
+                                            € {this.numberWithCommas(this.state.flight?.price)}
+                                        </Col>
+                                    </Row>
+
+                                    <Row>
+                                        <p className="h6" align="center">Only {this.state.flight?.capacity - this.state.flight?.soldTickets} seats left!</p>
+                                    </Row>
+                                </Col>
                             </Row>
+
                             <Row>
-                                <Col  >
-
-
-                                    <Row style={{ padding: "10px" }} class="text-center" ><Button className="btn  " variant="dark" onClick={() => { this.props.setPayMethod(this.props.flight) }}>Select</Button></Row>
+                                <Col>
+                                    <Row style={{ padding: "10px" }} className="text-center">
+                                        <Button className="btn  " variant="dark" onClick={() => { this.props.setPayMethod(this.props.flight) }}>Select</Button>
+                                    </Row>
                                 </Col>
-
                             </Row>
-
                         </Col>
-
                     </Row>
-
-
-
                 </Card>
-
-
             </>
-
         )
     }
 }

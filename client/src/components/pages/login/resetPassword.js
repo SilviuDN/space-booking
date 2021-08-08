@@ -1,38 +1,59 @@
 // import { Component } from 'react'
 import { Container, Form, Button, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
-import AuthService from '../../../services/auth.service'
+import { Link, useParams } from 'react-router-dom'
+import AuthService from '../../services/auth.service'
+import './login.css'
 // import { useEffect } from 'react'
 import { useState } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+const eye = <FontAwesomeIcon icon={faEye} />;
 
 
-export default function ResetPassword({ setLoginModal, recoverPassModal, storeUser, showAlert, history }) {
+export default function ResetPassword({ loggedUser, storeUser, showAlert, history }) {
 
-    const [email, setEmail] = useState('')
     const [pwd, setPwd] = useState('')
-    const [wrongUser, setwrongUser] = useState(false)
+    const [pwdCheck, setPwdCheck] = useState('')
+    const [passNotMatch, setPassNotMatch] = useState(false)
+    const { token } = useParams()
 
     const authService = new AuthService()
 
 
+    const showPass = (e) => {
+
+        while (e.target.id !== 'i') {
+            e.target = e.target.parentElement
+        }
+
+        if (e.target.previousElementSibling?.type === 'password') {
+            e.target.previousElementSibling.type = 'text'
+        } else {
+            e.target.previousElementSibling.type = 'password'
+        }
+    }
+
     const handleFormSubmit = e => {
         e.preventDefault()
 
-        // const { email, pwd } = this.state
 
-        authService
-            .login(email, pwd)
-            .then(logedUser => {
-                showAlert('Welcome! Successfully logged in')
-                storeUser(logedUser.data)
-                setLoginModal(false)
-                history.push('/')
-            })
-            .catch(err => {
-                // showAlert('Something went wrong! Retry to logg in')
-                setwrongUser(true)
-                console.log(err)
-            })
+        if (pwd === pwdCheck) {
+
+            authService
+                .updatePassword(token, pwd)
+                .then(loggedUser => {
+                    showAlert('Welcome! Successfully logged in')
+                    storeUser(loggedUser.data)
+                    history.push('/')
+                })
+                .catch(err => {
+                    // showAlert('Something went wrong! Retry to logg in')
+                    // setwrongUser(true)
+                    console.log(err)
+                })
+        } else {
+            setPassNotMatch(true)
+        }
     }
 
 
@@ -42,62 +63,44 @@ export default function ResetPassword({ setLoginModal, recoverPassModal, storeUs
 
         <Container>
 
-            <Row>
+            <Row className="mt-5">
 
                 <Col md={{ span: 10, offset: 1 }} className={'pb-4'}>
 
 
                     <Form onSubmit={handleFormSubmit}>
 
-                        <Form.Group controlId="email">
-                            {/* <FloatingLabel
-                                controlId="email"
-                                label="Email address"
-                                type="email" value={this.state.email} onChange={this.handleInputChange} name="email"
-                            /> */}
-                            <Form.Label>E-mail</Form.Label>
-                            <Form.Control type="email" value={email} onChange={(e) => setEmail(e.target.value)} name="email" />
+                        <div className="pass-wrapper">
+                            <Form.Group controlId="pwd">
+                                <Form.Label>New password</Form.Label>
+                                <Form.Control type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} name="pwd" />
+                                <i id="i" onClick={(e) => showPass(e)}>{eye}</i>
+                            </Form.Group>
+                        </div>
 
-                            {/* </FloatingLabel> */}
+                        <div className="pass-wrapper">
+                            <Form.Group controlId="pwdCheck">
+                                <Form.Label>Type same password</Form.Label>
+                                <Form.Control type="password" value={pwdCheck} onChange={(e) => setPwdCheck(e.target.value)} name="pwdCheck" />
+                                <i id="i" onClick={(e) => showPass(e)}>{eye}</i>
+                            </Form.Group>
+                        </div>
 
-                        </Form.Group>
+                        {passNotMatch && <div className="alert alert-danger">Passwords do not match</div>}
 
-                        <Form.Group controlId="pwd">
-                            {/* <FloatingLabel controlId="pwd"
-                                    label="Password"
-                                    className="mb-3"
-                                    type="password"
-                                    value={this.state.pwd} onChange={this.handleInputChange} name="pwd"
-
-                                > */}
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control type="password" value={pwd} onChange={(e) => setPwd(e.target.value)} name="pwd" />
-                            {/* </FloatingLabel> */}
-                        </Form.Group>
-
-                        <Button style={{ marginTop: '20px', width: '100%' }} bsPrefix="btn-flat" variant="primary" type="submit">Login</Button>
+                        <Button style={{ marginTop: '20px', width: '100%' }} bsPrefix="btn-flat" variant="primary" type="submit">Save new password</Button>
 
                     </Form>
 
                     <hr />
 
-                    <Link to="/" onClick={() => setLoginModal(false)}>
+                    <Link to="/" >
                         <Button bsPrefix="btn-flat" variant="primary" style={{ marginTop: '20px', width: '100%' }} >Cancel</Button>
                     </Link>
 
                     <hr />
 
-                    {wrongUser ?
-                        <>
-                            <div className="alert alert-danger text-center" role="alert">Wrong user or password</div>
-                            <div className="text-center"><small><Link to="/" onClick={() => { setLoginModal(false); recoverPassModal(true) }}> Recover password </Link></small></div>
-                            <hr />
-                        </>
-                        : null}
 
-
-                    <p align="center"><small>If you have not yet registered you can do so by clicking on the following link: <Link to="/signup/n" onClick={() => setLoginModal(false)}> I'm not registered yet. </Link></small></p>
-                    {/* <small>Or new Company?  register <Link to="/signup/y" onClick={() => this.props.updateModal(false)}>here</Link></small> */}
                 </Col>
             </Row>
 

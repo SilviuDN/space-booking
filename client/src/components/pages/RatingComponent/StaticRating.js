@@ -8,7 +8,7 @@ function StaticRating({ rating, colorFilled, colorBorder }) {
     const starSpans = [];
 
     for (let i = 0; i < 5; i++) {
-        let star = (i < rating) ? <Star color={colorFilled} isFilled /> : <Star color={colorBorder} />
+        let star = (i < rating) ? <Star color={colorFilled} isFilled key={i} /> : <Star color={colorBorder} key={i} />
         starSpans.push(star)
     }
     return (

@@ -286,8 +286,7 @@ class Checkout extends Component {
                                 <h5 className="h3" style={{ color: '#ba2077' }} align="center"> {this.props.flightDetails?.flight.airport.address.city + ' (' + this.props.flightDetails?.flight.airport.address.country + ')  - ' +
                                     this.props.flightDetails?.flight.destination?.name
                                 }</h5>
-                                <p>
-                                    One way, {this.props.flightDetails?.adults} adult</p>
+                                <p> One way, {this.props.flightDetails?.adults} adult</p>
 
                                 {
                                     this.props.flightDetails.children >= 1 ?
@@ -296,7 +295,9 @@ class Checkout extends Component {
 
                                         : null
                                 }
-                                <p >Departure ({this.props.flightDetails?.flight.date.split('T')[0]})</p>
+                                <p>Departure ({this.props.flightDetails?.flight?.date?.split('T')[0]})</p>
+
+                                {console.log(this.props.flightDetails?.flight?.date)}
 
                                 <div style={{ width: 80, height: 80 }}>
                                     <img src={this.props.flightDetails?.flight.flightCompany?.logo} alt="company" style={{ width: '100%' }} />
@@ -310,13 +311,12 @@ class Checkout extends Component {
                                 <p>Cancellation</p>
                                 <p>Not allowed</p>
 
-                                <Link to="">
-                                    See change and cancellation policy</Link>
+                                <Link to="">See change and cancellation policy</Link>
                             </Card>
                         </Col>
                     </Row>
                 </Container>
-            </div >
+            </div>
         )
     }
 }
