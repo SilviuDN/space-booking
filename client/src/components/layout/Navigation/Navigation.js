@@ -12,13 +12,11 @@ import CompanyService from '../../../services/company.service'
 import { useState } from 'react'
 
 export default function Navigation({ storeUser, history, loggedUser, showAlert }) {
-
     const authService = new AuthService()
     const companyService = new CompanyService()
 
     const [loginModal, setLoginModal] = useState(false)
     const [recoverPassModal, setRecoverPassModal] = useState(false)
-
 
     // useEffect(() => {
     //     console.log('hi')        chekfor this variable
@@ -32,12 +30,9 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
     //     console.log('hi')        didupdate
     // });
 
-
     // const setModalState = (action) => this.setState({ modal: action })
 
-
-    const loadMyCompany = (user_id) => {
-
+    const loadMyCompany = user_id => {
         companyService
             .getMyCompany(user_id)
             .then(res => {
@@ -46,8 +41,6 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
             .catch(err => console.log(err))
     }
 
-
-
     const logout = () => {
         authService
             .logout()
@@ -55,64 +48,79 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
             .catch(err => console.log(err))
     }
 
-
-
     return (
         <>
             <Navbar className="blue-nav py-2" variant="dark" expand="md" sticky="top">
                 <Container fluid>
                     <Navbar.Brand href="/">
-                        <img
-                            alt=""
-                            src={logo}
-                            height="50"
-                            className="d-inline-block align-top"
-                        />{' '}</Navbar.Brand>
+                        <img alt="" src={logo} height="50" className="d-inline-block align-top" />{' '}
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse className="justify-content-end">
                         <Nav className="mr-auto">
-                            <Link className="nav-link" to="/">Home</Link>
+                            <Link className="nav-link" to="/">
+                                Home
+                            </Link>
+
+                            <Link className="nav-link" to={`/discover`}>
+                                {' '}
+                                Discover
+                            </Link>
+
                             {/* <Link className="nav-link" to="/"></Link> */}
 
-                            {!loggedUser
-                                ?
+                            {!loggedUser ? (
                                 <>
-                                    <Link className="nav-link" to="/signup/n">Signup</Link>
-                                    <Link className="nav-link" to="/" onClick={() => setLoginModal(true)}>Login</Link>
+                                    <Link className="nav-link" to="/signup/n">
+                                        Signup
+                                    </Link>
+                                    <Link className="nav-link" to="/" onClick={() => setLoginModal(true)}>
+                                        Login
+                                    </Link>
                                     <span className="nav-link">¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</span>
                                 </>
-                                :
+                            ) : loggedUser.role === 'moderator' ? (
+                                <>
+                                    <Link className="nav-link" to={`/flights/new`}>
+                                        {' '}
+                                        New Flight
+                                    </Link>
+                                    <span className="nav-link cursor-pointer" onClick={() => loadMyCompany(loggedUser._id)}>
+                                        {' '}
+                                        MyCompany
+                                    </span>
 
-                                loggedUser.role === 'moderator' ?
+                                    <span className="nav-link cursor-pointer" onClick={() => logout()}>
+                                        Log out
+                                    </span>
 
-                                    <>
-                                        <Link className="nav-link" to={`/flights/new`}> New Flight</Link>
-                                        <span className="nav-link cursor-pointer" onClick={() => loadMyCompany(loggedUser._id)}> MyCompany</span>
-                                        <Link className="nav-link" to={`/discover`}> Discover</Link>
-                                        <span className="nav-link cursor-pointer" onClick={() => logout()}>Log out</span>
-
-                                        <Link className="nav-link" to={`/users/${loggedUser._id}`}>¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</Link>
-                                    </>
-
-                                    :
-
-                                    loggedUser.role === 'admin' ?
-                                        <>
-                                            <Link className="nav-link" to={`/admin`}> Admin panel</Link>
-                                            <Link className="nav-link" to={`/discover`}> Discover</Link>
-                                            <span className="nav-link cursor-pointer" onClick={logout}>Log out</span>
-                                            <Link className="nav-link" to={`/users/${loggedUser._id}`}>¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</Link>
-                                        </>
-                                        :
-
-                                        <>
-
-                                            <Link className="nav-link" to={`/discover`}> Discover</Link>
-                                            <span className="nav-link cursor-pointer" onClick={logout}>Log out</span>
-                                            <Link className="nav-link" to={`/users/${loggedUser._id}`}>¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</Link>
-                                        </>
-                            }
-
+                                    <Link className="nav-link" to={`/users/${loggedUser._id}`}>
+                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                    </Link>
+                                </>
+                            ) : loggedUser.role === 'admin' ? (
+                                <>
+                                    <Link className="nav-link" to={`/admin`}>
+                                        {' '}
+                                        Admin panel
+                                    </Link>
+                                    <span className="nav-link cursor-pointer" onClick={logout}>
+                                        Log out
+                                    </span>
+                                    <Link className="nav-link" to={`/users/${loggedUser._id}`}>
+                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                    </Link>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="nav-link cursor-pointer" onClick={logout}>
+                                        Log out
+                                    </span>
+                                    <Link className="nav-link" to={`/users/${loggedUser._id}`}>
+                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                    </Link>
+                                </>
+                            )}
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
@@ -120,7 +128,7 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
 
             <Modal show={loginModal} onHide={() => setLoginModal(false)}>
                 <Modal.Header className="text-center">
-                    <Modal.Title className="w-100" >Login</Modal.Title>
+                    <Modal.Title className="w-100">Login</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Login setLoginModal={setLoginModal} storeUser={storeUser} history={history} showAlert={showAlert} recoverPassModal={setRecoverPassModal} />
@@ -129,13 +137,12 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
 
             <Modal show={recoverPassModal} onHide={() => setRecoverPassModal(false)}>
                 <Modal.Header className="text-center">
-                    <Modal.Title className="w-100" >Password recovery</Modal.Title>
+                    <Modal.Title className="w-100">Password recovery</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <PasswordRecover recoverPassModal={setRecoverPassModal} history={history} showAlert={showAlert} />
                 </Modal.Body>
             </Modal>
-
         </>
     )
 }

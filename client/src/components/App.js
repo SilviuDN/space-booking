@@ -1,62 +1,48 @@
-import './App.css';
+import './App.css'
 import Routes from './routes'
-import AuthService from './../services/auth.service';
+import AuthService from './../services/auth.service'
 import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import Navigation from './layout/Navigation/Navigation';
+import Navigation from './layout/Navigation/Navigation'
 // import Footer from '../layout/Footer/Footer';
-import Alert from './shared/Alert/Alert';
+import Alert from './shared/Alert/Alert'
+import { useEffect } from 'react'
+import { useState } from 'react'
 
+function App() {
+    const [loggedUser, setLoggedUser] = useState(null)
+    const [toast, setToast] = useState({ text: '', show: false })
 
-class App extends Component {
+    const storeUser = loggedUser => setLoggedUser(loggedUser)
+    const showAlert = text => setToast({ text: text, show: true })
 
-  constructor() {
-    super();
-    this.state = {
-      loggedUser: null,
-      toast: {
-        text: '',
-        show: false,
-      }
-    }
-    this.authService = new AuthService();
-  }
+    useEffect(() => {
+        const authService = new AuthService()
+        const getUser = () => {
+            authService
+                .isLoggedIn()
+                .then(res => storeUser(res.data))
+                .catch(err => console.log(err))
+        }
+        getUser()
+    }, [])
 
-  storeUser = loggedUser => this.setState({ loggedUser });
-  showAlert = text => this.setState({ toast: { show: true, text } })
+    // componentDidMount = () => this.getUser()
 
-  getUser = () => {
-    this.authService.isLoggedIn()
-      .then(res => this.storeUser(res.data))
-      .catch(err => console.log(err))
-  }
-
-  componentDidMount = () => this.getUser();
-
-
-  render() {
-    console.log(this.state.loggedUser)
+    console.log(loggedUser)
     return (
+        <>
+            <Switch>
+                <Route path="/" render={props => <Navigation storeUser={setLoggedUser} loggedUser={loggedUser} {...props} showAlert={showAlert} />} />
+            </Switch>
 
-      <>
-        <Switch>
-          <Route path="/" render={props => <Navigation storeUser={this.storeUser} loggedUser={this.state.loggedUser} {...props} showAlert={this.showAlert} />} />
-        </Switch>
+            <Routes storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} />
 
+            <Alert show={toast.show} text={toast.text} closeAlert={() => setToast({ ...toast, show: false })} />
 
-        <Routes storeUser={this.storeUser} loggedUser={this.state.loggedUser} showAlert={this.showAlert} />
-
-        <Alert
-          show={this.state.toast.show}
-          text={this.state.toast.text}
-          closeAlert={() => this.setState({ toast: { ...this.state.toast, show: false } })} />
-
-
-        {/* <Footer loggedUser={this.state.loggedUser} /> */}
-      </>
-
+            {/* <Footer loggedUser={this.state.loggedUser} /> */}
+        </>
     )
-  }
 }
 
-export default App;
+export default App
