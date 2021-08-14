@@ -55,7 +55,10 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
     const logout = () => {
         authService
             .logout()
-            .then(() => storeUser(null))
+            .then(() => {
+                storeUser(null);
+                history.push('/')
+            })
             .catch(err => console.log(err))
     }
 

@@ -87,6 +87,10 @@
     opacity: .6;
 }
 
+.planet{
+    cursor: pointer;
+}
+
 @keyframes rotationLeft {
     0% {
         background-position: 0px 0px;

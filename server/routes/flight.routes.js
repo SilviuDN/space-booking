@@ -7,9 +7,9 @@ const mongoose = require('mongoose')
 
 router.get('/flights', (req, res) => {
 
-    Flight.find()
+    Flight
+        .find()
         .populate('destination flightCompany airport')
-        // .select('flightNumber soldTickets')
         .sort({ createdAt: 1 })
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error fetching users', err }))
@@ -79,28 +79,19 @@ router.get('/search/travels/:airport/:destination/:fromDate/:toDate', (req, res)
 
     const queryArray = [];
 
+    // pushing every data received to new array if not undefined
     fromDate !== 'undefined' ? queryArray.push({ "date": { $gte: new Date(fromDate) } }) : null
     toDate !== 'undefined' ? queryArray.push({ "date": { $lte: new Date(toDate) } }) : null
     airport !== 'undefined' ? queryArray.push({ "airport": new mongoose.Types.ObjectId(airport) }) : null
     destination !== 'undefined' ? queryArray.push({ "destination": new mongoose.Types.ObjectId(destination) }) : null
 
-    if (!queryArray.length) {
-
-        Flight
-            .find()
-            .populate('destination flightCompany airport')
-            .sort({ date: 1 })
-            .then(response => res.json(response))
-            .catch(err => res.status(404).json({ code: 404, message: 'no flights found', err }))
-    } else {
-
-        Flight
-            .find({ $and: queryArray })
-            .populate('destination flightCompany airport')
-            .sort({ date: 1 })
-            .then(response => res.json(response))
-            .catch(err => res.status(404).json({ code: 404, message: 'no flights found', err }))
-    }
+    // if something in the array will do the find with that data else all
+    Flight
+        .find(queryArray.length ? { $and: queryArray } : {})
+        .populate('destination flightCompany airport')
+        .sort({ date: 1 })
+        .then(response => res.json(response.filter(flight => flight.flightCompany?.status === true)))
+        .catch(err => res.status(404).json({ code: 404, message: 'no flights found', err }))
 })
 
 
@@ -111,8 +102,8 @@ router.get('/search/avail/flights/:destination', (req, res) => {
 
     Flight
         .find({ "destination": new mongoose.Types.ObjectId(destination) })
-        .populate('airport')
-        .then(response => res.send(response))
+        .populate('airport flightCompany')
+        .then(response => res.json(response.filter(flight => flight.flightCompany?.status === true)))
         .catch(err => res.status(404).json({ code: 404, message: 'No flight found', err }))
 })
 
@@ -122,7 +113,8 @@ router.get('/search/:string', (req, res) => {
 
     const { string } = req.params
 
-    Flight.find({ "flightNumber": { $regex: string, $options: 'i' } })
+    Flight
+        .find({ "flightNumber": { $regex: string, $options: 'i' } })
         .then(response => res.json(response))
         .catch(err => res.status(500).json({ code: 500, message: 'Error filtering flights', err }))
 })

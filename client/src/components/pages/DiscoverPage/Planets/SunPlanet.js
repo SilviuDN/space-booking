@@ -20,7 +20,7 @@ const SunPlanet = (props) => {
 
     return (
 
-        <div class="content-sun"
+        <div className="content-sun planet"
             style={{ backgroundImage: `url(${sun})` }}
             onClick={() => props.changeView('sun')}
             onMouseEnter={() => props.showInfo(info)}

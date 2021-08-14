@@ -123,7 +123,7 @@ class SignupUserForm extends Component {
     render = () => {
         return (
             <Container>
-                <br />
+                <h1 className='text-center mt-5 mb-3'>User</h1>
                 <Form onSubmit={this.handleSubmit} className={'pb-5'}>
 
                     <Form.Group as={Col} controlid="formBasicEmail" md={{ span: 8, offset: 2 }} className="mb-3">

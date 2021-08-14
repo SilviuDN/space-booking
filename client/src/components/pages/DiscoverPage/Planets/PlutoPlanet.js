@@ -17,7 +17,7 @@ const PlutoPlanet = (props) => {
 
     return (
 
-        <div class="content-rotate-right"
+        <div className="content-rotate-right planet"
             style={{ backgroundImage: `url(${pluto})` }}
             onClick={() => props.changeView('pluto')}
             onMouseEnter={() => props.showInfo(info)}

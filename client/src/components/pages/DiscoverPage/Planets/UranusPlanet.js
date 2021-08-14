@@ -21,7 +21,7 @@ const UranusPlanet = (props) => {
 
     return (
 
-        <div class="content-rotate-right"
+        <div className="content-rotate-right planet"
             style={{ backgroundImage: `url(${uranus})` }}
             onClick={() => props.changeView('uranus')}
             onMouseEnter={() => props.showInfo(info)}

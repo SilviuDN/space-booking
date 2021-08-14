@@ -21,7 +21,6 @@ export default function Login({
   const handleFormSubmit = e => {
     e.preventDefault();
 
-    // const { email, pwd } = this.state
 
     authService
       .login(email, pwd)
@@ -37,7 +36,7 @@ export default function Login({
       .catch(err => {
         // showAlert('Something went wrong! Retry to logg in')
         setwrongUser(true);
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -47,11 +46,6 @@ export default function Login({
         <Col md={{ span: 10, offset: 1 }} className={'pb-4'}>
           <Form onSubmit={handleFormSubmit}>
             <Form.Group controlId="email">
-              {/* <FloatingLabel
-                                controlId="email"
-                                label="Email address"
-                                type="email" value={this.state.email} onChange={this.handleInputChange} name="email"
-                            /> */}
               <Form.Label>E-mail</Form.Label>
               <Form.Control
                 type="email"
@@ -60,17 +54,9 @@ export default function Login({
                 name="email"
               />
 
-              {/* </FloatingLabel> */}
             </Form.Group>
 
             <Form.Group controlId="pwd">
-              {/* <FloatingLabel controlId="pwd"
-                                    label="Password"
-                                    className="mb-3"
-                                    type="password"
-                                    value={this.state.pwd} onChange={this.handleInputChange} name="pwd"
-
-                                > */}
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
@@ -78,7 +64,6 @@ export default function Login({
                 onChange={e => setPwd(e.target.value)}
                 name="pwd"
               />
-              {/* </FloatingLabel> */}
             </Form.Group>
 
             <Button
@@ -136,7 +121,6 @@ export default function Login({
               </Link>
             </small>
           </p>
-          {/* <small>Or new Company?  register <Link to="/signup/y" onClick={() => this.props.updateModal(false)}>here</Link></small> */}
         </Col>
       </Row>
     </Container>

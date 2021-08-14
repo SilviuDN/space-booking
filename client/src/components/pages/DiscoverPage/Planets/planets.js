@@ -19,7 +19,7 @@ class Planets extends Component {
         this.state = {
             showinfo: false,
             title: 'TITLE',
-            info: 'askldjgashdlakjhdakljhdakashdakjhdsalkd',
+            info: '',
 
         }
 
@@ -41,11 +41,9 @@ class Planets extends Component {
 
         this.divRef.current.classList.remove('white')
 
-        setTimeout(() => {
-            this.setState({
-                info: '',
-            })
-        }, 200);
+        this.setState({
+            info: '',
+        })
     }
 
 

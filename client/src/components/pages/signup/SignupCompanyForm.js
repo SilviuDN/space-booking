@@ -102,7 +102,7 @@ class SignupCompanyForm extends Component {
         return (
             <Container>
 
-
+                <h1 className='text-center mb-3'>Your company</h1>
 
                 <Form className='formSignup pb-5'>
                     <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
