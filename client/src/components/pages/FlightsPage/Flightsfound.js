@@ -81,7 +81,7 @@ class FlightsFound extends Component {
 
                                         this.state.flightsAvail.length >= 1 ?
 
-                                            this.state.flightsAvail.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} setPayMethod={this.setPayMethod} />)
+                                            this.state.flightsAvail.map(flight => <ReturnedFlightCard flight={flight} key={flight._id} setPayMethod={this.setPayMethod} setLoginPop={this.props.setLoginPop} loggedUser={this.props.loggedUser} />)
 
                                             :
 

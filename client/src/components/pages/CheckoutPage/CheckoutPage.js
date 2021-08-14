@@ -122,7 +122,7 @@ class Checkout extends Component {
                             <Card body>
                                 <h3>Required documentation</h3>
                                 <p>Check the entry conditions of your destination for both the outward and return.</p>
-                                <Link to="">View Conditions</Link>
+                                <Link to="/">View Conditions</Link>
                             </Card>
 
                             <br />
@@ -225,7 +225,7 @@ class Checkout extends Component {
                                 </Row>
                             </Card>
 
-                            <Link as={Button} onClick={() => this.setflightInUser()} className="btn btn-lg btn-danger d-block mt-2 mb-5">Purchase</Link>
+                            <Link as={Button} to={'/'} onClick={() => this.setflightInUser()} className="btn btn-lg btn-danger d-block mt-2 mb-5">Purchase</Link>
                         </Col>
 
                         <Col md={4}>
@@ -311,7 +311,7 @@ class Checkout extends Component {
                                 <p>Cancellation</p>
                                 <p>Not allowed</p>
 
-                                <Link to="">See change and cancellation policy</Link>
+                                <Link to="/">See change and cancellation policy</Link>
                             </Card>
                         </Col>
                     </Row>

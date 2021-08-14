@@ -166,11 +166,22 @@ class ReturnedFlightCard extends Component {
                             </Row>
 
                             <Row>
-                                <Col>
-                                    <Row style={{ padding: "10px" }} className="text-center">
-                                        <Button className="btn  " variant="dark" onClick={() => { this.props.setPayMethod(this.props.flight) }}>Select</Button>
-                                    </Row>
-                                </Col>
+                                {this.props.loggedUser !== null ?
+
+                                    <Col>
+                                        <Row style={{ padding: "10px" }} className="text-center">
+                                            <Button className="btn  " variant="dark" onClick={() => { this.props.setPayMethod(this.props.flight) }}>Buy this flight</Button>
+                                        </Row>
+                                    </Col>
+
+                                    :
+
+                                    <Col>
+                                        <Row style={{ padding: "10px" }} className="text-center">
+                                            <Button className="btn  " variant="dark" onClick={() => { this.props.setLoginPop(true) }}>Buy this flight</Button>
+                                        </Row>
+                                    </Col>
+                                }
                             </Row>
                         </Col>
                     </Row>

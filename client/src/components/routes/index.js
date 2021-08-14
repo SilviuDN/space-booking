@@ -30,7 +30,7 @@ import Test01 from '../pages/.Testing/Test01.js'
 import PlanetRoutes from './Planet.routes.js'
 import ThankyouPage from '../pages/CheckoutPage/ThankyouPage.js'
 
-const Routes = ({ storeUser, loggedUser, showAlert }) => {
+const Routes = ({ storeUser, loggedUser, showAlert, setLoginPop }) => {
     return (
         <Switch>
             <Route path="/reset/password/:token" exact render={props => <ResetPassword {...props} storeUser={storeUser} loggedUser={loggedUser} showAlert={showAlert} />} />
@@ -58,7 +58,7 @@ const Routes = ({ storeUser, loggedUser, showAlert }) => {
             <Route path="/flights/new" exact render={props => <EditCreateFlight {...props} type="new" showAlert={showAlert} loggedUser={loggedUser} />} />
             <Route
                 path="/flights/found/:airport/:destination/:departureDate/:returnDate/:adults/:children"
-                render={props => <FlightSearchList {...props} showAlert={showAlert} loggedUser={loggedUser} />}
+                render={props => <FlightSearchList {...props} showAlert={showAlert} loggedUser={loggedUser} setLoginPop={setLoginPop} />}
             />
             <Route path="/flights/:flight_id/edit" exact render={props => <EditCreateFlight {...props} type="edit" showAlert={showAlert} loggedUser={loggedUser} />} />
             <Route path="/flights/:flight_id" exact render={props => <FlightDetails {...props} />} />

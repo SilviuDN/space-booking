@@ -1,17 +1,16 @@
-import { Navbar, Nav, Container } from 'react-bootstrap'
-// import { Component } from 'react'
-import { Link } from 'react-router-dom'
-import AuthService from '../../../services/auth.service'
-import { Modal } from 'react-bootstrap'
-import Login from '../../pages/login/login'
 import PasswordRecover from '../../pages/login/recoverPassword'
+import CompanyService from '../../../services/company.service'
+import AuthService from '../../../services/auth.service'
+import { Navbar, Nav, Container } from 'react-bootstrap'
+import { useState, useEffect } from 'react'
+import Login from '../../pages/login/login'
+import { Modal } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 import logo from './logo.png'
 import './Navigation.css'
-import CompanyService from '../../../services/company.service'
-// import { useEffect } from 'react'
-import { useState } from 'react'
 
-export default function Navigation({ storeUser, history, loggedUser, showAlert }) {
+
+export default function Navigation({ storeUser, history, loggedUser, showAlert, setLoginPop }) {
     const authService = new AuthService()
     const companyService = new CompanyService()
 
@@ -30,7 +29,18 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
     //     console.log('hi')        didupdate
     // });
 
-    // const setModalState = (action) => this.setState({ modal: action })
+
+    const setModalState = (action) => setLoginModal(action)
+
+
+    useEffect(() => {
+
+        setLoginPop(() => setModalState)
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
 
     const loadMyCompany = user_id => {
         companyService
@@ -41,12 +51,14 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
             .catch(err => console.log(err))
     }
 
+
     const logout = () => {
         authService
             .logout()
-            .then(() => storeUser(undefined))
+            .then(() => storeUser(null))
             .catch(err => console.log(err))
     }
+
 
     return (
         <>
@@ -74,7 +86,7 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert }
                                     <Link className="nav-link" to="/signup/n">
                                         Signup
                                     </Link>
-                                    <Link className="nav-link" to="/" onClick={() => setLoginModal(true)}>
+                                    <Link className="nav-link" to={history.location.pathname} onClick={() => setLoginModal(true)}>
                                         Login
                                     </Link>
                                     <span className="nav-link">¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</span>
