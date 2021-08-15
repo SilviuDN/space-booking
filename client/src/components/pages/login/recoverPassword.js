@@ -20,7 +20,8 @@ export default function PasswordRecover({ recoverPassModal, showAlert, history }
         authService
             .recoverPassword(email)
             .then(response => {
-                showAlert(`Recover email sent to ${response.data.email}`)
+                console.log(response)
+                showAlert(`${response.data.message}`)
                 recoverPassModal(false)
                 history.push('/')
             })

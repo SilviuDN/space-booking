@@ -92,16 +92,14 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
                                     <Link className="nav-link" to={history.location.pathname} onClick={() => setLoginModal(true)}>
                                         Login
                                     </Link>
-                                    <span className="nav-link">¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!</span>
+                                    <span className="nav-link">¡Hi, Terricol@ :-D'!</span>
                                 </>
                             ) : loggedUser.role === 'moderator' ? (
                                 <>
                                     <Link className="nav-link" to={`/flights/new`}>
-                                        {' '}
                                         New Flight
                                     </Link>
                                     <span className="nav-link cursor-pointer" onClick={() => loadMyCompany(loggedUser._id)}>
-                                        {' '}
                                         MyCompany
                                     </span>
 
@@ -110,20 +108,19 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
                                     </span>
 
                                     <Link className="nav-link" to={`/users/${loggedUser._id}`}>
-                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                        <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
                                     </Link>
                                 </>
                             ) : loggedUser.role === 'admin' ? (
                                 <>
                                     <Link className="nav-link" to={`/admin`}>
-                                        {' '}
                                         Admin panel
                                     </Link>
                                     <span className="nav-link cursor-pointer" onClick={logout}>
                                         Log out
                                     </span>
                                     <Link className="nav-link" to={`/users/${loggedUser._id}`}>
-                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                        <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
                                     </Link>
                                 </>
                             ) : (
@@ -132,7 +129,7 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
                                         Log out
                                     </span>
                                     <Link className="nav-link" to={`/users/${loggedUser._id}`}>
-                                        ¡Hi, {loggedUser ? loggedUser.name : 'Terricol@ :-D'}!
+                                        <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
                                     </Link>
                                 </>
                             )}

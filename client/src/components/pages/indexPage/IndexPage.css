@@ -83,5 +83,13 @@
 }
 
 .advantages {
+    padding-bottom: 150px;
+}
+
+.sponsors{
+    padding: 100px 0;
+}
+
+.discover{
     padding-bottom: 50px;
 }

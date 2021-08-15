@@ -127,28 +127,23 @@ class SignupUserForm extends Component {
                 <Form onSubmit={this.handleSubmit} className={'pb-5'}>
 
                     <Form.Group as={Col} controlid="formBasicEmail" md={{ span: 8, offset: 2 }} className="mb-3">
-
-
-                        <Form.Control onChange={this.handleInput} value={this.state.email} type="email" placeholder="E-mail" name='email' />
+                        <input className="form-control" onChange={this.handleInput} value={this.state.email} type="email" placeholder="E-mail" name='email' required />
                         <Form.Text className="text-muted">
                             This email will be your user account.
                         </Form.Text>
-
                     </Form.Group>
 
                     <Form.Group as={Col} controlid="formBasicPassword" md={{ span: 8, offset: 2 }} className="mb-4">
-
-                        <Form.Control onChange={this.handleInput} value={this.state.pwd} type="password" placeholder="Password" name='pwd' />
+                        <input className="form-control" onChange={this.handleInput} value={this.state.pwd} type="password" placeholder="Password" name='pwd' required />
                     </Form.Group>
 
 
                     <Form.Group as={Col} controlid="name" md={{ span: 8, offset: 2 }} className="mb-4">
-
-                        <Form.Control onChange={this.handleInput} value={this.state.name} type="text" placeholder="Name" name='name' />
+                        <input className="form-control" onChange={this.handleInput} value={this.state.name} type="text" placeholder="Name" name='name' required />
                     </Form.Group>
-                    <Form.Group as={Col} controlid="surname" md={{ span: 8, offset: 2 }} className="mb-4">
 
-                        <Form.Control onChange={this.handleInput} value={this.state.text} type="text" placeholder="Surname" name='surname' />
+                    <Form.Group as={Col} controlid="surname" md={{ span: 8, offset: 2 }} className="mb-4">
+                        <input className="form-control" onChange={this.handleInput} value={this.state.text} type="text" placeholder="Surname" name='surname' required />
                     </Form.Group>
 
                     <Row >
@@ -166,34 +161,31 @@ class SignupUserForm extends Component {
                                 <option>PASSPORT</option>
                                 <option>OTHER</option>
                             </Form.Control>
-
                         </Form.Group>
 
 
                         <Form.Group as={Col} controlid="personalId" md={6} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="Number of personal ID" name='personalId' />
+                            <input className="form-control" onChange={this.handleInput} value={this.state.personalId} type="text" placeholder="Number of personal ID" name='personalId' required />
                         </Form.Group>
                     </Row>
 
                     <Form.Group as={Col} controlid="phone" md={{ span: 8, offset: 2 }} className="mb-4">
                         <Form.Control onChange={this.handleInput} value={this.state.phone} type="text" placeholder="Phone + " name='phone' />
-                        <br />
-
-                        <hr />
+                        <hr className="mt-5" />
                     </Form.Group>
 
 
                     <Row>
                         <Form.Group as={Col} md={{ span: 4, offset: 2 }} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="Street" name='street' />
+                            <input className="form-control" onChange={this.handleInput} value={this.state.street} id='street' type="text" placeholder="Street" name='street' required />
                         </Form.Group>
 
                         <Form.Group as={Col} md={2} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.number} id='number' type="text" placeholder="Number" name='number' />
+                            <input onChange={this.handleInput} value={this.state.number} id='number' type="text" placeholder="Number" name='number' required />
                         </Form.Group>
 
                         <Form.Group as={Col} md={2} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.zipCode} id='zipCode' type="text" placeholder="ZipCode" name='zipCode' />
+                            <input className="form-control" onChange={this.handleInput} value={this.state.zipCode} id='zipCode' type="text" placeholder="ZipCode" name='zipCode' required />
                         </Form.Group>
                     </Row>
 
@@ -202,24 +194,26 @@ class SignupUserForm extends Component {
                     <Row>
 
                         <Form.Group as={Col} md={{ span: 4, offset: 2 }} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' />
+                            {/* <Form.Control onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' /> */}
+                            <input className="form-control" onChange={this.handleInput} value={this.state.city} id='city' type="text" placeholder="City" name='city' required />
                         </Form.Group>
 
                         <Form.Group as={Col} md={4} className="mb-4">
-                            <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' />
-
+                            {/* <Form.Control onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' /> */}
+                            <input className='form-control' onChange={this.handleInput} value={this.state.country} id='country' type="text" placeholder="Country" name='country' required />
                         </Form.Group>
+
                         <Form.Group as={Col} controlid="hr" md={{ span: 8, offset: 2 }} className="mb-4">
                             <hr />
                         </Form.Group>
                     </Row>
 
 
-                    <Row  >
+                    <Row>
                         <Form.Group as={Col} md={{ span: 2, offset: 2 }} className="mb-3 align-self-center">
                             <Form.Label><h4>Profile image</h4></Form.Label>
-
                         </Form.Group>
+
                         <Form.Group as={Col} md={4} className="mb-3  align-self-center">
                             <Form.Control onChange={this.handleUploadDocuments} type="file" name='profileImg' id='profileImg' controlid="formFile" />
                         </Form.Group>
@@ -228,7 +222,6 @@ class SignupUserForm extends Component {
                             {this.state.image_preview ? <Image src={this.state.image_preview} roundedCircle fluid alt="profile" style={{
                                 height: '120px', margin: "0% 11%"
                             }} /> : null}
-
                         </Form.Group>
 
 

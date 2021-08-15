@@ -85,7 +85,7 @@ class IndexPage extends Component {
                         </Carousel.Item>
                     </Carousel>
 
-                    <Row>
+                    <Row className="sponsors">
                         <Col xs={6} md={3} >
                             <p align="center"><img
                                 className="d-block  b"
@@ -179,19 +179,23 @@ class IndexPage extends Component {
 
                         </Col>
                     </Row>
-                    <Row>
+                    <Row className="discover">
                         <Col md={12} >
                             <h3 id="why" align="center">Hot Deals</h3>
                             <h2 id="our" align="center">Popular Destinations</h2>
+
                             <p align="center"><img src={pinkline} alt="line" /></p>
-                            <p className="text-center"><Link to='/discover'><Button bsPrefix="btn-flat" variant="primary">DISCOVER</Button> </Link></p>
+
+                            <p className="text-center"><Link to='/discover'><Button bsPrefix="btn-flat" variant="primary">DISCOVER</Button> </Link>
+                            </p>
                             <br />
+
                             <img src={destinations} alt="destinations" className="destinations" />
+
                             <p className="text-center"><Button bsPrefix="btn-flat" variant="primary"  >
-
                                 <strong onClick={() => this.scrollUp()}> FIND TICKETS</strong>
-                            </Button></p>
-
+                            </Button>
+                            </p>
                         </Col>
 
 

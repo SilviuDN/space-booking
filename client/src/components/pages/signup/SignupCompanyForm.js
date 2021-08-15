@@ -1,9 +1,10 @@
 
-import 'bootstrap/dist/css/bootstrap.min.css'
 import { Form, Button, Container, Col, Row, Image } from 'react-bootstrap'
-import React, { Component } from 'react';
 import CompanyService from '../../../services/company.service'
 import UploadService from '../../../services/upload.service'
+import Spinner from 'react-bootstrap/Spinner';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import React, { Component } from 'react';
 import './signUp.css'
 
 class SignupCompanyForm extends Component {
@@ -58,6 +59,8 @@ class SignupCompanyForm extends Component {
 
         if (e.target.files.length) {
 
+            this.setState({ loading: true })
+
             let image_as_base64 = URL.createObjectURL(e.target.files[0])
 
             let files = e.target.files
@@ -79,13 +82,15 @@ class SignupCompanyForm extends Component {
                                 logo: response.data.imageUrl
                             },
                             image_preview: image_as_base64,
+                            loading: false
                         })
                         :
                         this.setState({
                             company: {
                                 ...this.state.company,
-                                document: joinedDocs
-                            }
+                                document: joinedDocs,
+                            },
+                            loading: false
                         })
 
                 })
@@ -162,19 +167,34 @@ class SignupCompanyForm extends Component {
                             <Form.Label><h4>Documents</h4></Form.Label>
                         </Form.Group>
                         <Form.Group as={Col} md={4} className="mb-3  align-self-center" controlId="companyImg">
-                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' />
+                            <Form.Control onChange={this.handleUploadDocuments} type="file" name='file' required />
                         </Form.Group>
 
                     </Row>
-                    <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
 
-                        <Button onClick={(e) => this.props.sharedFunction(e)} bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }}>
-                            Submit
-                        </Button>
-                    </Form.Group>
+                    {this.state.loading ?
+                        <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3 align-self-center">
+                            <Button bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }} disabled>
+                                <Spinner
+                                    as="span"
+                                    animation="grow"
+                                    size="sm"
+                                    role="status"
+                                    aria-hidden="true"
+                                />Loading...
+                            </Button>
+                        </Form.Group>
+
+                        :
+                        <Form.Group as={Col} md={{ span: 8, offset: 2 }} className="mb-3" controlId="comapnyName">
+                            <Button onClick={(e) => this.props.sharedFunction(e)} bsPrefix="btn-flat" variant="primary" type="submit" className="d-block" style={{ marginTop: '20px', width: '100%' }}>
+                                Submit
+                            </Button>
+                        </Form.Group>
+                    }
 
                 </Form>
-            </Container >
+            </Container>
         )
     }
 }

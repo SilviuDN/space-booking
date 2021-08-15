@@ -22,22 +22,20 @@ class DiscoverPage extends Component {
 
     }
 
-    // loadDetails = () => {
-    //     this.props.history.push(`/discover/details/${this.state.view}`)
-    // }
-
-
 
     render() {
         return (
 
 
-            this.state.view === 'discover' ? <Planets changeView={this.changeView} /> :
-                this.state.view !== '' ? <PlanetDetails view={this.state.view} changeView={this.changeView} /> :
+            this.state.view === 'discover' ?
+
+                <Planets changeView={this.changeView} /> :
+
+                this.state.view !== '' ?
+
+                    <PlanetDetails view={this.state.view} changeView={this.changeView} /> :
+
                     null
-
-
-
         )
     }
 }
