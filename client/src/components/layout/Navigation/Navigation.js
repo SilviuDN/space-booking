@@ -17,6 +17,17 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
     const [loginModal, setLoginModal] = useState(false)
     const [recoverPassModal, setRecoverPassModal] = useState(false)
 
+
+    const setModalState = action => setLoginModal(action)
+
+
+    useEffect(() => {
+        // setting function to parent state
+        setLoginPop(() => setModalState)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
     // useEffect(() => {
     //     console.log('hi')        chekfor this variable
     // }, [modal]);
@@ -28,18 +39,6 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
     // useEffect(() => {
     //     console.log('hi')        didupdate
     // });
-
-
-    const setModalState = (action) => setLoginModal(action)
-
-
-    useEffect(() => {
-
-        setLoginPop(() => setModalState)
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
 
 
     const loadMyCompany = user_id => {
@@ -120,7 +119,15 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
                                         Log out
                                     </span>
                                     <Link className="nav-link" to={`/users/${loggedUser._id}`}>
-                                        <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
+                                        {
+                                            loggedUser.profileImg ?
+                                                <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
+                                                :
+                                                <span className="nav-link cursor-pointer" onClick={logout}>
+                                                    'Welcome ' {loggedUser.name}
+                                                </span>
+
+                                        }
                                     </Link>
                                 </>
                             ) : (
@@ -129,7 +136,14 @@ export default function Navigation({ storeUser, history, loggedUser, showAlert, 
                                         Log out
                                     </span>
                                     <Link className="nav-link" to={`/users/${loggedUser._id}`}>
-                                        <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
+                                        {
+
+                                            loggedUser.profileImg ?
+                                                <img src={loggedUser.profileImg} style={{ width: '25px', height: '25px', borderRadius: '50%' }} alt="user profile" />
+                                                :
+                                                'Welcome ' + loggedUser.name.split(' ')[0] + ' !'
+                                        }
+
                                     </Link>
                                 </>
                             )}

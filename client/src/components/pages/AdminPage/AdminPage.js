@@ -28,7 +28,7 @@ class AdminPage extends Component {
         this.state = {
             rightView: '',
             leftView: 'user',
-            chart: '',
+            // chart: '',
             searchBox: '',
             isLoading: false,
             id: '',
@@ -43,11 +43,9 @@ class AdminPage extends Component {
     sharedFunction = (key, fn) => this.setState({ loadSharedFunction: { ...this.state.loadSharedFunction, [key]: fn } })
 
 
-    renderSwitch = (param) => {
+    renderSwitch = (page) => {
 
-
-
-        switch (param) {
+        switch (page) {
             case 'user':
                 return <UsersList setList={this.setList} setId={this.setId} showAlert={this.props.showAlert} sharedFunction={this.sharedFunction} />;
             case 'company':
@@ -76,8 +74,6 @@ class AdminPage extends Component {
                 return <AirportEdit id={this.state.id} setList={this.setList} setId={this.setId} />
 
 
-
-
             case 'userDetails':
                 return <UserDetails id={this.state.id} setList={this.setList} setId={this.setId} />
             case 'airportDetails':
@@ -88,9 +84,6 @@ class AdminPage extends Component {
                 return <FlightDetails id={this.state.id} setList={this.setList} setId={this.setId} />
             case 'destinationDetails':
                 return <DestinationDetails id={this.state.id} setList={this.setList} setId={this.setId} loggedUser={this.props.loggedUser} />
-
-
-
 
             default:
                 return null;
@@ -140,23 +133,17 @@ class AdminPage extends Component {
 
     setId = (id) => this.setState({ id })
 
-
     // componentDidUpdate = (prevProps, prevState) => prevState.rightView !== this.state.rightView &&
 
-
-
     render() {
-
 
         return (
 
             <div style={{ background: `url(${background})`, minHeight: '92vh', backgroundSize: 'cover', backgroundRepeat: 'no-repeat' }
             }>
 
-
                 <Container fluid>
                     <Row>
-
 
                         <Row style={{ marginTop: 0 }}>
                             <Col xs={{ span: 4, offset: 1 }} className={'col'} >
@@ -184,17 +171,13 @@ class AdminPage extends Component {
 
                             <Col xs={{ span: 5, offset: 0 }} id="admin-list" style={{ marginLeft: 100 }}>
 
-
                                 {
                                     this.renderSwitch(this.state.leftView)
-
-
                                 }
 
                             </Col>
 
                             <Col xs={{ span: 6, offset: 0 }} id="admin-list" >
-
 
                                 {
                                     this.renderSwitch(this.state.rightView)
@@ -203,12 +186,7 @@ class AdminPage extends Component {
 
                             </Col>
 
-
                         </Row>
-
-
-
-
                     </Row>
                 </Container>
             </div>

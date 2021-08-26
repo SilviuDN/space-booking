@@ -4,10 +4,7 @@ import './Dashboard.css'
 
 const AdminNav = (props) => {
 
-
-
     return (
-
 
         < Nav className=" d-md-block blue-nav py-6 sidebar"
         // activeKey="/home"
@@ -32,10 +29,6 @@ const AdminNav = (props) => {
                 <Nav.Link onClick={() => props.setLeftView('airports')}>Airports</Nav.Link>
             </Nav.Item>
         </Nav>
-
-
-
-
     )
 }
 
