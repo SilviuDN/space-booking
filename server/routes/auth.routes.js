@@ -100,13 +100,12 @@ router.post('/pass/recover/:email', (req, res) => {
                 res.status(404).json({ code: 404, message: 'User not found' })
                 return
             }
-
             const email = emails(response, req)
 
             Transporter
                 .sendMail(email)
                 .then(() => res.json({ message: `Email sent to ${response.email}`, response }))
-                .catch(err => res.status(500).json({ code: 500, message: 'DB error while fetching user', err }))
+                .catch(err => res.status(500).json({ code: 500, message: 'DB error while sending email', err }))
         })
         .catch(err => console.log(err))
 })
