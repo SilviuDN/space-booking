@@ -25,12 +25,12 @@ Authorization!!!
 -   :id/delete DELETE
     OWNER
 -   /user/:id/review_id/edit PUT
--   /user/:id/review_id/delete DELETE ---> te toca alex
+-   /user/:id/review_id/delete DELETE 
 
 ### company.routes.js
 
 -   /company
--   /company/edit GET ----> 
+-   /company/edit GET
 -   /company/edit PUT
 -   /company/delete DELETE
 
@@ -62,12 +62,12 @@ Authorization!!!
 
 <App>
     <Navigation/>
-    <Footer/> //componentes que no reutilizamos --> los separamos?
+    <Footer/> 
 
 <IndexPage/>
     <LoginForm/> (modal)
-    <UserForm/> (modal)
-    <CompanyForm/> (modal)
+    <UserForm/>
+    <CompanyForm/> 
     <SearchBox/>
     <DestinationUsersList/>
         <DestinationCard/>
@@ -81,7 +81,7 @@ Authorization!!!
     <PopularDestinations/>
     <NewsList/>
         <NewsCard/>
-            <NewsDetails/> //hay algun api?
+            <NewsDetails/> 
 
 <AdminPage/>
     <Counter/>
